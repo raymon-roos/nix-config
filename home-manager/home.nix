@@ -102,6 +102,7 @@ in {
       sd
       bat
       starship
+      calc
       cmus
       yadm
       ripdrag
