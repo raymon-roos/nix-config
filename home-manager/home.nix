@@ -116,8 +116,6 @@ in {
       yadm
       ripdrag
       thunderbird
-      rose-pine-cursor
-      rose-pine-icon-theme
     ];
   };
 
