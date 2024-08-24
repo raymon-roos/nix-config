@@ -71,17 +71,6 @@ in {
       PASSWORD_STORE_CLIP_TIME = 30;
       PASSWORD_STORE_ENABLE_EXTENSIONS = "true";
 
-      # XDG_HOME = xdgHome;
-      # BIN_HOME = binHome;
-      # SRC_HOME = srcHome;
-      # FILES_HOME = filesHome;
-      # USB_HOME = "${filesHome}/usb";
-      # PHONE_HOME = "${filesHome}/phone";
-      # NOTES_HOME = "${filesHome}/zettelkasten";
-      # FINANCE_HOME = "${filesHome}/finance";
-      # DOTREMINDERS = "${filesHome}/reminders";
-      # PASSWORD_STORE_DIR = "${filesHome}/secrets/passwords";
-
       FLAKE = "/home/ray/.xdg/config/nix";
       ADB_KEYS_PATH = "${configHome}/android";
       CALCHISTFILE = "${stateHome}/calc/calc_history";
