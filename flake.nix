@@ -2,12 +2,19 @@
   description = "Ray's Home Manager configuration";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
-    home-manager.url = "github:nix-community/home-manager";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
+
+    home-manager.url = "github:nix-community/home-manager/release-24.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     stylix.url = "github:danth/stylix";
+    stylix.inputs.nixpkgs.follows = "nixpkgs";
+
+    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+    hyprsplit.url = "github:shezdy/hyprsplit";
+    hyprsplit.inputs.hyprland.follows = "hyprland";
   };
 
   outputs = {
@@ -15,13 +22,21 @@
     nixpkgs,
     home-manager,
     stylix,
+    hyprland,
+    hyprsplit,
     ...
   } @ inputs: let
     inherit (self) outputs;
+
+    pkgs-unstable = import inputs.unstable {
+      system = "x86_64-linux";
+      config.allowUnfree = true;
+    };
   in {
-    # nixos-rebuild switch --flake .#raydesk
     nixosConfigurations.raydesk = nixpkgs.lib.nixosSystem {
-      specialArgs = {inherit inputs outputs;};
+      specialArgs = {
+        inherit pkgs-unstable inputs outputs;
+      };
 
       modules = [
         ./nixos/configuration.nix
@@ -35,7 +50,9 @@
             useGlobalPkgs = true;
             useUserPackages = true;
             users.ray = import ./home-manager/home.nix;
-            extraSpecialArgs = {inherit inputs outputs;};
+            extraSpecialArgs = {
+              inherit pkgs-unstable hyprland hyprsplit inputs outputs;
+            };
           };
         }
       ];

@@ -1,13 +1,4 @@
-# Edit this configuration file to define what should be installed on
-# your system. Help is available in the configuration.nix(5) man page, on
-# https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
-{
-  config,
-  lib,
-  pkgs,
-  inputs,
-  ...
-}: {
+{ config, pkgs, ... } @ inputs: {
   imports = [
     ./hardware-configuration.nix
   ];
@@ -20,22 +11,22 @@
   };
 
   fileSystems = {
-    "/boot".options = ["fmask=0077" "dmask=0077"];
-    "/".options = ["subvol=nixos" "defaults" "rw" "noatime" "compress-force=zstd:5" "ssd"];
-    "/root".options = ["subvol=home_root" "defaults" "rw" "noatime" "compress-force=zstd:5" "ssd"];
-    "/nix".options = ["subvol=nix" "defaults" "rw" "noatime" "compress-force=zstd:5" "ssd"];
-    "/opt".options = ["subvol=opt" "defaults" "rw" "noatime" "compress-force=zstd:5" "ssd"];
-    "/srv".options = ["subvol=srv" "defaults" "rw" "noatime" "compress-force=zstd:5" "ssd"];
-    "/usr/local".options = ["subvol=usr/local" "defaults" "rw" "noatime" "compress-force=zstd:5" "ssd"];
-    "/var".options = ["subvol=var" "defaults" "rw" "noatime" "compress-force=zstd:5" "ssd"];
-    "/snapshots".options = ["subvol=snapshots" "defaults" "rw" "noatime" "compress-force=zstd:5" "ssd"];
-    "/home/ray".options = ["subvol=home_ray" "defaults" "rw" "noatime" "compress-force=zstd:5" "ssd"];
-    "/home/ray/files/2-disk".options = ["defaults" "rw" "noatime" "compress-force=zstd:5"];
-    "/mnt/artix".options = ["defaults" "rw" "noatime" "compress-force=zstd:5" "ssd"];
+    "/boot".options = [ "fmask=0077" "dmask=0077" ];
+    "/".options = [ "subvol=nixos" "defaults" "rw" "noatime" "compress-force=zstd:5" "ssd" ];
+    "/root".options = [ "subvol=home_root" "defaults" "rw" "noatime" "compress-force=zstd:5" "ssd" ];
+    "/nix".options = [ "subvol=nix" "defaults" "rw" "noatime" "compress-force=zstd:5" "ssd" ];
+    "/opt".options = [ "subvol=opt" "defaults" "rw" "noatime" "compress-force=zstd:5" "ssd" ];
+    "/srv".options = [ "subvol=srv" "defaults" "rw" "noatime" "compress-force=zstd:5" "ssd" ];
+    "/usr/local".options = [ "subvol=usr/local" "defaults" "rw" "noatime" "compress-force=zstd:5" "ssd" ];
+    "/var".options = [ "subvol=var" "defaults" "rw" "noatime" "compress-force=zstd:5" "ssd" ];
+    "/snapshots".options = [ "subvol=snapshots" "defaults" "rw" "noatime" "compress-force=zstd:5" "ssd" ];
+    "/home/ray".options = [ "subvol=home_ray" "defaults" "rw" "noatime" "compress-force=zstd:5" "ssd" ];
+    "/home/ray/files/2-disk".options = [ "defaults" "rw" "noatime" "compress-force=zstd:5" ];
+    "/mnt/artix".options = [ "defaults" "rw" "noatime" "compress-force=zstd:5" "ssd" ];
   };
 
   hardware = {
-    graphics.enable = true;
+    opengl.enable = true;
     nvidia = {
       modesetting.enable = true;
       powerManagement.enable = false;
@@ -85,6 +76,8 @@
         "flakes"
       ];
       auto-optimise-store = true;
+      substituters = ["https://hyprland.cachix.org"];
+      trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
     };
     gc = {
       automatic = true;
@@ -99,19 +92,19 @@
     zsh.enable = true; # further configured in hm config
     neovim = {
       enable = true;
+      package = inputs.pkgs-unstable.neovim-unwrapped;
       defaultEditor = true;
       vimAlias = true;
+      withNodeJs = false;
+      withPython3 = false;
+      withRuby = false;
     };
-    chromium.package = pkgs.librewolf;
-    hyprland.enable = true;
-    waybar.enable = true;
+    # chromium.package = pkgs.librewolf;
     nix-ld.enable = true; # hack to fix dynamically linked binaries for traditional distros
     nh.enable = true;
     nh.flake = "/home/ray/.xdg/config/nix#raydesk";
   };
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
   environment = {
     systemPackages = with pkgs; [
       neovim
@@ -136,7 +129,6 @@
       gcc
       libgcc
       gnumake
-      nil # not in home-manager.pkgs ?
       libnotify
     ];
     variables = {

@@ -1,10 +1,4 @@
-{
-  config,
-  pkgs,
-  lib,
-  inputs,
-  ...
-}: let
+{pkgs, ...} @ inputs: let
   user = "ray";
   homeDir = "/home/${user}";
   xdgHome = "${homeDir}/.xdg";
@@ -21,7 +15,7 @@ in {
     ./features/zsh
     ./features/starship
     ./features/cli_tools.nix
-    # ./wayland/hyprland
+    ./wayland/hyprland
   ];
 
   xdg = {
@@ -105,10 +99,6 @@ in {
 
     packages = with pkgs; [
       nix-tree
-      nil
-      nixd
-      alejandra
-      neovim
       sd
       bat
       starship
@@ -116,6 +106,10 @@ in {
       yadm
       ripdrag
       thunderbird
+
+      alejandra
+      nil
+      nixd
     ];
   };
 
@@ -136,6 +130,22 @@ in {
 
   programs = {
     home-manager.enable = true;
+
+    neovim = {
+      enable = false;
+      package = inputs.pkgs-unstable.neovim-unwrapped;
+      defaultEditor = true;
+      vimAlias = true;
+      vimdiffAlias = true;
+      withNodeJs = false;
+      withPython3 = false;
+      withRuby = false;
+      extraPackages = with pkgs; [
+        alejandra
+        nil
+        nixd
+      ];
+    };
     git = {
       enable = true;
       userEmail = "raymon.roos@hotmail.com";

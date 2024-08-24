@@ -1,10 +1,10 @@
-{pkgs, ...} @ inputs: {
-  programs.hyprland.enable = true;
+{ pkgs, hyprsplit, ... } @ inputs: {
   wayland.windowManager.hyprland = {
     enable = true;
-    systemd.variables = ["--all"];
+    package = inputs.hyprland.packages."${pkgs.system}".hyprland;
+    extraConfig = builtins.readFile ./hyprland.conf;
     plugins = [
-      inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.hyprsplit
+      hyprsplit.packages.${pkgs.system}.hyprsplit
     ];
   };
 }
