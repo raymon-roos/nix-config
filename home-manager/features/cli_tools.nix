@@ -1,42 +1,37 @@
 {
   pkgs,
+  lib,
   config,
   ...
 }: let
-  cacheHome = config.xdg.cacheHome;
-  stateHome = config.xdg.stateHome;
+  ignores = [
+    ".xdg/cache/*"
+    ".xdg/local/share/yadm/repo.git/*"
+    ".nix-*"
+    ".librewolf/*"
+    ".mozilla/*"
+    ".thunderbird/*"
+    ".git"
+    "vendor/*"
+    "node_modules/*"
+  ];
+  ignoreArgs = lib.map (x: "-I ${x} ") ignores;
 in {
   programs = {
     ripgrep = {
       enable = true;
-      arguments = [
-        "--smart-case"
-        "--hidden"
-        "--glob=!.git/*"
-        "--glob=!vendor/*"
-        "--glob=!node_modules/*"
-        "--glob=!vendor/*"
-        "--glob=!${cacheHome}"
-        "--glob=!${stateHome}"
-        "--glob=!~/.nix-defexpr/"
-        "--glob=!~/.nix-profile/"
-        "--glob=!~/.nix-channels/"
-      ];
+      arguments =
+        [
+          "--smart-case"
+          "--hidden"
+        ]
+        ++ lib.map (x: "--glob=!${x}") ignores;
     };
 
     fd = {
       enable = true;
       hidden = true;
-      ignores = [
-        "${cacheHome}"
-        "${stateHome}"
-        ".git/"
-        "vendor/"
-        "node_modules/"
-        "~/.nix-defexpr/"
-        "~/.nix-profile/"
-        "~/.nix-channels/"
-      ];
+      inherit ignores;
     };
 
     eza = {
@@ -45,11 +40,15 @@ in {
       enableZshIntegration = true;
       git = true;
       icons = true;
-      extraOptions = [
-        "--all"
-        "--group-directories-first"
-        "--group"
-      ];
+      extraOptions =
+        [
+          "--all"
+          "--long"
+          "--group-directories-first"
+          "--smart-group"
+          "--git-repos"
+        ]
+        ++ ignoreArgs;
     };
     bash.shellAliases = {
       ls = "eza --long";
@@ -58,10 +57,14 @@ in {
       ls = "eza --long";
     };
 
-    fzf = {
+    fzf = let
+      previewer = ''
+        ([[ -f {} ]] && (bat --style=header,grid --color=always --wrap=auto --terminal-width=-2 {} || cat {})) \
+          || ([[ -d {} ]] && (eza --git-ignore --level 3 -T --colour=always --icons ${lib.concatStrings ignoreArgs} {} || tree ${lib.concatStrings ignoreArgs} -C {} | bat -pp)) \
+          || echo {} 2> /dev/null | head -200
+      '';
+    in {
       enable = true;
-      enableBashIntegration = true;
-      enableZshIntegration = true;
       defaultOptions = [
         "--layout=reverse"
         "--info=inline"
@@ -72,12 +75,16 @@ in {
         "--pointer='▶'"
         "--marker='✓'"
         "--select-1 --exit-0"
-        "--preview '([[ -f {} ]] && (bat --style=header,grid --color=always --wrap=auto --terminal-width=-2 {} || cat {})) || ([[ -d {} ]] && (tree -I vendor -I node_modules -I cache -I state -C {} | less)) || echo {} 2> /dev/null | head -200'"
+        "--preview '${previewer}'"
         "--bind 'ctrl-/:change-preview-window(down|hidden|)'"
         "--bind 'ctrl-o:execute(echo {+} | xargs -o nvim)'"
       ];
+      defaultCommand = "fd --hidden ${lib.concatMapStrings (x: "--exclude ${x} ") ignores}";
+      # fileWidgetCommand = config.programs.fzf.defaultCommand + " --type f";
+      changeDirWidgetCommand = "${config.programs.fzf.defaultCommand} --type d";
       historyWidgetOptions = [
-        "--preview 'echo {}' --preview-window up:3:wrap"
+        "--preview 'echo {}'"
+        "--preview-window up:3:wrap"
       ];
     };
   };
