@@ -147,19 +147,17 @@ in {
         nixd
       ];
     };
+
     git = {
       enable = true;
       userEmail = "raymon.roos@hotmail.com";
       userName = "Raymon Roos";
-      aliases = {
-        test = "git log --oneline -20";
+      delta = {
+        enable = true;
+        options = {
+          features = "decorations";
+        };
       };
-      # delta = {
-      #   enable = true;
-      #   options = {
-      #     features = "decorations";
-      #   };
-      # };
     };
     gitui.enable = true;
 
