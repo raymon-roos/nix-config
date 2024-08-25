@@ -87,5 +87,12 @@ in {
         "--preview-window up:3:wrap"
       ];
     };
+
+    bat = {
+      enable = true;
+      config = {
+        style = "header,grid";
+      };
+    };
   };
 }

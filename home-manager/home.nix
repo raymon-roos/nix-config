@@ -100,7 +100,6 @@ in {
     packages = with pkgs; [
       nix-tree
       sd
-      bat
       starship
       calc
       cmus
