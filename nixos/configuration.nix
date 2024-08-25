@@ -1,4 +1,8 @@
-{ config, pkgs, ... } @ inputs: {
+{
+  config,
+  pkgs,
+  ...
+} @ inputs: {
   imports = [
     ./hardware-configuration.nix
   ];
@@ -11,18 +15,18 @@
   };
 
   fileSystems = {
-    "/boot".options = [ "fmask=0077" "dmask=0077" ];
-    "/".options = [ "subvol=nixos" "defaults" "rw" "noatime" "compress-force=zstd:5" "ssd" ];
-    "/root".options = [ "subvol=home_root" "defaults" "rw" "noatime" "compress-force=zstd:5" "ssd" ];
-    "/nix".options = [ "subvol=nix" "defaults" "rw" "noatime" "compress-force=zstd:5" "ssd" ];
-    "/opt".options = [ "subvol=opt" "defaults" "rw" "noatime" "compress-force=zstd:5" "ssd" ];
-    "/srv".options = [ "subvol=srv" "defaults" "rw" "noatime" "compress-force=zstd:5" "ssd" ];
-    "/usr/local".options = [ "subvol=usr/local" "defaults" "rw" "noatime" "compress-force=zstd:5" "ssd" ];
-    "/var".options = [ "subvol=var" "defaults" "rw" "noatime" "compress-force=zstd:5" "ssd" ];
-    "/snapshots".options = [ "subvol=snapshots" "defaults" "rw" "noatime" "compress-force=zstd:5" "ssd" ];
-    "/home/ray".options = [ "subvol=home_ray" "defaults" "rw" "noatime" "compress-force=zstd:5" "ssd" ];
-    "/home/ray/files/2-disk".options = [ "defaults" "rw" "noatime" "compress-force=zstd:5" ];
-    "/mnt/artix".options = [ "defaults" "rw" "noatime" "compress-force=zstd:5" "ssd" ];
+    "/boot".options = ["fmask=0077" "dmask=0077"];
+    "/".options = ["subvol=nixos" "defaults" "rw" "noatime" "compress-force=zstd:5" "ssd"];
+    "/root".options = ["subvol=home_root" "defaults" "rw" "noatime" "compress-force=zstd:5" "ssd"];
+    "/nix".options = ["subvol=nix" "defaults" "rw" "noatime" "compress-force=zstd:5" "ssd"];
+    "/opt".options = ["subvol=opt" "defaults" "rw" "noatime" "compress-force=zstd:5" "ssd"];
+    "/srv".options = ["subvol=srv" "defaults" "rw" "noatime" "compress-force=zstd:5" "ssd"];
+    "/usr/local".options = ["subvol=usr/local" "defaults" "rw" "noatime" "compress-force=zstd:5" "ssd"];
+    "/var".options = ["subvol=var" "defaults" "rw" "noatime" "compress-force=zstd:5" "ssd"];
+    "/snapshots".options = ["subvol=snapshots" "defaults" "rw" "noatime" "compress-force=zstd:5" "ssd"];
+    "/home/ray".options = ["subvol=home_ray" "defaults" "rw" "noatime" "compress-force=zstd:5" "ssd"];
+    "/home/ray/files/2-disk".options = ["defaults" "rw" "noatime" "compress-force=zstd:5"];
+    "/mnt/artix".options = ["defaults" "rw" "noatime" "compress-force=zstd:5" "ssd"];
   };
 
   hardware = {
