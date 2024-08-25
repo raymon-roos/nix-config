@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 
 function des() {
     # First argument should be an existing project name,
