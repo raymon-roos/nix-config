@@ -106,6 +106,7 @@ in {
       yadm
       ripdrag
       thunderbird
+      ytfzf
 
       alejandra
       nil
