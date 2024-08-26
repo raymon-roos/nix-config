@@ -189,12 +189,15 @@ in {
       };
     };
 
+    rtorrent.enable = true;
+
     bottom.enable = true;
     yazi.enable = true;
 
     zathura.enable = true;
 
     mpv.enable = true;
+
     yt-dlp = {
       enable = true;
       settings = {
