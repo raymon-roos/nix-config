@@ -14,10 +14,16 @@
     fonts = {
       sizes.terminal = 9;
       sizes.applications = 11;
-      monospace.package = pkgs.fira-code-nerdfont;
-      monospace.name = "Fira Code";
-      serif = config.stylix.fonts.monospace;
-      sansSerif = config.stylix.fonts.monospace;
+
+      monospace = {
+        package = pkgs.fira-code;
+        name = "Fira Code";
+      };
+      sansSerif = {
+        package = pkgs.dejavu_fonts;
+        name = "DejaVu Sans";
+      };
+      serif = config.stylix.fonts.sansSerif;
       emoji = config.stylix.fonts.monospace;
     };
 
