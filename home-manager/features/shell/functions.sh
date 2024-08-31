@@ -1,13 +1,4 @@
-#!/bin/zsh
-
-bindkey \^u backward-kill-line		# ctrl+u
-bindkey '^[[1;5C' forward-word		# ctrl+right
-bindkey '^[[1;5D' backward-word		# ctrl+left
-bindkey '^[[3~' delete-char			# delete
-# edit command in $EDITOR
-autoload -z edit-command-line
-zle -N edit-command-line
-bindkey "^X^E" edit-command-line	# ctrl+x ctrl+e
+#!/usr/bin/env sh
 
 function des() {
     # First argument should be an existing project name,

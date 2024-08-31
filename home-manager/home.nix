@@ -11,8 +11,7 @@
   filesHome = "${homeDir}/files";
 in {
   imports = [
-    ./features/bash
-    ./features/zsh
+    ./features/shell
     ./features/starship
     ./features/cli_tools.nix
     ./wayland/hyprland
