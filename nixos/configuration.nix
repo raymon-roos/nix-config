@@ -41,8 +41,8 @@
     };
   };
 
-  networking.hostName = "raydesk"; # Define your hostname.
-  networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
+  networking.hostName = "raydesk";
+  networking.networkmanager.enable = true;
 
   time.timeZone = "Europe/Amsterdam";
 
