@@ -15,7 +15,7 @@ in {
     hms = "nh home switch --flake ${configHome}/nix";
     nixrc = "nvim ${configHome}/nix/flake.nix -c 'cd %:p:h' -c pwd";
 
-    y = "yazi";
+    # y = "yazi";
     vimdiff = "nvim -d";
     lw = "librewolf";
     hledger-ui = "hledger-ui --theme=terminal";

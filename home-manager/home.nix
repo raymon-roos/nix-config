@@ -12,8 +12,7 @@
 in {
   imports = [
     ./features/shell
-    ./features/starship
-    ./features/cli_tools.nix
+    ./cli
     ./wayland/hyprland
   ];
 
@@ -191,7 +190,6 @@ in {
     rtorrent.enable = true;
 
     bottom.enable = true;
-    yazi.enable = true;
 
     zathura.enable = true;
 
