@@ -185,6 +185,10 @@ in {
         enable_audio_bell = false;
         update_check_interval = 0;
       };
+      keybindings = {
+        "kitty_mod+t" = "new_tab_with_cwd";
+        "kitty_mod+enter" = "launch --type=os-window --cwd=current";
+      };
     };
 
     rtorrent.enable = true;
