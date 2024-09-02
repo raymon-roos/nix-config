@@ -27,13 +27,16 @@
     ...
   } @ inputs: let
     inherit (self) outputs;
+    system = "x86_64-linux";
 
     pkgs-unstable = import inputs.unstable {
-      system = "x86_64-linux";
+      inherit system;
       config.allowUnfree = true;
     };
   in {
     nixosConfigurations.raydesk = nixpkgs.lib.nixosSystem {
+      inherit system;
+
       specialArgs = {
         inherit pkgs-unstable inputs outputs;
       };
