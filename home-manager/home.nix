@@ -193,7 +193,18 @@ in {
 
     rtorrent.enable = true;
 
-    bottom.enable = true;
+    bottom = {
+      enable = true;
+      settings = {
+        flags = {
+          dot_marker = true;
+          regex = true;
+          tree = true;
+          enable_cache_memory = true;
+          disable_gpu = false;
+        };
+      };
+    };
 
     zathura.enable = true;
 
