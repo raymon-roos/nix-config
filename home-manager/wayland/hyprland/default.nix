@@ -13,6 +13,7 @@
         "HDMI-A-1,preferred,0x0,auto"
         "DVI-I-1,preferred,auto-right,auto,transform, 3"
         "DP-1,preferred,auto-left,auto,transform, 1"
+        "Unknown-1,disable"
       ];
 
       debug.disable_logs = false;
