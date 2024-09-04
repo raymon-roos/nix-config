@@ -110,30 +110,31 @@
 
   environment = {
     systemPackages = with pkgs; [
-      neovim
-      lua51Packages.luarocks-nix
-      lua51Packages.lua
-      git
-      curl
-      wget
-      librewolf
-      swaybg
-      wl-clipboard-rs
-      rustc
-      cargo
-      rustfmt
-      clippy
       bacon
+      cargo
+      clippy
+      curl
+      gcc
+      git
+      gnumake
+      libgcc
+      libnotify
+      librewolf
+      lua51Packages.lua
+      lua51Packages.luarocks-nix
+      nodePackages.npm
+      nodejs_22
       php83
       php83Packages.composer
-      nodejs_22
-      nodePackages.npm
+      pinentry-gtk2
+      rust-analyzer
+      rustc
+      rustfmt
       unzip
-      gcc
-      libgcc
-      gnumake
-      libnotify
+      wget
+      wl-clipboard-rs
     ];
+
     variables = {
       LIBVA_DRIVER_NAME = "nvidia";
       GBM_BACKEND = "nvidia-drm";
