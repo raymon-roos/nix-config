@@ -24,7 +24,6 @@ in {
     sucklessmake = "sudo make install && make clean && rm -f config.h";
     clip = "xclip -r -selection clipboard";
 
-    mbsync = "mbsync -c ${configHome}/isync/mbsyncrc";
     imapfilter = "imapfilter -c ${configHome}/imapfilter/config.lua";
     keychain = "keychain --dir ${stateHome}/keychain";
 

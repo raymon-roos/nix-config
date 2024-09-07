@@ -7,8 +7,8 @@
     ./directories.nix
     ./environment_variables.nix
     ./cli
-    ./features/shell
-    ./wayland/hyprland
+    ./shell
+    ./wayland
   ];
 
   home = {
@@ -51,12 +51,6 @@
     #   imageDirectory = "${config.xdg.userDirs.pictures}/wallpapers";
     #   interval = "10m";
     # };
-
-    mako = {
-      enable = true;
-      defaultTimeout = 20 * 1000;
-      borderRadius = 6;
-    };
 
     gpg-agent = {
       enable = true;
@@ -101,22 +95,6 @@
       };
     };
     gitui.enable = true;
-
-    bemenu = {
-      enable = true;
-      settings = {
-        list = 6;
-        center = true;
-        width-factor = 0.3;
-        border = 2;
-        border-radius = 6;
-        prompt = "";
-        vim-esc-exits = true;
-        ignorecase = true;
-        single-instance = true;
-        wrap = true;
-      };
-    };
 
     kitty = {
       enable = true;

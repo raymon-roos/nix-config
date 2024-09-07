@@ -2,10 +2,12 @@
   pkgs,
   hyprland,
   hyprsplit,
+  lib,
   ...
 }: {
   wayland.windowManager.hyprland = {
     enable = true;
+    systemd.variables = ["--all"];
     package = hyprland.packages."${pkgs.system}".hyprland;
     settings = {
       monitor = [
@@ -16,7 +18,7 @@
         "Unknown-1,disable"
       ];
 
-      debug.disable_logs = false;
+      # debug.disable_logs = false;
 
       "$terminal" = "kitty";
       "$browser" = "librewolf";
@@ -24,6 +26,7 @@
 
       exec-once = [
         "mako &"
+        "waybar"
         # "fd -tf . "$XDG_PICTURES_DIR/wallpapers" | shuf -n 1 | xargs -i swaybg --mode fill --image {} &"
       ];
 
@@ -154,14 +157,19 @@
           "$mainMod CONTROL, e, movewindow, d"
           "$mainMod CONTROL, i, movewindow, u"
           "$mainMod CONTROL, o, movewindow, r"
+          "$mainMod CONTROL SHIFT, n, swapwindow, l"
+          "$mainMod CONTROL SHIFT, e, swapwindow, d"
+          "$mainMod CONTROL SHIFT, i, swapwindow, u"
+          "$mainMod CONTROL SHIFT, o, swapwindow, r"
           "$mainMod SHIFT, D, killactive,"
         ]
-        # binds $mod + [shift +] {1..9} to [move to] workspace {1..9}
-        ++ (builtins.concatLists (builtins.genList (i: [
-            "$mainMod, ${toString i}, split:workspace, ${toString i}"
-            "$mainMod SHIFT, ${toString i}, split:movetoworkspacesilent, ${toString i}"
-          ])
-          9));
+        ++ ( # $mod + [shift] + {1..9} to [move to] workspace {1..9}
+          builtins.concatLists (builtins.genList (i: [
+              "$mainMod, ${toString i}, split:workspace, ${toString i}"
+              "$mainMod SHIFT, ${toString i}, split:movetoworkspacesilent, ${toString i}"
+            ])
+            9)
+        );
 
       binde = [
         "$mainMod SHIFT, n, resizeactive, -16  0"
