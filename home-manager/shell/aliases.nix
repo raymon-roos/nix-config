@@ -8,14 +8,15 @@ in {
     chmod = "chmod --preserve-root";
     chown = "chown --preserve-root";
     chgrp = "chgrp --preserve-root";
-    # ls = "ls -lah --color=auto --group-directories-first";
     ls = "eza";
 
     nrs = "nh os switch ${configHome}/nix";
     hms = "nh home switch --flake ${configHome}/nix";
-    nixrc = "nvim ${configHome}/nix/flake.nix -c 'cd %:p:h' -c pwd";
 
-    # y = "yazi";
+    nixrc = "pushd ${configHome}/nix && nvim flake.nix";
+    vimrc = "pushd ${configHome}/nvim && vim init.lua";
+    zettel = "pushd ${config.xdg.userDirs.extraConfig.NOTES_HOME} && nvim index-202202270044.md ";
+
     vimdiff = "nvim -d";
     lw = "librewolf";
     hledger-ui = "hledger-ui --theme=terminal";
@@ -27,9 +28,6 @@ in {
     imapfilter = "imapfilter -c ${configHome}/imapfilter/config.lua";
     keychain = "keychain --dir ${stateHome}/keychain";
 
-    zettel = "nvim $NOTES_HOME/index-202202270044.md -c 'cd %:p:h' -c pwd";
-    vimrc = "nvim ${configHome}/nvim/init.lua -c 'cd %:p:h' -c pwd";
-    bashrc = "nvim ${configHome}/bash/bash_profile -c 'cd %:p:h' -c pwd && source ${configHome}/bash/bash_profile";
     muttsync = "mbsync -a && notmuch new && neomutt";
 
     gg = "gitui";
