@@ -2,13 +2,19 @@
   pkgs,
   hyprland,
   hyprsplit,
-  lib,
   ...
 }: {
   wayland.windowManager.hyprland = {
     enable = true;
+
     systemd.variables = ["--all"];
-    package = hyprland.packages."${pkgs.system}".hyprland;
+
+    package = hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+
+    plugins = [
+      hyprsplit.packages.${pkgs.stdenv.hostPlatform.system}.hyprsplit
+    ];
+
     settings = {
       monitor = [
         #name,resolution,position,scale,rotation
@@ -195,8 +201,5 @@
         "suppressevent maximize, class:.*" # From example config, probably important
       ];
     };
-    plugins = [
-      hyprsplit.packages.${pkgs.system}.hyprsplit
-    ];
   };
 }

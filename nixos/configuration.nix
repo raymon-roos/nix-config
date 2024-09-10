@@ -65,6 +65,7 @@
   };
 
   security.polkit.enable = true;
+  security.pam.services.hyprlock = {};
 
   users.users.ray = {
     isNormalUser = true;
