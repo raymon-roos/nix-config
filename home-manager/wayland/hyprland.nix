@@ -168,7 +168,7 @@
               "$mainMod, ${toString i}, split:workspace, ${toString i}"
               "$mainMod SHIFT, ${toString i}, split:movetoworkspacesilent, ${toString i}"
             ])
-            9)
+            10)
         );
 
       binde = [
