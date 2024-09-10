@@ -57,7 +57,7 @@
     gpg-agent = {
       enable = true;
       defaultCacheTtl = 600;
-      pinentryPackage = pkgs.pinentry-gtk2;
+      pinentryPackage = pkgs.pinentry-qt;
     };
   };
 

@@ -125,7 +125,6 @@
       nodejs_22
       php83
       php83Packages.composer
-      pinentry-gtk2
       rust-analyzer
       rustc
       rustfmt
