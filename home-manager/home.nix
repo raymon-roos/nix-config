@@ -32,6 +32,8 @@
 
       thunderbird
       remind
+      hledger
+      hledger-ui
 
       pass
 
