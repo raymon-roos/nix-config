@@ -17,7 +17,6 @@
 
   programs.yazi = {
     enable = true;
-    # package = inputs.pkgs-unstable.yazi;
     enableZshIntegration = true;
     enableBashIntegration = true;
     settings = {

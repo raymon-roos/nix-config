@@ -29,13 +29,13 @@
       cmus
       ytfzf
 
-      inputs.pkgs-unstable.neovim-unwrapped
 
       thunderbird
       remind
 
       pass
 
+      neovim-unwrapped
       nix-tree
       alejandra
       nil
@@ -69,7 +69,6 @@
 
     neovim = {
       enable = false;
-      package = inputs.pkgs-unstable.neovim-unwrapped;
       defaultEditor = true;
       vimAlias = true;
       vimdiffAlias = true;

@@ -1,12 +1,10 @@
 {
-  description = "Ray's Home Manager configuration";
+  description = "Ray's NixOS/Home Manager configuration";
 
   inputs = {
-    unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
-
-    home-manager.url = "github:nix-community/home-manager/release-24.05";
+    home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     stylix.url = "github:danth/stylix";
@@ -28,17 +26,12 @@
   } @ inputs: let
     inherit (self) outputs;
     system = "x86_64-linux";
-
-    pkgs-unstable = import inputs.unstable {
-      inherit system;
-      config.allowUnfree = true;
-    };
   in {
     nixosConfigurations.raydesk = nixpkgs.lib.nixosSystem {
       inherit system;
 
       specialArgs = {
-        inherit pkgs-unstable inputs outputs;
+        inherit inputs outputs;
       };
 
       modules = [
@@ -54,7 +47,7 @@
             useUserPackages = true;
             users.ray = import ./home-manager/home.nix;
             extraSpecialArgs = {
-              inherit pkgs-unstable hyprland hyprsplit inputs outputs;
+              inherit hyprland hyprsplit inputs outputs;
             };
           };
         }

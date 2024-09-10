@@ -30,7 +30,7 @@
   };
 
   hardware = {
-    opengl.enable = true;
+    graphics.enable = true;
     nvidia = {
       modesetting.enable = true;
       powerManagement.enable = false;
@@ -95,7 +95,6 @@
     zsh.enable = true; # further configured in hm config
     neovim = {
       enable = true;
-      package = inputs.pkgs-unstable.neovim-unwrapped;
       defaultEditor = true;
       vimAlias = true;
       withNodeJs = false;
