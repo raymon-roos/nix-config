@@ -10,9 +10,6 @@
     FLAKE = "${config.xdg.configHome}/nix";
     ADB_KEYS_PATH = "${config.xdg.configHome}/android";
     CALCHISTFILE = "${config.xdg.stateHome}/calc/calc_history";
-    CARGO_HOME = "${config.xdg.dataHome}/cargo";
-    COMPOSER_CACHE_DIR = "${config.xdg.cacheHome}/composer";
-    COMPOSER_HOME = "${config.xdg.dataHome}/composer";
     DOCKER_CONFIG = "${config.xdg.configHome}/docker";
     GNUPGHOME = "${config.xdg.dataHome}/gnupg";
     GOBIN = "${config.xdg.userDirs.extraConfig.XDG_HOME}/local/bin";
@@ -25,13 +22,10 @@
     MYSQL_HISTFILE = "${config.xdg.stateHome}/mysql/mysql_history";
     NODE_REPL_HISTORY = "${config.xdg.stateHome}/node/node_repl_history";
     NOTMUCH_CONFIG = "${config.xdg.configHome}/notmuch/config";
-    RUSTUP_HOME = "${config.xdg.dataHome}/rustup";
     TEXMFCONFIG = "${config.xdg.configHome}/texlive/texmf-config";
     TEXMFHOME = "${config.xdg.dataHome}/texmf";
     TEXMFVAR = "${config.xdg.cacheHome}/texlive/texmf-var";
     WGETRC = "${config.xdg.configHome}/wget/wgetrc";
     _JAVA_OPTIONS = "-Djava.util.prefs.userRoot=${config.xdg.configHome}/java";
-    npm_config_cache = "${config.xdg.cacheHome}/npm/";
-    npm_config_userconfig = "${config.xdg.configHome}/npm/npmrc";
   };
 }

@@ -110,9 +110,6 @@
 
   environment = {
     systemPackages = with pkgs; [
-      bacon
-      cargo
-      clippy
       curl
       gcc
       git
@@ -120,15 +117,6 @@
       libgcc
       libnotify
       librewolf
-      lua51Packages.lua
-      lua51Packages.luarocks-nix
-      nodePackages.npm
-      nodejs_22
-      php83
-      php83Packages.composer
-      rust-analyzer
-      rustc
-      rustfmt
       unzip
       wget
       wl-clipboard-rs
