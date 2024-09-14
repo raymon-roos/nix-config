@@ -4,6 +4,7 @@
     ./node.nix
     ./rust.nix
     ./nix.nix
+    ./python.nix
   ];
 
   programs.direnv = {
