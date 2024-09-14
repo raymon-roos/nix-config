@@ -3,6 +3,7 @@
     ./php.nix
     ./node.nix
     ./rust.nix
+    ./nix.nix
   ];
 
   programs.direnv = {

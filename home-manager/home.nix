@@ -41,12 +41,6 @@
       neovim-unwrapped
       lua51Packages.lua
       lua51Packages.luarocks-nix
-      # unstable.neovim-unwrapped
-      # LSPs, linters & formatters
-      nix-tree
-      alejandra
-      nil
-      nixd
       ltex-ls
     ];
   };
