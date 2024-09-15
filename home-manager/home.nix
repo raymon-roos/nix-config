@@ -23,7 +23,6 @@
 
     packages = with pkgs; [
       yadm
-      starship
       sd
       ripdrag
       calc
