@@ -1,24 +1,9 @@
-{...} @ inputs: {
-  programs.zsh.initExtra = ''
-    function y() {
-      # Wrapper script for cd-on-quit
-      # use `quit --no-cwd-file` as a keybind to opt out
-      local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
-
-      yazi "$@" --cwd-file="$tmp"
-
-      if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
-        builtin cd -- "$cwd"
-      fi
-
-      rm -f -- "$tmp"
-    }
-  '';
-
+{...}: {
   programs.yazi = {
     enable = true;
     enableZshIntegration = true;
     enableBashIntegration = true;
+    shellWrapperName = "y";
     settings = {
       manager = {
         show_hidden = true;
