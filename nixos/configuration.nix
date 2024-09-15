@@ -102,7 +102,7 @@
       withPython3 = false;
       withRuby = false;
     };
-    # chromium.package = pkgs.librewolf;
+
     nix-ld.enable = true; # hack to fix dynamically linked binaries for traditional distros
     nh.enable = true;
     nh.flake = "/home/ray/.xdg/config/nix#raydesk";

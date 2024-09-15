@@ -21,7 +21,6 @@ in {
       save = 20000;
       size = 20000;
     };
-    # shellAliases = configHome.shellAliases;
     autocd = true;
     completionInit = ''
       [ -d "$XDG_CACHE_HOME"/zsh ] || mkdir -p "$XDG_CACHE_HOME"/zsh
