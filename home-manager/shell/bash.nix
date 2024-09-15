@@ -1,15 +1,14 @@
-{ pkgs, config, inputs, ... }:
-let
-  stateHome = config.xdg.stateHome;
-  configHome = config.xdg.configHome;
-in
 {
+  pkgs,
+  config,
+  ...
+}: {
   programs.bash = {
     enable = false;
     enableCompletion = true;
-    historyFile = "${stateHome}/bash/history";
     historyControl = [ "erasedups" ];
     historyIgnore = [ "ls" "y" "pwd" "cd" "fg %" "exit" "sudo poweroff*" "builtin cd -- *" ];
+    historyFile = "${config.xdg.stateHome}/bash/history";
     profileExtra = ''
       # autostart compositor of choice when logging in on tty1
       if [[ "$XDG_VTNR" == 1 ]]; then
@@ -23,4 +22,19 @@ in
     '';
     bashrcExtra = builtins.readFile ./functions.sh;
   };
+
+  programs.readline = {
+    enable = config.programs.bash.enable;
+    includeSystemConfig = true;
+    extraConfig = ''
+      set bell-style none
+      set enable-bracketed-paste
+      set colored-stats On
+      set completion-prefix-display-length 5
+      set show-all-if-ambiguous On
+      set show-all-if-unmodified On
+    '';
+  };
+
+  home.sessionVariables.INPUTRC = "${config.xdg.configHome}/readline/inputrc";
 }

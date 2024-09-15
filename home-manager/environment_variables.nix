@@ -16,7 +16,6 @@
     GOMODCACHE = "${config.xdg.cacheHome}/go/pkg/mod";
     GOPATH = "${config.xdg.userDirs.extraConfig.PROJECTS_HOME}/go";
     IMAPFILTER_HOME = "${config.xdg.configHome}/imapfilter";
-    INPUTRC = "${config.xdg.configHome}/readline/inputrc";
     LESSHISTFILE = "${config.xdg.stateHome}/less/lesshst";
     LYNX_CFG_PATH = "${config.xdg.configHome}/lynx/lynx.cfg";
     MYSQL_HISTFILE = "${config.xdg.stateHome}/mysql/mysql_history";
