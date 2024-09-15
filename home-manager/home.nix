@@ -143,5 +143,23 @@
     };
   };
 
+  xdg.configFile."ytfzf/conf.sh".text = ''
+    ytdl_opts='
+        -S "res:720,codec,br,ext" \
+        --sub-langs "en.*" \
+        --embed-subs \
+        --write-auto-subs \
+        --embed-metadata \
+        --sponsorblock-remove=sponsor,selfprommo,interaction,intro,outro,preview,music_offtopic
+    '
+    url_handler_opts='--speed=1.70 --slang=en'
+
+    thumbnail_viewer=kitty
+    show_thumbnails=1
+    async_thumbnails=1
+    thumbnail_quality=default
+    fzf_preview_side=down
+  '';
+
   gtk.gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
 }
