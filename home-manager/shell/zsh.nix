@@ -17,7 +17,7 @@ in {
       ignoreSpace = true;
       ignoreDups = true;
       share = true;
-      ignorePatterns = ["ls" "y" "pwd" "cd" "fg %" "exit" "sudo poweroff*" "builtin cd -- *"];
+      ignorePatterns = ["ls" "y" "pwd" "cd" "fg %" "exit" "*poweroff*" "reboot" "builtin cd -- *"];
       save = 20000;
       size = 20000;
     };

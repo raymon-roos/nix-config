@@ -6,9 +6,9 @@
   programs.bash = {
     enable = false;
     enableCompletion = true;
-    historyControl = [ "erasedups" ];
-    historyIgnore = [ "ls" "y" "pwd" "cd" "fg %" "exit" "sudo poweroff*" "builtin cd -- *" ];
     historyFile = "${config.xdg.stateHome}/bash/history";
+    historyControl = ["erasedups"];
+    historyIgnore = ["ls" "y" "pwd" "cd" "fg %" "exit" "*poweroff*" "reboot" "builtin cd -- *"];
     profileExtra = ''
       # autostart compositor of choice when logging in on tty1
       if [[ "$XDG_VTNR" == 1 ]]; then
