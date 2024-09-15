@@ -18,10 +18,6 @@
   outputs = {
     self,
     nixpkgs,
-    home-manager,
-    stylix,
-    hyprland,
-    hyprsplit,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -34,7 +30,7 @@
         inherit inputs outputs;
       };
 
-      modules = [
+      modules = with inputs; [
         ./nixos/configuration.nix
 
         stylix.nixosModules.stylix
