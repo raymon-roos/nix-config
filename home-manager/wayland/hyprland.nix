@@ -1,10 +1,9 @@
 {
   pkgs,
-  hyprland,
-  hyprsplit,
+  inputs,
   ...
 }: {
-  wayland.windowManager.hyprland = {
+  wayland.windowManager.hyprland = with inputs; {
     enable = true;
     xwayland.enable = false;
     systemd.variables = ["--all"];
