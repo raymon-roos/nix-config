@@ -31,7 +31,6 @@
 
       exec-once = [
         "mako &"
-        "waybar"
         # "fd -tf . "$XDG_PICTURES_DIR/wallpapers" | shuf -n 1 | xargs -i swaybg --mode fill --image {} &"
       ];
 
@@ -194,7 +193,6 @@
       ];
 
       windowrulev2 = [
-        # window rules
         "monitor 2,class:^(cmus)$"
         "monitor 0,initialTitle:^(Mozilla Thunderbird)$"
         "suppressevent maximize, class:.*" # From example config, probably important
