@@ -151,6 +151,8 @@
           "$mainMod, G, split:grabroguewindows"
           "$mainMod, period, focusmonitor, r"
           "$mainMod, comma, focusmonitor, l"
+          "$mainMod CONTROL, comma, movewindow, mon:+1"
+          "$mainMod CONTROL, period, movewindow, mon:-1"
 
           # control windows
           "$mainMod, n, movefocus, l"
