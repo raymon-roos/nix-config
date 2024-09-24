@@ -146,7 +146,7 @@
           "$mainMod, semicolon, exec, bemenu-run"
           "$mainMod SHIFT, semicolon, exec, passmenu_custom"
 
-          "$mainMod SHIFT, B, exec, $terminal --hold btm --basic"
+          "$mainMod SHIFT, B, exec, $terminal --hold btm --default_widget_type=processes --expanded"
           "$mainMod, P, exec, directories_bemenu.sh"
 
           # control monitors
