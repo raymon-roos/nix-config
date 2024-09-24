@@ -79,6 +79,11 @@
       enable = true;
       userEmail = "raymon.roos@hotmail.com";
       userName = "Raymon Roos";
+      extraConfig = {
+        init = {
+          defaultBranch = "main";
+        };
+      };
       delta = {
         enable = true;
         options = {
