@@ -45,14 +45,6 @@
   };
 
   services = {
-    # random-background = {
-    #   enable = true;
-    #   enableXinerama = true;
-    #   display = "fill";
-    #   imageDirectory = "${config.xdg.userDirs.pictures}/wallpapers";
-    #   interval = "10m";
-    # };
-
     gpg-agent = {
       enable = true;
       defaultCacheTtl = 600;
