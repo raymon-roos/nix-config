@@ -13,14 +13,12 @@
     php83Packages.composer
   ];
 
-  xdg.configFile."composer/config.json".text = ''
-    {
-      "repositories": [
-        {
-          "type": "composer",
-          "url": "https://fixico.repo.repman.io"
-        }
-      ]
-    }
-  '';
+  xdg.configFile."composer/config.json".text = builtins.toJSON {
+    repositories = [
+      {
+        type = "composer";
+        url = "https://fixico.repo.repman.io";
+      }
+    ];
+  };
 }
