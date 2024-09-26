@@ -23,6 +23,11 @@
         "Unknown-1,disable"
       ];
 
+      env = [
+        "QT_QPA_PLATFORM,wayland;xcb"
+        "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
+      ];
+
       # debug.disable_logs = false;
 
       "$terminal" = "kitty";
