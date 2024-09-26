@@ -62,6 +62,10 @@
       enable = true;
       pulse.enable = true;
     };
+
+    udev.extraRules = ''
+      KERNEL=="uinput", GROUP="input", MODE="0660", OPTIONS+="static_node=uinput"
+    '';
   };
 
   security.polkit.enable = true;
@@ -70,7 +74,7 @@
   users.users.ray = {
     isNormalUser = true;
     shell = pkgs.zsh;
-    extraGroups = ["wheel" "ray" "video"];
+    extraGroups = ["wheel" "ray" "video" "input"];
   };
 
   nix = {
@@ -104,8 +108,14 @@
     };
 
     nix-ld.enable = true; # hack to fix dynamically linked binaries for traditional distros
+
     nh.enable = true;
     nh.flake = "/home/ray/.xdg/config/nix#raydesk";
+
+    appimage.enable = true;
+    appimage.binfmt = true;
+
+    hyprland.enable = true;
   };
 
   environment = {

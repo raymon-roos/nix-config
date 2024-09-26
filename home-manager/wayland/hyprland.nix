@@ -5,7 +5,7 @@
 }: {
   wayland.windowManager.hyprland = with inputs; {
     enable = true;
-    xwayland.enable = false;
+    xwayland.enable = true;
     systemd.variables = ["--all"];
 
     package = hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;

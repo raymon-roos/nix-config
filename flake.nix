@@ -13,6 +13,9 @@
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
     hyprsplit.url = "github:shezdy/hyprsplit";
     hyprsplit.inputs.hyprland.follows = "hyprland";
+
+    plover-flake.url = "github:LilleAila/plover-flake/linux-uinput-fixed";
+    plover-flake.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = {
@@ -21,14 +24,11 @@
     ...
   } @ inputs: let
     inherit (self) outputs;
-    system = "x86_64-linux";
   in {
     nixosConfigurations.raydesk = nixpkgs.lib.nixosSystem {
-      inherit system;
+      system = "x86_64-linux";
 
-      specialArgs = {
-        inherit inputs outputs;
-      };
+      specialArgs = {inherit inputs outputs;};
 
       modules = with inputs; [
         ./nixos/configuration.nix
@@ -42,9 +42,7 @@
             useGlobalPkgs = true;
             useUserPackages = true;
             users.ray = import ./home-manager/home.nix;
-            extraSpecialArgs = {
-              inherit hyprland hyprsplit inputs outputs;
-            };
+            extraSpecialArgs = {inherit inputs outputs plover-flake;};
           };
         }
       ];
