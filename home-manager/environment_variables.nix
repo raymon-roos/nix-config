@@ -12,9 +12,6 @@
     CALCHISTFILE = "${config.xdg.stateHome}/calc/calc_history";
     DOCKER_CONFIG = "${config.xdg.configHome}/docker";
     GNUPGHOME = "${config.xdg.dataHome}/gnupg";
-    GOBIN = "${config.xdg.userDirs.extraConfig.XDG_HOME}/local/bin";
-    GOMODCACHE = "${config.xdg.cacheHome}/go/pkg/mod";
-    GOPATH = "${config.xdg.userDirs.extraConfig.PROJECTS_HOME}/go";
     IMAPFILTER_HOME = "${config.xdg.configHome}/imapfilter";
     LESSHISTFILE = "${config.xdg.stateHome}/less/lesshst";
     LYNX_CFG_PATH = "${config.xdg.configHome}/lynx/lynx.cfg";

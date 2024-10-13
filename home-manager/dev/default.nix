@@ -5,6 +5,7 @@
     ./rust.nix
     ./nix.nix
     ./python.nix
+    # ./go.nix
   ];
 
   programs.direnv = {
