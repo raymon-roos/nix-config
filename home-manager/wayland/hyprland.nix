@@ -77,9 +77,10 @@
       };
 
       dwindle = {
-        # Defaults
         pseudotile = true;
         preserve_split = true;
+        force_split = 2;
+        no_gaps_when_only = 2;
       };
 
       master = {
@@ -193,10 +194,6 @@
         # Move/resize windows with mainMod + click & drag
         "$mainMod, mouse:272, movewindow"
         "$mainMod, mouse:273, resizewindow"
-      ];
-
-      workspace = [
-        "w[v1],gapsout:0,rounding:0"
       ];
 
       windowrulev2 = [
