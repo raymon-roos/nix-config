@@ -25,6 +25,7 @@
       yadm
       sd
       ripdrag
+      entr
       calc
       cmus
       ytfzf
