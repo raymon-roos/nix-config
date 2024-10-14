@@ -10,7 +10,12 @@
     stylix.url = "github:danth/stylix";
     stylix.inputs.nixpkgs.follows = "nixpkgs";
 
-    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+    hyprland = {
+      type = "git";
+      url = "https://github.com/hyprwm/Hyprland";
+      submodules = true;
+      ref = "refs/tags/v0.43.0";
+    };
     hyprsplit.url = "github:shezdy/hyprsplit";
     hyprsplit.inputs.hyprland.follows = "hyprland";
 
