@@ -29,6 +29,7 @@
       cmus
       ytfzf
 
+      universal-ctags
 
       thunderbird
       remind
