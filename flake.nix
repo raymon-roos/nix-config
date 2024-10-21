@@ -4,6 +4,9 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
+    nix-darwin.url = "github:LnL7/nix-darwin";
+    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
+
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -29,25 +32,40 @@
     ...
   } @ inputs: let
     inherit (self) outputs;
-  in {
+  in with inputs; {
     nixosConfigurations.raydesk = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
-
       specialArgs = {inherit inputs outputs;};
-
-      modules = with inputs; [
-        ./nixos/configuration.nix
-
+      modules =  [
+        ./hosts/raydesk/configuration.nix
         stylix.nixosModules.stylix
         ./stylix.nix
-
         home-manager.nixosModules.home-manager
         {
           home-manager = {
             useGlobalPkgs = true;
             useUserPackages = true;
-            users.ray = import ./home-manager/home.nix;
+            users.ray = import ./home-manager/raydesk/home.nix;
             extraSpecialArgs = {inherit inputs outputs plover-flake;};
+          };
+        }
+      ];
+    };
+
+    darwinConfigurations."Raymons-Laptop" = nix-darwin.lib.darwinSystem {
+      system = "aarch64-darwin";
+      specialArgs = {inherit inputs outputs;};
+      modules = [
+        ./hosts/raymac/configuration.nix
+        stylix.darwinModules.stylix
+        # ./stylix.nix
+        home-manager.darwinModules.home-manager
+        {
+          home-manager = {
+            useGlobalPkgs = true;
+            useUserPackages = true;
+            users.ray = import ./home-manager/raymac/home.nix;
+            extraSpecialArgs = {inherit inputs outputs;};
           };
         }
       ];

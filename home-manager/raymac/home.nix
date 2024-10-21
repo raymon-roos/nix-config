@@ -2,14 +2,14 @@
   pkgs,
   config,
   ...
-} @ inputs: {
+} @ inputs: let 
+  directories = import ./directories.nix;
+in {
   imports = [
-    ./directories.nix
-    ./environment_variables.nix
-    ./cli
-    ./shell
-    ./wayland
-    ./dev
+    ../common/environment_variables.nix
+    ../common/cli
+    ../common/shell
+    ../common/dev
   ];
 
   home = {
@@ -18,35 +18,20 @@
     username = "ray";
 
     sessionPath = [
-      config.xdg.userDirs.extraConfig.BIN_HOME
+      directories.userDirs.extraConfig.BIN_HOME
     ];
 
     packages = with pkgs; [
       yadm
       sd
       ripdrag
-      entr
       calc
       cmus
       ytfzf
 
-      universal-ctags
-
-      thunderbird
       remind
-      hledger
-      hledger-ui
 
       pass
-
-      (
-        inputs.plover-flake.packages.${pkgs.system}.plover.with-plugins (
-          ps:
-            with ps; [
-              # plover-console-ui
-            ]
-        )
-      )
 
       neovim-unwrapped
       lua51Packages.lua
@@ -59,7 +44,6 @@
     gpg-agent = {
       enable = true;
       defaultCacheTtl = 600;
-      pinentryPackage = pkgs.pinentry-qt;
     };
   };
 
@@ -119,8 +103,6 @@
       };
     };
 
-    rtorrent.enable = true;
-
     bottom = {
       enable = true;
       settings = {
@@ -171,7 +153,7 @@
 
   gtk.gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
   qt = {
-    enable = true;
+    enable = false;
     platformTheme.name = "gtk";
     style.name = "adwaita-dark";
   };
