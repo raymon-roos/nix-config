@@ -197,6 +197,9 @@
       ];
 
       windowrulev2 = [
+        "opaque 1 noblur 1,class:(librewolf), title:(Picture-in-Picture)"
+        "opaque 1 noblur 1,class:(librewolf), title:(.*)(- YouTube)"
+        "opaque 1 noblur 1,class:(mpv)"
         "monitor 2,class:^(cmus)$"
         "monitor 0,initialTitle:^(Mozilla Thunderbird)$"
         "suppressevent maximize, class:.*" # From example config, probably important
