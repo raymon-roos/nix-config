@@ -24,7 +24,7 @@
       enableBashIntegration = true;
       enableZshIntegration = true;
       git = true;
-      icons = true;
+      icons = "auto";
       extraOptions = [
         "--all"
         "--group-directories-first"
