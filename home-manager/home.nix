@@ -138,6 +138,10 @@
     zathura.enable = true;
 
     mpv.enable = true;
+    mpv.config = {
+      "alang" = "jpn,eng";
+      "slang" = "eng";
+    };
 
     yt-dlp = {
       enable = true;
