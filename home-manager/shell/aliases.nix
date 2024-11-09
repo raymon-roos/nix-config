@@ -1,6 +1,7 @@
 {config, ...}: let
   stateHome = config.xdg.stateHome;
   configHome = config.xdg.configHome;
+  notesHome = config.xdg.userDirs.extraConfig.NOTES_HOME;
 in {
   home.shellAliases = {
     "rm -rf /" = "echo ha lol no lets not";
@@ -13,9 +14,9 @@ in {
     nrs = "nh os switch ${configHome}/nix";
     hms = "nh home switch --flake ${configHome}/nix";
 
-    nixrc = "pushd ${configHome}/nix && nvim flake.nix";
-    vimrc = "pushd ${configHome}/nvim && vim init.lua";
-    zettel = "pushd ${config.xdg.userDirs.extraConfig.NOTES_HOME} && nvim index-202202270044.md ";
+    nixrc = "[ \"$PWD\" = ${configHome}/nix ] || pushd ${configHome}/nix && nvim flake.nix";
+    vimrc = "[ \"$PWD\" = ${configHome}/nvim ] || pushd ${configHome}/nvim && vim init.lua";
+    zettel = "[ \"$PWD\" = ${notesHome} ] || pushd ${notesHome} && nvim index-202202270044.md";
 
     vimdiff = "nvim -d";
     lw = "librewolf";
