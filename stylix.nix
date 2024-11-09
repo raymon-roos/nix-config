@@ -9,7 +9,7 @@
     image = /home/ray/files/pictures/wallpapers/elden_ring_tarnished_warrior.jpg;
 
     polarity = "dark";
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/snazzy.yaml";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/horizon-dark.yaml";
 
     fonts = {
       sizes.terminal = 9;
