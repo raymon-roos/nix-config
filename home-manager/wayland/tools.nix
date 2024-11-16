@@ -52,8 +52,9 @@
       };
     };
 
+
     hyprlock = {
-      enable = true;
+      enable = false;
       settings = {
         general = {
           disable_loading_bar = true;
