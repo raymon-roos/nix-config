@@ -135,7 +135,15 @@
     };
 
     jq.enable = true;
-    zathura.enable = true;
+
+    zathura = {
+      enable = true;
+      options = {
+        recolor = true;
+        sandbox = "strict";
+        selection-clipboard = "clipboard";
+      };
+    };
 
     mpv.enable = true;
     mpv.config = {
