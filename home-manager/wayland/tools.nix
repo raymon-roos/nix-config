@@ -14,7 +14,7 @@
         listener = [
           {
             timeout = 300;
-            on-timeout = "notify-send 'idle in 10 seconds'";
+            on-timeout = "notify-send --transient --urgency=low 'idle in 10 seconds'";
           }
           {
             timeout = 310;
