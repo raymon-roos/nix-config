@@ -145,10 +145,12 @@
       };
     };
 
-    mpv.enable = true;
-    mpv.config = {
-      "alang" = "jpn,eng";
-      "slang" = "eng";
+    mpv = {
+      enable = true;
+      config = {
+        "alang" = "jpn,eng";
+        "slang" = "eng";
+      };
     };
 
     yt-dlp = {
