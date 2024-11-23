@@ -14,10 +14,14 @@
       type = "git";
       url = "https://github.com/hyprwm/Hyprland";
       submodules = true;
-      ref = "refs/tags/v0.43.0";
+      ref = "refs/tags/v0.45.2";
     };
-    hyprsplit.url = "github:shezdy/hyprsplit";
-    hyprsplit.inputs.hyprland.follows = "hyprland";
+    hyprsplit = {
+      type = "git";
+      url = "https://github.com/shezdy/hyprsplit";
+      ref = "refs/tags/v0.45.2";
+      inputs.hyprland.follows = "hyprland";
+    };
 
     plover-flake.url = "github:LilleAila/plover-flake/linux-uinput-fixed";
     plover-flake.inputs.nixpkgs.follows = "nixpkgs";

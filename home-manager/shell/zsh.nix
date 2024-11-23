@@ -32,7 +32,7 @@ in {
     profileExtra = ''
       # autostart compositor of choice when logging in on tty1
       if [[ "$XDG_VTNR" == 1 ]]; then
-          hyprland
+          Hyprland
       fi
     '';
     initExtra = ''
