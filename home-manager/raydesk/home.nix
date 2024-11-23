@@ -4,18 +4,26 @@
   ...
 } @ inputs: {
   imports = [
-    ./directories.nix
-    ./environment_variables.nix
-    ./cli
-    ./shell
+    ../common/directories.nix
+    ../common/environment_variables.nix
+    ../common/cli
+    ../common/dev
+    ./shell.nix
     ./wayland
-    ./dev
   ];
+
+  nix.enable = true;
+  nodejs.enable = true;
+  php.enable = true;
+  rust.enable = true;
+  go.enable = true;
+  python.enable = false;
 
   home = {
     stateVersion = "23.11"; # don't change
 
     username = "ray";
+    homeDirectory = "/home/${config.home.userName}";
 
     sessionPath = [
       config.xdg.userDirs.extraConfig.BIN_HOME

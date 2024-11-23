@@ -1,11 +1,11 @@
 {...}: {
   imports = [
     ./php.nix
-    ./node.nix
+    ./nodejs.nix
     ./rust.nix
     ./nix.nix
     ./python.nix
-    # ./go.nix
+    ./go.nix
   ];
 
   programs.direnv = {

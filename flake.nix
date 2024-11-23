@@ -25,36 +25,53 @@
 
     plover-flake.url = "github:LilleAila/plover-flake/linux-uinput-fixed";
     plover-flake.inputs.nixpkgs.follows = "nixpkgs";
+
+    nix-darwin.url = "github:LnL7/nix-darwin";
+    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = {
     self,
     nixpkgs,
     ...
-  } @ inputs: let
-    inherit (self) outputs;
-  in {
-    nixosConfigurations.raydesk = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
+  } @ inputs:
+    with inputs; let
+      inherit (self) outputs;
+    in {
+      nixosConfigurations.raydesk = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = {inherit inputs outputs;};
+        modules = [
+          ./hosts/raydesk/configuration.nix
+          stylix.nixosModules.stylix
+          home-manager.nixosModules.home-manager
+          {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              users.ray = import ./home-manager/raydesk/home.nix;
+              extraSpecialArgs = {inherit inputs outputs plover-flake;};
+            };
+          }
+        ];
+      };
 
-      specialArgs = {inherit inputs outputs;};
-
-      modules = with inputs; [
-        ./nixos/configuration.nix
-
-        stylix.nixosModules.stylix
-        ./stylix.nix
-
-        home-manager.nixosModules.home-manager
-        {
-          home-manager = {
-            useGlobalPkgs = true;
-            useUserPackages = true;
-            users.ray = import ./home-manager/home.nix;
-            extraSpecialArgs = {inherit inputs outputs plover-flake;};
-          };
-        }
-      ];
+      darwinConfigurations."Raymons-Laptop" = nix-darwin.lib.darwinSystem {
+        system = "aarch64-darwin";
+        specialArgs = {inherit nixpkgs inputs outputs;};
+        modules = [
+          ./hosts/raymac/configuration.nix
+          stylix.darwinModules.stylix
+          home-manager.darwinModules.home-manager
+          {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              users.ray = import ./home-manager/raymac/home.nix;
+              extraSpecialArgs = {inherit inputs outputs;};
+            };
+          }
+        ];
+      };
     };
-  };
 }

@@ -1,4 +1,4 @@
-{config, ...}: let
+{config, pkgs, lib, ...}: let
   filesHome = "${config.home.homeDirectory}/files";
   xdgHome = "${config.home.homeDirectory}/.xdg";
   cacheHome = "${xdgHome}/cache";
@@ -8,14 +8,17 @@
   binHome = "${xdgHome}/local/bin";
   srcHome = "${xdgHome}/local/src";
 in {
-  config.home.homeDirectory = "/home/${config.home.username}";
+  home.homeDirectory = (if pkgs.stdenv.isDarwin then /Users else /home) + "/${config.home.username}";
+  home.preferXdgDirectories = true;
 
-  config.xdg = {
+  xdg = {
+    enable = true;
     dataHome = dataHome;
     cacheHome = cacheHome;
     stateHome = stateHome;
     configHome = configHome;
 
+  } // lib.optionalAttrs pkgs.stdenv.isLinux {
     userDirs = {
       enable = true;
       createDirectories = true;

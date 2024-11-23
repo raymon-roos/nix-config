@@ -29,18 +29,9 @@ in {
       autoload -Uz compinit && compinit -d "$XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION"
       zstyle ':completion:*' menu select
     '';
-    profileExtra = ''
-      # autostart compositor of choice when logging in on tty1
-      if [[ "$XDG_VTNR" == 1 ]]; then
-          Hyprland
-      fi
-    '';
     initExtra = ''
       ${builtins.readFile ./zshrc}
       ${builtins.readFile ./functions.sh}
-      # hack to fix dynamically linked binaries for traditional distros
-      NIX_LD="$(nix eval --impure --raw --expr 'let pkgs = import <nixpkgs> {}; NIX_LD = pkgs.lib.fileContents "${pkgs.stdenv.cc}/nix-support/dynamic-linker"; in NIX_LD')"
-      export NIX_LD
     '';
   };
 }

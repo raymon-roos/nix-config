@@ -1,36 +1,18 @@
 {config, ...}: let
   stateHome = config.xdg.stateHome;
   configHome = config.xdg.configHome;
-  notesHome = config.xdg.userDirs.extraConfig.NOTES_HOME;
 in {
   home.shellAliases = {
-    "rm -rf /" = "echo ha lol no lets not";
-    rm = "rm -I --preserve-root";
-    chmod = "chmod --preserve-root";
-    chown = "chown --preserve-root";
-    chgrp = "chgrp --preserve-root";
+    "rm -rf /" = "echo 'ha lol no lets not'";
     ls = "eza";
-
     nrs = "nh os switch ${configHome}/nix";
     hms = "nh home switch --flake ${configHome}/nix";
 
     nixrc = "[ \"$PWD\" = ${configHome}/nix ] || pushd ${configHome}/nix && nvim flake.nix";
     vimrc = "[ \"$PWD\" = ${configHome}/nvim ] || pushd ${configHome}/nvim && vim init.lua";
-    zettel = "[ \"$PWD\" = ${notesHome} ] || pushd ${notesHome} && nvim index-202202270044.md";
 
     vimdiff = "nvim -d";
     lw = "librewolf";
-    hledger-ui = "hledger-ui --theme=terminal";
-
-    drag = "ripdrag -nxa";
-    sucklessmake = "sudo make install && make clean && rm -f config.h";
-    clip = "xclip -r -selection clipboard";
-
-    imapfilter = "imapfilter -c ${configHome}/imapfilter/config.lua";
-    keychain = "keychain --dir ${stateHome}/keychain";
-
-    muttsync = "mbsync -a && notmuch new && neomutt";
-
     gg = "gitui";
     gs = "git status --short --branch --show-stash";
     gS = "git status";
@@ -83,17 +65,10 @@ in {
     yps = "yadm push";
     ypsf = "yadm push --force";
     ypsu = "yadm push -u";
-    yr = "git rebase -i";
-    ym = "git merge -e";
+    yr = "yadm rebase -i";
+    ym = "yadm merge -e";
     yst = "yadm stash";
     ysl = "yadm stash list";
     ysp = "yadm stash pop";
-
-    tsc = "sudo timeshift --create --comments";
-    tsl = "sudo timeshift --list";
-    tsd = "sudo timeshift --delete";
-
-    dcu = "docker-compose up -d";
-    dcd = "docker-compose down";
   };
 }

@@ -12,7 +12,7 @@
     base16Scheme = "${pkgs.base16-schemes}/share/themes/horizon-dark.yaml";
 
     fonts = {
-      sizes.terminal = 9;
+      sizes.terminal = 12;
       sizes.applications = 11;
 
       monospace = {
@@ -25,12 +25,6 @@
       };
       serif = config.stylix.fonts.sansSerif;
       emoji = config.stylix.fonts.monospace;
-    };
-
-    cursor = {
-      package = pkgs.bibata-cursors;
-      name = "Bibata-Modern-Classic";
-      size = 20;
     };
   };
 }
