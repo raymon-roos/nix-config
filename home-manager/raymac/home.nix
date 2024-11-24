@@ -82,8 +82,6 @@
 
     kitty = {
       enable = true;
-      shellIntegration.enableBashIntegration = true;
-      shellIntegration.enableZshIntegration = true;
       settings = {
         scrollback_lines = 50000;
         enable_audio_bell = false;

@@ -9,18 +9,17 @@
     ./wayland
   ];
 
-  nix.enable = true;
-  nodejs.enable = true;
-  php.enable = true;
-  rust.enable = true;
-  go.enable = true;
-  python.enable = false;
+  dev.nix.enable = true;
+  dev.nodejs.enable = true;
+  dev.php.enable = true;
+  dev.rust.enable = true;
+  dev.go.enable = true;
+  dev.python.enable = false;
 
   home = {
     stateVersion = "23.11"; # don't change
 
     username = "ray";
-    homeDirectory = "/home/${config.home.userName}";
 
     sessionPath = [
       config.xdg.userDirs.extraConfig.BIN_HOME
@@ -95,8 +94,6 @@
 
     kitty = {
       enable = true;
-      shellIntegration.enableBashIntegration = true;
-      shellIntegration.enableZshIntegration = true;
       settings = {
         scrollback_lines = 50000;
         enable_audio_bell = false;
