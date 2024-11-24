@@ -1,8 +1,9 @@
 {
   config,
   pkgs,
+  lib,
   ...
-}: {
+}: with lib; {
   stylix = {
     enable = true;
 
@@ -12,8 +13,8 @@
     base16Scheme = "${pkgs.base16-schemes}/share/themes/horizon-dark.yaml";
 
     fonts = {
-      sizes.terminal = 9;
-      sizes.applications = 11;
+      sizes.terminal = mkDefault 9;
+      sizes.applications = mkDefault 11;
 
       monospace = {
         package = pkgs.fira-code;
