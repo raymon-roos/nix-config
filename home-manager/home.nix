@@ -102,7 +102,20 @@
         };
       };
     };
-    gitui.enable = true;
+    gitui = {
+      enable = true;
+      keyConfig = ''
+        (
+          popup_up: Some(( code: Char('p'), modifiers: "CONTROL")),
+          popup_down: Some(( code: Char('n'), modifiers: "CONTROL")),
+          home: Some(( code: Char('g'), modifiers: "")),
+          end: Some(( code: Char('G'), modifiers: "SHIFT")),
+          log_find: Some(( code: Char('/'), modifiers: "")),
+          branch_find: Some(( code: Char('/'), modifiers: "")),
+          file_find: Some(( code: Char('/'), modifiers: "")),
+        )
+      '';
+    };
 
     kitty = {
       enable = true;
