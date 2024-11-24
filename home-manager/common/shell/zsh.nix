@@ -1,19 +1,11 @@
-{
-  pkgs,
-  config,
-  inputs,
-  ...
-}: let
-  stateHome = config.xdg.stateHome;
-  configHome = config.xdg.configHome;
-in {
+{config, ...}: {
   programs.zsh = {
     enable = true;
     dotDir = ".xdg/config/zsh";
     enableCompletion = true;
     defaultKeymap = "emacs";
     history = {
-      path = "${stateHome}/zsh/history";
+      path = "${config.xdg.stateHome}/zsh/history";
       ignoreSpace = true;
       ignoreDups = true;
       share = true;

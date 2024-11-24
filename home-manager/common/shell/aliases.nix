@@ -1,5 +1,4 @@
 {config, ...}: let
-  stateHome = config.xdg.stateHome;
   configHome = config.xdg.configHome;
 in {
   home.shellAliases = {
