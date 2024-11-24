@@ -94,6 +94,17 @@
         init = {
           defaultBranch = "main";
         };
+        merge = {
+          tool = "vimdiff";
+          conflictStyle = "zdiff3";
+        };
+        mergetool = {
+          prompt = false;
+          keepBackup = false;
+        };
+        "mergetool \"vimdiff\"" = {
+          cmd = "nvim -d $LOCAL $BASE $REMOTE $MERGED -c 'wincmd 3l | wincmd J'";
+        };
       };
       delta = {
         enable = true;
