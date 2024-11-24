@@ -16,7 +16,7 @@ in {
   home.homeDirectory =
     (
       if pkgs.stdenv.isDarwin
-      then "/Users"
+      then /Users
       else "/home"
     )
     + "/${config.home.username}";
