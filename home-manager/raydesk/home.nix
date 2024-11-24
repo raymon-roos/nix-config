@@ -4,10 +4,7 @@
   ...
 } @ inputs: {
   imports = [
-    ../common/directories.nix
-    ../common/environment_variables.nix
-    ../common/cli
-    ../common/dev
+    ../common
     ./shell.nix
     ./wayland
   ];

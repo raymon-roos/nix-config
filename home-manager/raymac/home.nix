@@ -5,11 +5,7 @@
   ...
 }: {
   imports = [
-    ../common/environment_variables.nix
-    ../common/cli
-    ../common/shell
-    ../common/dev
-    ../common/directories.nix
+    ../common
   ];
 
   dev.nix.enable = true;
