@@ -14,12 +14,12 @@
       type = "git";
       url = "https://github.com/hyprwm/Hyprland";
       submodules = true;
-      ref = "refs/tags/v0.45.2";
+      ref = "refs/tags/v0.45.0";
     };
     hyprsplit = {
       type = "git";
       url = "https://github.com/shezdy/hyprsplit";
-      ref = "refs/tags/v0.45.2";
+      ref = "refs/tags/v0.45.0";
       inputs.hyprland.follows = "hyprland";
     };
 
