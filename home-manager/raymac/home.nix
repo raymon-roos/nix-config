@@ -78,29 +78,7 @@
       ];
     };
 
-    git = {
-      enable = true;
-      userEmail = "raymon@fixico.com";
-      userName = "Raymon Roos";
-      ignores = [ ".DS_Store" ];
-      extraConfig = {
-        init = {
-          defaultBranch = "main";
-          diff.colorMoved = "default";
-          diff.tool = "difftastic";
-          difftool.prompt = false;
-          "difftool \"difftastic\"".cmd = "difft $LOCAL $REMOTE";
-
-        };
-      };
-      delta = {
-        enable = true;
-        options = {
-          features = "decorations";
-        };
-      };
-    };
-    gitui.enable = true;
+    git.userEmail = "raymon@fixico.com";
 
     kitty = {
       enable = true;
