@@ -12,7 +12,7 @@
     base16Scheme = "${pkgs.base16-schemes}/share/themes/horizon-dark.yaml";
 
     fonts = {
-      sizes.terminal = 12;
+      sizes.terminal = 9;
       sizes.applications = 11;
 
       monospace = {
