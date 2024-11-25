@@ -59,7 +59,6 @@
       autoRepeatDelay = 130;
       autoRepeatInterval = 15;
     };
-    printing.enable = true;
     pipewire = {
       enable = true;
       pulse.enable = true;
