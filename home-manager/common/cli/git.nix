@@ -1,4 +1,4 @@
-{...}: {
+{pkgs, ...}: {
   programs.git = {
     enable = true;
     userName = "Raymon Roos";
@@ -30,6 +30,10 @@
       };
     };
   };
+
+  home.packages = [
+    pkgs.difftastic
+  ];
 
   programs.gitui = {
     enable = true;
