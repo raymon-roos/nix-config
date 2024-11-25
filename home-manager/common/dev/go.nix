@@ -3,13 +3,14 @@
   config,
   lib,
   ...
-}: with lib; {
+}:
+with lib; {
   options.dev.go.enable = mkEnableOption "Go dev tools";
 
   config = mkIf config.dev.go.enable {
     programs.go = {
       enable = true;
-      goBin = config.xdg.userDirs.extraConfig.BIN_HOME;
+      goBin = ".xdg/local/bin";
       goPath = ".xdg/local/share/go";
     };
 
