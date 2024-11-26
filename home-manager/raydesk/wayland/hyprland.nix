@@ -177,11 +177,13 @@
           "$mainMod SHIFT, D, killactive,"
         ]
         ++ ( # $mod + [shift] + {1..9} to [move to] workspace {1..9}
-          builtins.concatLists (builtins.genList (i: [
-              "$mainMod, ${toString i}, split:workspace, ${toString i}"
-              "$mainMod SHIFT, ${toString i}, split:movetoworkspacesilent, ${toString i}"
+          builtins.concatLists (builtins.genList (i: let
+              num = toString (i + 1);
+            in [
+              "$mainMod, ${num}, split:workspace, ${num}"
+              "$mainMod SHIFT, ${num}, split:movetoworkspacesilent, ${num}"
             ])
-            10)
+            9)
         );
 
       binde = [
