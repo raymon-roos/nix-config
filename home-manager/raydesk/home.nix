@@ -43,6 +43,19 @@
 
     rtorrent.enable = true;
 
+    librewolf = {
+      enable = true;
+      settings = {
+        "identity.fxaccounts.enabled" = true;
+        "privacy.resistFingerprinting" = true;
+        "privacy.clearOnShutdown.history" = true;
+        "privacy.clearOnShutdown.downloads" = true;
+        "network.http.referer.XOriginPolicy" = 2; # Referer header lets websites know how you got there. 2 for same-host-only
+        "webgl.disabled" = false;
+      };
+      languagePacks = ["en-GB" "nl"];
+    };
+
     zathura = {
       enable = true;
       options = {
