@@ -5,6 +5,7 @@
   ...
 }: {
   imports = [
+    ../common.nix
     ./hardware-configuration.nix
     ./stylix.nix
     ./plover.nix
@@ -77,24 +78,11 @@
     extraGroups = ["wheel" "ray" "video"];
   };
 
-  nix = {
-    settings = {
-      experimental-features = [
-        "nix-command"
-        "flakes"
-      ];
-      auto-optimise-store = true;
-      substituters = ["https://hyprland.cachix.org"];
-      trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
-    };
-    gc = {
-      automatic = true;
-      dates = "weekly";
-      options = "--delete-older-than 7d";
-    };
+  nix.settings = {
+    auto-optimise-store = true;
+    substituters = ["https://hyprland.cachix.org"];
+    trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
   };
-
-  nixpkgs.config.allowUnfree = true;
 
   programs = {
     zsh.enable = true; # further configured in hm config

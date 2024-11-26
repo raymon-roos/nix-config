@@ -4,6 +4,7 @@
   ...
 }: {
   imports = [
+    ../common.nix
     ./homebrew.nix
     ./stylix.nix
     ./aerospace.nix
@@ -16,25 +17,12 @@
 
   security.pam.enableSudoTouchIdAuth = true;
 
+  # use with rosetta, run `softwareupdate --install-rosetta --agree-to-license` first
   nix = {
-    settings = {
-      experimental-features = [
-        "nix-command"
-        "flakes"
-      ];
-    };
     optimise.automatic = true;
-    gc = {
-      automatic = true;
-      options = "-d --delete-older-than 7d";
-    };
-    # use with rosetta, run `softwareupdate --install-rosetta --agree-to-license` first
-    extraOptions = ''
-      extra-platforms = x86_64-darwin aarch64-darwin
-    '';
+    settings.extra-platforms = [ "x86_64-darwin" "aarch64-darwin" ];
   };
 
-  nixpkgs.config.allowUnfree = true;
   nixpkgs.hostPlatform = "aarch64-darwin";
 
   programs = {
@@ -148,4 +136,3 @@
     };
   };
 }
-
