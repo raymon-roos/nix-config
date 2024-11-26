@@ -37,40 +37,39 @@
   } @ inputs:
     with inputs; let
       inherit (self) outputs;
+      specialArgs = {inherit nixpkgs inputs outputs;};
+
+      mkHomeModule = {host, args ? specialArgs}: {
+        home-manager = {
+          useGlobalPkgs = true;
+          useUserPackages = true;
+          users.ray = import ./home-manager/${host}/home.nix;
+          extraSpecialArgs = specialArgs // args;
+        };
+      };
     in {
       nixosConfigurations.raydesk = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        specialArgs = {inherit inputs outputs;};
+        inherit specialArgs;
         modules = [
           ./hosts/raydesk/configuration.nix
           stylix.nixosModules.stylix
           home-manager.nixosModules.home-manager
-          {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              users.ray = import ./home-manager/raydesk/home.nix;
-              extraSpecialArgs = {inherit inputs outputs plover-flake;};
-            };
-          }
+          (mkHomeModule {
+            host = "raydesk";
+            args = { inherit plover-flake; };
+          })
         ];
       };
 
       darwinConfigurations."Raymons-Laptop" = nix-darwin.lib.darwinSystem {
         system = "aarch64-darwin";
-        specialArgs = {inherit nixpkgs inputs outputs;};
+        inherit specialArgs;
         modules = [
           ./hosts/raymac/configuration.nix
           stylix.darwinModules.stylix
           home-manager.darwinModules.home-manager
-          {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              users.ray = import ./home-manager/raymac/home.nix;
-              extraSpecialArgs = {inherit inputs outputs;};
-            };
-          }
+          (mkHomeModule { host = "raymac"; })
         ];
       };
     };
