@@ -43,15 +43,6 @@
 
       pass
 
-      (
-        inputs.plover-flake.packages.${pkgs.system}.plover.with-plugins (
-          ps:
-            with ps; [
-              # plover-console-ui
-            ]
-        )
-      )
-
       neovim-unwrapped
       lua51Packages.lua
       lua51Packages.luarocks-nix

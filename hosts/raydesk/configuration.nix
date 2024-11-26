@@ -7,6 +7,7 @@
   imports = [
     ./hardware-configuration.nix
     ./stylix.nix
+    ./plover.nix
   ];
 
   boot = {
@@ -53,6 +54,8 @@
     useXkbConfig = true; # use xkb.options in tty.
   };
 
+  plover.enable = false;
+
   services = {
     xserver = {
       videoDrivers = ["nvidia"];
@@ -63,10 +66,6 @@
       enable = true;
       pulse.enable = true;
     };
-
-    udev.extraRules = ''
-      KERNEL=="uinput", GROUP="input", MODE="0660", OPTIONS+="static_node=uinput"
-    '';
   };
 
   security.polkit.enable = true;
@@ -75,7 +74,7 @@
   users.users.ray = {
     isNormalUser = true;
     shell = pkgs.zsh;
-    extraGroups = ["wheel" "ray" "video" "input"];
+    extraGroups = ["wheel" "ray" "video"];
   };
 
   nix = {
@@ -112,9 +111,6 @@
 
     nh.enable = true;
     nh.flake = "/home/ray/.xdg/config/nix#raydesk";
-
-    appimage.enable = true;
-    appimage.binfmt = true;
 
     hyprland = {
       enable = true;
