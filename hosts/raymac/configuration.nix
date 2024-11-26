@@ -48,13 +48,6 @@
     };
   };
 
-  fonts = {
-    packages = with pkgs; [
-      fira-code
-      (nerdfonts.override {fonts = ["NerdFontsSymbolsOnly"];})
-    ];
-  };
-
   stylix = {
     autoEnable = false;
     fonts = {

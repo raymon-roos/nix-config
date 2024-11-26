@@ -139,13 +139,7 @@
     };
   };
 
-  fonts = {
-    enableDefaultPackages = true;
-    packages = with pkgs; [
-      fira-code
-      (nerdfonts.override {fonts = ["NerdFontsSymbolsOnly"];})
-    ];
-  };
+  fonts.enableDefaultPackages = true;
 
   stylix = {
     cursor = {
