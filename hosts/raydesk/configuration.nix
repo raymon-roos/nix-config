@@ -7,7 +7,6 @@
   imports = [
     ../common.nix
     ./hardware-configuration.nix
-    ./stylix.nix
     ./plover.nix
   ];
 
@@ -146,6 +145,14 @@
       fira-code
       (nerdfonts.override {fonts = ["NerdFontsSymbolsOnly"];})
     ];
+  };
+
+  stylix = {
+    cursor = {
+      package = pkgs.bibata-cursors;
+      name = "Bibata-Modern-Classic";
+      size = 20;
+    };
   };
 
   networking.firewall = {

@@ -6,7 +6,6 @@
   imports = [
     ../common.nix
     ./homebrew.nix
-    ./stylix.nix
     ./aerospace.nix
   ];
 
@@ -54,6 +53,13 @@
       fira-code
       (nerdfonts.override {fonts = ["NerdFontsSymbolsOnly"];})
     ];
+  };
+
+  stylix = {
+    autoEnable = false;
+    fonts = {
+      sizes.terminal = 12;
+    };
   };
 
   launchd.daemons = {
