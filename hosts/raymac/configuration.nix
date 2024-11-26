@@ -24,10 +24,6 @@
 
   nixpkgs.hostPlatform = "aarch64-darwin";
 
-  programs = {
-    zsh.enable = true; # further configured in hm config
-  };
-
   # Auto upgrade nix package and the daemon service.
   services = {
     nix-daemon.enable = true;

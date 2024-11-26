@@ -84,7 +84,6 @@
   };
 
   programs = {
-    zsh.enable = true; # further configured in hm config
     neovim = {
       enable = true;
       defaultEditor = true;
