@@ -108,16 +108,7 @@
 
   environment = {
     systemPackages = with pkgs; [
-      curl
-      gcc
-      git
-      gnumake
-      libgcc
-      libnotify
-      librewolf
-      unzip
-      wget
-      wl-clipboard-rs
+      #
     ];
 
     variables = {

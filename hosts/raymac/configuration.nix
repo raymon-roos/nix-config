@@ -36,10 +36,6 @@
   environment = {
     darwinConfig = ./configuration.nix;
 
-    systemPackages = with pkgs; [
-      home-manager
-    ];
-
     variables = {
       XDG_CACHE_HOME = "$HOME/.xdg/cache";
       XDG_CONFIG_HOME = "$HOME/.xdg/config";

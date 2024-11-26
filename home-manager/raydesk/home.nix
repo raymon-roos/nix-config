@@ -26,92 +26,22 @@
     ];
 
     packages = with pkgs; [
-      yadm
-      sd
-      ripdrag
-      entr
-      calc
       cmus
-      ytfzf
-
-      universal-ctags
-
-      thunderbird
-      remind
       hledger
       hledger-ui
-
-      pass
-
-      neovim-unwrapped
-      lua51Packages.lua
-      lua51Packages.luarocks-nix
-      ltex-ls
+      remind
+      thunderbird
+      wl-clipboard-rs
+      ytfzf
     ];
   };
 
-  services = {
-    gpg-agent = {
-      enable = true;
-      defaultCacheTtl = 600;
-      pinentryPackage = pkgs.pinentry-qt;
-    };
-  };
+  services.gpg-agent.pinentryPackage = pkgs.pinentry-qt;
 
   programs = {
-    gpg = {
-      enable = true;
-      homedir = "${config.xdg.dataHome}/gnupg";
-    };
-
-    home-manager.enable = true;
-
-    neovim = {
-      enable = false;
-      defaultEditor = true;
-      vimAlias = true;
-      vimdiffAlias = true;
-      withNodeJs = false;
-      withPython3 = false;
-      withRuby = false;
-      extraPackages = with pkgs; [
-        alejandra
-        nil
-        nixd
-      ];
-    };
-
     git.userEmail = "raymon.roos@hotmail.com";
 
-    kitty = {
-      enable = true;
-      settings = {
-        scrollback_lines = 50000;
-        enable_audio_bell = false;
-        update_check_interval = 0;
-      };
-      keybindings = {
-        "kitty_mod+t" = "new_tab_with_cwd";
-        "kitty_mod+enter" = "launch --type=os-window --cwd=current";
-      };
-    };
-
     rtorrent.enable = true;
-
-    bottom = {
-      enable = true;
-      settings = {
-        flags = {
-          dot_marker = true;
-          regex = true;
-          tree = true;
-          enable_cache_memory = true;
-          disable_gpu = false;
-        };
-      };
-    };
-
-    jq.enable = true;
 
     zathura = {
       enable = true;
