@@ -19,6 +19,15 @@
     ripdrag
     sd
     yadm
+
+    # required untill I integrate programs.neovim with my existing nvim config
+    lua51Packages.lua
+    lua51Packages.luarocks-nix
+    universal-ctags
+    ltex-ls
+    alejandra
+    nil
+    nixd
   ];
 
   services = {
