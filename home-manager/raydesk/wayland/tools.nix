@@ -13,18 +13,10 @@
 
         listener = [
           {
-            timeout = 300;
-            on-timeout = "notify-send --transient --urgency=low 'idle in 10 seconds'";
-          }
-          {
-            timeout = 310;
+            timeout = 600;
             on-timeout = "hyprctl dispatch dpms off";
             on-resume = "hyprctl dispatch dpms on";
           }
-          # {
-          #   timeout = 900;
-          #   on-timeout = "loginctl lock-session";
-          # }
         ];
       };
     };
@@ -51,7 +43,6 @@
         wrap = true;
       };
     };
-
 
     hyprlock = {
       enable = false;
