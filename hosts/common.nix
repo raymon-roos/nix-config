@@ -26,7 +26,7 @@
   fonts = {
     packages = with pkgs; [
       fira-code
-      (nerdfonts.override {fonts = ["NerdFontsSymbolsOnly"];})
+      nerd-fonts.symbols-only
     ];
   };
 
