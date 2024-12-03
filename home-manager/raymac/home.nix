@@ -59,13 +59,16 @@
     };
   };
 
-  # stylix.autoEnable = false;
-  # stylix.targets = {
-  #   bat.enable = true;
-  #   fzf.enable = true;
-  #   gitui.enable = true;
-  #   k9s.enable = true;
-  #   kitty.enable = true;
-  #   yazi.enable = true;
-  # };
+  stylix = {
+    autoEnable = false;
+    targets = {
+      bat.enable = true;
+      firefox.enable = true;
+      fzf.enable = true;
+      gitui.enable = true;
+      k9s.enable = true;
+      kitty.enable = true;
+      yazi.enable = true;
+    };
+  };
 }
