@@ -11,7 +11,7 @@
   profileExtra = ''
     # autostart compositor of choice when logging in on tty1
     if [[ "$XDG_VTNR" == 1 ]]; then
-        "${pkgs.hyprland}/bin/Hyprland"
+        "Hyprland"
     fi
   '';
   initExtra = ''

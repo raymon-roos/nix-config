@@ -14,12 +14,12 @@
       type = "git";
       url = "https://github.com/hyprwm/Hyprland";
       submodules = true;
-      ref = "refs/tags/v0.45.0";
+      ref = "refs/tags/v0.45.2";
     };
     hyprsplit = {
       type = "git";
       url = "https://github.com/shezdy/hyprsplit";
-      ref = "refs/tags/v0.45.0";
+      ref = "refs/tags/v0.45.2";
       inputs.hyprland.follows = "hyprland";
     };
 
@@ -39,7 +39,10 @@
       inherit (self) outputs;
       specialArgs = {inherit nixpkgs inputs outputs;};
 
-      mkHomeModule = {host, args ? specialArgs}: {
+      mkHomeModule = {
+        host,
+        args ? specialArgs,
+      }: {
         home-manager = {
           useGlobalPkgs = true;
           useUserPackages = true;
@@ -57,7 +60,7 @@
           home-manager.nixosModules.home-manager
           (mkHomeModule {
             host = "raydesk";
-            args = { inherit plover-flake; };
+            args = {inherit plover-flake;};
           })
         ];
       };
@@ -69,7 +72,7 @@
           ./hosts/raymac/configuration.nix
           stylix.darwinModules.stylix
           home-manager.darwinModules.home-manager
-          (mkHomeModule { host = "raymac"; })
+          (mkHomeModule {host = "raymac";})
         ];
       };
     };
