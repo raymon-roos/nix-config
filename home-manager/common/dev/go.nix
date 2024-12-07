@@ -17,6 +17,8 @@ with lib; {
     home.packages = with pkgs; [
       gopls
       revive
+      gofumpt
+      air
     ];
   };
 }
