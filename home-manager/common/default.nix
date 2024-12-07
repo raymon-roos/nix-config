@@ -21,6 +21,7 @@
     yadm
 
     # required untill I integrate programs.neovim with my existing nvim config
+    gcc
     lua51Packages.lua
     lua51Packages.luarocks-nix
     universal-ctags
@@ -54,6 +55,7 @@
       withPython3 = false;
       withRuby = false;
       extraPackages = with pkgs; [
+        gcc # required for treesitter
         lua51Packages.lua
         lua51Packages.luarocks-nix
         universal-ctags
