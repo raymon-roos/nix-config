@@ -14,7 +14,7 @@
       hyprsplit.packages.${pkgs.stdenv.hostPlatform.system}.hyprsplit
     ];
 
-    settings = {
+    settings = with builtins; {
       monitor = [
         #name,resolution,position,scale,rotation
         "HDMI-A-1,preferred,0x0,auto"
@@ -177,13 +177,11 @@
           "$mainMod SHIFT, D, killactive,"
         ]
         ++ ( # $mod + [shift] + {1..9} to [move to] workspace {1..9}
-          builtins.concatLists (builtins.genList (i: let
-              num = toString (i + 1);
-            in [
-              "$mainMod, ${num}, split:workspace, ${num}"
-              "$mainMod SHIFT, ${num}, split:movetoworkspacesilent, ${num}"
-            ])
-            9)
+          9 |> genList (i: let num = toString (i+1); in [
+            "$mainMod, ${num}, split:workspace, ${num}"
+            "$mainMod SHIFT, ${num}, split:movetoworkspacesilent, ${num}"
+          ])
+          |> concatLists
         );
 
       binde = [
