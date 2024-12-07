@@ -30,6 +30,7 @@
       hledger
       hledger-ui
       id3v2
+      keychain
       puddletag
       remind
       thunderbird
