@@ -85,7 +85,6 @@
         flags = {
           dot_marker = true;
           regex = true;
-          tree = true;
           enable_cache_memory = true;
           disable_gpu = false;
         };
