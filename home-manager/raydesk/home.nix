@@ -117,6 +117,7 @@
     fzf_preview_side=down
   '';
 
+  xresources.path = "${config.xdg.configHome}/X11/Xresources";
   gtk.gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
   qt = {
     enable = true;
