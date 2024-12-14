@@ -57,6 +57,7 @@
   plover.enable = false;
 
   services = {
+    dbus.implementation = "broker";
     xserver = {
       videoDrivers = ["nvidia"];
       autoRepeatDelay = 130;
