@@ -115,11 +115,6 @@
       LIBVA_DRIVER_NAME = "nvidia";
       GBM_BACKEND = "nvidia-drm";
       __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-
-      XDG_CACHE_HOME = "$HOME/.xdg/cache";
-      XDG_CONFIG_HOME = "$HOME/.xdg/config";
-      XDG_DATA_HOME = "$HOME/.xdg/local/share";
-      XDG_STATE_HOME = "$HOME/.xdg/local/state";
     };
 
     sessionVariables = {
