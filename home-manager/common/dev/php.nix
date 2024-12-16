@@ -13,8 +13,8 @@
     # };
 
     home.packages = with pkgs; [
-      php83
-      php83Packages.composer
+      php84
+      php84Packages.composer
     ];
 
     xdg.configFile."composer/config.json".text = builtins.toJSON {
