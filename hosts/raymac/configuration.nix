@@ -29,16 +29,7 @@
     nix-daemon.enable = true;
   };
 
-  environment = {
-    darwinConfig = ./configuration.nix;
-
-    variables = {
-      XDG_CACHE_HOME = "$HOME/.xdg/cache";
-      XDG_CONFIG_HOME = "$HOME/.xdg/config";
-      XDG_DATA_HOME = "$HOME/.xdg/local/share";
-      XDG_STATE_HOME = "$HOME/.xdg/local/state";
-    };
-  };
+  environment.darwinConfig = ./configuration.nix;
 
   stylix = {
     autoEnable = false;
