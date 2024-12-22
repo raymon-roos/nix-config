@@ -115,6 +115,8 @@
       LIBVA_DRIVER_NAME = "nvidia";
       GBM_BACKEND = "nvidia-drm";
       __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+      NIXOS_OZONE_WL = 1; # Avoid Xwayland for electron apps
+      ELECTRON_OZONE_PLATFORM_HINT = "auto";
     };
 
     sessionVariables = {
