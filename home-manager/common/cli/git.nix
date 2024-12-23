@@ -12,7 +12,8 @@
         tool = "difftastic";
       };
       difftool.prompt = false;
-      "difftool \"difftastic\"".cmd = "difft $LOCAL $REMOTE";
+      # Some base16 dark themes I like don't work with difftastic's dark background
+      "difftool \"difftastic\"".cmd = "difft --background='light' --display='side-by-side' $LOCAL $REMOTE";
       merge = {
         tool = "vimdiff";
         conflictStyle = "zdiff3";
