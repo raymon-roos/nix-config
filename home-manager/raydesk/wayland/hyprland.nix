@@ -8,10 +8,8 @@
     xwayland.enable = true;
     systemd.variables = ["--all"];
 
-    package = hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-
     plugins = [
-      hyprsplit.packages.${pkgs.stdenv.hostPlatform.system}.hyprsplit
+      pkgs.hyprlandPlugins.hyprsplit
     ];
 
     settings = with builtins; {
