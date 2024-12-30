@@ -42,6 +42,7 @@
       nvidiaSettings = true;
       package = config.boot.kernelPackages.nvidiaPackages.stable;
     };
+    keyboard.qmk.enable = true;
   };
 
   networking.hostName = "raydesk";
