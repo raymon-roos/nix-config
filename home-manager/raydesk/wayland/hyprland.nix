@@ -206,6 +206,7 @@
         "opaque 1 noblur 1,class:(mpv)"
         "monitor 2,class:^(cmus)$"
         "monitor 0,initialTitle:^(Mozilla Thunderbird)$"
+        "monitor 0,initialClass:^(vesktop)$"
         "suppressevent maximize, class:.*" # From example config, probably important
       ];
     };
