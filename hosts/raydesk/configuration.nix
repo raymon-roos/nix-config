@@ -1,7 +1,6 @@
 {
   config,
   pkgs,
-  inputs,
   ...
 }: {
   imports = [
@@ -58,6 +57,7 @@
   plover.enable = false;
 
   services = {
+    udev.packages = [pkgs.qmk-udev-rules];
     dbus.implementation = "broker";
     xserver = {
       videoDrivers = ["nvidia"];
