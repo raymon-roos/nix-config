@@ -72,6 +72,9 @@
         scrollback_lines = 50000;
         enable_audio_bell = false;
         update_check_interval = 0;
+        cursor_trail = 4;
+        cursor_trail_decay = "0.1 0.2";
+        cursor_trail_start_threshold = 4;
       };
       keybindings = {
         "kitty_mod+t" = "new_tab_with_cwd";
