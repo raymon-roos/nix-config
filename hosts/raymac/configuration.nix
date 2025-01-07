@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  inputs,
   ...
 }: {
   imports = [
@@ -19,7 +20,7 @@
   # use with rosetta, run `softwareupdate --install-rosetta --agree-to-license` first
   nix = {
     optimise.automatic = true;
-    settings.extra-platforms = [ "x86_64-darwin" "aarch64-darwin" ];
+    settings.extra-platforms = ["x86_64-darwin" "aarch64-darwin"];
   };
 
   nixpkgs.hostPlatform = "aarch64-darwin";
@@ -30,6 +31,9 @@
   };
 
   environment.darwinConfig = ./configuration.nix;
+  environment.systemPackages = [
+    inputs.kmonad.packages.${pkgs.system}.default
+  ];
 
   stylix = {
     autoEnable = false;
@@ -38,17 +42,18 @@
     };
   };
 
-  launchd.daemons = {
-      kmonad = {
-        command = "/usr/local/bin/kmonad";
-        serviceConfig = {
-          Label = "local.kmonad";
-          ProgramArguments = ["/Users/ray/.xdg/config/kmonad/keymap.kbd"];
-          KeepAlive = true;
-          RunAtLoad = true;
-          StandardOutPath = /tmp/kmonad.stdout;
-          StandardErrorPath = /tmp/kmonad.stderr;
-        };
+  launchd.agents = {
+    kmonad = {
+      command = "kmonad";
+      path = ["${inputs.kmonad.packages.${pkgs.system}.default}"];
+      serviceConfig = {
+        Label = "local.kmonad";
+        ProgramArguments = ["kmonad" "/Users/ray/.xdg/config/kmonad/keymap.kbd"];
+        # KeepAlive = true;
+        RunAtLoad = true;
+        StandardOutPath = /tmp/kmonad.stdout;
+        StandardErrorPath = /tmp/kmonad.stderr;
+      };
     };
   };
 
@@ -109,7 +114,6 @@
         };
         "com.apple.AdLib".allowApplePersonalizedAdvertising = false;
       };
-     
     };
     keyboard = {
       enableKeyMapping = true;

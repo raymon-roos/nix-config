@@ -15,6 +15,9 @@
 
     nix-darwin.url = "github:LnL7/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
+
+    kmonad.url = "git+https://github.com/kmonad/kmonad?submodules=1&dir=nix";
+    kmonad.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = {
@@ -28,7 +31,7 @@
 
       mkHomeModule = {
         host,
-        args ? specialArgs,
+        args ? {},
       }: {
         home-manager = {
           useGlobalPkgs = true;
