@@ -36,8 +36,10 @@
     ];
   };
 
-  programs = {
-    git.userEmail = "raymon@fixico.com";
+  programs = let
+    contact_info =  import "${inputs.secrets}/contact_info.nix";
+  in{
+    git.userEmail = contact_info.fixico.address;
 
     k9s = {
       enable = true;

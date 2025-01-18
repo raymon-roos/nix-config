@@ -460,6 +460,22 @@
         "type": "github"
       }
     },
+    "secrets": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1737211154,
+        "narHash": "sha256-oQILlbxkMXNUMaTmtMiZ4jGVHDpzOWxASOdxg3snAIg=",
+        "ref": "refs/heads/main",
+        "rev": "f5929c70956ec233bfc066dff8c12b01380d0d71",
+        "revCount": 1,
+        "type": "git",
+        "url": "ssh://git@github.com/raymon-roos/nix-secrets"
+      },
+      "original": {
+        "type": "git",
+        "url": "ssh://git@github.com/raymon-roos/nix-secrets"
+      }
+    },
     "stylix": {
       "inputs": {
         "base16": "base16",

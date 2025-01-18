@@ -43,8 +43,10 @@
 
   services.gpg-agent.pinentryPackage = pkgs.pinentry-qt;
 
-  programs = {
-    git.userEmail = "raymon.roos@hotmail.com";
+  programs = let
+    contact_info = import "${inputs.secrets}/contact_info.nix";
+  in {
+    git.userEmail = contact_info.personal.address;
 
     rtorrent.enable = true;
 

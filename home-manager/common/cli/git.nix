@@ -1,7 +1,13 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: let
+  contact_info = import "${inputs.secrets}/contact_info.nix";
+in {
   programs.git = {
     enable = true;
-    userName = "Raymon Roos";
+    userName = contact_info.full_name;
     ignores = [".DS_Store"];
     extraConfig = {
       init = {
