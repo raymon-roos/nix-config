@@ -19,6 +19,8 @@
     ripdrag
     sd
     yadm
+    zip
+    unzip
 
     # required untill I integrate programs.neovim with my existing nvim config
     gcc
