@@ -9,6 +9,7 @@
     ./directories.nix
     ./environment_variables.nix
     ./shell
+    # ./mail
   ];
 
   home.packages = with pkgs; [
