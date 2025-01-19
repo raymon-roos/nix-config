@@ -3,7 +3,8 @@
   config,
   lib,
   ...
-}: with lib; {
+}:
+with lib; {
   options.dev.php.enable = mkEnableOption "PHP dev tools";
 
   config = mkIf config.dev.php.enable {
@@ -17,13 +18,13 @@
       php84Packages.composer
     ];
 
-    xdg.configFile."composer/config.json".text = builtins.toJSON {
-      repositories = [
-        {
-          type = "composer";
-          url = "https://fixico.repo.repman.io";
-        }
-      ];
-    };
+    # xdg.configFile."composer/config.json".text = builtins.toJSON {
+    #   repositories = [
+    #     {
+    #       type = "composer";
+    #       url = "https://fixico.repo.repman.io";
+    #     }
+    #   ];
+    # };
   };
 }
