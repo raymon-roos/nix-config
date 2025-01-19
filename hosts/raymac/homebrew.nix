@@ -1,6 +1,4 @@
-{
-  ...
-}: {
+{...}: {
   environment.variables = {
     "HOMEBREW_NO_ANALYTICS" = "1";
   };
@@ -10,8 +8,6 @@
     onActivation.cleanup = "zap";
 
     taps = [
-      "homebrew/core"
-      "homebrew/cask"
       "homebrew/bundle"
       "nikitabobko/tap"
       "garden-rs/garden"
