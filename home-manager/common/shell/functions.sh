@@ -35,3 +35,26 @@ function volset() {
 function volget() {
     pactl get-sink-volume "${1:-@DEFAULT_SINK@}"
 }
+
+# TEMPORARY MEASURE for starting and stopping project specific MariaDB
+# databases. I found some nix code that sets the required variables as part of
+# a flake's shellHook, only this shellHook cannot propagate function definitions.
+function startdb()
+{
+    # Used to start a mariadb server included in a Nix flake's devShell.
+    # Requires enironment variables to be set by the flake's shellHook.
+    mysqld --no-defaults \
+        --datadir="$MYSQL_DATADIR" --pid-file="$MYSQL_PID_FILE" \
+        --socket="$MYSQL_UNIX_PORT" 2> "$MYSQL_HOME"/mysql.log &
+    MYSQL_PID=$!
+}
+
+function stopdb()
+{
+    # Used to stop a mariadb server included in a Nix flake's devShell.
+    # Requires enironment variables to be set by the flake's shellHook.
+    mariadb-admin -u root --socket="$MYSQL_UNIX_PORT" shutdown
+    kill "$MYSQL_PID"
+    wait "$MYSQL_PID"
+    unset MYSQL_PID
+}
