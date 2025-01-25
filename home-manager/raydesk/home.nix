@@ -38,6 +38,7 @@
       vorbis-tools
       wl-clipboard-rs
       ytfzf
+      inputs.lyrical.packages.${pkgs.system}.default
     ];
   };
 

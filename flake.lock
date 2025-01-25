@@ -283,6 +283,26 @@
         "url": "https://github.com/kmonad/kmonad?dir=nix"
       }
     },
+    "lyrical": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1737664494,
+        "narHash": "sha256-qcLTg4ubU/avGEuHFOOgeCE3cJEHd5jkACfQ2eP0vls=",
+        "owner": "raymon-roos",
+        "repo": "lyrical-rs",
+        "rev": "01b7b825ad68a613312185b91e1bb6e24b6bc478",
+        "type": "github"
+      },
+      "original": {
+        "owner": "raymon-roos",
+        "repo": "lyrical-rs",
+        "type": "github"
+      }
+    },
     "nix-darwin": {
       "inputs": {
         "nixpkgs": [
@@ -433,6 +453,7 @@
       "inputs": {
         "home-manager": "home-manager",
         "kmonad": "kmonad",
+        "lyrical": "lyrical",
         "nix-darwin": "nix-darwin",
         "nixpkgs": "nixpkgs",
         "plover-flake": "plover-flake",

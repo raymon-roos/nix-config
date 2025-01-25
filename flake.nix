@@ -21,6 +21,9 @@
 
     plover-flake.url = "github:LilleAila/plover-flake/linux-uinput-fixed";
     plover-flake.inputs.nixpkgs.follows = "nixpkgs";
+
+    lyrical.url = "github:raymon-roos/lyrical-rs";
+    lyrical.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = {
