@@ -34,7 +34,10 @@
   stylix = with lib; {
     enable = true;
 
-    image = /home/ray/files/pictures/wallpapers/elden_ring_tarnished_warrior.jpg;
+    image = pkgs.fetchurl {
+      url = "https://www.pixelstalk.net/wp-content/uploads/images6/Berserk-Wide-Screen-Wallpaper.jpg";
+      sha256 = "dNDr1bOiOOo8NSNoIvg1VXYaUTZr1Dg1x0J4BMP2fzg=";
+    };
 
     polarity = "dark";
     base16Scheme = "${pkgs.base16-schemes}/share/themes/ayu-mirage.yaml";
