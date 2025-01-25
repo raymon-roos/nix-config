@@ -16,9 +16,6 @@
     stylix.url = "github:danth/stylix";
     stylix.inputs.nixpkgs.follows = "nixpkgs";
 
-    himalaya.url = "github:pimalaya/himalaya";
-    himalaya.inputs.nixpkgs.follows = "nixpkgs";
-
     kmonad.url = "git+https://github.com/kmonad/kmonad?submodules=1&dir=nix";
     kmonad.inputs.nixpkgs.follows = "nixpkgs";
 

@@ -19,7 +19,7 @@ in {
   ];
 
   home.packages = [
-    inputs.himalaya.packages.${pkgs.system}.default
+    #
   ];
 
   programs = {
@@ -28,7 +28,6 @@ in {
     };
     himalaya = {
       enable = true;
-      package = inputs.himalaya.packages.${pkgs.system}.default;
       settings = {
         downloads-dir = config.xdg.userDirs.download;
       };
