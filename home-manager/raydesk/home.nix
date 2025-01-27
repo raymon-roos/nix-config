@@ -70,6 +70,10 @@
         "browser.urlbar.suggest.openpage" = false;
         "browser.urlbar.suggest.recentsearches" = false;
         "layout.css.devPixelsPerPx" = "0.70"; # shrink ui
+
+        # Force hardware acceleration (vaapi), particularly for video decoding
+        "media.ffmpeg.vaapi.enabled" = true;
+        "media.hardware-video-decoding.force-enabled" = true;
       };
       languagePacks = ["en-GB" "nl"];
     };
@@ -86,6 +90,10 @@
     mpv = {
       enable = true;
       config = {
+        "hwdec" = "auto-safe";
+        "vo" = "gpu";
+        "profile" = "gpu-hq";
+        "gpu-context" = "wayland";
         "alang" = "jpn,eng";
         "slang" = "eng";
       };
