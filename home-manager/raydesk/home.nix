@@ -1,8 +1,9 @@
 {
   pkgs,
   config,
+  inputs,
   ...
-} @ inputs: {
+}: {
   imports = [
     ../common
     ./shell.nix
