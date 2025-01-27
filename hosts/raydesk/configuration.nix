@@ -31,6 +31,8 @@
     "/mnt/artix".options = ["defaults" "rw" "noatime" "compress-force=zstd:5" "ssd"];
   };
 
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (pkgs.lib.getName pkg) ["nvidia-x11"];
+
   hardware = {
     graphics.enable = true;
     nvidia = {
@@ -38,9 +40,10 @@
       powerManagement.enable = false;
       powerManagement.finegrained = false;
       open = false;
-      nvidiaSettings = true;
+      nvidiaSettings = false;
       package = config.boot.kernelPackages.nvidiaPackages.stable;
     };
+    enableRedistributableFirmware = true;
     keyboard.qmk.enable = true;
   };
 

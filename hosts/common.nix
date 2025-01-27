@@ -4,8 +4,6 @@
   lib,
   ...
 }: {
-  nixpkgs.config.allowUnfree = true;
-
   nix = {
     channel.enable = false;
     gc = {
