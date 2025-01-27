@@ -33,7 +33,7 @@ in {
     hledger-ui = "hledger-ui --theme=terminal";
     drag = "ripdrag -nxa";
     sucklessmake = "sudo make install && make clean && rm -f config.h";
-    clip = "xclip -r -selection clipboard";
+    clip = "wl-clip -selection clipboard";
     imapfilter = "imapfilter -c ${configHome}/imapfilter/config.lua";
     keychain = "keychain --dir ${stateHome}/keychain";
     muttsync = "mbsync -a && notmuch new && neomutt";
