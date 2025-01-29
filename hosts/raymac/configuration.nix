@@ -42,14 +42,12 @@
     };
   };
 
-  launchd.agents = {
+  launchd.daemons = {
     kmonad = {
-      command = "kmonad";
-      path = ["${inputs.kmonad.packages.${pkgs.system}.default}"];
+      command = "${inputs.kmonad.packages.${pkgs.system}.default}/bin/kmonad /Users/ray/.xdg/config/kmonad/keymap.kbd";
       serviceConfig = {
         Label = "local.kmonad";
-        ProgramArguments = ["kmonad" "/Users/ray/.xdg/config/kmonad/keymap.kbd"];
-        # KeepAlive = true;
+        KeepAlive = true;
         RunAtLoad = true;
         StandardOutPath = /tmp/kmonad.stdout;
         StandardErrorPath = /tmp/kmonad.stderr;
