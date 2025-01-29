@@ -61,7 +61,7 @@
         ];
       };
 
-      darwinConfigurations."Raymons-Laptop" = nix-darwin.lib.darwinSystem {
+      darwinConfigurations.raymac = nix-darwin.lib.darwinSystem {
         system = "aarch64-darwin";
         inherit specialArgs;
         modules = [

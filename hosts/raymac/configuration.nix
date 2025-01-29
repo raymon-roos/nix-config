@@ -57,6 +57,12 @@
     };
   };
 
+  networking = {
+    hostName = "raymac";
+    localHostName = "raymac";
+    computerName = "raymac";
+  };
+
   system = {
     stateVersion = 5; # Do not change
     activationScripts.postUserActivation.text = ''
