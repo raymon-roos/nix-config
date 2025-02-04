@@ -34,18 +34,6 @@
     with inputs; let
       inherit (self) outputs;
       specialArgs = {inherit nixpkgs inputs outputs;};
-
-      mkHomeModule = {
-        host,
-        args ? {},
-      }: {
-        home-manager = {
-          useGlobalPkgs = true;
-          useUserPackages = true;
-          users.ray = import ./home-manager/${host}/home.nix;
-          extraSpecialArgs = specialArgs // args;
-        };
-      };
     in {
       nixosConfigurations.raydesk = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -54,10 +42,6 @@
           ./hosts/raydesk/configuration.nix
           stylix.nixosModules.stylix
           home-manager.nixosModules.home-manager
-          (mkHomeModule {
-            host = "raydesk";
-            args = {inherit plover-flake;};
-          })
         ];
       };
 
@@ -68,7 +52,6 @@
           ./hosts/raymac/configuration.nix
           stylix.darwinModules.stylix
           home-manager.darwinModules.home-manager
-          (mkHomeModule {host = "raymac";})
         ];
       };
     };

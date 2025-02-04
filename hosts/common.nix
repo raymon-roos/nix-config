@@ -2,6 +2,7 @@
   config,
   pkgs,
   lib,
+  inputs,
   ...
 }: {
   nix = {
@@ -18,6 +19,13 @@
         "pipe-operators"
       ];
     };
+  };
+
+  home-manager = {
+    useGlobalPkgs = true;
+    useUserPackages = true;
+    users.ray = import ../home-manager/${config.networking.hostName}/home.nix;
+    extraSpecialArgs = with inputs; {inherit nixpkgs inputs;};
   };
 
   programs.zsh.enable = true;
