@@ -94,6 +94,8 @@
         disable_hyprland_logo = true;
       };
 
+      ecosystem.no_donation_nag = true;
+
       input = {
         kb_layout = "us";
         # kb_variant = "";
