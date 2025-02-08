@@ -16,6 +16,7 @@
   dev.rust.enable = true;
   dev.go.enable = true;
   dev.python.enable = false;
+  HUazureDevops.enable = true;
 
   home = {
     stateVersion = "23.11"; # don't change

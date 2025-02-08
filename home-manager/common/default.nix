@@ -9,6 +9,7 @@
     ./directories.nix
     ./environment_variables.nix
     ./shell
+    ./hu_azure_devops.nix
     # ./mail
   ];
 
@@ -43,6 +44,7 @@
 
   programs = {
     home-manager.enable = true;
+    ssh.enable = true;
 
     gpg = {
       enable = true;
