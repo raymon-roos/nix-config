@@ -8,7 +8,7 @@
 in {
   accounts.email.accounts.personal = {
     primary = true;
-    # flavor = "outlook.office365.com";
+    flavor = "outlook.office365.com";
 
     realName = contact_info.full_name;
     address = contact_info.personal.address;
@@ -18,12 +18,12 @@ in {
     # mbsync.enable = config.programs.mbsync.enable;
     maildir.path = "personal";
 
-    # folders = {
-    #   inbox = "inbox";
-    #   sent = "Sent";
-    #   drafts = "Drafts";
-    #   trash = "Deleted";
-    # };
+    folders = {
+      inbox = "inbox";
+      sent = "Sent";
+      drafts = "Drafts";
+      trash = "Deleted";
+    };
 
     himalaya = {
       enable = config.programs.himalaya.enable;
@@ -39,14 +39,6 @@ in {
           drafts = "Drafts";
           trash = "Deleted";
         };
-        # message.send.backend = {
-        #   type = "smtp";
-        #   host = "smtp.gmail.com";
-        #   port = 465;
-        #   login = "example@gmail.com";
-        #   auth.type = "password";
-        #   auth.cmd = "pass mbsync/gmail | head -1";
-        # };
       };
     };
   };

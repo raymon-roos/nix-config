@@ -7,26 +7,26 @@
   mailHome = "${config.xdg.dataHome}/mail";
 in {
   accounts.email.accounts.gmail = {
-    # flavor = "gmail.com";
+    flavor = "gmail.com";
 
     realName = contact_info.full_name;
     address = contact_info.gmail.address;
     userName = contact_info.gmail.address;
     passwordCommand = "pass mbsync/gmail | head -1";
 
-    mbsync = {
-      enable = config.programs.mbsync.enable;
-      subFolders = "Verbatim";
-      create = "maildir";
-    };
+    # mbsync = {
+    #   enable = config.programs.mbsync.enable;
+    #   subFolders = "Verbatim";
+    #   create = "maildir";
+    # };
     maildir.path = "gmail";
 
-    # folders = {
-    #   inbox = "inbox";
-    #   sent = "[Gmail]/Sent Mail";
-    #   drafts = "[Gmail]/Drafts";
-    #   trash = "[Gmail]/Spam";
-    # };
+    folders = {
+      inbox = "inbox";
+      sent = "[Gmail]/Sent Mail";
+      drafts = "[Gmail]/Drafts";
+      trash = "[Gmail]/Bin";
+    };
 
     himalaya = {
       enable = config.programs.himalaya.enable;
@@ -36,20 +36,6 @@ in {
           maildirpp = false;
           root-dir = "${mailHome}/${config.accounts.email.accounts.gmail.maildir.path}";
         };
-        folder.aliases = {
-          inbox = "inbox";
-          sent = "[Gmail]/Sent Mail";
-          drafts = "[Gmail]/Drafts";
-          trash = "[Gmail]/Spam";
-        };
-        # message.send.backend = {
-        #   type = "smtp";
-        #   host = "smtp.gmail.com";
-        #   port = 465;
-        #   login = "example@gmail.com";
-        #   auth.type = "password";
-        #   auth.cmd = "pass mbsync/gmail | head -1";
-        # };
       };
     };
   };

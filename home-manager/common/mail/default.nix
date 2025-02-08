@@ -2,7 +2,6 @@
   config,
   pkgs,
   lib,
-  inputs,
   ...
 }: let
   # Reference https://mailtrap.io/blog/starttls-ssl-tls/
@@ -30,6 +29,8 @@ in {
       enable = true;
       settings = {
         downloads-dir = config.xdg.userDirs.download;
+        folder.list.page-size = 20;
+        envelope.list.page-size = 20;
       };
     };
   };
