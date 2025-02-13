@@ -14,7 +14,7 @@
   dev.nodejs.enable = true;
   dev.php.enable = true;
   dev.rust.enable = true;
-  dev.go.enable = true;
+  dev.go.enable = false;
   dev.python.enable = false;
   HUazureDevops.enable = true;
 
