@@ -341,16 +341,15 @@
     "plover": {
       "flake": false,
       "locked": {
-        "lastModified": 1738509631,
-        "narHash": "sha256-hLhILKVLGFSA/dsSQd0YVJyfnSWp6nUqe42j7xvfwmw=",
-        "owner": "LilleAila",
+        "lastModified": 1739252568,
+        "narHash": "sha256-WSU1oYIVm4RQ/EM+jVw8ZB1hXWV4FD6ynCkjNp5L64g=",
+        "owner": "openstenoproject",
         "repo": "plover",
-        "rev": "5279766d11ad6405eb08e168a01c438f25d103de",
+        "rev": "bd99b79e2085bb6e4d33f6874d9c7cee1c0c97eb",
         "type": "github"
       },
       "original": {
-        "owner": "LilleAila",
-        "ref": "linux-uinput",
+        "owner": "openstenoproject",
         "repo": "plover",
         "type": "github"
       }
@@ -366,20 +365,18 @@
         "plover-stroke": "plover-stroke",
         "plover2cat": "plover2cat",
         "plover_plugins_registry": "plover_plugins_registry",
-        "rtf-tokenize": "rtf-tokenize",
-        "xkbcommon": "xkbcommon"
+        "rtf-tokenize": "rtf-tokenize"
       },
       "locked": {
-        "lastModified": 1738509711,
-        "narHash": "sha256-1pZ8M0YnHbw+6cIKJJqibRN66xTna4YSjepbpUCWQSk=",
-        "owner": "LilleAila",
+        "lastModified": 1739394838,
+        "narHash": "sha256-dUt34IDDPOJN2h0k7uGXsWUHEzqOQnb47d8fp22ymgM=",
+        "owner": "dnaq",
         "repo": "plover-flake",
-        "rev": "849e4cd4f5a54a907ef5993c8f2de2b99381fd41",
+        "rev": "ec7830a912b96a4e1a7fcbe138c0dde82580d1a6",
         "type": "github"
       },
       "original": {
-        "owner": "LilleAila",
-        "ref": "linux-uinput-fixed",
+        "owner": "dnaq",
         "repo": "plover-flake",
         "type": "github"
       }
@@ -620,23 +617,6 @@
       "original": {
         "owner": "tinted-theming",
         "repo": "base16-zed",
-        "type": "github"
-      }
-    },
-    "xkbcommon": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1720215817,
-        "narHash": "sha256-+jCzUnZWz2/jzzMR50cpR7gfk0XXL5ioK7kK7b2dLmU=",
-        "owner": "sde1000",
-        "repo": "python-xkbcommon",
-        "rev": "870f6f31b833d3526fd256b96832d9375647ef34",
-        "type": "github"
-      },
-      "original": {
-        "owner": "sde1000",
-        "ref": "v1.0.1",
-        "repo": "python-xkbcommon",
         "type": "github"
       }
     }

@@ -19,7 +19,7 @@
     kmonad.url = "github:kmonad/kmonad?dir=nix";
     kmonad.inputs.nixpkgs.follows = "nixpkgs";
 
-    plover-flake.url = "github:LilleAila/plover-flake/linux-uinput-fixed";
+    plover-flake.url = "github:dnaq/plover-flake";
     plover-flake.inputs.nixpkgs.follows = "nixpkgs";
 
     lyrical.url = "github:raymon-roos/lyrical-rs";
