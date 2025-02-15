@@ -16,6 +16,9 @@
     stylix.url = "github:danth/stylix";
     stylix.inputs.nixpkgs.follows = "nixpkgs";
 
+    disko.url = "github:nix-community/disko/latest";
+    disko.inputs.nixpkgs.follows = "nixpkgs";
+
     kmonad.url = "github:kmonad/kmonad?dir=nix";
     kmonad.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -40,6 +43,17 @@
         inherit specialArgs;
         modules = [
           ./hosts/raydesk/configuration.nix
+          stylix.nixosModules.stylix
+          home-manager.nixosModules.home-manager
+        ];
+      };
+
+      nixosConfigurations.raytop = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        inherit specialArgs;
+        modules = [
+          ./hosts/raytop/configuration.nix
+          disko.nixosModules.disko
           stylix.nixosModules.stylix
           home-manager.nixosModules.home-manager
         ];
