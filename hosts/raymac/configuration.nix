@@ -17,18 +17,14 @@
 
   security.pam.enableSudoTouchIdAuth = true;
 
-  # use with rosetta, run `softwareupdate --install-rosetta --agree-to-license` first
   nix = {
+    enable = true;
     optimise.automatic = true;
+    # use with rosetta, run `softwareupdate --install-rosetta --agree-to-license` first
     settings.extra-platforms = ["x86_64-darwin" "aarch64-darwin"];
   };
 
   nixpkgs.hostPlatform = "aarch64-darwin";
-
-  # Auto upgrade nix package and the daemon service.
-  services = {
-    nix-daemon.enable = true;
-  };
 
   environment.darwinConfig = ./configuration.nix;
   environment.systemPackages = [
