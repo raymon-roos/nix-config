@@ -6,6 +6,7 @@
   imports = [
     ../common.nix
     ./hardware-configuration.nix
+    ./keyd.nix
     ./disko.nix
   ];
 
@@ -42,7 +43,10 @@
   time.timeZone = "Europe/Amsterdam";
 
   i18n.defaultLocale = "en_US.UTF-8";
-  console.useXkbConfig = true;
+  console = {
+    earlySetup = true;
+    useXkbConfig = true;
+  };
 
   services = {
     dbus.implementation = "broker";
