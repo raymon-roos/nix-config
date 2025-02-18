@@ -7,9 +7,10 @@
   imports = [
     ../common
     ./shell.nix
-    ./wayland
   ];
 
+  desktop-config.lockscreen.enable = false;
+  desktop-config.hyprland.enable = true;
   dev.nix.enable = true;
   dev.nodejs.enable = true;
   dev.php.enable = true;

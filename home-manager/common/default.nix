@@ -9,6 +9,7 @@
     ./directories.nix
     ./environment_variables.nix
     ./shell
+    ./wayland
     ./hu_azure_devops.nix
     # ./mail
   ];
