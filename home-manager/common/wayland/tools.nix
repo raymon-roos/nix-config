@@ -60,14 +60,6 @@ with lib; {
             no_fade_in = true;
           };
 
-          background = [
-            {
-              path = "screenshot";
-              blur_passes = 1;
-              blur_size = 8;
-            }
-          ];
-
           label = [
             {
               text = "cmd[update:60000] date '+%a %b %d %Y %R'";
@@ -79,22 +71,6 @@ with lib; {
               position = "0, -20";
               halign = "center";
               valign = "center";
-            }
-          ];
-
-          input-field = [
-            {
-              size = "400, 40";
-              position = "0, -80";
-              monitor = "";
-              dots_center = true;
-              fade_on_empty = false;
-              font_color = "rgb(202, 211, 245)";
-              inner_color = "rgb(91, 96, 120)";
-              outer_color = "rgb(24, 25, 38)";
-              outline_thickness = 2;
-              rounding = -0.15;
-              shadow_passes = 1;
             }
           ];
         };
