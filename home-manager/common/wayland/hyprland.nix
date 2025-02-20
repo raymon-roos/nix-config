@@ -130,6 +130,10 @@
             "$mainMod CONTROL, Z, exec, cmus-remote -r"
             "$mainMod CONTROL, M, exec, cmus-remote -C 'toggle aaa_mode'"
 
+            (if config.desktop-config.lockscreen.enable
+              then "$mainMod CONTROL, Q, exec, pidof hyprlock || hyprlock"
+            else "")
+
             "$mainMod, L, exec, makoctl dismiss"
             "$mainMod, U, exec, makoctl menu"
             "$mainMod, Y, exec, makoctl restore"
