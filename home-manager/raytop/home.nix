@@ -1,6 +1,7 @@
 {
   pkgs,
   config,
+  lib,
   inputs,
   ...
 }: {
@@ -49,6 +50,16 @@
         recolor = true;
         sandbox = "strict";
         selection-clipboard = "clipboard";
+      };
+    };
+  };
+
+  wayland.windowManager.hyprland = lib.mkIf config.desktop-config.hyprland.enable {
+    settings = {
+      input = {
+        kb_layout = "us,us";
+        kb_variant = "colemak_dh,intl";
+        kb_options = "grp:shift_caps_toggle";
       };
     };
   };
