@@ -16,6 +16,9 @@
     stylix.url = "github:danth/stylix";
     stylix.inputs.nixpkgs.follows = "nixpkgs";
 
+    flake-registry.url = "github:nixos/flake-registry";
+    flake-registry.flake = false;
+
     disko.url = "github:nix-community/disko/latest";
     disko.inputs.nixpkgs.follows = "nixpkgs";
 

@@ -13,6 +13,7 @@
     };
     settings = {
       use-xdg-base-directories = true;
+      flake-registry = "${inputs.flake-registry}/flake-registry.json";
       experimental-features = [
         "nix-command"
         "flakes"
