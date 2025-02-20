@@ -1,6 +1,7 @@
 {
   pkgs,
   config,
+  lib,
   inputs,
   ...
 }: {
@@ -110,6 +111,23 @@
         sub-langs = "en.*";
         sponsorblock-remove = "sponsor,selfpromo,interaction,intro,outro,preview,music_offtopic";
       };
+    };
+  };
+
+  wayland.windowManager.hyprland = lib.mkIf config.desktop-config.hyprland.enable {
+    settings = {
+      monitor = [
+        #name,resolution,position,scale,rotation
+        "HDMI-A-1,preferred,0x0,auto"
+        "DVI-I-1,preferred,auto-right,auto,transform, 3"
+        "DP-1,preferred,auto-left,auto,transform, 1"
+        "Unknown-1,disable"
+      ];
+      windowrulev2 = [
+        "monitor 2,class:^(cmus)$"
+        "monitor 0,initialTitle:^(Mozilla Thunderbird)$"
+        "monitor 0,initialClass:^(vesktop)$"
+      ];
     };
   };
 

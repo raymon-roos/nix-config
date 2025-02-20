@@ -15,14 +15,6 @@
       ];
 
       settings = with builtins; {
-        monitor = [
-          #name,resolution,position,scale,rotation
-          "HDMI-A-1,preferred,0x0,auto"
-          "DVI-I-1,preferred,auto-right,auto,transform, 3"
-          "DP-1,preferred,auto-left,auto,transform, 1"
-          "Unknown-1,disable"
-        ];
-
         env = [
           "QT_QPA_PLATFORM,wayland;xcb"
           "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
@@ -208,9 +200,6 @@
           "prop opaque 1 noblur 1,class:(librewolf), title:(Picture-in-Picture)"
           "prop opaque 1 noblur 1,class:(librewolf), title:(.*)(- YouTube)"
           "prop opaque 1 noblur 1,class:(mpv)"
-          "monitor 2,class:^(cmus)$"
-          "monitor 0,initialTitle:^(Mozilla Thunderbird)$"
-          "monitor 0,initialClass:^(vesktop)$"
           "suppressevent maximize, class:.*" # From example config, probably important
         ];
       };
