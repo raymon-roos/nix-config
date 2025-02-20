@@ -10,6 +10,7 @@
     ./environment_variables.nix
     ./shell
     ./wayland
+    ./librewolf.nix
     ./hu_azure_devops.nix
     # ./mail
   ];
