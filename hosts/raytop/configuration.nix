@@ -31,7 +31,8 @@
 
   networking = {
     hostName = "raytop";
-    wireless.enable = true;
+    # wireless.enable = true;
+    networkmanager.enable = true;
 
     firewall = {
       enable = true;
@@ -96,7 +97,7 @@
   users.users.ray = {
     isNormalUser = true;
     shell = pkgs.zsh;
-    extraGroups = ["wheel" "ray" "video"];
+    extraGroups = ["wheel" "ray" "networkmanager" "video"];
   };
 
   nix.settings = {
