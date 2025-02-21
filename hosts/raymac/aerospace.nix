@@ -52,18 +52,14 @@
 
             cmd-ctrl-comma = "move-workspace-to-monitor --wrap-around prev";
             cmd-ctrl-period = "move-workspace-to-monitor --wrap-around next";
-          }
-          // listToAttrs (concatLists (genList (i: [
-              {
-                name = "cmd-${toString (i + 1)}";
-                value = "workspace ${toString (i + 1)}";
-              }
-              {
-                name = "cmd-shift-${toString (i + 1)}";
-                value = "move-node-to-workspace ${toString (i + 1)}";
-              }
-            ])
-            9));
+          } // ( # mod + [shift] + {1..9} to [move to] workspace {1..9}
+            range 1 9
+              |> map (i: let j = toString i; in {
+                "cmd-${j}" = "workspace ${j}";
+                "cmd-shift-${j}" = "move-node-to-workspace ${j}";
+              })
+              |> mergeAttrsList
+          );
       };
     };
   };
