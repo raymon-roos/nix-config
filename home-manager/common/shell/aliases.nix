@@ -5,7 +5,6 @@ in {
     "rm -rf /" = "echo 'ha lol no lets not'";
     ls = "eza";
     nrs = "nh os switch ${configHome}/nix";
-    hms = "nh home switch --flake ${configHome}/nix";
 
     nixrc = "[ \"$PWD\" = ${configHome}/nix ] || pushd ${configHome}/nix && nvim flake.nix";
     vimrc = "[ \"$PWD\" = ${configHome}/nvim ] || pushd ${configHome}/nvim && vim init.lua";
