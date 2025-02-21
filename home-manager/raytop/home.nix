@@ -30,6 +30,7 @@
 
     packages = with pkgs; [
       acpi
+      brightnessctl
       keychain
       remind
       thunderbird
@@ -66,6 +67,14 @@
         kb_variant = "colemak_dh,intl";
         kb_options = "grp:shift_caps_toggle";
       };
+      binde = [
+        ", XF86MonBrightnessDown, exec, brightnessctl set '10%-' --min-value 10"
+        ", XF86MonBrightnessUp, exec, brightnessctl set '10%+'"
+        ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_SINK@ '5%-'"
+        ", XF86AudioRaiseVolume, exec, wpctl set-volume -l 1.0 @DEFAULT_SINK@ '5%+'"
+        ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_SINK@ toggle"
+        ", XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_SOURCE@ toggle"
+      ];
     };
   };
 
