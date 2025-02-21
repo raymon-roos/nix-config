@@ -130,10 +130,6 @@
             "$mainMod CONTROL, Z, exec, cmus-remote -r"
             "$mainMod CONTROL, M, exec, cmus-remote -C 'toggle aaa_mode'"
 
-            (if config.desktop-config.lockscreen.enable
-              then "$mainMod CONTROL, Q, exec, pidof hyprlock || hyprlock"
-            else "")
-
             "$mainMod, L, exec, makoctl dismiss"
             "$mainMod, U, exec, makoctl menu"
             "$mainMod, Y, exec, makoctl restore"
@@ -170,6 +166,10 @@
             "$mainMod CONTROL SHIFT, o, swapwindow, r"
             "$mainMod SHIFT, D, killactive,"
           ]
+          ++ (
+            lib.lists.optional config.desktop-config.lockscreen.enable
+              "$mainMod CONTROL, Q, exec, pidof hyprlock || hyprlock"
+          )
           ++ ( # $mod + [shift] + {1..9} to [move to] workspace {1..9}
             9 |> genList (i: let num = toString (i+1); in [
               "$mainMod, ${num}, split:workspace, ${num}"
