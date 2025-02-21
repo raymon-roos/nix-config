@@ -55,20 +55,35 @@ with lib; {
         settings = {
           general = {
             disable_loading_bar = true;
-            grace = 10;
+            grace = 5;
             hide_cursor = false;
             no_fade_in = true;
           };
-
+          background = lib.mkForce [
+            {
+              path = "screenshot";
+              blur_passes = 2;
+              blur_size = 6;
+            }
+          ];
+          input-field = {
+            size = "260, 40";
+            # font_size = 10;
+          };
           label = [
             {
               text = "cmd[update:60000] date '+%a %b %d %Y %R'";
               text_align = "center";
-              color = "rgba(200, 200, 200, 1.0)";
-              font_size = 15;
-              font_family = config.stylix.fonts.monospace.name;
-              rotate = 0;
-              position = "0, -20";
+              font_size = 13;
+              position = "0, 70";
+              halign = "center";
+              valign = "center";
+            }
+            {
+              text = " $LAYOUT";
+              text_align = "center";
+              font_size = 11;
+              position = "0, -40";
               halign = "center";
               valign = "center";
             }
