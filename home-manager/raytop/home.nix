@@ -29,6 +29,7 @@
     ];
 
     packages = with pkgs; [
+      acpi
       keychain
       remind
       thunderbird
