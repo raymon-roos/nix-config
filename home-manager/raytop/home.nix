@@ -54,6 +54,10 @@
     };
   };
 
+  stylix = {
+    targets.bemenu.fontSize = 8;
+  };
+
   wayland.windowManager.hyprland = lib.mkIf config.desktop-config.hyprland.enable {
     settings = {
       input = {
