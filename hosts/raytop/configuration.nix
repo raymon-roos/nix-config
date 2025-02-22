@@ -21,6 +21,10 @@
       ];
   };
 
+  systemd.sleep.extraConfig = ''
+    SuspendState=s2idle
+  '';
+
   time.timeZone = "Europe/Amsterdam";
 
   i18n.defaultLocale = "en_US.UTF-8";

@@ -5,6 +5,11 @@
       kernelModules = [];
     };
 
+    # partition inside luks holding the swapfile
+    resumeDevice = "/dev/disk/by-uuid/55373f29-5699-46ed-9de0-644f3a377c8c";
+    # sudo btrfs inspect-internal map-swapfile -r /.swap/swapfile
+    kernelParams = ["resume_offset=533760"];
+
     kernelModules = [];
     extraModulePackages = [];
 
