@@ -1,4 +1,7 @@
-{...}: {
+{
+  lib,
+  ...
+}: {
   services.aerospace = {
     enable = true;
     settings = {
@@ -11,9 +14,9 @@
         "3" = "secondary";
         "4" = "secondary";
       };
-      mode = with builtins; {
+      mode = {
         main.binding =
-          {
+          with lib; {
             cmd-shift-enter = "exec-and-forget open -n -a kitty --args --config $XDG_CONFIG_HOME/kitty/kitty.conf -1";
             cmd-z = "exec-and-forget open -n -a librewolf";
 
