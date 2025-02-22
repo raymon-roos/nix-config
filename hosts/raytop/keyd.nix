@@ -3,7 +3,9 @@
     layout = "us";
     variant = "colemak_dh";
   };
+
   environment.systemPackages = [pkgs.keyd];
+
   services.keyd = {
     enable = true;
     keyboards = {

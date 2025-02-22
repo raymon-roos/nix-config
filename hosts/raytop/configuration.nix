@@ -1,44 +1,24 @@
 {
   config,
   pkgs,
+  lib,
   ...
 }: {
   imports = [
     ../common.nix
-    ./hardware-configuration.nix
+    ./hardware
+    ./boot.nix
+    ./networking.nix
+    ./services.nix
     ./keyd.nix
-    ./disko.nix
   ];
 
-  boot = {
-    loader.systemd-boot.enable = true;
-    loader.systemd-boot.configurationLimit = 15;
-    loader.systemd-boot.memtest86.enable = true;
-    loader.efi.canTouchEfiVariables = true;
-    tmp.useTmpfs = true;
-  };
-
-  nixpkgs.config.allowUnfreePredicate = pkg:
-    builtins.elem (pkgs.lib.getName pkg) [
-      "intelephense"
-    ];
-
-  hardware = {
-    graphics.enable = true;
-    graphics.extraPackages = [pkgs.vaapiIntel pkgs.intel-media-driver];
-    enableRedistributableFirmware = true;
-  };
-
-  networking = {
-    hostName = "raytop";
-    # wireless.enable = true;
-    networkmanager.enable = true;
-
-    firewall = {
-      enable = true;
-      allowedTCPPorts = [];
-      allowedUDPPorts = [];
-    };
+  nixpkgs = {
+    hostPlatform = lib.mkDefault "x86_64-linux";
+    config.allowUnfreePredicate = pkg:
+      builtins.elem (pkgs.lib.getName pkg) [
+        "intelephense"
+      ];
   };
 
   time.timeZone = "Europe/Amsterdam";
@@ -47,48 +27,6 @@
   console = {
     earlySetup = true;
     useXkbConfig = true;
-  };
-
-  services = {
-    dbus.implementation = "broker";
-    thermald.enable = true;
-    auto-cpufreq = {
-      enable = true;
-      settings = {
-        battery = {
-          governor = "powersave";
-          turbo = "never";
-        };
-        charger = {
-          governor = "performance";
-          turbo = "auto";
-        };
-      };
-    };
-    xserver = {
-      autoRepeatDelay = 130;
-      autoRepeatInterval = 15;
-    };
-    pipewire = {
-      enable = true;
-      pulse.enable = true;
-    };
-    openssh = {
-      enable = false;
-      startWhenNeeded = true;
-      hostKeys = [
-        {
-          comment = "raytop system";
-          path = "/etc/ssh/ssh_host_ed25519_key";
-          type = "ed25519";
-        }
-      ];
-      settings = {
-        PermitRootLogin = "no";
-        X11Forwarding = false;
-        PasswordAuthentication = false;
-      };
-    };
   };
 
   security.polkit.enable = true;
