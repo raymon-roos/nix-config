@@ -53,7 +53,6 @@ in {
           NOTES_HOME = "${filesHome}/zettelkasten";
           FINANCE_HOME = "${filesHome}/finance";
           DOTREMINDERS = "${filesHome}/reminders";
-          PASSWORD_STORE_DIR = "${filesHome}/secrets/passwords";
         };
       };
     };

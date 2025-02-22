@@ -19,7 +19,6 @@
     calc
     entr
     neovim-unwrapped
-    pass
     ripdrag
     sd
     yadm
@@ -50,6 +49,21 @@
     gpg = {
       enable = true;
       homedir = "${config.xdg.dataHome}/gnupg";
+    };
+
+    password-store = {
+      enable = true;
+      settings = {
+        PASSWORD_STORE_DIR =
+          config.home.homeDirectory
+          + (
+            if pkgs.stdenv.isDarwin
+            then ""
+            else "/files"
+          )
+          + "/secrets/passwords";
+        PASSWORD_STORE_CLIP_TIME = "30";
+      };
     };
 
     neovim = {

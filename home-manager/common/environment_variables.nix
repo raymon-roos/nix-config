@@ -15,8 +15,6 @@ in {
       TERMINAL = "kitty";
       MANPAGER = "nvim +Man!";
       MANWIDTH = 90;
-      PASSWORD_STORE_CLIP_TIME = 30;
-      PASSWORD_STORE_ENABLE_EXTENSIONS = "true";
 
       FLAKE = "${config.xdg.configHome}/nix";
       ADB_KEYS_PATH = "${config.xdg.configHome}/android";
@@ -39,6 +37,5 @@ in {
       SRC_HOME = srcHome;
       FILES_HOME = home;
       PROJECTS_HOME = "${home}/projects";
-      PASSWORD_STORE_DIR = "${home}/secrets/passwords";
     };
 }
