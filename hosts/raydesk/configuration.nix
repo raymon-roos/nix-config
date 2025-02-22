@@ -1,58 +1,27 @@
 {
   config,
   pkgs,
+  lib,
+  modulesPath,
   ...
 }: {
   imports = [
+    (modulesPath + "/installer/scan/not-detected.nix") # from `nixos-generate-config`
     ../common.nix
-    ./hardware-configuration.nix
+    ./hardware
+    ./networking.nix
+    ./services.nix
     ./plover.nix
   ];
 
-  boot = {
-    loader.systemd-boot.enable = true;
-    loader.systemd-boot.configurationLimit = 15;
-    loader.efi.canTouchEfiVariables = true;
-    tmp.useTmpfs = true;
+  nixpkgs = {
+    hostPlatform = lib.mkDefault "x86_64-linux";
+    config.allowUnfreePredicate = pkg:
+      builtins.elem (pkgs.lib.getName pkg) [
+        "nvidia-x11"
+        "intelephense"
+      ];
   };
-
-  fileSystems = {
-    "/boot".options = ["fmask=0077" "dmask=0077"];
-    "/".options = ["subvol=nixos" "defaults" "rw" "noatime" "compress-force=zstd:5" "ssd"];
-    "/root".options = ["subvol=home_root" "defaults" "rw" "noatime" "compress-force=zstd:5" "ssd"];
-    "/nix".options = ["subvol=nix" "defaults" "rw" "noatime" "compress-force=zstd:5" "ssd"];
-    "/opt".options = ["subvol=opt" "defaults" "rw" "noatime" "compress-force=zstd:5" "ssd"];
-    "/srv".options = ["subvol=srv" "defaults" "rw" "noatime" "compress-force=zstd:5" "ssd"];
-    "/usr/local".options = ["subvol=usr/local" "defaults" "rw" "noatime" "compress-force=zstd:5" "ssd"];
-    "/var".options = ["subvol=var" "defaults" "rw" "noatime" "compress-force=zstd:5" "ssd"];
-    "/snapshots".options = ["subvol=snapshots" "defaults" "rw" "noatime" "compress-force=zstd:5" "ssd"];
-    "/home/ray".options = ["subvol=home_ray" "defaults" "rw" "noatime" "compress-force=zstd:5" "ssd"];
-    "/home/ray/files/2-disk".options = ["defaults" "rw" "noatime" "compress-force=zstd:5"];
-    "/mnt/artix".options = ["defaults" "rw" "noatime" "compress-force=zstd:5" "ssd"];
-  };
-
-  nixpkgs.config.allowUnfreePredicate = pkg:
-    builtins.elem (pkgs.lib.getName pkg) [
-      "nvidia-x11"
-      "intelephense"
-    ];
-
-  hardware = {
-    graphics.enable = true;
-    nvidia = {
-      modesetting.enable = true;
-      powerManagement.enable = false;
-      powerManagement.finegrained = false;
-      open = false;
-      nvidiaSettings = false;
-      package = config.boot.kernelPackages.nvidiaPackages.stable;
-    };
-    enableRedistributableFirmware = true;
-    keyboard.qmk.enable = true;
-  };
-
-  networking.hostName = "raydesk";
-  networking.networkmanager.enable = true;
 
   time.timeZone = "Europe/Amsterdam";
 
@@ -62,36 +31,6 @@
   };
 
   plover.enable = false;
-
-  services = {
-    udev.packages = [pkgs.qmk-udev-rules];
-    dbus.implementation = "broker";
-    xserver = {
-      videoDrivers = ["nvidia"];
-      autoRepeatDelay = 130;
-      autoRepeatInterval = 15;
-    };
-    pipewire = {
-      enable = true;
-      pulse.enable = true;
-    };
-    openssh = {
-      enable = false;
-      startWhenNeeded = true;
-      hostKeys = [
-        {
-          comment = "raydesk system";
-          path = "/etc/ssh/ssh_host_ed25519_key";
-          type = "ed25519";
-        }
-      ];
-      settings = {
-        PermitRootLogin = "no";
-        X11Forwarding = false;
-        PasswordAuthentication = false;
-      };
-    };
-  };
 
   security.polkit.enable = true;
   security.pam.services.hyprlock = {};
@@ -119,7 +58,7 @@
     nix-ld.enable = true; # hack to fix dynamically linked binaries for traditional distros
 
     nh.enable = true;
-    nh.flake = "/home/ray/.xdg/config/nix#raydesk";
+    nh.flake = "/home/ray/.xdg/config/nix";
 
     hyprland = {
       enable = true;
@@ -155,12 +94,6 @@
       name = "Bibata-Modern-Classic";
       size = 20;
     };
-  };
-
-  networking.firewall = {
-    enable = true;
-    allowedTCPPorts = [49164 6881];
-    allowedUDPPorts = [49164 6881];
   };
 
   system.stateVersion = "24.05"; # never ever change this
