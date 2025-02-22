@@ -35,12 +35,6 @@
   security.polkit.enable = true;
   security.pam.services.hyprlock = {};
 
-  users.users.ray = {
-    isNormalUser = true;
-    shell = pkgs.zsh;
-    extraGroups = ["wheel" "ray" "video"];
-  };
-
   nix.settings = {
     auto-optimise-store = true;
   };

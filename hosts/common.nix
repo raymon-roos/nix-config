@@ -22,6 +22,18 @@
     };
   };
 
+  users.users.ray =
+    {
+      shell = pkgs.zsh;
+    }
+    // lib.optionalAttrs pkgs.stdenv.isLinux {
+      isNormalUser = true;
+      extraGroups = ["wheel" "ray" "video"];
+    }
+    // lib.optionalAttrs pkgs.stdenv.isDarwin {
+      home = /Users/ray;
+    };
+
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;

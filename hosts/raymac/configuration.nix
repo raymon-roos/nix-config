@@ -10,11 +10,6 @@
     ./aerospace.nix
   ];
 
-  users.users.ray = {
-    shell = pkgs.zsh;
-    home = /Users/ray;
-  };
-
   security.pam.enableSudoTouchIdAuth = true;
 
   nix = {

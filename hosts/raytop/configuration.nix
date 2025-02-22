@@ -95,9 +95,7 @@
   security.pam.services.hyprlock = {};
 
   users.users.ray = {
-    isNormalUser = true;
-    shell = pkgs.zsh;
-    extraGroups = ["wheel" "ray" "networkmanager" "video"];
+    extraGroups = ["networkmanager"];
   };
 
   nix.settings = {
