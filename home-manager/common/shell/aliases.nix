@@ -1,10 +1,19 @@
-{config, ...}: let
+{
+  config,
+  pkgs,
+  ...
+}: let
   configHome = config.xdg.configHome;
 in {
   home.shellAliases = {
     "rm -rf /" = "echo 'ha lol no lets not'";
     ls = "eza";
-    nrs = "nh os switch ${configHome}/nix";
+    nrs =
+      if config.programs.nh.enable
+      then "nh os switch ${configHome}/nix"
+      else if pkgs.stdenv.isDarwin
+      then "darwin-rebuild switch --flake '/Users/ray/.xdg/config/nix/'"
+      else "nixos-rebuild switch --flake  '/Users/ray/.xdg/config/nix/'";
 
     nixrc = "[ \"$PWD\" = ${configHome}/nix ] || pushd ${configHome}/nix && nvim flake.nix";
     vimrc = "[ \"$PWD\" = ${configHome}/nvim ] || pushd ${configHome}/nvim && vim init.lua";
