@@ -34,6 +34,7 @@
   };
 
   launchd.daemons = {
+    # The driverkit extension has to be intalled manually!
     kmonad = {
       command = "${inputs.kmonad.packages.${pkgs.system}.default}/bin/kmonad /Users/ray/.xdg/config/kmonad/keymap.kbd";
       serviceConfig = {
