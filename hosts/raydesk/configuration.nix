@@ -2,11 +2,9 @@
   config,
   pkgs,
   lib,
-  modulesPath,
   ...
 }: {
   imports = [
-    (modulesPath + "/installer/scan/not-detected.nix") # from `nixos-generate-config`
     ../common.nix
     ./hardware
     ./networking.nix
