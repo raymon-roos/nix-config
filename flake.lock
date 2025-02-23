@@ -306,17 +306,19 @@
       "locked": {
         "dir": "nix",
         "lastModified": 1739962668,
-        "narHash": "sha256-ns7btNiKU6+JViXt6k3g7iQp2Xyy0ZCi3wf59y3lS6s=",
-        "owner": "kmonad",
-        "repo": "kmonad",
+        "narHash": "sha256-a2hlitoXnlCPRYThhaj+ZtUYn//dx4R0kSgjmhiyd+I=",
+        "ref": "refs/heads/master",
         "rev": "356c69f45b8cbb3c875616c91892f8b28ce40c13",
-        "type": "github"
+        "revCount": 941,
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/kmonad/kmonad?dir=nix"
       },
       "original": {
         "dir": "nix",
-        "owner": "kmonad",
-        "repo": "kmonad",
-        "type": "github"
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/kmonad/kmonad?dir=nix"
       }
     },
     "lyrical": {
