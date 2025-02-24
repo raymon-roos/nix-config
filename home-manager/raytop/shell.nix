@@ -31,7 +31,6 @@ in {
     chgrp = "chgrp --preserve-root";
     zettel = "[ \"$PWD\" = ${notesHome} ] || pushd ${notesHome} && nvim index-202202270044.md";
     drag = "ripdrag -nxa";
-    clip = "wl-clip -selection clipboard";
     keychain = "keychain --dir ${stateHome}/keychain";
     muttsync = "mbsync -a && notmuch new && neomutt";
   };

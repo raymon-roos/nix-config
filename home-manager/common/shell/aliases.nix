@@ -17,8 +17,11 @@ in {
 
     nixrc = "[ \"$PWD\" = ${configHome}/nix ] || pushd ${configHome}/nix && nvim flake.nix";
     vimrc = "[ \"$PWD\" = ${configHome}/nvim ] || pushd ${configHome}/nvim && vim init.lua";
-
     vimdiff = "nvim -d";
+    clip =
+      if pkgs.stdenv.isLinux
+      then "wl-clip -selection clipboard"
+      else "pbcopy";
     lw = "librewolf";
     gg = "gitui";
     gs = "git status --short --branch --show-stash";
