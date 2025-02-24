@@ -32,7 +32,6 @@ in {
     zettel = "[ \"$PWD\" = ${notesHome} ] || pushd ${notesHome} && nvim index-202202270044.md";
     hledger-ui = "hledger-ui --theme=terminal";
     drag = "ripdrag -nxa";
-    sucklessmake = "sudo make install && make clean && rm -f config.h";
     clip = "wl-clip -selection clipboard";
     imapfilter = "imapfilter -c ${configHome}/imapfilter/config.lua";
     keychain = "keychain --dir ${stateHome}/keychain";
