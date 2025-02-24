@@ -21,7 +21,6 @@
 
   nixpkgs.hostPlatform = "aarch64-darwin";
 
-  environment.darwinConfig = ./configuration.nix;
   environment.systemPackages = [
     inputs.kmonad.packages.${pkgs.system}.default
   ];
