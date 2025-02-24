@@ -32,7 +32,6 @@
     packages = with pkgs; [
       # colima
       argocd
-      difftastic
       wireguard-tools
     ];
   };
