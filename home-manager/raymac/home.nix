@@ -29,8 +29,17 @@
       vim = "nvim";
     };
 
-    packages = with pkgs; [
+    packages = with pkgs; let
+      gdk = pkgs.google-cloud-sdk.withExtraComponents (with pkgs.google-cloud-sdk.components; [
+        gcloud-man-pages
+        kubectl-darwin-arm
+        gke-gcloud-auth-plugin-darwin-arm
+        cloud-sql-proxy-darwin-arm
+        docker-credential-gcr
+      ]);
+    in [
       # colima
+      gdk # requires manual authentication
       argocd
       wireguard-tools
     ];
