@@ -9,11 +9,9 @@ in {
     "rm -rf /" = "echo 'ha lol no lets not'";
     ls = "eza";
     nrs =
-      if config.programs.nh.enable
-      then "nh os switch ${configHome}/nix"
-      else if pkgs.stdenv.isDarwin
+      if pkgs.stdenv.isDarwin
       then "darwin-rebuild switch --flake '/Users/ray/.xdg/config/nix/'"
-      else "nixos-rebuild switch --flake  '/Users/ray/.xdg/config/nix/'";
+      else "nh os switch ${configHome}/nix";
 
     nixrc = "[ \"$PWD\" = ${configHome}/nix ] || pushd ${configHome}/nix && nvim flake.nix";
     vimrc = "[ \"$PWD\" = ${configHome}/nvim ] || pushd ${configHome}/nvim && vim init.lua";
