@@ -62,6 +62,10 @@
 
   wayland.windowManager.hyprland = lib.mkIf config.desktop-config.hyprland.enable {
     settings = {
+      decoration = {
+        blur.enabled = false;
+        shadow.enabled = false;
+      };
       input = {
         kb_layout = "us,us";
         kb_variant = "colemak_dh,intl";

@@ -47,11 +47,11 @@
           dim_inactive = true;
           dim_strength = 0.15;
           shadow = {
-            enabled = true;
+            enabled = lib.mkDefault true;
             range = 6;
           };
           blur = {
-            enabled = true;
+            enabled = lib.mkDefault true;
             size = 3;
             passes = 1;
             vibrancy = 0.1696;
