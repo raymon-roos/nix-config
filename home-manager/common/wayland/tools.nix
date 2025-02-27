@@ -68,7 +68,6 @@ with lib; {
           ];
           input-field = {
             size = "260, 40";
-            # font_size = 10;
           };
           label = [
             {
