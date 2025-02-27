@@ -11,6 +11,7 @@
   programs.direnv = {
     enable = true;
     nix-direnv.enable = true;
+    silent = true;
     stdlib = ''
       declare -A direnv_layout_dirs
       direnv_layout_dir() {
