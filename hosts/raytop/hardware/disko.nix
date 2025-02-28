@@ -25,6 +25,8 @@
                 passwordFile = "/tmp/secret.key";
                 settings = {
                   allowDiscards = true;
+                  # https://wiki.archlinux.org/title/Dm-crypt/Specialties#Disable_workqueue_for_increased_solid_state_drive_(SSD)_performance
+                  bypassWorkqueues = true;
                 };
                 content = {
                   type = "btrfs";
