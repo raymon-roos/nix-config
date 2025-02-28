@@ -32,24 +32,24 @@
                   subvolumes = {
                     "/rootfs" = {
                       mountpoint = "/";
-                      mountOptions = ["defaults" "ssd" "noatime" "compress-force=zstd:4" "noatime"];
+                      mountOptions = ["defaults" "ssd" "noatime" "compress-force=zstd:4"];
                       # "compress-force=zstd", because supposedly zstd itself can better decide whether to compress than btrfs can
                     };
                     "/home" = {
                       mountpoint = "/home";
-                      mountOptions = ["defaults" "ssd" "noatime" "compress-force=zstd:4" "noatime"];
+                      mountOptions = ["defaults" "ssd" "noatime" "compress-force=zstd:4"];
                     };
                     "/nix" = {
                       mountpoint = "/nix";
-                      mountOptions = ["defaults" "ssd" "noatime" "compress-force=zstd:4" "noatime"];
+                      mountOptions = ["defaults" "ssd" "noatime" "compress-force=zstd:4"];
                     };
                     "/var" = {
                       mountpoint = "/var";
-                      mountOptions = ["defaults" "ssd" "noatime" "compress-force=zstd:4" "noatime"];
+                      mountOptions = ["defaults" "ssd" "noatime" "compress-force=zstd:4"];
                     };
                     "/snapshots" = {
                       mountpoint = "/snapshots";
-                      mountOptions = ["defaults" "ssd" "noatime" "compress-force=zstd:4" "noatime"];
+                      mountOptions = ["defaults" "ssd" "noatime" "compress-force=zstd:4"];
                     };
                     "/swap" = {
                       mountpoint = "/.swap";
