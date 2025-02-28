@@ -46,6 +46,10 @@
   in {
     git.userEmail = contact_info.personal.address;
 
+    librewolf.settings = lib.mkForce {
+      "layout.css.devPixelsPerPx" = "1.0"; # shrink ui
+    };
+
     zathura = {
       enable = true;
       options = {
