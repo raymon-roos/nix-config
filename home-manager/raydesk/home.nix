@@ -11,6 +11,7 @@
   ];
 
   common.librewolf.enable = true;
+  common.librewolf-advanced.enable = false;
   desktop-config.lockscreen.enable = false;
   desktop-config.hyprland.enable = true;
   dev.nix.enable = true;
