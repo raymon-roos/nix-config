@@ -22,7 +22,7 @@
     disko.url = "github:nix-community/disko/latest";
     disko.inputs.nixpkgs.follows = "nixpkgs";
 
-    kmonad.url = "github:kmonad/kmonad?submodules=1&dir=nix";
+    kmonad.url = "git+https://github.com/kmonad/kmonad?submodules=1&dir=nix";
     kmonad.inputs.nixpkgs.follows = "nixpkgs";
 
     plover-flake.url = "github:dnaq/plover-flake";
