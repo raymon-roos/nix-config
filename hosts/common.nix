@@ -22,6 +22,8 @@
     };
   };
 
+  time.timeZone = "Europe/Amsterdam";
+
   users.users.ray =
     {
       shell = pkgs.zsh;
