@@ -7,6 +7,7 @@
 }: {
   nix = {
     channel.enable = false;
+    nixPath = ["nixpkgs=${inputs.nixpkgs}"]; # used by the nixd LSP
     gc = {
       automatic = true;
       options = "-d --delete-older-than 7d";
