@@ -3,7 +3,8 @@
   config,
   lib,
   ...
-}: with lib; {
+}:
+with lib; {
   options.dev.nix.enable = mkEnableOption "Nix dev tools";
 
   config = mkIf config.dev.nix.enable {
@@ -14,6 +15,7 @@
       alejandra
       nil
       nixd
+      statix
     ];
   };
 }

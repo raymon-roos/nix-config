@@ -24,16 +24,6 @@
     yadm
     zip
     unzip
-
-    # required untill I integrate programs.neovim with my existing nvim config
-    gcc
-    lua51Packages.lua
-    lua51Packages.luarocks-nix
-    universal-ctags
-    ltex-ls
-    alejandra
-    nil
-    nixd
   ];
 
   services = {
@@ -74,16 +64,6 @@
       withNodeJs = false;
       withPython3 = false;
       withRuby = false;
-      extraPackages = with pkgs; [
-        gcc # required for treesitter
-        lua51Packages.lua
-        lua51Packages.luarocks-nix
-        universal-ctags
-        ltex-ls
-        alejandra
-        nil
-        nixd
-      ];
     };
 
     kitty = {

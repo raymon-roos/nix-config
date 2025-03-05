@@ -3,7 +3,8 @@
   config,
   lib,
   ...
-}: with lib; {
+}:
+with lib; {
   options.dev.nodejs.enable = mkEnableOption "NodeJS dev tools";
 
   config = mkIf config.dev.nodejs.enable {
@@ -16,6 +17,7 @@
     home.packages = with pkgs; [
       nodejs_22
       # nodePackages.npm
+      typescript-language-server
     ];
 
     xdg.configFile."npm/npmrc".text = ''

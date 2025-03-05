@@ -16,6 +16,10 @@ with lib; {
     home.packages = with pkgs; [
       php84
       php84Packages.composer
+      php84Packages.php-cs-fixer
+      intelephense
+      # phpactor
+      php83Packages.php-codesniffer
     ];
 
     # xdg.configFile."composer/config.json".text = builtins.toJSON {
