@@ -11,6 +11,7 @@
   ];
 
   common.librewolf.enable = true;
+  common.librewolf-advanced.enable = false;
   desktop-config.lockscreen.enable = true;
   desktop-config.hyprland.enable = true;
   dev.nix.enable = true;
@@ -58,10 +59,14 @@
         selection-clipboard = "clipboard";
       };
     };
+
+    bemenu = lib.mkIf config.desktop-config.hyprland.enable {
+      settings.border = lib.mkForce 1;
+    };
   };
 
   stylix = {
-    targets.bemenu.fontSize = 8;
+    targets.bemenu.fontSize = 7;
   };
 
   wayland.windowManager.hyprland = lib.mkIf config.desktop-config.hyprland.enable {
