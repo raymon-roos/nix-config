@@ -71,6 +71,10 @@
 
   wayland.windowManager.hyprland = lib.mkIf config.desktop-config.hyprland.enable {
     settings = {
+      general = {
+        gaps_in = 1;
+        gaps_out = 2;
+      };
       decoration = {
         blur.enabled = false;
         shadow.enabled = false;
