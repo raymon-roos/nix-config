@@ -96,4 +96,6 @@
 
     jq.enable = true;
   };
+
+  stylix.targets.gtk.flatpakSupport.enable = false;
 }
