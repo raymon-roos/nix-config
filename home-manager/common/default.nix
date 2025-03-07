@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  lib,
   ...
 }: {
   imports = [
@@ -99,7 +100,7 @@
 
   stylix.targets.gtk.flatpakSupport.enable = false;
 
-  home.file = {
+  home.file = lib.optionalAttrs pkgs.stdenv.isLinux {
     # Don't clutter my $HOME with backwards-compatibility
     ".icons/default/index.theme".enable = false;
     ".icons/${config.stylix.cursor.name}".enable = false;
