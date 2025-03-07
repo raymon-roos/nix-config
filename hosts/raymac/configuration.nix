@@ -19,7 +19,13 @@
     settings.extra-platforms = ["x86_64-darwin" "aarch64-darwin"];
   };
 
-  nixpkgs.hostPlatform = "aarch64-darwin";
+  nixpkgs = {
+    hostPlatform = "aarch64-darwin";
+    config.allowUnfreePredicate = pkg:
+      builtins.elem (pkgs.lib.getName pkg) [
+        "intelephense"
+      ];
+  };
 
   environment.systemPackages = [
     inputs.kmonad.packages.${pkgs.system}.default
