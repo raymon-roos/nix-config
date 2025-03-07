@@ -98,4 +98,10 @@
   };
 
   stylix.targets.gtk.flatpakSupport.enable = false;
+
+  home.file = {
+    # Don't clutter my $HOME with backwards-compatibility
+    ".icons/default/index.theme".enable = false;
+    ".icons/${config.stylix.cursor.name}".enable = false;
+  };
 }
