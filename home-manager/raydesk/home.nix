@@ -27,6 +27,9 @@
 
     username = "ray";
 
+    sessionVariables = {
+      CUDA_CACHE_PATH = "${config.xdg.cacheHome}/nv";
+    };
     sessionPath = [
       config.xdg.userDirs.extraConfig.BIN_HOME
     ];
