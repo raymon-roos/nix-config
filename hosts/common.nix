@@ -44,7 +44,12 @@
     extraSpecialArgs = with inputs; {inherit nixpkgs inputs;};
   };
 
-  programs.zsh.enable = true;
+  programs.zsh = {
+    enable = true;
+    shellInit = ''
+      export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
+    '';
+  };
 
   fonts = {
     packages = with pkgs; [

@@ -1,7 +1,12 @@
 {config, ...}: {
+  home.file = {
+    ".zprofile".target = "${config.xdg.configHome}/zsh/.zprofile";
+    ".zshrc".target = "${config.xdg.configHome}/zsh/.zshrc";
+    ".zshenv".target = "${config.xdg.configHome}/zsh/.zshenv";
+  };
+
   programs.zsh = {
     enable = true;
-    dotDir = ".xdg/config/zsh";
     enableCompletion = true;
     defaultKeymap = "emacs";
     history = {
