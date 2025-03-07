@@ -26,6 +26,8 @@
       COLIMA_HOME = "${config.xdg.configHome}/colima";
       DOCKER_CONFIG = "${config.xdg.configHome}/docker";
       DOCKER_HOST = "unix://${config.home.sessionVariables.COLIMA_HOME}/default/docker.sock";
+      KUBECONFIG = "${config.xdg.configHome}/kubectl/config";
+      KUBECACHEDIR = "${config.xdg.cacheHome}/kubectl";
     };
 
     shellAliases = {
