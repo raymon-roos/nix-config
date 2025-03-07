@@ -23,6 +23,9 @@
 
     sessionVariables = {
       EDITOR = "nvim";
+      COLIMA_HOME = "${config.xdg.configHome}/colima";
+      DOCKER_CONFIG = "${config.xdg.configHome}/docker";
+      DOCKER_HOST = "unix://${config.home.sessionVariables.COLIMA_HOME}/default/docker.sock";
     };
 
     shellAliases = {
@@ -38,7 +41,9 @@
         docker-credential-gcr
       ]);
     in [
-      # colima
+      colima # VM docker runtime
+      docker
+      docker-compose
       gdk # requires manual authentication
       argocd
       wireguard-tools
