@@ -42,7 +42,6 @@
       specialArgs = {inherit nixpkgs inputs outputs;};
     in {
       nixosConfigurations.raydesk = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
         inherit specialArgs;
         modules = [
           ./hosts/raydesk/configuration.nix
@@ -52,7 +51,6 @@
       };
 
       nixosConfigurations.raytop = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
         inherit specialArgs;
         modules = [
           ./hosts/raytop/configuration.nix
@@ -63,7 +61,6 @@
       };
 
       darwinConfigurations.raymac = nix-darwin.lib.darwinSystem {
-        system = "aarch64-darwin";
         inherit specialArgs;
         modules = [
           ./hosts/raymac/configuration.nix
