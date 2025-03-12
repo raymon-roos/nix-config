@@ -20,8 +20,17 @@ with lib; {
           listener = [
             {
               timeout = 300;
+              on-timeout = "brightnessctl --save && brightnessctl set '2%'";
+              on-resume = "brightnessctl --restore";
+            }
+            {
+              timeout = 320;
               on-timeout = "hyprctl dispatch dpms off";
               on-resume = "hyprctl dispatch dpms on";
+            }
+            {
+              timeout = 400;
+              on-timeout = "loginctl lock-session";
             }
           ];
         };
