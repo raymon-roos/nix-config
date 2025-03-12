@@ -4,7 +4,7 @@
     enableCompletion = true;
     historyFile = "${config.xdg.stateHome}/bash/history";
     historyControl = ["erasedups"];
-    historyIgnore = ["ls" "y" "pwd" "cd" "fg" "fg %" "exit" "*poweroff*" "reboot" "builtin cd -- *"];
+    historyIgnore = ["ls" "y" "pwd" "cd" "fg" "fg %" "exit" "systemctl sleep" "*poweroff*" "reboot" "builtin cd -- *"];
     bashrcExtra = builtins.readFile ./functions.sh;
   };
 
