@@ -19,7 +19,7 @@ with lib; {
       php84Packages.php-cs-fixer
       intelephense
       # phpactor
-      php83Packages.php-codesniffer
+      php84Packages.php-codesniffer
     ];
 
     # xdg.configFile."composer/config.json".text = builtins.toJSON {
