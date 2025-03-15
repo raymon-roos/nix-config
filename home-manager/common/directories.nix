@@ -25,10 +25,7 @@ in {
   xdg =
     {
       enable = true;
-      dataHome = dataHome;
-      cacheHome = cacheHome;
-      stateHome = stateHome;
-      configHome = configHome;
+      inherit dataHome cacheHome stateHome configHome;
     }
     // lib.optionalAttrs pkgs.stdenv.isLinux {
       userDirs = {
