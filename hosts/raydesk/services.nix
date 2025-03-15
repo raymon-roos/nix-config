@@ -1,16 +1,20 @@
 {pkgs, ...}: {
   services = {
     udev.packages = [pkgs.qmk-udev-rules];
+
     dbus.implementation = "broker";
+
     xserver = {
       videoDrivers = ["nvidia"];
       autoRepeatDelay = 130;
       autoRepeatInterval = 15;
     };
+
     pipewire = {
       enable = true;
       pulse.enable = true;
     };
+
     openssh = {
       enable = false;
       startWhenNeeded = true;
@@ -27,5 +31,7 @@
         PasswordAuthentication = false;
       };
     };
+
+    smartd.enable = true;
   };
 }

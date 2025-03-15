@@ -44,5 +44,7 @@
         PasswordAuthentication = false;
       };
     };
+
+    smartd.enable = true;
   };
 }
