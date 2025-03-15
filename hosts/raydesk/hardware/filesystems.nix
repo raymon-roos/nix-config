@@ -60,16 +60,34 @@
       options = ["fmask=0077" "dmask=0077"];
     };
 
-    "/mnt/artix" = {
-      device = "/dev/disk/by-uuid/82d648d8-abe0-4abf-9795-134a911e9530";
+    "/home/ray/files/games" = {
+      device = "/dev/disk/by-uuid/ac5e918a-bf06-451e-a830-48b644a9dd24";
+      fsType = "ext4";
+      options = ["defaults" "rw" "noatime" "commit=30" "nofail"];
+    };
+
+    "/home/ray/files/1-disk" = {
+      device = "/dev/disk/by-uuid/75de5f29-56b1-438c-9fba-aa231a3f4b9e";
       fsType = "btrfs";
-      options = ["defaults" "rw" "noatime" "compress-force=zstd:5" "ssd"];
+      options = ["defaults" "rw" "noatime" "compress-force=zstd:5" "nofail"];
     };
 
     "/home/ray/files/2-disk" = {
       device = "/dev/disk/by-uuid/2e3dd481-982f-40dc-a811-28ed6e07ecbb";
       fsType = "btrfs";
-      options = ["defaults" "rw" "noatime" "compress-force=zstd:5"];
+      options = ["defaults" "rw" "noatime" "compress-force=zstd:5" "nofail"];
+    };
+
+    "/home/ray/files/3-disk" = {
+      device = "/dev/disk/by-uuid/9d78a044-9154-4f33-819c-7a5439a599a7";
+      fsType = "btrfs";
+      options = ["defaults" "rw" "noatime" "compress-force=zstd:5" "nofail"];
+    };
+
+    "/home/ray/files/4-disk" = {
+      device = "/dev/disk/by-uuid/9e0d0c05-0165-4e02-92ff-7445d2c14072";
+      fsType = "btrfs";
+      options = ["defaults" "rw" "noatime" "compress-force=zstd:5" "nofail"];
     };
   };
 
