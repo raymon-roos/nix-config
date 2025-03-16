@@ -71,7 +71,7 @@
 
     fonts = {
       sizes.terminal = mkDefault 9;
-      sizes.applications = mkDefault 11;
+      sizes.applications = mkDefault 10;
 
       monospace = {
         package = pkgs.fira-code;
