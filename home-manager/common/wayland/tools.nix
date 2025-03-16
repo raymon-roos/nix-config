@@ -41,7 +41,7 @@ with lib; {
           list = 6;
           center = true;
           width-factor = 0.2;
-          border = 2;
+          border = 1;
           border-radius = 6;
           prompt = "";
           ignorecase = true;
