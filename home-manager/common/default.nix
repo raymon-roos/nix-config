@@ -103,6 +103,10 @@
     targets.bemenu.fontSize = lib.mkDefault 8;
   };
 
+  gtk = {
+    gtk3.bookmarks = map (x: "file://${config.home.homeDirectory}/${x}") ["scratch" "projects"];
+  };
+
   home.file = lib.optionalAttrs pkgs.stdenv.isLinux {
     # Don't clutter my $HOME with backwards-compatibility
     ".icons/default/index.theme".enable = false;
