@@ -98,7 +98,10 @@
     jq.enable = true;
   };
 
-  stylix.targets.gtk.flatpakSupport.enable = false;
+  stylix = {
+    targets.gtk.flatpakSupport.enable = false;
+    targets.bemenu.fontSize = lib.mkDefault 8;
+  };
 
   home.file = lib.optionalAttrs pkgs.stdenv.isLinux {
     # Don't clutter my $HOME with backwards-compatibility
