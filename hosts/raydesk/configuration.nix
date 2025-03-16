@@ -10,23 +10,21 @@
     ./networking.nix
     ./services.nix
     ./plover.nix
+    ./steam.nix
   ];
+
+  plover.enable = false;
+  gaming.enable = true;
 
   nixpkgs = {
     hostPlatform = lib.mkDefault "x86_64-linux";
-    config.allowUnfreePredicate = pkg:
-      builtins.elem (pkgs.lib.getName pkg) [
-        "nvidia-x11"
-        "intelephense"
-      ];
+    config.allowUnfree = true;
   };
 
   i18n.defaultLocale = "en_US.UTF-8";
   console = {
     useXkbConfig = true; # use xkb.options in tty.
   };
-
-  plover.enable = false;
 
   security.polkit.enable = true;
   security.pam.services.hyprlock = {};
