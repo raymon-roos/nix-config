@@ -199,9 +199,9 @@
         ];
 
         windowrulev2 = [
-          "prop opaque 1 noblur 1,class:(librewolf), title:(Picture-in-Picture)"
-          "prop opaque 1 noblur 1,class:(librewolf), title:(.*)(- YouTube)"
-          "prop opaque 1 noblur 1,class:(mpv)"
+          "prop opaque 1 noblur 1, class:(librewolf), title:(Picture-in-Picture)"
+          "prop opaque 1 noblur 1, class:(librewolf), title:(.*)(- YouTube)"
+          "prop opaque 1 noblur 1, class:(mpv)"
           "suppressevent maximize, class:.*" # From example config, probably important
         ];
       };
