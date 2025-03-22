@@ -264,6 +264,12 @@ format = '[$symbol($version)]($style) '
 symbol = " "
 format = '[$symbol($version)]($style) '
 
+[shlvl]
+disabled = false
+threshold = 3
+symbol = ""
+format = '[$symbol$shlvl]($style) '
+
 [solidity]
 format = '[$symbol($version)]($style) '
 
