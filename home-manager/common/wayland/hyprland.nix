@@ -88,7 +88,10 @@
           disable_hyprland_logo = true;
         };
 
-        ecosystem.no_donation_nag = true;
+        ecosystem = {
+          no_donation_nag = true;
+          no_update_news = true;
+        };
 
         input = {
           repeat_delay = 130;
