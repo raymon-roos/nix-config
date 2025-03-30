@@ -10,8 +10,11 @@
     ./shell.nix
   ];
 
-  common.librewolf.enable = true;
-  common.librewolf-advanced.enable = false;
+  common = {
+    librewolf.enable = true;
+    librewolf-advanced.enable = false;
+    rtorrent.enable = true;
+  };
   desktop-config.lockscreen.enable = false;
   desktop-config.hyprland.enable = true;
   dev.nix.enable = true;
@@ -57,8 +60,6 @@
     contact_info = import "${inputs.secrets}/contact_info.nix";
   in {
     git.userEmail = contact_info.personal.address;
-
-    rtorrent.enable = true;
 
     mpv = {
       enable = true;

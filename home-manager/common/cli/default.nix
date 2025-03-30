@@ -4,5 +4,6 @@
     ./git.nix
     ./starship
     ./yazi.nix
+    ./rtorrent
   ];
 }
