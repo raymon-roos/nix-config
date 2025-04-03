@@ -1,6 +1,6 @@
 {lib, ...}:
 with lib; {
-  options.desktop-config = {
+  options.common = {
     hyprland.enable = mkEnableOption "Hyprland & co";
     lockscreen.enable = mkEnableOption "Screenlocker and idle daemon";
   };

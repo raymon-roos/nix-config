@@ -14,15 +14,17 @@
     librewolf.enable = true;
     librewolf-advanced.enable = false;
     rtorrent.enable = true;
+    hyprland.enable = true;
+    lockscreen.enable = false;
   };
-  desktop-config.lockscreen.enable = false;
-  desktop-config.hyprland.enable = true;
-  dev.nix.enable = true;
-  dev.nodejs.enable = true;
-  dev.php.enable = true;
-  dev.rust.enable = true;
-  dev.go.enable = false;
-  dev.python.enable = false;
+  dev = {
+    nix.enable = true;
+    nodejs.enable = true;
+    php.enable = true;
+    rust.enable = true;
+    go.enable = false;
+    python.enable = false;
+  };
   HUazureDevops.enable = true;
 
   home = {
@@ -85,7 +87,7 @@
     };
   };
 
-  wayland.windowManager.hyprland = lib.mkIf config.desktop-config.hyprland.enable {
+  wayland.windowManager.hyprland = lib.mkIf config.common.hyprland.enable {
     settings = {
       monitor = [
         #name,resolution,position,scale,rotation

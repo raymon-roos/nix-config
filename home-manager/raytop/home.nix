@@ -10,14 +10,18 @@
     ./shell.nix
   ];
 
-  common.librewolf.enable = true;
-  common.librewolf-advanced.enable = false;
-  desktop-config.lockscreen.enable = true;
-  desktop-config.hyprland.enable = true;
-  dev.nix.enable = true;
-  dev.nodejs.enable = true;
-  dev.php.enable = true;
-  dev.rust.enable = true;
+  common = {
+    librewolf.enable = true;
+    librewolf-advanced.enable = false;
+    lockscreen.enable = true;
+    hyprland.enable = true;
+  };
+  dev = {
+    nix.enable = true;
+    nodejs.enable = true;
+    php.enable = true;
+    rust.enable = true;
+  };
   HUazureDevops.enable = true;
 
   home = {
@@ -51,7 +55,7 @@
       "layout.css.devPixelsPerPx" = "1.0"; # shrink ui
     };
 
-    bemenu = lib.mkIf config.desktop-config.hyprland.enable {
+    bemenu = lib.mkIf config.common.hyprland.enable {
       settings.border = lib.mkForce 1;
     };
   };
@@ -60,7 +64,7 @@
     targets.bemenu.fontSize = 7;
   };
 
-  wayland.windowManager.hyprland = lib.mkIf config.desktop-config.hyprland.enable {
+  wayland.windowManager.hyprland = lib.mkIf config.common.hyprland.enable {
     settings = {
       general = {
         gaps_in = 1;

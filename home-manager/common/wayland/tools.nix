@@ -6,7 +6,7 @@
 with lib; {
   config = {
     services = {
-      hypridle = mkIf config.desktop-config.lockscreen.enable {
+      hypridle = mkIf config.common.lockscreen.enable {
         enable = true;
         settings = {
           general = {
@@ -36,7 +36,7 @@ with lib; {
         };
       };
 
-      mako = mkIf config.desktop-config.hyprland.enable {
+      mako = mkIf config.common.hyprland.enable {
         enable = true;
         defaultTimeout = 20 * 1000;
         borderRadius = 6;
@@ -44,7 +44,7 @@ with lib; {
     };
 
     programs = {
-      bemenu = mkIf config.desktop-config.hyprland.enable {
+      bemenu = mkIf config.common.hyprland.enable {
         enable = true;
         settings = {
           list = 6;
@@ -59,7 +59,7 @@ with lib; {
         };
       };
 
-      hyprlock = mkIf config.desktop-config.lockscreen.enable {
+      hyprlock = mkIf config.common.lockscreen.enable {
         enable = true;
         settings = {
           general = {

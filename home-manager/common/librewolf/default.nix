@@ -125,7 +125,7 @@ with lib; {
 
     home.packages =
       lib.optional
-      (config.desktop-config.hyprland.enable && config.common.librewolf.enable && config.common.librewolf-advanced.enable)
+      (config.common.hyprland.enable && config.common.librewolf.enable && config.common.librewolf-advanced.enable)
       (pkgs.writeShellScriptBin "browser_profile_select.sh" ''
         # Launch browser with selected profile
         librewolf -P "$(rg 'Name=' ~/.librewolf/profiles.ini | awk -F '=' '{print $2}' | bemenu)"

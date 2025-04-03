@@ -4,7 +4,7 @@
   lib,
   ...
 }: with lib; {
-  config = mkIf config.desktop-config.hyprland.enable {
+  config = mkIf config.common.hyprland.enable {
     wayland.windowManager.hyprland = {
       enable = true;
       xwayland.enable = true;
@@ -173,7 +173,7 @@
             "$mainMod SHIFT, D, killactive,"
           ]
           ++ (
-            lib.lists.optional config.desktop-config.lockscreen.enable
+            lib.lists.optional config.common.lockscreen.enable
               "$mainMod CONTROL, Q, exec, pidof hyprlock || hyprlock"
           )
           ++ ( # $mod + [shift] + {1..9} to [move to] workspace {1..9}
