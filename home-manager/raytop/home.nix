@@ -51,15 +51,6 @@
       "layout.css.devPixelsPerPx" = "1.0"; # shrink ui
     };
 
-    zathura = {
-      enable = true;
-      options = {
-        recolor = true;
-        sandbox = "strict";
-        selection-clipboard = "clipboard";
-      };
-    };
-
     bemenu = lib.mkIf config.desktop-config.hyprland.enable {
       settings.border = lib.mkForce 1;
     };

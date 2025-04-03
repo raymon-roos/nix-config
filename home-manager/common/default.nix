@@ -96,6 +96,14 @@
     };
 
     jq.enable = true;
+
+    zathura = {
+      enable = true;
+      options = {
+        recolor = true;
+        selection-clipboard = "clipboard";
+      };
+    };
   };
 
   stylix = {
