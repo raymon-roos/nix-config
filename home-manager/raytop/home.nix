@@ -61,7 +61,7 @@
   };
 
   stylix = {
-    targets.bemenu.fontSize = 7;
+    targets.bemenu.fontSize = 6;
   };
 
   wayland.windowManager.hyprland = lib.mkIf config.common.hyprland.enable {
