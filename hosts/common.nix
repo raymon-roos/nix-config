@@ -61,10 +61,10 @@
   stylix = with lib; {
     enable = true;
 
-    image = pkgs.fetchurl {
-      url = "https://www.pixelstalk.net/wp-content/uploads/images6/Berserk-Wide-Screen-Wallpaper.jpg";
-      sha256 = "dNDr1bOiOOo8NSNoIvg1VXYaUTZr1Dg1x0J4BMP2fzg=";
-    };
+    image = lib.mkDefault (pkgs.fetchurl {
+      url = "https://images.hdqwalls.com/download/mirrors-edge-4k-xw-1920x1080.jpg";
+      sha256 = "1phvbRYaP2vIJqPKfqy1aiduYkBVV6B9pOwgwQw1+Zk=";
+    });
 
     polarity = "dark";
     base16Scheme = "${pkgs.base16-schemes}/share/themes/ayu-mirage.yaml";
