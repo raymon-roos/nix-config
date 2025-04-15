@@ -23,6 +23,13 @@
     };
   };
 
+  services =
+    {
+    }
+    // lib.optionalAttrs pkgs.stdenv.isLinux {
+      udev.packages = with pkgs; [android-udev-rules];
+    };
+
   time.timeZone = "Europe/Amsterdam";
 
   users.users.ray =

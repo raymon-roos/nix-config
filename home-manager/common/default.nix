@@ -34,6 +34,7 @@
       wl-clipboard-rs
       slurp
       grim
+      simple-mtpfs
     ];
 
   services = {
