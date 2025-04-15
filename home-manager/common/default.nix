@@ -16,16 +16,23 @@
     # ./mail
   ];
 
-  home.packages = with pkgs; [
-    calc
-    entr
-    neovim-unwrapped
-    ripdrag
-    sd
-    yadm
-    zip
-    unzip
-  ];
+  home.packages = with pkgs;
+    [
+      calc
+      entr
+      neovim-unwrapped
+      ripdrag
+      sd
+      yadm
+      zip
+      unzip
+    ]
+    ++ lib.optionals pkgs.stdenv.isLinux [
+      keychain
+      vesktop
+      thunderbird
+      wl-clipboard-rs
+    ];
 
   services = {
     gpg-agent = {

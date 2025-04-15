@@ -36,11 +36,7 @@
     packages = with pkgs; [
       acpi
       brightnessctl
-      keychain
       remind
-      thunderbird
-      vesktop
-      wl-clipboard-rs
     ];
   };
 

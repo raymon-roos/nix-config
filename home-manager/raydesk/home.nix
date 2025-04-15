@@ -44,15 +44,11 @@
       hledger
       hledger-ui
       id3v2
-      keychain
+      inputs.lyrical.packages.${pkgs.system}.default
       puddletag
       remind
-      thunderbird
-      vesktop
       vorbis-tools
-      wl-clipboard-rs
       ytfzf
-      inputs.lyrical.packages.${pkgs.system}.default
     ];
   };
 
