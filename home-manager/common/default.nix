@@ -32,6 +32,8 @@
       vesktop
       thunderbird
       wl-clipboard-rs
+      slurp
+      grim
     ];
 
   services = {
