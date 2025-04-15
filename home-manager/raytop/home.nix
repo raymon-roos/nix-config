@@ -36,7 +36,6 @@
     packages = with pkgs; [
       acpi
       brightnessctl
-      remind
     ];
   };
 

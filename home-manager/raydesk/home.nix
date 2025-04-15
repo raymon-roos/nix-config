@@ -46,7 +46,6 @@
       id3v2
       inputs.lyrical.packages.${pkgs.system}.default
       puddletag
-      remind
       vorbis-tools
       ytfzf
     ];
