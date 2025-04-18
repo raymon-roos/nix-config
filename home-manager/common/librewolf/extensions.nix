@@ -30,67 +30,6 @@ with lib; {
         };
       };
 
-    "3rdparty".Extensions = {
-      "uBlock0@raymondhill.net" = {
-        adminSettings = {
-          userSettings = {
-            advancedUserEnabled = true;
-            cloudStorageEnabled = true;
-            uiTheme = "dark";
-            externalLists = "https://filters.adtidy.org/extension/ublock/filters/14.txt\nhttps://malware-filter.gitlab.io/pup-filter/pup-filter.txt\nhttps://secure.fanboy.co.nz/fanboy-annoyance_ubo.txt";
-            firewallPaneMinimized = false;
-            importedLists = [
-              "https://filters.adtidy.org/extension/ublock/filters/14.txt"
-              "https://malware-filter.gitlab.io/pup-filter/pup-filter.txt"
-              "https://secure.fanboy.co.nz/fanboy-annoyance_ubo.txt"
-            ];
-          };
-          popupPanelSections = 63;
-          selectedFilterLists = [
-            "LegitimateURLShortener"
-            "NLD-0"
-            "RUS-0"
-            "RUS-1"
-            "adguard-cookies"
-            "adguard-generic"
-            "adguard-mobile"
-            "adguard-mobile-app-banners"
-            "adguard-other-annoyances"
-            "adguard-popup-overlays"
-            "adguard-social"
-            "adguard-spyware"
-            "adguard-spyware-url"
-            "adguard-widgets"
-            "block-lan"
-            "curben-phishing"
-            "dpollock-0"
-            "easylist"
-            "easylist-annoyances"
-            "easylist-chat"
-            "easylist-newsletters"
-            "easylist-notifications"
-            "easyprivacy"
-            "fanboy-cookiemonster"
-            "fanboy-social"
-            "fanboy-thirdparty_social"
-            "https://filters.adtidy.org/extension/ublock/filters/14.txt"
-            "https://malware-filter.gitlab.io/pup-filter/pup-filter.txt"
-            "https://secure.fanboy.co.nz/fanboy-annoyance_ubo.txt"
-            "plowe-0"
-            "ublock-annoyances"
-            "ublock-badware"
-            "ublock-cookies-adguard"
-            "ublock-cookies-easylist"
-            "ublock-filters"
-            "ublock-privacy"
-            "ublock-quick-fixes"
-            "ublock-unbreak"
-            "urlhaus-1"
-            "user-filters"
-          ];
-        };
-      };
-    };
     ExtensionUpdate = true;
   };
 }
