@@ -122,7 +122,7 @@
   };
 
   gtk = {
-    gtk3.bookmarks = map (x: "file://${config.home.homeDirectory}/${x}") ["scratch" "projects"];
+    gtk3.bookmarks = map (x: "file://${config.home.homeDirectory}/${x}") ["scratch" "projects" "files"];
   };
 
   home.file = lib.optionalAttrs pkgs.stdenv.isLinux {
