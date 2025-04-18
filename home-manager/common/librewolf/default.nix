@@ -54,7 +54,7 @@ with lib; {
           id = 6;
           color = "red";
         };
-        attlassian = {
+        atlassian = {
           id = 7;
           color = "red";
         };
