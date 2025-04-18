@@ -12,8 +12,7 @@ with lib; {
   options.common.librewolf-advanced.enable = mkEnableOption ''
     fully declarative browser profiles configuration. Must first
     remove existing browser profile. The goal is to have maximum
-    cookie isolation, across study, work, and personal browser
-    profiles, each with slightly different auto containers.
+    cookie isolation accross websites.
   '';
 
   imports = [
@@ -110,25 +109,7 @@ with lib; {
           containersForce = true;
           inherit search containers settings;
         };
-        school = {
-          id = 1;
-          containersForce = true;
-          inherit search containers settings;
-        };
-        work = {
-          id = 2;
-          containersForce = true;
-          inherit search containers settings;
-        };
       };
     };
-
-    home.packages =
-      lib.optional
-      (config.common.hyprland.enable && config.common.librewolf.enable && config.common.librewolf-advanced.enable)
-      (pkgs.writeShellScriptBin "browser_profile_select.sh" ''
-        # Launch browser with selected profile
-        librewolf -P "$(rg 'Name=' ~/.librewolf/profiles.ini | awk -F '=' '{print $2}' | bemenu)"
-      '');
   };
 }
