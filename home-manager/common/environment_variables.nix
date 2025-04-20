@@ -30,6 +30,10 @@ in {
       WGETRC = "${config.xdg.configHome}/wget/wgetrc";
       _JAVA_OPTIONS = "-Djava.util.prefs.userRoot=${config.xdg.configHome}/java";
     }
+    // lib.optionalAttrs pkgs.stdenv.isLinux {
+      # Hack to get dynamically linked binaries for traditional distros working on NixOS
+      NIX_LD = pkgs.lib.fileContents "${pkgs.stdenv.cc}/nix-support/dynamic-linker";
+    }
     // lib.optionalAttrs pkgs.stdenv.isDarwin {
       # on aarch64_darwin, there's no home.xdg.userDirs.extraConfig, so these variables are added explicitely
       XDG_HOME = xdgHome;

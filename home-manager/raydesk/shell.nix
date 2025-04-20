@@ -14,11 +14,6 @@
         "Hyprland"
     fi
   '';
-  initExtra = ''
-    # hack to fix dynamically linked binaries for traditional distros
-    NIX_LD="$(nix eval --impure --raw --expr 'let pkgs = import <nixpkgs> {}; NIX_LD = pkgs.lib.fileContents "${pkgs.stdenv.cc}/nix-support/dynamic-linker"; in NIX_LD')"
-    export NIX_LD
-  '';
 in {
   imports = [
     ../common/shell
@@ -39,10 +34,10 @@ in {
 
   programs = {
     bash = {
-      inherit profileExtra initExtra;
+      inherit profileExtra;
     };
     zsh = {
-      inherit profileExtra initExtra;
+      inherit profileExtra;
     };
   };
 }
