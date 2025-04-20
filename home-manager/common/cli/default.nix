@@ -2,7 +2,7 @@
   imports = [
     ./cli_tools.nix
     ./git.nix
-    ./starship
+    ./starship.nix
     ./yazi.nix
     ./rtorrent
   ];
