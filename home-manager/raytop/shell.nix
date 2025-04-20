@@ -25,9 +25,6 @@ in {
     chown = "chown --preserve-root";
     chgrp = "chgrp --preserve-root";
     zettel = "[ \"$PWD\" = ${notesHome} ] || pushd ${notesHome} && nvim index-202202270044.md";
-    drag = "ripdrag -nxa";
-    keychain = "keychain --dir ${stateHome}/keychain";
-    muttsync = "mbsync -a && notmuch new && neomutt";
   };
 
   programs = {

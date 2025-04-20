@@ -26,10 +26,7 @@ in {
     chgrp = "chgrp --preserve-root";
     zettel = "[ \"$PWD\" = ${notesHome} ] || pushd ${notesHome} && nvim index-202202270044.md";
     hledger-ui = "hledger-ui --theme=terminal";
-    drag = "ripdrag -nxa";
     imapfilter = "imapfilter -c ${configHome}/imapfilter/config.lua";
-    keychain = "keychain --dir ${stateHome}/keychain";
-    muttsync = "mbsync -a && notmuch new && neomutt";
   };
 
   programs = {
