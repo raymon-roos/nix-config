@@ -50,6 +50,9 @@ in {
         read_only = " 󰌾";
         truncate_to_repo = false;
       };
+      direnv = {
+        disabled = false;
+      };
       docker_context = {
         format = "[$symbol$context]($style) ";
         symbol = " ";
@@ -235,6 +238,9 @@ in {
       scala = {
         format = "[$symbol($version)]($style) ";
         symbol = " ";
+      };
+      shell = {
+        disabled = false;
       };
       shlvl = {
         disabled = false;
