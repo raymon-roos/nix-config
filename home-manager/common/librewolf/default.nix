@@ -89,6 +89,10 @@ with lib; {
             urls = [{template = "https://mynixos.com/search?q={searchTerms}";}];
             definedAliases = ["my"];
           };
+          "noogle.dev" = {
+            urls = [{template = "https://noogle.dev/q?term={searchTerms}";}];
+            definedAliases = ["no"];
+          };
           "github" = {
             urls = [{template = "https://github.com/search?q={searchTerms}";}];
             definedAliases = ["gh"];
