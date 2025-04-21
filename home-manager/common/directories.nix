@@ -4,8 +4,9 @@
   lib,
   ...
 }: let
-  filesHome = "${config.home.homeDirectory}/files";
-  xdgHome = "${config.home.homeDirectory}/.xdg";
+  home = "${config.home.homeDirectory}";
+  filesHome = "${home}/files";
+  xdgHome = "${home}/.xdg";
   cacheHome = "${xdgHome}/cache";
   configHome = "${xdgHome}/config";
   dataHome = "${xdgHome}/local/share";
@@ -44,12 +45,11 @@ in {
           BIN_HOME = binHome;
           SRC_HOME = srcHome;
           FILES_HOME = filesHome;
-          PROJECTS_HOME = "${config.home.homeDirectory}/projects";
+          PROJECTS_HOME = "${home}/projects";
           USB_HOME = "${filesHome}/usb";
           PHONE_HOME = "${filesHome}/phone";
           NOTES_HOME = "${filesHome}/zettelkasten";
           FINANCE_HOME = "${filesHome}/finance";
-          DOTREMINDERS = "${filesHome}/reminders";
         };
       };
     };

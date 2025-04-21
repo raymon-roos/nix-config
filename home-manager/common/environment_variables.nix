@@ -5,34 +5,35 @@
   ...
 }: let
   home = "${config.home.homeDirectory}";
-  xdgHome = "${config.home.homeDirectory}/.xdg";
+  xdgHome = "${home}/.xdg";
   binHome = "${xdgHome}/local/bin";
   srcHome = "${xdgHome}/local/src";
+  inherit (config.xdg) cacheHome configHome dataHome stateHome;
 in {
   home.sessionVariables =
     {
       BROWSER = "librewolf";
       TERMINAL = "kitty";
-      MANPAGER = "nvim +Man!";
+      MANPAGER = "nvim '+Man!'";
       MANWIDTH = 90;
 
-      FLAKE = "${config.xdg.configHome}/nix";
-      ADB_KEYS_PATH = "${config.xdg.configHome}/android";
-      CALCHISTFILE = "${config.xdg.stateHome}/calc/calc_history";
-      IMAPFILTER_HOME = "${config.xdg.configHome}/imapfilter";
-      LESSHISTFILE = "${config.xdg.stateHome}/less/lesshst";
-      LYNX_CFG_PATH = "${config.xdg.configHome}/lynx/lynx.cfg";
-      MYSQL_HISTFILE = "${config.xdg.stateHome}/mysql/mysql_history";
-      NOTMUCH_CONFIG = "${config.xdg.configHome}/notmuch/config";
-      TEXMFCONFIG = "${config.xdg.configHome}/texlive/texmf-config";
-      TEXMFHOME = "${config.xdg.dataHome}/texmf";
-      TEXMFVAR = "${config.xdg.cacheHome}/texlive/texmf-var";
-      WGETRC = "${config.xdg.configHome}/wget/wgetrc";
-      _JAVA_OPTIONS = "-Djava.util.prefs.userRoot=${config.xdg.configHome}/java";
+      FLAKE = "${configHome}/nix";
+      ADB_KEYS_PATH = "${configHome}/android";
+      CALCHISTFILE = "${stateHome}/calc/calc_history";
+      IMAPFILTER_HOME = "${configHome}/imapfilter";
+      LESSHISTFILE = "${stateHome}/less/lesshst";
+      LYNX_CFG_PATH = "${configHome}/lynx/lynx.cfg";
+      MYSQL_HISTFILE = "${stateHome}/mysql/mysql_history";
+      NOTMUCH_CONFIG = "${configHome}/notmuch/config";
+      TEXMFCONFIG = "${configHome}/texlive/texmf-config";
+      TEXMFHOME = "${dataHome}/texmf";
+      TEXMFVAR = "${cacheHome}/texlive/texmf-var";
+      WGETRC = "${configHome}/wget/wgetrc";
+      _JAVA_OPTIONS = "-Djava.util.prefs.userRoot=${configHome}/java";
     }
     // lib.optionalAttrs pkgs.stdenv.isLinux {
       # Hack to get dynamically linked binaries for traditional distros working on NixOS
-      NIX_LD = pkgs.lib.fileContents "${pkgs.stdenv.cc}/nix-support/dynamic-linker";
+      NIX_LD = lib.fileContents "${pkgs.stdenv.cc}/nix-support/dynamic-linker";
     }
     // lib.optionalAttrs pkgs.stdenv.isDarwin {
       # on aarch64_darwin, there's no home.xdg.userDirs.extraConfig, so these variables are added explicitely
