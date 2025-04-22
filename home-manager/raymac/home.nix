@@ -15,12 +15,6 @@
   home = {
     stateVersion = "23.11"; # don't change
 
-    username = "ray";
-
-    sessionPath = [
-      config.home.sessionVariables.BIN_HOME
-    ];
-
     sessionVariables = {
       EDITOR = "nvim";
       COLIMA_HOME = "${config.xdg.configHome}/colima";

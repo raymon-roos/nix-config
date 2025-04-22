@@ -27,12 +27,6 @@
   home = {
     stateVersion = "23.11"; # don't change
 
-    username = "ray";
-
-    sessionPath = [
-      config.xdg.userDirs.extraConfig.BIN_HOME
-    ];
-
     packages = with pkgs; [
       acpi
       brightnessctl
@@ -84,7 +78,4 @@
       ];
     };
   };
-
-  xresources.path = "${config.xdg.configHome}/X11/Xresources";
-  gtk.gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
 }

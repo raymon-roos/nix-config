@@ -16,26 +16,36 @@
     # ./mail
   ];
 
-  home.packages = with pkgs;
-    [
-      calc
-      entr
-      neovim-unwrapped
-      ripdrag
-      sd
-      yadm
-      zip
-      unzip
-    ]
-    ++ lib.optionals pkgs.stdenv.isLinux [
-      keychain
-      vesktop
-      thunderbird
-      wl-clipboard-rs
-      slurp
-      grim
-      simple-mtpfs
-    ];
+  home = {
+    username = "ray";
+
+    packages = with pkgs;
+      [
+        calc
+        entr
+        neovim-unwrapped
+        ripdrag
+        sd
+        yadm
+        zip
+        unzip
+      ]
+      ++ lib.optionals pkgs.stdenv.isLinux [
+        keychain
+        vesktop
+        thunderbird
+        wl-clipboard-rs
+        slurp
+        grim
+        simple-mtpfs
+      ];
+
+    file = lib.optionalAttrs pkgs.stdenv.isLinux {
+      # Don't clutter my $HOME with backwards-compatibility
+      ".icons/default/index.theme".enable = false;
+      ".icons/${config.stylix.cursor.name}".enable = false;
+    };
+  };
 
   services = {
     gpg-agent = {
@@ -121,13 +131,10 @@
     targets.bemenu.fontSize = lib.mkDefault 8;
   };
 
+  xresources.path = lib.mkIf pkgs.stdenv.isLinux "${config.xdg.configHome}/X11/Xresources";
+  gtk.gtk2.configLocation = lib.mkIf pkgs.stdenv.isLinux "${config.xdg.configHome}/gtk-2.0/gtkrc";
+
   gtk = {
     gtk3.bookmarks = map (x: "file://${config.home.homeDirectory}/${x}") ["scratch" "projects" "files"];
-  };
-
-  home.file = lib.optionalAttrs pkgs.stdenv.isLinux {
-    # Don't clutter my $HOME with backwards-compatibility
-    ".icons/default/index.theme".enable = false;
-    ".icons/${config.stylix.cursor.name}".enable = false;
   };
 }

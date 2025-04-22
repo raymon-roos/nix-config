@@ -14,14 +14,25 @@
   binHome = "${xdgHome}/local/bin";
   srcHome = "${xdgHome}/local/src";
 in {
-  home.homeDirectory =
-    (
-      if pkgs.stdenv.isDarwin
-      then /Users
-      else "/home"
-    )
-    + "/${config.home.username}";
-  home.preferXdgDirectories = true;
+  home = {
+    homeDirectory =
+      (
+        if pkgs.stdenv.isDarwin
+        then /Users
+        else "/home"
+      )
+      + "/${config.home.username}";
+
+    preferXdgDirectories = true;
+
+    sessionPath = [
+      (
+        if pkgs.stdenv.isDarwin
+        then config.home.sessionVariables.BIN_HOME
+        else config.xdg.userDirs.extraConfig.BIN_HOME
+      )
+    ];
+  };
 
   xdg =
     {
