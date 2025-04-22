@@ -1,12 +1,8 @@
 {
-  pkgs,
   config,
   lib,
   ...
 }: let
-  xdgHome = "${config.home.homeDirectory}/.xdg";
-  configHome = "${xdgHome}/config";
-  stateHome = "${xdgHome}/local/state";
   notesHome = config.xdg.userDirs.extraConfig.NOTES_HOME;
 
   profileExtra = ''

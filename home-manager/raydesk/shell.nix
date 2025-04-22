@@ -1,13 +1,10 @@
 {
-  pkgs,
   config,
   lib,
   ...
 }: let
-  xdgHome = "${config.home.homeDirectory}/.xdg";
-  configHome = "${xdgHome}/config";
-  stateHome = "${xdgHome}/local/state";
   notesHome = config.xdg.userDirs.extraConfig.NOTES_HOME;
+  inherit (config.xdg) configHome;
 
   profileExtra = ''
     # autostart compositor of choice when logging in on tty1
