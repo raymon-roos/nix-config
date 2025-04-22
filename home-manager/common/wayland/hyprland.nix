@@ -1,9 +1,10 @@
 {
-  config, 
+  config,
   pkgs,
   lib,
   ...
-}: with lib; {
+}:
+with lib; {
   config = mkIf config.common.hyprland.enable {
     wayland.windowManager.hyprland = {
       enable = true;
@@ -174,10 +175,13 @@
           ]
           ++ (
             lib.lists.optional config.common.lockscreen.enable
-              "$mainMod CONTROL, Q, exec, pidof hyprlock || hyprlock"
+            "$mainMod CONTROL, Q, exec, pidof hyprlock || hyprlock"
           )
           ++ ( # $mod + [shift] + {1..9} to [move to] workspace {1..9}
-            9 |> genList (i: let num = toString (i+1); in [
+            9
+            |> genList (i: let
+              num = toString (i + 1);
+            in [
               "$mainMod, ${num}, split:workspace, ${num}"
               "$mainMod SHIFT, ${num}, split:movetoworkspacesilent, ${num}"
             ])
