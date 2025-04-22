@@ -31,7 +31,7 @@
 
   users.users.ray =
     {
-      shell = pkgs.zsh;
+      shell = lib.mkDefault pkgs.zsh;
     }
     // lib.optionalAttrs pkgs.stdenv.isLinux {
       isNormalUser = true;

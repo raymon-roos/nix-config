@@ -31,6 +31,8 @@
     auto-optimise-store = true;
   };
 
+  users.users.ray.shell = pkgs.nushell;
+
   programs = {
     neovim = {
       enable = true;

@@ -3,7 +3,6 @@
   lib,
   ...
 }: let
-  notesHome = config.xdg.userDirs.extraConfig.NOTES_HOME;
   inherit (config.xdg) configHome;
 
   profileExtra = ''
@@ -18,7 +17,6 @@ in {
   ];
 
   home.shellAliases = {
-    zettel = "[ \"$PWD\" = ${notesHome} ] || pushd ${notesHome} && nvim index-202202270044.md";
     hledger-ui = "hledger-ui --theme=terminal";
     imapfilter = "imapfilter -c ${configHome}/imapfilter/config.lua";
   };

@@ -5,17 +5,27 @@
   ...
 }: let
   inherit (config.xdg) configHome stateHome;
+  notesHome = config.xdg.userDirs.extraConfig.NOTES_HOME;
+
+  shellAliases = {
+    # Aliases with syntax strictly Bourne-compatible.
+    # Not suited for Non-posix shells, such as Nushell.
+    yg = "gitui -d $XDG_DATA_HOME/yadm/repo.git -w $HOME/.xdg --watcher";
+
+    muttsync = "mbsync -a && notmuch new && neomutt";
+    nixrc = "[ \"$PWD\" = ${configHome}/nix ] || pushd ${configHome}/nix && nvim flake.nix";
+    vimrc = "[ \"$PWD\" = ${configHome}/nvim ] || pushd ${configHome}/nvim && vim init.lua";
+    zettel = "[ \"$PWD\" = ${notesHome} ] || pushd ${notesHome} && nvim index-202202270044.md";
+  };
 in {
   home.shellAliases =
     {
-      "rm -rf /" = "echo 'ha lol no lets not'";
+      "rm -rf /" = ''echo "ha lol no lets not"'';
       ls = "eza";
       nrs =
         if pkgs.stdenv.isDarwin
         then "darwin-rebuild switch --flake ${configHome}/nix"
         else "nh os switch ${configHome}/nix";
-      nixrc = "[ \"$PWD\" = ${configHome}/nix ] || pushd ${configHome}/nix && nvim flake.nix";
-      vimrc = "[ \"$PWD\" = ${configHome}/nvim ] || pushd ${configHome}/nvim && vim init.lua";
       vimdiff = "nvim -d";
       clip =
         if pkgs.stdenv.isLinux
@@ -56,4 +66,8 @@ in {
       keychain = "keychain --dir ${stateHome}/keychain";
     };
 
+  programs = {
+    bash = {inherit shellAliases;};
+    zsh = {inherit shellAliases;};
+  };
 }
