@@ -17,10 +17,6 @@ in {
   ];
 
   home.shellAliases = {
-    rm = "rm -I --preserve-root";
-    chmod = "chmod --preserve-root";
-    chown = "chown --preserve-root";
-    chgrp = "chgrp --preserve-root";
     zettel = "[ \"$PWD\" = ${notesHome} ] || pushd ${notesHome} && nvim index-202202270044.md";
   };
 
