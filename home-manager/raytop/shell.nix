@@ -1,6 +1,7 @@
 {
   pkgs,
   config,
+  lib,
   ...
 }: let
   xdgHome = "${config.home.homeDirectory}/.xdg";
@@ -27,7 +28,7 @@ in {
     zettel = "[ \"$PWD\" = ${notesHome} ] || pushd ${notesHome} && nvim index-202202270044.md";
   };
 
-  programs = {
+  programs = lib.mkIf config.common.hyprland.enable {
     bash = {
       inherit profileExtra;
     };

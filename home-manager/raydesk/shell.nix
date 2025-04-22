@@ -1,6 +1,7 @@
 {
   pkgs,
   config,
+  lib,
   ...
 }: let
   xdgHome = "${config.home.homeDirectory}/.xdg";
@@ -29,7 +30,7 @@ in {
     imapfilter = "imapfilter -c ${configHome}/imapfilter/config.lua";
   };
 
-  programs = {
+  programs = lib.mkIf config.common.hyprland.enable {
     bash = {
       inherit profileExtra;
     };
