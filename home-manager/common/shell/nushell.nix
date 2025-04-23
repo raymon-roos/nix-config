@@ -22,6 +22,12 @@ in {
       jobs = "job list";
     };
 
+    environmentVariables =
+      config.home.sessionVariables
+      // {
+        EDITOR = "nvim";
+      };
+
     extraEnv = ''
       $env.PATH = ($env.Path | prepend "${(
         if pkgs.stdenv.isDarwin
