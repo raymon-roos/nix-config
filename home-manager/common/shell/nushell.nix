@@ -13,7 +13,6 @@ in {
       show_banner = false;
       use_kitty_protocol = config.programs.kitty.enable;
       history.file_format = "sqlite";
-      completions.algorithm = "fuzzy";
     };
 
     shellAliases = {
