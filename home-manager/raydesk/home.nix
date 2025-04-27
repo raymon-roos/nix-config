@@ -35,6 +35,7 @@
     };
 
     packages = with pkgs; [
+      calibre
       cmus
       hledger
       hledger-ui
