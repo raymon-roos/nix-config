@@ -54,9 +54,6 @@
 
     nix-ld.enable = true; # hack to fix dynamically linked binaries for traditional distros
 
-    nh.enable = true;
-    nh.flake = "/home/ray/.xdg/config/nix#raytop";
-
     hyprland.enable = true;
   };
 

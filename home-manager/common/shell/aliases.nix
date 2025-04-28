@@ -24,8 +24,8 @@ in {
       ls = "eza";
       nrs =
         if pkgs.stdenv.isDarwin
-        then "darwin-rebuild switch --flake ${configHome}/nix"
-        else "nh os switch ${configHome}/nix";
+        then "nh darwin switch"
+        else "nh os switch";
       vimdiff = "nvim -d";
       clip =
         if pkgs.stdenv.isLinux

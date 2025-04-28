@@ -57,6 +57,15 @@
   programs = {
     ssh.enable = true;
 
+    nh = {
+      enable = true;
+      flake = "${config.xdg.configHome}/nix";
+      clean = {
+        enable = true;
+        extraArgs = "--keep 5 --keep-since 3d";
+      };
+    };
+
     gpg = {
       enable = true;
       homedir = "${config.xdg.dataHome}/gnupg";

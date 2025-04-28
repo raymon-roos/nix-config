@@ -17,7 +17,6 @@ in {
       MANPAGER = "nvim '+Man!'";
       MANWIDTH = 90;
 
-      FLAKE = "${configHome}/nix";
       ADB_KEYS_PATH = "${configHome}/android";
       CALCHISTFILE = "${stateHome}/calc/calc_history";
       IMAPFILTER_HOME = "${configHome}/imapfilter";
