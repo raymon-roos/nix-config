@@ -5,7 +5,6 @@
   ...
 }: let
   inherit (config.xdg) configHome stateHome;
-  notesHome = config.xdg.userDirs.extraConfig.NOTES_HOME;
 
   shellAliases = {
     # Aliases with syntax strictly Bourne-compatible.
@@ -15,7 +14,6 @@
     muttsync = "mbsync -a && notmuch new && neomutt";
     nixrc = "[ \"$PWD\" = ${configHome}/nix ] || pushd ${configHome}/nix && nvim flake.nix";
     vimrc = "[ \"$PWD\" = ${configHome}/nvim ] || pushd ${configHome}/nvim && vim init.lua";
-    zettel = "[ \"$PWD\" = ${notesHome} ] || pushd ${notesHome} && nvim index-202202270044.md";
   };
 in {
   home.shellAliases =
