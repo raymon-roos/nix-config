@@ -1,0 +1,75 @@
+(defcfg
+  ;; Only capture integrated laptop keyboard for safety, leaving external keyboards unaffected for troubleshooting
+  input (iokit-name "Apple Internal Keyboard / Trackpad")
+  ;; input (iokit-name)
+  output (kext)
+  fallthrough true
+)
+
+;; See source for keycodes & aliases:
+;; https://github.com/kmonad/kmonad/blob/4c0314638a604b8c61cf9bdc0f40e1ebc2c6fa8c/src/KMonad/Keyboard/Keycode.hs#L862-L1002
+
+(defsrc
+  esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+  caps a    s    d    f    g    h    j    k    l    ;    '    ret
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft up
+  fn   lctl lalt lmet           spc            rmet ralt left down rght
+)
+
+(deflayer colemak_dh
+  esc  brdn brup lp   mctl bldn blup prev pp   next mute vold volu
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  q @nav_w  f    p    b    j    l    u    y    ;    [    ]    \
+  caps @met_a @alt_r @sft_s @ctl_t g m @ctl_n @sft_e @alt_i @met_o ' ret
+  lsft x    c    d    v    z    k    h    ,    .    /    rsft up
+  @fn   lctl lalt lmet          @sym_sp         rmet ralt left down rght
+)
+
+(deflayer function
+  _    f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _              _              _    _    _    _    _
+)
+
+(defalias 
+    fn (around (layer-toggle function) fn)
+
+    ;; Homerow mod-taps
+    met_a (tap-hold-next-release 140 a lmet)
+    alt_r (tap-hold-next-release 140 r lalt)
+    sft_s (tap-hold-next-release 100 s lsft)
+    ctl_t (tap-hold-next-release 110 t lctl)
+
+    met_o (tap-hold-next-release 140 o lmet)
+    alt_i (tap-hold-next-release 140 i lalt)
+    sft_e (tap-hold-next-release 100 e lsft)
+    ctl_n (tap-hold-next-release 110 n lctl)
+
+    nav_w (tap-hold-next-release 100 w (layer-toggle nav_edit))
+    sym_sp (tap-hold-next-release 100 spc (layer-toggle num_sym))
+    
+    ;; Chords
+)
+
+(deflayer nav_edit
+  _    _    _    _    _    _    _    _    _    _    _    _    _    
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _ @nav_w  pgup pgdn    _    _ home esc end  _    _    _    _
+  _ @met_a @alt_r @sft_s @ctl_t _ enter left down up  right _    _
+  _    _    _    _    _    _    _    backspace delete _  _    _    _
+  _    _    _    _              enter              _    _    _    _    _
+)
+
+(deflayer num_sym
+  _    _    _    _    _    _    _    _    _    _    _    _    _    
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    1    2    3    4    5    6    7    8    9    0    _    _    _
+  _    =    [    {    \(   |    *   \)    }    ]    $    _    _
+  _    \    %    -    \_    _   &    >    +    _    _    _    _
+  _    _    _    _            enter            _    _    _    _    _
+)

@@ -1,0 +1,155 @@
+(defcfg
+  ;; Only capture integrated laptop keyboard.
+  ;; Safety precausion for when the program fails to produce output,
+  ;; so that an external keyboard will still work.
+  macos-dev-names-include ("Apple Internal Keyboard / Trackpad")
+
+  ;; My QMK keyboard needs no remapping.
+  macos-dev-names-exclude ("YMD75 / MT84")
+
+  ;; Process keys not in `defsrc`. May be required for certain tap-hold configurations
+  process-unmapped-keys yes
+
+  ;; Simultaneous tap-holds do not affect timing
+  concurrent-tap-hold yes
+
+  ;; Prevent chord false positives during rapid typing (I think?)
+  chords-v2-min-idle 90
+)
+
+(defvar
+  ct 40 ;; chord hold duration - all chord/combo members must be activated within this time
+)
+
+;;; HOMEROW MOD-TAPS - reach all the modifiers without stretching your fingers
+;; https://precondition.github.io/home-row-mods
+;;
+;; https://jtroo.github.io/config.html#tap-hold
+;;
+;; tap-hold-release-keys: the fifth argument is a list of keys that immediately make
+;; the tap-hold resolve to a tap.
+;; Useful for preventing accidental holds for fast home-row rolls.
+;;
+;; tap-hold-release: If the subsequent key is tapped and released within the tap-hold
+;; duration, but the tap-hold key is still held, resolve to a hold
+;; Useful for making rapid holds, for example when typing capital letters.
+;;
+;; Tapping, releasing, then tap-and-holding within this duration auto-repeats the
+;; tap-action, rather than holding. Useful for spamming the tap key, for instance when
+;; there is a mod-tap on the space bar. Or for emacs-style bindings with homerow mods
+;; in colemak_dh.
+
+(defalias 
+    ma (tap-hold-release-keys 150 140 a lmet (s d f w e r)) ;; meta / a
+    ar (tap-hold-release-keys 150 140 r lalt (d f)) ;; alt / r
+    ss (tap-hold-release 150 100 s lsft) ;; shift / s
+    ct (tap-hold-release 150 110 t lctl) ;; ctrl / t
+
+    mo (tap-hold-release-keys 150 140 o lmet (l k j o i m))  ;; meta / o
+    ai (tap-hold-release-keys 150 140 i lalt (k j)) ;; alt / i
+    se (tap-hold-release-keys 150 100 e lsft (i)) ;; shift / e
+    cn (tap-hold-release 150 110 n lctl) ;; ctrl / n
+
+    nw (tap-hold-release 150 100 w (layer-toggle nav_edit)) ;; nav_edit / w
+    sym_sp (tap-hold-release 150 100 ␣ (layer-toggle num_sym))
+
+    ;; Key aliases
+    %  S-5
+    _  S--
+    |  S-\
+    *  S-8
+    $  S-4
+    +  S-=
+    {  S-[
+    }  S-]
+    >  S-.
+)
+
+;; Built-in aliases:
+;;  ← ↓ ↑ →  (arrow keys)
+;;  ␣ ⏎ ⌫ ⌦  (space, enter, bspc, delete)
+;;  ‹⌃ ‹⎇ ‹⌘ (lctl, lalt, lmet)
+;;  ⌘› ⎇› ⇧› (rmet, ralt, rshift)
+
+(defsrc
+  esc
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    ⌫
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+  caps a    s    d    f    g    h    j    k    l    ;    '    ⏎
+  lsft z    x    c    v    b    n    m    ,    .    /    ⇧›   ↑
+      ‹⌃   ‹⎇   ‹⌘         ␣              ⌘›   ⎇›   ←    ↓    →
+)
+
+(deflayer colemak_dh
+  _
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    q   @nw   f    p    b    j    l    u    y    ;    [    ]    _
+  _    @ma @ar  @ss  @ct   g    m   @cn  @se  @ai  @mo   '    ⏎
+  _    x    c    d    v    z    k    h    _    _    _    _    _
+       _  _  _          @sym_sp           _    _    _    _    _
+)
+
+(deflayer nav_edit
+  _
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _   @nw  pgup pgdn  _    _  home  esc  end   _    _    _    _
+  _   @ma  @ar  @ss  @ct   _    ⏎    ←    ↓    ↑    →    _    _
+  _    _    _    _    _    _    _    ⌫    ⌦    _    _    _    _
+       _    _    _         ⏎              _    _    _    _    _
+)
+
+(deflayer num_sym          
+  _
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    1    2    3    4    5    6    7    8    9    0    _    _    _
+  _    =    [    @{  S-9   @|   @*  S-0   @}   ]    @$   _    _
+  _    \   @%    -   @_    _   S-7   @>   @+   _    _    _    _
+       _    _    _         ⏎              _    _    _    _    _
+)
+
+;;; QMK-COMBO STYLE CHORDS - simultaneous key combinations for arbitrary output
+;; https://jtroo.github.io/config.html#macro
+;; input keys must be from defsrc layer
+(defchordsv2 
+  ;; Control/edit keys
+  (w e)    A-⌫  $ct  all-released  ()  ;; backspace-whole-word (on Mac)
+  (i o)    esc  $ct  all-released  ()
+  (w e f)  S-⏎  $ct  all-released  ()
+  (s d c)  tab  $ct  all-released  ()
+
+  ;; Dutch N-grams that suck to type on Colemak_DH
+  (c i l)  (macro l i j k)  $ct  all-released  ()
+  (c l j)  (macro i j k)    $ct  all-released  ()
+  (c l k)  (macro i j)      $ct  all-released  ()
+
+  ;; English N-grams
+  (l ; i) (macro i o u s)  $ct  all-released  ()
+
+  ;; Programming
+  (r u)    (macro f u n c t i o n ␣ S-9 S-0 ␣ @{ @} ← ← ← ←)  $ct  all-released  ()  ;; "function () {}"
+  (d r u)  (macro f n ␣ S-9 S-0 ␣ = @> ← ← ← ←)               $ct  all-released  ()  ;; "fn => ()"
+  (k r u)  (macro f n ␣ S-9 S-0 ␣ = @> ← ← ← ←)               $ct  all-released  ()  ;; "fn => ()"
+  (e i)    (macro r e t u r n ␣)                              $ct  all-released  ()  ;; "return "
+  (w o)    (macro p r i v a t e ␣)                            $ct  all-released  ()  ;; "private "
+  (d w o)  (macro p r o t e c t e d ␣)                        $ct  all-released  ()  ;; "protected "
+  (k w o)  (macro p r o t e c t e d ␣)                        $ct  all-released  ()  ;; "protected "
+  (f w o)  (macro p u b l i c ␣)                              $ct  all-released  ()  ;; "public "
+  (j w o)  (macro p u b l i c ␣)                              $ct  all-released  ()  ;; "public "
+  (q p)    (macro i f ␣ S-9 S-0 ␣ @{ @} ← ← ← ←)              $ct  all-released  ()  ;; "if () {}"
+  (d q p)  (macro f o r e a c h ␣ S-9 S-0 ␣ @{ @} ← ← ← ←)    $ct  all-released  ()  ;; "foreach () {}"
+  (k q p)  (macro f o r e a c h ␣ S-9 S-0 ␣ @{ @} ← ← ← ←)    $ct  all-released  ()  ;; "foreach () {}"
+  (f q p)  (macro m a t c h ␣ S-9 S-0 ␣ @{ @} ← ← ← ←)        $ct  all-released  ()  ;; "match () {}"
+  (j q p)  (macro m a t c h ␣ S-9 S-0 ␣ @{ @} ← ← ← ←)        $ct  all-released  ()  ;; "match () {}"
+  (c m)    (macro a r r a y)                                  $ct  all-released  ()  ;; "array"
+  (k c m)  (macro s t r i n g)                                $ct  all-released  ()  ;; "string"
+  (x ,)    (macro f a l s e)                                  $ct  all-released  ()  ;; "false"
+  (f x ,)  (macro t r u e)                                    $ct  all-released  ()  ;; "true"
+  (j x ,)  (macro t r u e)                                    $ct  all-released  ()  ;; "true"
+  (s x ,)  (macro b o o l)                                    $ct  all-released  ()  ;; "bool"
+  (l x ,)  (macro b o o l)                                    $ct  all-released  ()  ;; "bool"
+  (m k r)  (macro - - h e l p)                                $ct  all-released  ()  ;; "--help"
+  (t ␣ y)  (macro ` ` ` S-⏎ ` ` ` ↑ )             $ct  all-released  ()  ;; Fenced code block ;; TODO: doesn't work?
+  (␣ c m)  (macro - @>)                                       $ct  all-released  ()  ;; "->"
+  (␣ e i)  (macro = @>)                                       $ct  all-released  ()  ;; "=>"
+  (␣ w o)  (macro @$ t h i s - @>)                                       $ct  all-released  ()  ;; "$this->"
+)

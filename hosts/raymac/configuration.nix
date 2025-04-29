@@ -8,6 +8,8 @@
     ../common.nix
     ./homebrew.nix
     ./aerospace.nix
+    # ./kmonad
+    ./kanata
   ];
 
   security.pam.services.sudo_local.touchIdAuth = true;
@@ -27,10 +29,6 @@
       ];
   };
 
-  environment.systemPackages = [
-    inputs.kmonad.packages.${pkgs.system}.default
-  ];
-
   stylix = {
     autoEnable = false;
     fonts = {
@@ -38,19 +36,6 @@
     };
   };
 
-  launchd.daemons = {
-    # The driverkit extension has to be intalled manually!
-    kmonad = {
-      command = "${inputs.kmonad.packages.${pkgs.system}.default}/bin/kmonad /Users/ray/.xdg/config/kmonad/keymap.kbd";
-      serviceConfig = {
-        Label = "local.kmonad";
-        KeepAlive = true;
-        RunAtLoad = true;
-        StandardOutPath = /tmp/kmonad.stdout;
-        StandardErrorPath = /tmp/kmonad.stderr;
-      };
-    };
-  };
 
   networking = {
     hostName = "raymac";
