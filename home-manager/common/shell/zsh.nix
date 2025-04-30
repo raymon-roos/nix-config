@@ -32,7 +32,7 @@
       autoload -Uz compinit && compinit -d "$XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION"
       zstyle ':completion:*' menu select
     '';
-    initExtra = ''
+    initContent = ''
       ${builtins.readFile ./zshrc}
       ${builtins.readFile ./functions.sh}
     '';
