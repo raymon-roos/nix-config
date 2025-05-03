@@ -23,7 +23,7 @@ in {
           event = {
             send = "executehostcommand";
             cmd = ''
-              let result = nu -l -i -c $env.FZF_ALT_C_COMMAND | fzf
+              let result = nu -l -c $env.FZF_ALT_C_COMMAND | fzf
               cd $result
             '';
           };
