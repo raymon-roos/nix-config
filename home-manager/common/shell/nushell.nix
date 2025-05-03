@@ -50,9 +50,9 @@ in {
           event = {
             send = "executehostcommand";
             cmd = ''
-              let result = history
-                | sort-by -r start_timestamp
-                | get command
+              let result = open ~/.xdg/config/nushell/history.sqlite3
+                | query db "select command_line from history group by command_line order by start_timestamp desc;"
+                | get command_line
                 | to text
                 | fzf --preview "echo {}" --preview-window "up:3:wrap"
               commandline edit --append $result
