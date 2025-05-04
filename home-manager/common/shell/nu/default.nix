@@ -65,6 +65,7 @@ in {
 
     shellAliases = {
       ls = lib.mkForce "ls -a";
+      ll = "eza -Al --group-directories-first --smart-group";
       fg = "job unfreeze";
       jobs = "job list";
     };
@@ -83,7 +84,8 @@ in {
       )}")
     '';
 
-    loginFile.text = lib.mkIf config.common.hyprland.enable ''
+    extraConfig = builtins.readFile ./commands.nu;
+    extraLogin = lib.mkIf config.common.hyprland.enable ''
       # Logging in on tty1, and Hyprland is not yet running
       if (tty) == "/dev/tty1" and (pgrep "Hyprland" | complete).exit_code != 0 {
         Hyprland

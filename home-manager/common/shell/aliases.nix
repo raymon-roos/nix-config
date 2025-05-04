@@ -7,7 +7,7 @@
   inherit (config.xdg) configHome stateHome;
 
   shellAliases = {
-    # Aliases with syntax strictly Bourne-compatible.
+    # Aliases with strictly Bourne-compatible syntax.
     # Not suited for Non-posix shells, such as Nushell.
     yg = "gitui -d $XDG_DATA_HOME/yadm/repo.git -w $HOME/.xdg --watcher";
 
