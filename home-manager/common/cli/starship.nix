@@ -50,9 +50,6 @@ in {
         read_only = " 󰌾";
         truncate_to_repo = false;
       };
-      direnv = {
-        disabled = false;
-      };
       docker_context = {
         format = "[$symbol$context]($style) ";
         symbol = " ";
