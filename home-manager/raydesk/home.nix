@@ -32,6 +32,7 @@
 
     sessionVariables = {
       CUDA_CACHE_PATH = "${config.xdg.cacheHome}/nv";
+      LEDGER_FILE = "${config.xdg.userDirs.extraConfig.FINANCE_HOME}/hledger/hledger.journal";
     };
 
     packages = with pkgs; [
