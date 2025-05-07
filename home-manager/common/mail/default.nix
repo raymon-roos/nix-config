@@ -12,7 +12,6 @@
   };
 in {
   imports = [
-    # ./thunderbird
     ./accounts/personal.nix
     ./accounts/gmail.nix
   ];
