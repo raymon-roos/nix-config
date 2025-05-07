@@ -135,9 +135,10 @@
     };
   };
 
-  stylix = {
-    targets.gtk.flatpakSupport.enable = false;
-    targets.bemenu.fontSize = lib.mkDefault 8;
+  stylix.targets = {
+    gtk.flatpakSupport.enable = false;
+    bemenu.fontSize = lib.mkDefault 8;
+    librewolf.profileNames = ["default"];
   };
 
   xresources.path = lib.mkIf pkgs.stdenv.isLinux "${config.xdg.configHome}/X11/Xresources";
