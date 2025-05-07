@@ -38,8 +38,10 @@ with lib; {
 
       mako = mkIf config.common.hyprland.enable {
         enable = true;
-        defaultTimeout = 20 * 1000;
-        borderRadius = 6;
+        settings = {
+          defaultTimeout = 20 * 1000;
+          borderRadius = 6;
+        };
       };
     };
 
