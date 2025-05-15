@@ -138,7 +138,7 @@ with lib; {
             "$mainMod CONTROL, M, exec, cmus-remote -C 'toggle aaa_mode'"
 
             "$mainMod, L, exec, makoctl dismiss"
-            "$mainMod, U, exec, makoctl menu"
+            "$mainMod, U, exec, makoctl menu $menu"
             "$mainMod, Y, exec, makoctl restore"
 
             "$mainMod, return, exec, $terminal"

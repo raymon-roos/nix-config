@@ -1,5 +1,6 @@
 {
   config,
+  pkgs,
   lib,
   ...
 }:
@@ -39,11 +40,14 @@ with lib; {
       mako = mkIf config.common.hyprland.enable {
         enable = true;
         settings = {
-          defaultTimeout = 20 * 1000;
-          borderRadius = 6;
+          default-timeout = 20 * 1000;
+          icons = 1;
+          border-radius = 6;
         };
       };
     };
+
+    home.packages = mkIf config.services.mako.enable [pkgs.libnotify];
 
     programs = {
       bemenu = mkIf config.common.hyprland.enable {
