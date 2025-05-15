@@ -26,7 +26,7 @@ in {
           event = {
             send = "executehostcommand";
             cmd = ''
-              let result = nu -l -c $env.FZF_ALT_C_COMMAND | fzf
+              let result = nu --no-config-file --no-std-lib  -c $env.FZF_ALT_C_COMMAND | fzf
               cd $result
             '';
           };
@@ -39,7 +39,7 @@ in {
           event = {
             send = "executehostcommand";
             cmd = ''
-              let result = nu -l -i -c $env.FZF_CTRL_T_COMMAND | fzf
+              let result = nu --no-config-file --no-std-lib -c $env.FZF_CTRL_T_COMMAND | fzf
               commandline edit --append $result
               commandline set-cursor --end
             '';
