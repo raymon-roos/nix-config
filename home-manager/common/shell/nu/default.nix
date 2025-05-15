@@ -9,10 +9,13 @@ in {
   programs.nushell = {
     enable = true;
 
+    plugins = with pkgs.nushellPlugins; [formats gstat polars query];
+
     settings = {
       show_banner = false;
       use_kitty_protocol = config.programs.kitty.enable;
       history.file_format = "sqlite";
+      table.mode = "compact";
       keybindings = lib.mkIf config.programs.fzf.enable [
         # Adapted from https://github.com/junegunn/fzf/issues/4122
         {
