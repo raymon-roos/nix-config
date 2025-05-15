@@ -15,6 +15,7 @@ in {
       show_banner = false;
       use_kitty_protocol = config.programs.kitty.enable;
       history.file_format = "sqlite";
+      history.max_size = 500000;
       table.mode = "compact";
       keybindings = lib.mkIf config.programs.fzf.enable [
         # Adapted from https://github.com/junegunn/fzf/issues/4122
