@@ -22,14 +22,6 @@
     disko.url = "github:nix-community/disko/latest";
     disko.inputs.nixpkgs.follows = "nixpkgs";
 
-    kmonad = {
-      type = "git";
-      url = "https://github.com/kmonad/kmonad";
-      dir = "nix";
-      submodules = true;
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     plover-flake.url = "github:dnaq/plover-flake";
     plover-flake.inputs.nixpkgs.follows = "nixpkgs";
 

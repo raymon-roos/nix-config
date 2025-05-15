@@ -300,30 +300,6 @@
         "type": "github"
       }
     },
-    "kmonad": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "dir": "nix",
-        "lastModified": 1746742173,
-        "narHash": "sha256-VZSqayaZPMrpI4eqpx9a+XDsvdnsNF5bOkiQuJ2TuQE=",
-        "ref": "refs/heads/master",
-        "rev": "e716fb08a734e68eac3dd6ace784d4d8dd1c017a",
-        "revCount": 983,
-        "submodules": true,
-        "type": "git",
-        "url": "https://github.com/kmonad/kmonad"
-      },
-      "original": {
-        "dir": "nix",
-        "submodules": true,
-        "type": "git",
-        "url": "https://github.com/kmonad/kmonad"
-      }
-    },
     "lyrical": {
       "inputs": {
         "nixpkgs": [
@@ -514,7 +490,6 @@
         "disko": "disko",
         "flake-registry": "flake-registry",
         "home-manager": "home-manager",
-        "kmonad": "kmonad",
         "lyrical": "lyrical",
         "nix-darwin": "nix-darwin",
         "nixpkgs": "nixpkgs",

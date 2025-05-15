@@ -8,7 +8,6 @@
     ../common.nix
     ./homebrew.nix
     ./aerospace.nix
-    # ./kmonad
     ./kanata
   ];
 
@@ -35,7 +34,6 @@
       sizes.terminal = 12;
     };
   };
-
 
   networking = {
     hostName = "raymac";
