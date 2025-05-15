@@ -7,6 +7,9 @@ with lib; {
 
   imports = [
     ./hyprland.nix
-    ./tools.nix
+    ./mako.nix
+    ./hypridle.nix
+    ./bemenu.nix
+    ./hyprlock.nix
   ];
 }
