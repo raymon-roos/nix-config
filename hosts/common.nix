@@ -24,7 +24,29 @@
   };
 
   services = lib.mkIf pkgs.stdenv.isLinux {
+    dbus.implementation = "broker";
+    thermald.enable = true;
+    smartd.enable = true;
     udev.packages = [pkgs.android-udev-rules];
+
+    xserver = {
+      autoRepeatDelay = 130;
+      autoRepeatInterval = 15;
+    };
+
+    pipewire = {
+      enable = true;
+      pulse.enable = true;
+    };
+
+    openssh = {
+      startWhenNeeded = true;
+      settings = {
+        PermitRootLogin = "no";
+        X11Forwarding = false;
+        PasswordAuthentication = false;
+      };
+    };
   };
 
   time.timeZone = "Europe/Amsterdam";

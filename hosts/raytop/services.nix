@@ -1,9 +1,5 @@
 {...}: {
   services = {
-    dbus.implementation = "broker";
-
-    thermald.enable = true;
-
     auto-cpufreq = {
       enable = true;
       settings = {
@@ -18,19 +14,8 @@
       };
     };
 
-    xserver = {
-      autoRepeatDelay = 130;
-      autoRepeatInterval = 15;
-    };
-
-    pipewire = {
-      enable = true;
-      pulse.enable = true;
-    };
-
     openssh = {
       enable = false;
-      startWhenNeeded = true;
       hostKeys = [
         {
           comment = "raytop system";
@@ -38,13 +23,6 @@
           type = "ed25519";
         }
       ];
-      settings = {
-        PermitRootLogin = "no";
-        X11Forwarding = false;
-        PasswordAuthentication = false;
-      };
     };
-
-    smartd.enable = true;
   };
 }
