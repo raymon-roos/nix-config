@@ -23,7 +23,6 @@
       [
         calc
         entr
-        neovim-unwrapped
         ripdrag
         sd
         yadm
@@ -87,7 +86,7 @@
     };
 
     neovim = {
-      enable = false;
+      enable = true;
       defaultEditor = true;
       vimAlias = true;
       vimdiffAlias = true;
@@ -139,6 +138,7 @@
     gtk.flatpakSupport.enable = false;
     bemenu.fontSize = lib.mkDefault 8;
     librewolf.profileNames = ["default"];
+    neovim.enable = false;
   };
 
   xresources.path = lib.mkIf pkgs.stdenv.isLinux "${config.xdg.configHome}/X11/Xresources";

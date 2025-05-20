@@ -43,15 +43,6 @@
   };
 
   programs = {
-    neovim = {
-      enable = true;
-      defaultEditor = true;
-      vimAlias = true;
-      withNodeJs = false;
-      withPython3 = false;
-      withRuby = false;
-    };
-
     nix-ld.enable = true; # hack to fix dynamically linked binaries for traditional distros
 
     hyprland.enable = true;
