@@ -12,8 +12,8 @@
     yg = "gitui -d $XDG_DATA_HOME/yadm/repo.git -w $HOME/.xdg --watcher";
 
     muttsync = "mbsync -a && notmuch new && neomutt";
-    nixrc = "[ \"$PWD\" = ${configHome}/nix ] || pushd ${configHome}/nix && nvim flake.nix";
-    vimrc = "[ \"$PWD\" = ${configHome}/nvim ] || pushd ${configHome}/nvim && vim init.lua";
+    nixrc = ''[ "$PWD" = ${configHome}/nix ] || pushd ${configHome}/nix && nvim flake.nix'';
+    vimrc = ''[ "$PWD" = ${configHome}/nvim ] || pushd ${configHome}/nvim && vim init.lua'';
   };
 in {
   home.shellAliases =
