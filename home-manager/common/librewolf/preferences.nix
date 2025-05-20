@@ -59,7 +59,7 @@ with lib; {
     "toolkit.telemetry.shutdownPingSender.enabledFirstsession" = false; # disable PingCentre telemetry (used in several System Add-ons) [FF57+]
     "toolkit.telemetry.unified" = false;
     "toolkit.telemetry.updatePing.enabled" = false;
-    "webgl.disabled" = true; # Webgl is a really strong fingerpinting factor
+    "webgl.disabled" = false; # Webgl is a really strong fingerpinting factor
 
     ## PREFERENCES
     "StartDownloadsInTempDirectory" = true;
