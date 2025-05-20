@@ -16,6 +16,24 @@
     rtorrent.enable = true;
     hyprland.enable = true;
     lockscreen.enable = false;
+    email = {
+      enable = true;
+      accounts = [
+        {
+          accountName = "gaming";
+          flavor = "outlook.office365.com";
+          primary = true;
+        }
+        {
+          accountName = "gmail";
+          flavor = "gmail.com";
+        }
+        {
+          accountName = "fixico";
+          flavor = "gmail.com";
+        }
+      ];
+    };
   };
   dev = {
     nix.enable = true;

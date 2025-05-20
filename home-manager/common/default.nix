@@ -13,7 +13,7 @@
     ./wayland
     ./librewolf
     ./hu_azure_devops.nix
-    # ./mail
+    ./mail
   ];
 
   home = {
