@@ -17,6 +17,7 @@ in {
       history.file_format = "sqlite";
       history.max_size = 500000;
       table.mode = "compact";
+      table.index_mode = "auto";
       keybindings = lib.mkIf config.programs.fzf.enable [
         # Adapted from https://github.com/junegunn/fzf/issues/4122
         {
