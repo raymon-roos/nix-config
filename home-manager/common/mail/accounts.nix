@@ -64,7 +64,7 @@ in {
                 inbox = {
                   farPattern = "";
                   nearPattern = "";
-                  patterns = ["*" ''"!Sync Issues*"'' "!Notes" "!Archive" "!Outbox" "!Drafts" "!Sent" "!Deleted" "!Junk" "!drafts" "!sent" "!bin" "!junk"];
+                  patterns = ["*" ''"!Sync Issues*"'' "!Snoozed" "!Notes" "!Archive" "!Outbox" "!Drafts" "!Sent" "!Deleted" "!Junk" "!drafts" "!sent" "!bin" "!junk"];
                 };
                 # Map folders on the remote to local folders adhering to the naming scheme
                 drafts = {

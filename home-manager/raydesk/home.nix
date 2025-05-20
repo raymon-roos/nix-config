@@ -20,16 +20,20 @@
       enable = true;
       accounts = [
         {
-          accountName = "gaming";
+          accountName = "personal";
           flavor = "outlook.office365.com";
           primary = true;
         }
         {
-          accountName = "gmail";
+          accountName = "fixico";
           flavor = "gmail.com";
         }
         {
-          accountName = "fixico";
+          accountName = "gaming";
+          flavor = "outlook.office365.com";
+        }
+        {
+          accountName = "gmail";
           flavor = "gmail.com";
         }
       ];
