@@ -119,6 +119,7 @@ in {
               type = "maildir";
               root-dir = "${mailHome}/${accountName}";
             };
+            message.delete.style = "flag";
           };
         };
 
