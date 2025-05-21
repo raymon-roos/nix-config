@@ -17,13 +17,13 @@
           run = "quit";
           on = ["<C-g>"];
         }
+        {
+          run = ''
+            shell -- ripdrag -nx "$@"
+          '';
+          on = ["<C-n>"];
+        }
       ];
     };
-    # plugins = {
-    #   relative-motions = builtins.fetchGit {
-    #     url = "https://github.com/dedukun/relative-motions.yazi.git";
-    #     rev = "73f554295f4b69756597c9fe3caf3750a321acea";
-    #   };
-    # };
   };
 }
