@@ -127,12 +127,7 @@ in {
           inherit (config.programs.aerc) enable;
           extraAccounts = {
             source = "maildir://${mailHome}/${accountName}";
-          };
-          extraConfig = {
-            ui = {
-              completion-delay = "100ms";
-              dirlist-delay = "100ms";
-            };
+            folders-sort = ["inbox" "drafts" "sent" "bin" "junk"];
           };
         };
       })

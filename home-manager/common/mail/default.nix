@@ -3,7 +3,9 @@
   pkgs,
   lib,
   ...
-}: {
+}: let
+  inherit (config.xdg) configHome dataHome stateHome;
+in {
   imports = [
     ./accounts.nix
     ./aerc
@@ -14,25 +16,28 @@
   };
 
   config = lib.mkIf config.common.email.enable {
-    home.packages = with pkgs; [
-      python3 # requirement for mutt_ouath2.py
-      cyrus-sasl-xoauth2
-      (
-        pkgs.fetchurl {
-          url = "https://raw.githubusercontent.com/neomutt/neomutt/refs/heads/main/contrib/oauth2/mutt_oauth2.py";
-          sha256 = "fCE3pX9tsI8AQ2xpNMQ+GGsrdpNIeKpmZX5LGdYqQio=";
-        }
-        |> builtins.readFile
-        |> pkgs.writers.writePython3Bin "mutt_oauth2.py" {doCheck = false;}
-      )
-      w3m
-    ];
+    home = {
+      packages = with pkgs; [
+        python3 # requirement for mutt_ouath2.py
+        cyrus-sasl-xoauth2
+        (
+          pkgs.fetchurl {
+            url = "https://raw.githubusercontent.com/neomutt/neomutt/refs/heads/main/contrib/oauth2/mutt_oauth2.py";
+            sha256 = "fCE3pX9tsI8AQ2xpNMQ+GGsrdpNIeKpmZX5LGdYqQio=";
+          }
+          |> builtins.readFile
+          |> pkgs.writers.writePython3Bin "mutt_oauth2.py" {doCheck = false;}
+        )
+        w3m
+      ];
 
-    xdg.configFile."isyncrc".target = "${config.xdg.configHome}/isync/isyncrc";
-
-    home.shellAliases = {
-      mbsync = "mbsync --config ${config.xdg.configHome}/isync/isyncrc";
+      shellAliases = {
+        mbsync = "mbsync --config ${configHome}/isync/isyncrc";
+      };
+      sessionVariables."W3M_DIR" = "${stateHome}/w3m";
     };
+
+    xdg.configFile."isyncrc".target = "${configHome}/isync/isyncrc";
 
     programs = {
       mbsync = {
@@ -62,7 +67,7 @@
     };
 
     accounts.email = {
-      maildirBasePath = "${config.xdg.dataHome}/mail";
+      maildirBasePath = "${dataHome}/mail";
     };
   };
 }
