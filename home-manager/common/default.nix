@@ -32,7 +32,6 @@
       ++ lib.optionals pkgs.stdenv.isLinux [
         keychain
         vesktop
-        thunderbird
         wl-clipboard-rs
         slurp
         grim
