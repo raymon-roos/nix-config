@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }:
 with lib; {
@@ -65,6 +66,7 @@ with lib; {
     "StartDownloadsInTempDirectory" = true;
     "browser.cache.disk.parent_directory" = "/tmp/librewolf"; # Store cache-on-disk in ramfs instead, reduce writes to SSD
 
+    "widget.use-xdg-desktop-portal.file-picker" = lib.mkIf (builtins.any (p: p == pkgs.xdg-desktop-portal-termfilechooser) config.xdg.portal.extraPortals) 1; # Use desktop portal for file picker
     "browser.uidensity" = 1;
     "sidebar.revamp" = true;
     "sidebar.verticalTabs" = true; # Use sidebar to control tabs
