@@ -10,6 +10,7 @@
     ./directories.nix
     ./environment_variables.nix
     ./shell
+    ./scripts
     ./wayland
     ./librewolf
     ./hu_azure_devops.nix

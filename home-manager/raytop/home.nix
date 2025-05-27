@@ -8,6 +8,7 @@
   imports = [
     ../common
     ./shell.nix
+    ./scripts
   ];
 
   common = {
