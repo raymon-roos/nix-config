@@ -22,3 +22,10 @@ def --env vimrc [] {
     }
     vim init.lua
 }
+
+def --env zettel [] {
+    if ($env.PWD != $env.NOTES_HOME) {
+        cd $env.NOTES_HOME
+    }
+    vim index-202202270044.md
+}
