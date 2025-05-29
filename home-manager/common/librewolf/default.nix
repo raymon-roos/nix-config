@@ -93,6 +93,10 @@ with lib; {
             urls = [{template = "https://noogle.dev/q?term={searchTerms}";}];
             definedAliases = ["no"];
           };
+          "wiki.nixos" = {
+            urls = [{template = "https://wiki.nixos.org/w/index.php?search={searchTerms}";}];
+            definedAliases = ["nix"];
+          };
           "github" = {
             urls = [{template = "https://github.com/search?q={searchTerms}";}];
             definedAliases = ["gh"];
