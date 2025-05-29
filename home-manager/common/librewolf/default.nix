@@ -23,50 +23,50 @@ with lib; {
 
   config = mkIf config.common.librewolf.enable {
     programs.librewolf = let
-      settings = config.programs.librewolf.settings;
+      inherit (config.programs.librewolf) settings;
       containers = {
         fixico = {
-          id = 0;
+          id = 1;
           color = "turquoise";
         };
         bitacademy = {
-          id = 1;
+          id = 2;
           color = "green";
         };
         discord = {
-          id = 2;
+          id = 3;
           color = "purple";
         };
         github = {
-          id = 3;
+          id = 4;
           color = "blue";
         };
         hu = {
-          id = 4;
+          id = 5;
           color = "turquoise";
         };
         banking = {
-          id = 5;
+          id = 6;
           color = "green";
         };
         google = {
-          id = 6;
-          color = "red";
-        };
-        atlassian = {
           id = 7;
           color = "red";
         };
-        private = {
+        atlassian = {
           id = 8;
+          color = "red";
+        };
+        private = {
+          id = 9;
           color = "toolbar";
         };
         shopping = {
-          id = 9;
+          id = 10;
           color = "purple";
         };
         microsoft = {
-          id = 10;
+          id = 11;
           color = "purple";
         };
       };
