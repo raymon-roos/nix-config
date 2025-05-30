@@ -45,25 +45,35 @@
         thread-prefix-last-sibling = "╰";
       };
       viewer = {
-        pager = ''bat --color=always --style=plain --file-name="$AERC_FILENAME"'';
+        pager = ''bat --color=always --style=plain --wrap=never --file-name="$AERC_FILENAME"'';
       };
       filters = let
         wrap = "${config.programs.aerc.package}/libexec/aerc/filters/wrap";
         colorize = "${config.programs.aerc.package}/libexec/aerc/filters/colorize";
         calendar = "${config.programs.aerc.package}/libexec/aerc/filters/calendar";
         html = "${config.programs.aerc.package}/libexec/aerc/filters/html";
-        nu = "nu --no-config-file --no-std-lib --no-history";
+        nu = c: ''nu --no-config-file --no-std-lib --no-history --stdin -c "${c}"'';
       in
         {
           "text/plain" = "${wrap} -w 90 | ${colorize}";
           "text/html" = "${html} | ${colorize}";
           "text/calendar" = calendar;
           "image/*" = "kitten icat";
+          "message/delivery-status" = "colorize";
         }
         // lib.optionalAttrs config.programs.nushell.enable {
-          ".filename,~.*.csv" = "${nu} --stdin -c 'from csv --flexible'";
-          ".filename,~.*.ssv" = ''${nu} --stdin -c "from csv --flexible --separator ';'"'';
-          ".filename,~.*.tsv" = "${nu} --stdin -c 'from csv --flexible --separator (char tab)'";
+          ".filename,~.*.csv" = nu "from csv --flexible | table -e -w 9999";
+          ".filename,~.*.ssv" = nu "from csv --flexible --separator ';' | table -e -w 9999";
+          ".filename,~.*.tsv" = nu "from csv --flexible --separator (char tab) | table -e -w 9999";
+        }
+        // lib.optionalAttrs (lib.any (p: p == pkgs.nushellPlugins.formats) config.programs.nushell.plugins && config.programs.nushell.enable) {
+          "application/ics" = nu "${pkgs.writeScriptBin "filter_ics" ''
+            #!/usr/bin/env -S nu --stdin
+            def main [] {
+              plugin use formats
+              $in | from ics | table -e -w 9999
+            }
+          ''}/bin/filter_ics";
         };
       opener = {
         "application/pdf" = "zathura";
@@ -72,7 +82,7 @@
       };
       compose = {
         empty-subject-warning = true;
-        no-attachment-warning = "^[^>]*(attach(ed|ment)|(hier)?(bij|(gevoegd|lage)))";
+        no-attachment-warning = "^[^>]*(attach(ed|ment)|(hier)?(bij|(gevoegd|lagen?)))";
         format-flowed = true; # Plain text with benefits
       };
     };
