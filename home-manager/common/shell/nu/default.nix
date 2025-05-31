@@ -41,7 +41,10 @@ in {
           event = {
             send = "executehostcommand";
             cmd = ''
-              let result = nu --no-config-file --no-std-lib -c $env.FZF_CTRL_T_COMMAND | fzf
+              let result = nu --no-config-file --no-std-lib -c $env.FZF_CTRL_T_COMMAND
+                | fzf --scheme=path --multi
+                | lines
+                | str join ' '
               commandline edit --append $result
               commandline set-cursor --end
             '';
@@ -59,7 +62,7 @@ in {
                 | query db "select command_line from history group by command_line order by start_timestamp desc;"
                 | get command_line
                 | str join (char -i 0)
-                | fzf --read0 --query (commandline) --scheme history --preview 'print {}' --preview-window "up:3:wrap"
+                | fzf --read0 --query (commandline) --scheme history --preview '"{r}" | nu-highlight' --preview-window "up:4:wrap"
               commandline edit --replace $result
               commandline set-cursor --end
             '';
