@@ -42,17 +42,17 @@
       save_mode=last
     '';
 
-    portal = {
+    portal = lib.mkIf config.programs.yazi.enable {
       enable = true;
-      extraPortals = lib.mkIf config.programs.yazi.enable [pkgs.xdg-desktop-portal-termfilechooser];
+      extraPortals = [pkgs.xdg-desktop-portal-termfilechooser];
       config = {
         common = {
           default = "hyprland";
-          "org.freedesktop.impl.portal.FileChooser" = lib.mkIf config.programs.yazi.enable "termfilechooser";
+          "org.freedesktop.impl.portal.FileChooser" = "termfilechooser";
         };
-        hyprland = {
+        hyprland = lib.mkIf config.common.hyprland.enable {
           default = "hyprland";
-          "org.freedesktop.impl.portal.FileChooser" = lib.mkIf config.programs.yazi.enable "termfilechooser";
+          "org.freedesktop.impl.portal.FileChooser" = "termfilechooser";
         };
       };
     };
