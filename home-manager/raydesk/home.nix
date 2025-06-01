@@ -14,6 +14,7 @@
     librewolf.enable = true;
     librewolf-advanced.enable = true;
     rtorrent.enable = true;
+    wayland.enable = true;
     hyprland.enable = true;
     lockscreen.enable = false;
     email = {

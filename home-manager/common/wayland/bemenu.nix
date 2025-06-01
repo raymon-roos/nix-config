@@ -3,7 +3,7 @@
   lib,
   ...
 }: {
-  programs.bemenu = lib.mkIf config.common.hyprland.enable {
+  programs.bemenu = lib.mkIf config.common.wayland.enable {
     enable = true;
     settings = {
       list = 6;

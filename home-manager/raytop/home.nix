@@ -13,8 +13,9 @@
   common = {
     librewolf.enable = true;
     librewolf-advanced.enable = false;
-    lockscreen.enable = true;
+    wayland.enable = true;
     hyprland.enable = true;
+    lockscreen.enable = true;
   };
   dev = {
     nix.enable = true;
@@ -44,7 +45,7 @@
       "layout.css.devPixelsPerPx" = "1.0"; # shrink ui
     };
 
-    bemenu = lib.mkIf config.common.hyprland.enable {
+    bemenu = lib.mkIf config.common.wayland.enable {
       settings.border = lib.mkForce 1;
     };
   };

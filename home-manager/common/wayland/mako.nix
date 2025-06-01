@@ -4,7 +4,7 @@
   lib,
   ...
 }: {
-  services.mako = lib.mkIf config.common.hyprland.enable {
+  services.mako = lib.mkIf config.common.wayland.enable {
     enable = true;
     settings = {
       default-timeout = 20 * 1000;
