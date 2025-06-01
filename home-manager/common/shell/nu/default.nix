@@ -93,11 +93,5 @@ in {
     '';
 
     extraConfig = builtins.readFile ./commands.nu;
-    extraLogin = lib.mkIf config.common.hyprland.enable ''
-      # Logging in on tty1, and Hyprland is not yet running
-      if (tty) == "/dev/tty1" and (pgrep "Hyprland" | complete).exit_code != 0 {
-        Hyprland
-      }
-    '';
   };
 }

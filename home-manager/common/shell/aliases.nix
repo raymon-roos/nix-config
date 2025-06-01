@@ -5,21 +5,25 @@
   ...
 }: let
   inherit (config.xdg) configHome stateHome;
+  notesHome = config.xdg.userDirs.extraConfig.NOTES_HOME;
 
-  shellAliases = {
-    # Aliases with strictly Bourne-compatible syntax.
-    # Not suited for Non-posix shells, such as Nushell.
-    yg = "gitui -d $XDG_DATA_HOME/yadm/repo.git -w $HOME/.xdg --watcher";
+  shellAliases =
+    {
+      # Aliases with strictly Bourne-compatible syntax.
+      # Not suited for Non-posix shells, such as Nushell.
+      yg = "gitui -d $XDG_DATA_HOME/yadm/repo.git -w $HOME/.xdg --watcher";
 
-    muttsync = "mbsync -a && notmuch new && neomutt";
-    nixrc = ''[ "$PWD" = ${configHome}/nix ] || pushd ${configHome}/nix && nvim flake.nix'';
-    vimrc = ''[ "$PWD" = ${configHome}/nvim ] || pushd ${configHome}/nvim && vim init.lua'';
-  };
+      nixrc = ''[ "$PWD" = ${configHome}/nix ] || pushd ${configHome}/nix && nvim flake.nix'';
+      vimrc = ''[ "$PWD" = ${configHome}/nvim ] || pushd ${configHome}/nvim && vim init.lua'';
+    }
+    // lib.optionalAttrs pkgs.stdenv.isLinux {
+      zettel = ''[ "$PWD" = ${notesHome} ] || pushd ${notesHome} && nvim index-202202270044.md'';
+    };
 in {
   home.shellAliases =
     {
       "rm -rf /" = ''echo "ha lol no lets not"'';
-      ls = "eza";
+      ls = lib.mkIf config.programs.eza.enable "eza";
       nrs =
         if pkgs.stdenv.isDarwin
         then "nh darwin switch"

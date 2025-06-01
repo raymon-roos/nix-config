@@ -7,7 +7,6 @@
 }: {
   imports = [
     ../common
-    ./shell.nix
     ./scripts
   ];
 
@@ -69,6 +68,10 @@
       vorbis-tools
       ytfzf
     ];
+
+    shellAliases = {
+      hledger-ui = "hledger-ui --theme=terminal";
+    };
   };
 
   services.gpg-agent.pinentry.package = pkgs.pinentry-qt;
