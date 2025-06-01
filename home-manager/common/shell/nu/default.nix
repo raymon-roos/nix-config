@@ -3,13 +3,12 @@
   pkgs,
   lib,
   ...
-}: let
-  inherit (config.xdg) configHome;
-in {
+}: {
+  home.packages = config.programs.nushell.plugins;
   programs.nushell = {
     enable = true;
 
-    plugins = with pkgs.nushellPlugins; [formats gstat polars query];
+    plugins = with pkgs.nushellPlugins; [formats gstat polars query skim];
 
     settings = {
       show_banner = false;
