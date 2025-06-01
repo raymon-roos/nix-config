@@ -217,23 +217,5 @@ with lib; {
           ];
         };
       };
-
-      programs = let
-        profileExtra = ''
-          # autostart compositor of choice when logging in on tty1
-          if [ -z "$WAYLAND_DISPLAY" ] && [ $(tty) = "/dev/tty1" ] && [ -z (pgrep Hyprland) ]; then
-              exec Hyprland > /tmp/hyprland.out  2> /tmp/hyprland.err
-          fi
-        '';
-      in {
-        bash.profileExtra = lib.mkIf config.programs.bash.enable profileExtra;
-        zsh.profileExtra = lib.mkIf config.programs.zsh.enable profileExtra;
-        nushell.extraLogin = lib.mkIf config.programs.nushell.enable ''
-          # autostart compositor of choice when logging in on tty1
-          if ($env.WAYLAND_DISPLAY | is-empty) and (tty) == "/dev/tty1" and (pgrep Hyprland | is-empty) {
-              exec Hyprland out> /tmp/hyprland.out  err> /tmp/hyprland.err
-          }
-        '';
-      };
     };
 }

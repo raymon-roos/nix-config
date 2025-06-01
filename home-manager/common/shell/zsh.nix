@@ -6,7 +6,11 @@
 }: {
   home.file = {
     # home-manager does not add any lines to .zprofile by default on nix-darwin the way it does on NixOS
-    ".zprofile" = lib.mkIf pkgs.stdenv.isLinux {target = "${config.xdg.configHome}/zsh/.zprofile";};
+    ".zprofile" = lib.mkIf pkgs.stdenv.isLinux {
+      target = "${config.xdg.configHome}/zsh/.zprofile";
+      text = ''
+      '';
+    };
     ".zshrc".target = "${config.xdg.configHome}/zsh/.zshrc";
     ".zshenv".target = "${config.xdg.configHome}/zsh/.zshenv";
   };

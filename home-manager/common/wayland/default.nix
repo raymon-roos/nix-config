@@ -7,6 +7,7 @@ with lib; {
   };
 
   imports = [
+    ./launch_compositor.nix
     ./hyprland.nix
     ./mako.nix
     ./hypridle.nix
