@@ -8,12 +8,12 @@
     enable = true;
     shellWrapperName = "y";
     settings = {
-      manager = {
+      mgr = {
         show_hidden = true;
       };
     };
     keymap = {
-      manager.prepend_keymap = [
+      mgr.prepend_keymap = [
         {
           run = "quit --no-cwd-file";
           on = ["q"];
