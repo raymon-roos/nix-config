@@ -15,6 +15,7 @@
       ignorecase = true;
       single-instance = true;
       wrap = true;
+      bdr = "#${config.lib.stylix.colors.base0D}";
     };
   };
 }
