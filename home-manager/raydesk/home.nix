@@ -145,16 +145,15 @@
   };
 
   xdg.configFile."ytfzf/conf.sh".text = ''
-    ytdl_opts='
-        -S "res:720,codec,br,ext" \
-        --sub-langs "en.*" \
-        --embed-subs \
-        --write-auto-subs \
-        --embed-metadata \
-        --sponsorblock-remove=sponsor,selfprommo,interaction,intro,outro,preview,music_offtopic
-    '
+    ytdl_opts="${lib.cli.toGNUCommandLineShell {} {
+      S = "res:720,codec,br,ext";
+      sub-langs = "en.*";
+      embed-subs = true;
+      write-auto-subs = true;
+      embed-metadata = true;
+      sponsorblock-remove = "sponsor,selfprommo,interaction,intro,outro,preview,music_offtopic";
+    }}"
     url_handler_opts='--speed=1.70 --slang=en'
-
     thumbnail_viewer=kitty
     show_thumbnails=1
     async_thumbnails=1
