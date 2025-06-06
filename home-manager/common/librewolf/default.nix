@@ -95,7 +95,7 @@ with lib; {
           };
           "wiki.nixos" = {
             urls = [{template = "https://wiki.nixos.org/w/index.php?search={searchTerms}";}];
-            definedAliases = ["nix"];
+            definedAliases = ["wix"];
           };
           "github" = {
             urls = [{template = "https://github.com/search?q={searchTerms}";}];
