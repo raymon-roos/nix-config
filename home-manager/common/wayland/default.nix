@@ -9,6 +9,7 @@ with lib; {
   imports = [
     ./launch_compositor.nix
     ./hyprland.nix
+    ./river.nix
     ./mako.nix
     ./hypridle.nix
     ./bemenu.nix

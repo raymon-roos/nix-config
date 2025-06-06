@@ -16,6 +16,7 @@
     rtorrent.enable = true;
     wayland.enable = true;
     hyprland.enable = true;
+    river.enable = false;
     lockscreen.enable = false;
     email = {
       enable = true;
@@ -106,20 +107,40 @@
     };
   };
 
-  wayland.windowManager.hyprland = lib.mkIf config.common.hyprland.enable {
-    settings = {
-      monitor = [
-        #name,resolution,position,scale,rotation
-        "HDMI-A-1,preferred,0x0,auto"
-        "DVI-I-1,preferred,auto-right,auto,transform, 3"
-        "DP-1,preferred,auto-left,auto,transform, 1"
-        "Unknown-1,disable"
-      ];
-      windowrulev2 = [
-        "monitor 2,class:^(cmus)$"
-        "monitor 0,initialTitle:^(Mozilla Thunderbird)$"
-        "monitor 0,initialClass:^(vesktop)$"
-      ];
+  wayland.windowManager = {
+    hyprland = lib.mkIf config.common.hyprland.enable {
+      settings = {
+        monitor = [
+          #name,resolution,position,scale,rotation
+          "HDMI-A-1,preferred,0x0,auto"
+          "DVI-I-1,preferred,auto-right,auto,transform, 3"
+          "DP-1,preferred,auto-left,auto,transform, 1"
+          "Unknown-1,disable"
+        ];
+        windowrulev2 = [
+          "monitor 2,class:^(cmus)$"
+          "monitor 0,initialTitle:^(Mozilla Thunderbird)$"
+          "monitor 0,initialClass:^(vesktop)$"
+        ];
+      };
+    };
+    river = lib.mkIf config.common.river.enable {
+      settings = {
+        spawn = [
+          ''
+            'wlr-randr \
+               --output DP-1 --preferred --left-of HDMI-A-1 --transform 90 \
+               --output DVI-I-1 --preferred --right-of HDMI-A-1 --transform 270'
+          ''
+        ];
+        rule-add = {
+          "-app-id" = {
+            "cmus" = "output DP-1";
+            "thunderbird" = "output DVI-I-1";
+            "vesktop" = "output DVI-I-1";
+          };
+        };
+      };
     };
   };
 

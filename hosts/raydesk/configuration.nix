@@ -39,6 +39,11 @@
     hyprland = {
       enable = true;
     };
+    river = {
+      enable = true; # Enabled here for desktop-portal integration
+      package = null; # Let home-manager install package
+      extraPackages = [];
+    };
   };
 
   environment = {
