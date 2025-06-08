@@ -144,20 +144,25 @@
     };
   };
 
-  xdg.configFile."ytfzf/conf.sh".text = ''
-    ytdl_opts="${lib.cli.toGNUCommandLineShell {} {
-      S = "res:720,codec,br,ext";
-      sub-langs = "en.*";
-      embed-subs = true;
-      write-auto-subs = true;
-      embed-metadata = true;
-      sponsorblock-remove = "sponsor,selfprommo,interaction,intro,outro,preview,music_offtopic";
-    }}"
-    url_handler_opts='--speed=1.70 --slang=en'
-    thumbnail_viewer=kitty
-    show_thumbnails=1
-    async_thumbnails=1
-    thumbnail_quality=default
-    fzf_preview_side=down
-  '';
+  xdg.configFile."ytfzf/conf.sh".text = let
+    key_value = lib.generators.toKeyValue {listsAsDuplicateKeys = true;};
+    cli_shell = lib.cli.toGNUCommandLineShell {};
+  in
+    key_value {
+      ytdl_opts = cli_shell ({
+          S = "res:720,codec,br,ext";
+        }
+        // config.programs.yt-dlp.settings);
+
+      url_handler_opts = cli_shell {
+        speed = 1.70;
+        slang = "en";
+      };
+
+      show_thumbnails = 1;
+      thumbnail_viewer = "kitty";
+      async_thumbnails = 1;
+      thumbnail_quality = "default";
+      fzf_preview_side = "down";
+    };
 }
