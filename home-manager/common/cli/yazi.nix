@@ -47,11 +47,6 @@
       extraPortals = [pkgs.xdg-desktop-portal-termfilechooser];
       config = {
         common = {
-          default = "hyprland";
-          "org.freedesktop.impl.portal.FileChooser" = "termfilechooser";
-        };
-        hyprland = lib.mkIf config.common.hyprland.enable {
-          default = "hyprland";
           "org.freedesktop.impl.portal.FileChooser" = "termfilechooser";
         };
       };
