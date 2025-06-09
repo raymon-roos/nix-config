@@ -182,10 +182,9 @@ with lib; {
               "$mainMod CONTROL, Q, exec, pidof hyprlock || hyprlock"
             )
             ++ ( # $mod + [shift] + {1..9} to [move to] workspace {1..9}
-              9
-              |> genList (i: let
-                num = toString (i + 1);
-              in [
+              range 1 9
+              |> map toString
+              |> map (num: [
                 "$mainMod, ${num}, split:workspace, ${num}"
                 "$mainMod SHIFT, ${num}, split:movetoworkspacesilent, ${num}"
               ])
