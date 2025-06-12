@@ -69,6 +69,9 @@
         kb_variant = "colemak_dh,intl";
         kb_options = "grp:shift_caps_toggle";
       };
+      bind = [
+        "$mainMod CONTROL, M, exec, set_volume.sh"
+      ];
       binde = [
         ", XF86MonBrightnessDown, exec, brightnessctl set '10%-' --min-value 10"
         ", XF86MonBrightnessUp, exec, brightnessctl set '10%+'"
