@@ -31,8 +31,6 @@
     auto-optimise-store = true;
   };
 
-  users.users.ray.shell = pkgs.nushell;
-
   programs = {
     nix-ld.enable = true; # hack to fix dynamically linked binaries for traditional distros
 

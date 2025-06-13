@@ -59,15 +59,14 @@
   time.timeZone = "Europe/Amsterdam";
 
   users.users.ray =
-    {
-      shell = lib.mkDefault pkgs.zsh;
-    }
-    // lib.optionalAttrs pkgs.stdenv.isLinux {
+    lib.optionalAttrs pkgs.stdenv.isLinux {
+      shell = pkgs.nushell;
       isNormalUser = true;
       extraGroups = ["wheel" "ray" "video"];
     }
     // lib.optionalAttrs pkgs.stdenv.isDarwin {
       home = /Users/ray;
+      shell = pkgs.zsh;
     };
 
   home-manager = {
