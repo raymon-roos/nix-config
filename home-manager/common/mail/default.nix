@@ -2,6 +2,7 @@
   config,
   pkgs,
   lib,
+  inputs,
   ...
 }: let
   inherit (config.xdg) configHome dataHome stateHome;
@@ -38,7 +39,9 @@ in {
           tag = "GPG";
           contents = "secretray";
         };
-        services = {
+        services = let
+          inherit (import "${inputs.secrets}/contact_info.nix") oauth_providers;
+        in {
           microsoft = {
             auth_endpoint = "https://login.microsoftonline.com/common/oauth2/v2.0/devicecode";
             token_endpoint = "https://login.microsoftonline.com/common/oauth2/v2.0/token";
@@ -49,7 +52,7 @@ in {
               https://outlook.office.com/SMTP.Send
               offline_access
             ";
-            client_id = "9e5f94bc-e8a4-4e73-b8be-63364c29d753"; # client_id belongs to Thunderbird
+            inherit (oauth_providers.microsoft) client_id;
             client_secret = ""; # This client_id only works with --device auth flow, and doesn't need a secret
             tenant = "common";
             prompt = "select_account";
@@ -58,8 +61,7 @@ in {
             auth_endpoint = "https://accounts.google.com/o/oauth2/auth";
             token_endpoint = "https://accounts.google.com/o/oauth2/token";
             auth_scope = "https://mail.google.com/";
-            client_id = "406964657835-aq8lmia8j95dhl1a2bvharmfk3t1hgqj.apps.googleusercontent.com"; # client_id belongs to Thunderbird
-            client_secret = "kSmqreRr0qwBWJgbf5Y-PjSU";
+            inherit (oauth_providers) client_id client_secret;
           };
         };
       };
