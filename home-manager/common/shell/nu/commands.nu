@@ -13,19 +13,19 @@ def --env nixrc [] {
     if ($env.PWD != $"($env.XDG_CONFIG_HOME)/nix") {
         cd $"($env.XDG_CONFIG_HOME)/nix"
     }
-    vim flake.nix
+    nvim flake.nix
 }
 
 def --env vimrc [] {
     if ($env.PWD != $"($env.XDG_CONFIG_HOME)/nvim") {
         cd $"($env.XDG_CONFIG_HOME)/nvim"
     }
-    vim init.lua
+    nvim init.lua
 }
 
 def --env zettel [] {
     if ($env.PWD != $env.NOTES_HOME) {
         cd $env.NOTES_HOME
     }
-    vim index-202202270044.md
+    nvim index-202202270044.md
 }
