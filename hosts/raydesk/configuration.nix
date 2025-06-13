@@ -44,6 +44,7 @@
       package = null; # Let home-manager install package
       extraPackages = [];
     };
+    maomaowm.enable = true;
   };
 
   environment = {

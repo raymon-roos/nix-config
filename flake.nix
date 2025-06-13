@@ -19,6 +19,8 @@
     flake-registry.url = "github:nixos/flake-registry";
     flake-registry.flake = false;
 
+    maomaowm.url = "github:DreamMaoMao/maomaowm/refs/tags/0.5.7";
+
     disko.url = "github:nix-community/disko/latest";
     disko.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -44,6 +46,7 @@
           ./hosts/raydesk/configuration.nix
           stylix.nixosModules.stylix
           home-manager.nixosModules.home-manager
+          maomaowm.nixosModules.maomaowm
         ];
       };
 
