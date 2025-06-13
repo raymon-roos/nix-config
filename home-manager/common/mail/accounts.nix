@@ -110,6 +110,16 @@ in {
           };
         };
 
+        msmtp = {
+          inherit (config.programs.msmtp) enable;
+          extraConfig = {
+            auth =
+              if flavor == "outlook.office365.com"
+              then "xoauth2"
+              else "oauthbearer";
+          };
+        };
+
         himalaya = {
           inherit (config.programs.himalaya) enable;
           settings = {
@@ -117,7 +127,13 @@ in {
               type = "maildir";
               root-dir = "${mailHome}/${accountName}";
             };
-            message.delete.style = "folder";
+            message = {
+              delete.style = "folder";
+              send.backend = {
+                type = "sendmail";
+                cmd = "msmtp --read-envelope-from --read-recipients";
+              };
+            };
           };
         };
 
@@ -128,6 +144,7 @@ in {
             check-mail = 0;
             check-mail-cmd = "mbsync --config ${configHome}/isync/isyncrc ${accountName}";
             check-mail-timeout = "40s";
+            outgoing = "msmtp --read-envelope-from --read-recipients";
             use-terminal-pinentry = false;
             folders-sort = ["inbox" "drafts" "sent" "bin" "junk"];
           };

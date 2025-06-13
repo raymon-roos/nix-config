@@ -77,6 +77,10 @@ in {
         '';
       };
 
+      # used to have a consistent "send mail" interface across MUAs that
+      # supports Oauth, as home-manager's smtp configuration does not.
+      msmtp.enable = true;
+
       himalaya = {
         enable = true;
         settings = {
