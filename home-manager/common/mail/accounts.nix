@@ -49,9 +49,6 @@ in {
 
         mbsync = {
           inherit (config.programs.mbsync) enable;
-          create = "both";
-          remove = "both";
-          expunge = "both";
           extraConfig.account = {
             AuthMechs = "XOAUTH2"; # Requires cyrus-sasl-xoauth2
           };

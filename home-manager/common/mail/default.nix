@@ -45,6 +45,9 @@ in {
         package = pkgs.isync.override {withCyrusSaslXoauth2 = true;};
         extraConfig = ''
           CopyArrivalDate yes
+          Create Both
+          Remove Both
+          Expunge both
         '';
       };
 
