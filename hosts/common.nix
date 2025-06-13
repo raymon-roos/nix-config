@@ -23,6 +23,13 @@
     };
   };
 
+  environment.systemPackages = with pkgs;
+    [
+    ]
+    ++ lib.optionals pkgs.stdenv.isLinux [
+      smartmontools # The smartd service does not install smartctl?
+    ];
+
   services = lib.mkIf pkgs.stdenv.isLinux {
     dbus.implementation = "broker";
     thermald.enable = true;
