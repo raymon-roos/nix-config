@@ -12,6 +12,7 @@
 in {
   home.sessionVariables =
     {
+      EDITOR = "nvim";
       BROWSER = "librewolf";
       TERMINAL = "kitty";
       MANPAGER = "nvim '+Man!'";

@@ -29,6 +29,7 @@
         yadm
         zip
         unzip
+        neovim
       ]
       ++ lib.optionals pkgs.stdenv.isLinux [
         keychain
@@ -86,7 +87,7 @@
     };
 
     neovim = {
-      enable = true;
+      enable = false;
       defaultEditor = true;
       vimAlias = true;
       vimdiffAlias = true;

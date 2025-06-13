@@ -29,6 +29,7 @@ in {
         then "nh darwin switch"
         else "nh os switch";
       vimdiff = "nvim -d";
+      vim = "nvim";
       clip =
         if pkgs.stdenv.isLinux
         then "wl-clip -selection clipboard"
