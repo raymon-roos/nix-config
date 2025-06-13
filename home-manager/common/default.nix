@@ -139,6 +139,7 @@
     bemenu.fontSize = lib.mkDefault 8;
     librewolf.profileNames = ["default"];
     neovim.enable = false;
+    kde.enable = false; # not compatible with nushell + nvim (?)
   };
 
   xresources.path = lib.mkIf pkgs.stdenv.isLinux "${config.xdg.configHome}/X11/Xresources";
