@@ -86,8 +86,6 @@
         format-flowed = true; # Plain text with benefits
       };
     };
-    extraAccounts = {
-    };
     extraBinds = builtins.readFile ./binds.conf;
   };
 }

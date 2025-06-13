@@ -120,10 +120,16 @@ in {
           };
         };
 
-        aerc = {
+        aerc = let
+          inherit (config.xdg) configHome;
+        in {
           inherit (config.programs.aerc) enable;
           extraAccounts = {
             source = "maildir://${mailHome}/${accountName}";
+            check-mail = 0;
+            check-mail-cmd = "mbsync --config ${configHome}/isync/isyncrc ${accountName}";
+            check-mail-timeout = "40s";
+            use-terminal-pinentry = false;
             folders-sort = ["inbox" "drafts" "sent" "bin" "junk"];
           };
         };
