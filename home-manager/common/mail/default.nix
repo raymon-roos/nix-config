@@ -18,26 +18,52 @@ in {
   config = lib.mkIf config.common.email.enable {
     home = {
       packages = with pkgs; [
-        python3 # requirement for mutt_ouath2.py
         cyrus-sasl-xoauth2
-        (
-          pkgs.fetchurl {
-            url = "https://raw.githubusercontent.com/neomutt/neomutt/refs/heads/main/contrib/oauth2/mutt_oauth2.py";
-            sha256 = "fCE3pX9tsI8AQ2xpNMQ+GGsrdpNIeKpmZX5LGdYqQio=";
-          }
-          |> builtins.readFile
-          |> pkgs.writers.writePython3Bin "mutt_oauth2.py" {doCheck = false;}
-        )
+        oama
         w3m
       ];
 
       shellAliases = {
         mbsync = "mbsync --config ${configHome}/isync/isyncrc";
+        oama = "oama -c ${configHome}/oama/config.yaml";
       };
       sessionVariables."W3M_DIR" = "${stateHome}/w3m";
     };
 
-    xdg.configFile."isyncrc".target = "${configHome}/isync/isyncrc";
+    xdg.configFile = {
+      "isyncrc".target = "${configHome}/isync/isyncrc";
+
+      "oama/config.yaml".text = lib.generators.toYAML {} {
+        encryption = {
+          tag = "GPG";
+          contents = "secretray";
+        };
+        services = {
+          microsoft = {
+            auth_endpoint = "https://login.microsoftonline.com/common/oauth2/v2.0/devicecode";
+            token_endpoint = "https://login.microsoftonline.com/common/oauth2/v2.0/token";
+            auth_http_method = "GET";
+            token_params_mode = "RequestBodyForm";
+            auth_scope = "
+              https://outlook.office.com/IMAP.AccessAsUser.All
+              https://outlook.office.com/SMTP.Send
+              offline_access
+            ";
+            client_id = "9e5f94bc-e8a4-4e73-b8be-63364c29d753"; # client_id belongs to Thunderbird
+            client_secret = ""; # This client_id only works with --device auth flow, and doesn't need a secret
+            tenant = "common";
+            prompt = "select_account";
+          };
+          google = {
+            auth_endpoint = "https://accounts.google.com/o/oauth2/auth";
+            token_endpoint = "https://accounts.google.com/o/oauth2/token";
+            auth_scope = "https://mail.google.com/";
+            client_id = "406964657835-aq8lmia8j95dhl1a2bvharmfk3t1hgqj.apps.googleusercontent.com"; # client_id belongs to Thunderbird
+            client_secret = "kSmqreRr0qwBWJgbf5Y-PjSU";
+          };
+        };
+      };
+    };
 
     programs = {
       mbsync = {

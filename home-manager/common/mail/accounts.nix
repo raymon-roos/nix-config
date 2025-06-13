@@ -5,6 +5,7 @@
   ...
 }:
 with lib; let
+  inherit (config.xdg) configHome;
   contact_info = import "${inputs.secrets}/contact_info.nix";
   mailHome = "${config.xdg.dataHome}/mail";
   cfg = config.common.email;
@@ -31,8 +32,8 @@ in {
         realName = contact_info.full_name;
         address = contact_info.${accountName}.address;
         userName = contact_info.${accountName}.address;
-        # Requires manual run with `--authorize` and borrowing the client id and secret from Thunderbird.
-        passwordCommand = "mutt_oauth2.py ${config.xdg.userDirs.extraConfig.FILES_HOME}/secrets/${accountName}_oauth_token --encryption-pipe 'gpg --encrypt -r secretray'";
+        # Manually run `oama -c <config> authorize <email>` first. Microsoft additionally requires the `--device` flag
+        passwordCommand = "oama -c ${configHome}/oama/config.yaml access ${contact_info.${accountName}.address}";
 
         maildir.path = accountName;
 
@@ -120,9 +121,7 @@ in {
           };
         };
 
-        aerc = let
-          inherit (config.xdg) configHome;
-        in {
+        aerc = {
           inherit (config.programs.aerc) enable;
           extraAccounts = {
             source = "maildir://${mailHome}/${accountName}";
