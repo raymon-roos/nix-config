@@ -1,7 +1,7 @@
 {...}: {
   services = {
     auto-cpufreq = {
-      enable = true;
+      enable = false;
       settings = {
         battery = {
           governor = "powersave";
@@ -10,6 +10,52 @@
         charger = {
           governor = "performance";
           turbo = "auto";
+        };
+      };
+    };
+
+    watt = {
+      enable = true;
+      settings = {
+        battery_charge_thresholds = [40 80];
+        charger = {
+          governor = "performance";
+          turbo = "auto";
+          enable_auto_turbo = true;
+          turbo_auto_settings = {
+            load_threshold_high = 60.0;
+            load_threshold_low = 30.0;
+            temp_threshold_high = 60.0;
+            initial_turbo_state = false;
+          };
+          epp = "performance";
+          epb = "balance_performance";
+          platform_profile = "performance";
+        };
+
+        battery = {
+          governor = "powersave";
+          turbo = "auto";
+          enable_auto_turbo = true;
+          turbo_auto_settings = {
+            load_threshold_high = 70.0;
+            load_threshold_low = 40.0;
+            temp_threshold_high = 55.0;
+            initial_turbo_state = false;
+          };
+          epp = "performance";
+          epb = "balance_performance";
+          platform_profile = "performance";
+        };
+
+        daemon = {
+          poll_interval_sec = 7;
+          adaptive_interval = true;
+          min_poll_interval_sec = 3;
+          max_poll_interval_sec = 40;
+          throttle_on_battery = true;
+          log_level = "Info";
+          stats_file_path = "/var/run/watt-stats";
         };
       };
     };

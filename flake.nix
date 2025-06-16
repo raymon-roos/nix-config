@@ -19,6 +19,9 @@
     flake-registry.url = "github:nixos/flake-registry";
     flake-registry.flake = false;
 
+    watt.url = "github:NotAShelf/watt";
+    watt.inputs.nixpkgs.follows = "nixpkgs";
+
     maomaowm.url = "github:DreamMaoMao/maomaowm/refs/tags/0.5.7";
 
     disko.url = "github:nix-community/disko/latest";
@@ -57,6 +60,7 @@
           disko.nixosModules.disko
           stylix.nixosModules.stylix
           home-manager.nixosModules.home-manager
+          watt.nixosModules.watt
         ];
       };
 
