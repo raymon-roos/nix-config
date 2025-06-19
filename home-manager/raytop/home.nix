@@ -16,6 +16,28 @@
     wayland.enable = true;
     hyprland.enable = true;
     lockscreen.enable = true;
+    email = {
+      enable = true;
+      accounts = [
+        {
+          accountName = "personal";
+          flavor = "outlook.office365.com";
+          primary = true;
+        }
+        {
+          accountName = "fixico";
+          flavor = "gmail.com";
+        }
+        {
+          accountName = "gaming";
+          flavor = "outlook.office365.com";
+        }
+        {
+          accountName = "gmail";
+          flavor = "gmail.com";
+        }
+      ];
+    };
   };
   dev = {
     nix.enable = true;
