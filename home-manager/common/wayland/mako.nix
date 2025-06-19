@@ -10,6 +10,7 @@
       default-timeout = 20 * 1000;
       icons = 1;
       border-radius = 6;
+      width = 250;
     };
   };
 
