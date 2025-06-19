@@ -68,6 +68,7 @@
         kb_layout = "us,us";
         kb_variant = "colemak_dh,intl";
         kb_options = "grp:shift_caps_toggle";
+        sensitivity = lib.mkForce 0.8;
       };
       bind = [
         "$mainMod CONTROL, M, exec, set_volume.sh"
