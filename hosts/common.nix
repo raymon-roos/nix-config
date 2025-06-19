@@ -114,7 +114,7 @@
         name = "DejaVu Sans";
       };
       serif = config.stylix.fonts.sansSerif;
-      emoji = config.stylix.fonts.monospace;
+      emoji.package = pkgs.nerd-fonts.symbols-only;
     };
   };
 }
