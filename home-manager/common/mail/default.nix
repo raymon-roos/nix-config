@@ -61,7 +61,7 @@ in {
             auth_endpoint = "https://accounts.google.com/o/oauth2/auth";
             token_endpoint = "https://accounts.google.com/o/oauth2/token";
             auth_scope = "https://mail.google.com/";
-            inherit (oauth_providers) client_id client_secret;
+            inherit (oauth_providers.google) client_id client_secret;
           };
         };
       };
