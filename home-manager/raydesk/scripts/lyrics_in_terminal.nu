@@ -43,7 +43,7 @@ match ($file | path type) {
     null => {
         print "No local lyric file found - downloading from genius.com\n"
 
-        fetch_lyrics $artist --title $tags.title | tee { save $file }
+        fetch_lyrics $artist --title $tags.title | tee { save $file } | print
     }
     _ => {
         print -e 'ERROR: Lyric file path already occupied. Stopping'
@@ -62,7 +62,6 @@ def next_song [] {
         sleep $remaining
         exec $env.CURRENT_FILE
     }
-    return 
 }
 
 # Based on the genre, the song might have no lyrics
@@ -83,5 +82,5 @@ def --wrapped fetch_lyrics [artist?: string ...rest] {
     if ($artist | is-not-empty) {
         return (^lyrical-rs --artist $artist ...$rest)
     }
-    return (^lyrical-rs ...$rest)
+    ^lyrical-rs ...$rest
 }
