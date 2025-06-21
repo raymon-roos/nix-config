@@ -32,7 +32,7 @@
     };
   };
 
-  xdg = {
+  xdg = lib.mkIf pkgs.stdenv.isLinux {
     configFile."xdg-desktop-portal-termfilechooser/config".text = lib.mkIf config.programs.yazi.enable ''
       [filechooser]
       cmd=${pkgs.xdg-desktop-portal-termfilechooser}/share/xdg-desktop-portal-termfilechooser/yazi-wrapper.sh
