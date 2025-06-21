@@ -43,11 +43,8 @@
 
   system = {
     stateVersion = 5; # Do not change
-    activationScripts.postUserActivation.text = ''
-      # activateSettings -u reloads and applies settings from the database to the current session,
-      # so no need to log out and in again
-      /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
-    '';
+
+    primaryUser = "ray";
 
     defaults = {
       dock = {
