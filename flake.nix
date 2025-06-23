@@ -4,8 +4,6 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
-    nix-darwin.url = "github:LnL7/nix-darwin";
-    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
 
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
@@ -61,15 +59,6 @@
           stylix.nixosModules.stylix
           home-manager.nixosModules.home-manager
           watt.nixosModules.watt
-        ];
-      };
-
-      darwinConfigurations.raymac = nix-darwin.lib.darwinSystem {
-        inherit specialArgs;
-        modules = [
-          ./hosts/raymac/configuration.nix
-          stylix.darwinModules.stylix
-          home-manager.darwinModules.home-manager
         ];
       };
     };

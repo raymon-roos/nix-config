@@ -431,26 +431,6 @@
         "type": "github"
       }
     },
-    "nix-darwin": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1750325256,
-        "narHash": "sha256-vvlxGz/waqJ3TGqM/iqXbnEc7/R1qnEXmaBiPaQ1RE0=",
-        "owner": "LnL7",
-        "repo": "nix-darwin",
-        "rev": "0d71cbf88d63e938b37b85b3bf8b238bcf7b39b9",
-        "type": "github"
-      },
-      "original": {
-        "owner": "LnL7",
-        "repo": "nix-darwin",
-        "type": "github"
-      }
-    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1742800061,
@@ -700,7 +680,6 @@
         "home-manager": "home-manager",
         "lyrical": "lyrical",
         "maomaowm": "maomaowm",
-        "nix-darwin": "nix-darwin",
         "nixpkgs": "nixpkgs_3",
         "plover-flake": "plover-flake",
         "secrets": "secrets",

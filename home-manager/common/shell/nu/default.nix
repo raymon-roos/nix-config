@@ -84,11 +84,7 @@
       };
 
     extraEnv = ''
-      $env.PATH = ($env.Path | prepend "${(
-        if pkgs.stdenv.isDarwin
-        then config.home.sessionVariables.BIN_HOME
-        else config.xdg.userDirs.extraConfig.BIN_HOME
-      )}")
+      $env.PATH = ($env.Path | prepend "${config.xdg.userDirs.extraConfig.BIN_HOME}")
     '';
 
     extraConfig = builtins.readFile ./commands.nu;

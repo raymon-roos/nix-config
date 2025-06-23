@@ -24,16 +24,10 @@ in {
     {
       "rm -rf /" = ''echo "ha lol no lets not"'';
       ls = lib.mkIf config.programs.eza.enable "eza";
-      nrs =
-        if pkgs.stdenv.isDarwin
-        then "nh darwin switch"
-        else "nh os switch";
+      nrs = "nh os switch";
       vimdiff = "nvim -d";
       vim = "nvim";
-      clip =
-        if pkgs.stdenv.isLinux
-        then "wl-clip -selection clipboard"
-        else "pbcopy";
+      clip = "wl-clip -selection clipboard";
       lw = "librewolf";
       gg = "gitui";
       gs = "git status --short --branch --show-stash";

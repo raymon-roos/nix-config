@@ -75,13 +75,7 @@
       enable = true;
       settings = {
         PASSWORD_STORE_DIR =
-          config.home.homeDirectory
-          + (
-            if pkgs.stdenv.isDarwin
-            then ""
-            else "/files"
-          )
-          + "/secrets/passwords";
+          config.home.homeDirectory + "/files/secrets/passwords";
         PASSWORD_STORE_CLIP_TIME = "30";
       };
     };
