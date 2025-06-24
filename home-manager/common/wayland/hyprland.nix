@@ -26,6 +26,7 @@ with lib; {
           ];
 
           # debug.disable_logs = false;
+          debug.full_cm_proto = true; # https://www.reddit.com/r/hyprland/comments/1kihakq/gamescope_wont_work_on_hyprland_works_on_kde/
 
           "$terminal" = "kitty";
           "$browser" = "librewolf";

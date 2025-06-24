@@ -10,9 +10,11 @@
     ./networking.nix
     ./services.nix
     ./plover.nix
+    ./gaming.nix
   ];
 
   plover.enable = false;
+  gaming.enable = false;
 
   nixpkgs = {
     hostPlatform = lib.mkDefault "x86_64-linux";
