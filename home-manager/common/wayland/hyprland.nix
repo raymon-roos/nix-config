@@ -177,6 +177,9 @@ with lib; {
               "$mainMod CONTROL SHIFT, i, swapwindow, u"
               "$mainMod CONTROL SHIFT, o, swapwindow, r"
               "$mainMod SHIFT, D, killactive,"
+
+              "$mainMod, Tab, cyclenext" # change focus to another window
+              "$mainMod, Tab, bringactivetotop" # bring it to the top
             ]
             ++ (
               lib.lists.optional config.common.lockscreen.enable
