@@ -33,18 +33,20 @@
     auto-optimise-store = true;
   };
 
-  programs = {
+  programs = let
+    hmConfig = config.home-manager.users.ray.common;
+  in {
     nix-ld.enable = true; # hack to fix dynamically linked binaries for traditional distros
 
     hyprland = {
-      enable = true;
+      enable = hmConfig.hyprland.enable;
     };
     river = {
-      enable = true; # Enabled here for desktop-portal integration
+      enable = hmConfig.river.enable; # Enabled here for desktop-portal integration
       package = null; # Let home-manager install package
       extraPackages = [];
     };
-    maomaowm.enable = true;
+    maomaowm.enable = hmConfig.maomaowm.enable;
   };
 
   environment = {
