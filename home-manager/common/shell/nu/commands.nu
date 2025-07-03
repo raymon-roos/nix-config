@@ -16,6 +16,15 @@ def --env nixrc [] {
     nvim flake.nix
 }
 
+def nhs [query: string] {
+    nh search $query -j 
+        | from json 
+        | get results
+        | sk --format {$in.package_attr_name} --preview {table -e}
+        | default []
+        | get -i package_attr_name
+}
+
 def --env vimrc [] {
     if ($env.PWD != $"($env.XDG_CONFIG_HOME)/nvim") {
         cd $"($env.XDG_CONFIG_HOME)/nvim"
