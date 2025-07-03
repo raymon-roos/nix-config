@@ -12,7 +12,9 @@
         show_hidden = true;
       };
     };
-    keymap = {
+    keymap = let
+      inherit (config.xdg) configHome userDirs;
+    in {
       mgr.prepend_keymap = [
         {
           run = "quit --no-cwd-file";
@@ -21,6 +23,42 @@
         {
           run = "quit";
           on = ["<C-g>"];
+        }
+        {
+          run = "follow";
+          on = ["F"];
+        }
+        {
+          run = "cd /";
+          on = ["g" "/"];
+        }
+        {
+          run = "cd ${configHome}";
+          on = ["g" "c"];
+        }
+        {
+          run = "cd ${userDirs.download}";
+          on = ["g" "d"];
+        }
+        {
+          run = "cd ${userDirs.documents}";
+          on = ["g" "D"];
+        }
+        {
+          run = "cd ${userDirs.music}";
+          on = ["g" "m"];
+        }
+        {
+          run = "cd ${userDirs.extraConfig.FILES_HOME}";
+          on = ["g" "f"];
+        }
+        {
+          run = "cd ${userDirs.extraConfig.PROJECTS_HOME}";
+          on = ["g" "p"];
+        }
+        {
+          run = "cd ${userDirs.extraConfig.FINANCE_HOME}";
+          on = ["g" "F"];
         }
         {
           run = ''
