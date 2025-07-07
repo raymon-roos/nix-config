@@ -159,11 +159,5 @@
           speed = 1.70;
           slang = "en";
         }}"'';
-
-      show_thumbnails = 1;
-      thumbnail_viewer = "kitty";
-      async_thumbnails = 1;
-      thumbnail_quality = "default";
-      fzf_preview_side = "down";
     };
 }
