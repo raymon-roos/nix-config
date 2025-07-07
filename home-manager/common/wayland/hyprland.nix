@@ -148,13 +148,20 @@ with lib; {
 
               "$mainMod, return, exec, $terminal"
               "$mainMod, Z, exec, $browser"
-              "$mainMod, K, exec, thunderbird"
 
               "$mainMod, semicolon, exec, bemenu-run"
               "$mainMod SHIFT, semicolon, exec, passmenu_custom"
 
               "$mainMod SHIFT, B, exec, $terminal --hold btm --default_widget_type=processes --expanded"
               "$mainMod, P, exec, directories_bemenu.sh"
+
+              (
+                if config.programs.aerc.enable
+                then "$mainMod, K, exec, kitty --hold aerc"
+                else if config.programs.thunderbird.enable
+                then "$mainMod, K, exec, thunderbird"
+                else ""
+              )
 
               # control monitors
               "$mainMod, G, split:grabroguewindows"
