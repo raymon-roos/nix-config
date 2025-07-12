@@ -59,7 +59,7 @@ def format_envelope_list [account: string, folder: string] {
         | move folder --after account
         | update flags {|row| [...$row.flags (if ($row.has_attachment) {'@'})] | str join ','}
         | reject has_attachment
-        | update from {$format_addr}
-        | update to {$format_addr}
+        | update from $format_addr
+        | update to $format_addr
         | update date {into datetime}
 }
