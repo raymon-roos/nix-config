@@ -13,7 +13,7 @@ with lib; {
         enable = true;
         package = pkgs.steam.override {
           extraBwrapArgs = [
-            "--bind $HOME/.xdg/local/share/steam $HOME"
+            "--bind $HOME/files/games/steam $HOME"
             "--unsetenv XDG_CACHE_HOME"
             "--unsetenv XDG_CONFIG_HOME"
             "--unsetenv XDG_DATA_HOME"
