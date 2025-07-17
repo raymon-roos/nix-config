@@ -37,7 +37,7 @@ with lib; {
       gamemode = {
         enable = true;
         settings = {
-          general.renice = 15; # Automatically negated. -20 is highest prio, 19 lowest
+          general.renice = 17; # Automatically negated. -20 is highest prio, 19 lowest
           custom = let
             hyprgamemode = pkgs.writeShellScriptBin "hyprgamemode" ''
               # If animations are enabled, disable them and other graphical decorations
@@ -57,7 +57,7 @@ with lib; {
               "${pkgs.libnotify}/bin/notify-send 'GameMode started' --time 2000"
               + lib.optionalString config.home-manager.users.ray.common.hyprland.enable " && ${lib.getExe hyprgamemode}";
             end =
-              "${pkgs.libnotify}/bin/notify-send 'GameMode ended' --time 2000"
+              "${pkgs.libnotify}/bin/notify-send 'GameMode stopped' --time 2000"
               + lib.optionalString config.home-manager.users.ray.common.hyprland.enable " && ${lib.getExe hyprgamemode}";
           };
         };
