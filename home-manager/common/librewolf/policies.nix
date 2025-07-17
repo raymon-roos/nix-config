@@ -21,7 +21,7 @@ with lib; {
     DontCheckDefaultBrowser = true;
     NoDefaultBookmarks = true;
     DNSOverHTTPS = {
-      ProviderURL = "https://base.dns.mullvad.net/dns-query";
+      ProviderURL = "https://family.dns.mullvad.net/dns-query";
       Fallback = false;
     };
     EnableTrackingProtection = true;
