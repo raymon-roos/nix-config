@@ -42,10 +42,12 @@
     auto-optimise-store = true;
   };
 
-  programs = {
+  programs = let
+    hmConfig = config.home-manager.users.ray.common;
+  in {
     nix-ld.enable = true; # hack to fix dynamically linked binaries for traditional distros
 
-    hyprland.enable = true;
+    hyprland.enable = hmConfig.hyprland.enable;
   };
 
   environment = {
