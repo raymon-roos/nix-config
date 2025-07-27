@@ -38,9 +38,8 @@
   in {
     nix-ld.enable = true; # hack to fix dynamically linked binaries for traditional distros
 
-    hyprland = {
-      enable = hmConfig.hyprland.enable;
-    };
+    hyprland.enable = hmConfig.hyprland.enable;
+
     river = {
       enable = hmConfig.river.enable; # Enabled here for desktop-portal integration
       package = null; # Let home-manager install package
