@@ -22,7 +22,7 @@ def nhs [query: string] {
         | get results
         | sk --format {$in.package_attr_name} --preview {table -e}
         | default []
-        | get -i package_attr_name
+        | get -o package_attr_name
 }
 
 def --env vimrc [] {
