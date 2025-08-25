@@ -37,28 +37,39 @@ with lib; {
       gamemode = {
         enable = true;
         settings = {
-          general.renice = 17; # Automatically negated. -20 is highest prio, 19 lowest
+          general = {
+            renice = 17; # Automatically negated. -20 is highest prio, 19 lowest
+            inhibit_screensaver = 0;
+          };
+
           custom = let
-            hyprgamemode = pkgs.writeShellScriptBin "hyprgamemode" ''
-              # If animations are enabled, disable them and other graphical decorations
-              HYPRGAMEMODE="$(hyprctl getoption animations:enabled | awk 'NR==1{print $2}')"
-              if [ "$HYPRGAMEMODE" = 1 ] ; then
-                  hyprctl --batch "\
-                      keyword animations:enabled 0;\
-                      keyword decoration:shadow:enabled 0;\
-                      keyword decoration:blur:enabled 0;\
-                      keyword decoration:rounding 0"
-                  exit
-              fi
-              hyprctl reload # Reload config, discarding runtime configuration
-            '';
+            notify-send = lib.getExe' pkgs.libnotify "notify-send";
+            hyprctl = lib.getExe' pkgs.hyprland "hyprctl";
+            hyprgamemode =
+              pkgs.writeShellScriptBin "hyprgamemode"
+              ''
+                ${notify-send} 'GameMode toggled' --expire-time 2000
+                # If animations are enabled, disable them and other graphical decorations
+                HYPRGAMEMODE="$(${hyprctl} getoption animations:enabled | awk 'NR==1{print $2}')"
+                if [ "$HYPRGAMEMODE" = 1 ] ; then
+                    ${hyprctl} --batch "\
+                        keyword animations:enabled 0;\
+                        keyword decoration:shadow:enabled 0;\
+                        keyword decoration:blur:enabled 0;\
+                        keyword decoration:rounding 0"
+                    exit
+                fi
+                ${hyprctl} reload # Reload config, discarding runtime configuration
+              '';
           in {
             start =
-              "${pkgs.libnotify}/bin/notify-send 'GameMode started' --time 2000"
-              + lib.optionalString config.home-manager.users.ray.common.hyprland.enable " && ${lib.getExe hyprgamemode}";
+              lib.optionalString
+              config.home-manager.users.ray.common.hyprland.enable
+              (lib.getExe hyprgamemode);
             end =
-              "${pkgs.libnotify}/bin/notify-send 'GameMode stopped' --time 2000"
-              + lib.optionalString config.home-manager.users.ray.common.hyprland.enable " && ${lib.getExe hyprgamemode}";
+              lib.optionalString
+              config.home-manager.users.ray.common.hyprland.enable
+              (lib.getExe hyprgamemode);
           };
         };
       };
