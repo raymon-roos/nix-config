@@ -3,15 +3,17 @@
   pkgs,
   lib,
   ...
-}: {
+}: let
+  inherit (config.xdg) configHome stateHome;
+in {
   home.file = {
     ".zprofile" = lib.mkIf pkgs.stdenv.isLinux {
       target = "${config.xdg.configHome}/zsh/.zprofile";
       text = ''
       '';
     };
-    ".zshrc".target = "${config.xdg.configHome}/zsh/.zshrc";
-    ".zshenv".target = "${config.xdg.configHome}/zsh/.zshenv";
+    "${config.programs.zsh.dotDir}/.zshrc".target = "${configHome}/zsh/.zshrc";
+    "${config.programs.zsh.dotDir}/.zshenv".target = "${configHome}/zsh/.zshenv";
   };
 
   programs.zsh = {
@@ -19,7 +21,7 @@
     enableCompletion = true;
     defaultKeymap = "emacs";
     history = {
-      path = "${config.xdg.stateHome}/zsh/history";
+      path = "${stateHome}/zsh/history";
       ignoreSpace = true;
       ignoreDups = true;
       share = true;
