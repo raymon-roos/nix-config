@@ -64,6 +64,8 @@ with lib; {
       };
     };
 
+    users.users.ray.extraGroups = ["gamemode"];
+
     environment = {
       systemPackages = with pkgs; [
         wineWayland
