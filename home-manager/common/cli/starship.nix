@@ -6,17 +6,14 @@
   ...
 }: let
   inherit (config.xdg) cacheHome configHome;
-  starshipConfig = "${configHome}/starship/starship.toml";
 in {
-  xdg.configFile."starship.toml".target = starshipConfig;
-
   home.sessionVariables = {
     STARSHIP_CACHE = "${cacheHome}/starship";
-    STARSHIP_CONFIG = starshipConfig;
   };
 
   programs.starship = {
     enable = true;
+    configPath = "${configHome}/starship/starship.toml";
     settings = {
       add_newline = false;
       aws = {
