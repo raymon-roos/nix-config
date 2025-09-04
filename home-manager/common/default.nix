@@ -47,6 +47,17 @@
     };
   };
 
+  xdg.mimeApps = {
+    enable = true;
+    defaultApplications =
+      lib.optionalAttrs config.programs.zathura.enable {
+        "application/pdf" = ["org.pwmt.zathura.desktop"];
+      }
+      // lib.optionalAttrs (lib.any (p: p == pkgs.vesktop) config.home.packages) {
+        "x-scheme-handler/discord" = ["vesktop.desktop"];
+      };
+  };
+
   services = {
     gpg-agent = {
       enable = true;
