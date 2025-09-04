@@ -89,16 +89,6 @@ in {
           downloads-dir = config.xdg.userDirs.download;
         };
       };
-
-      thunderbird = lib.mkIf pkgs.stdenv.isLinux {
-        enable = true;
-        profiles.default.isDefault = true;
-        settings = {
-          "mailnews.default_sort_type" = 18; # Sort by date
-          "mailnews.default_sort_order" = 2; # sort desc
-          "mailnews.default_view_flags" = 33; # 0 - no threads, 1 - collapsed threads, 33 - expanded threads
-        };
-      };
     };
 
     accounts.email = {
