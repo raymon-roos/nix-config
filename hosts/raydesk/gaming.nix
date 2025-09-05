@@ -77,6 +77,8 @@ with lib; {
 
     users.users.ray.extraGroups = ["gamemode"];
 
+    boot.kernelPackages = pkgs.linuxPackages_zen;
+
     environment = {
       systemPackages = with pkgs; [
         wineWayland
