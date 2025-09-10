@@ -30,7 +30,6 @@
           };
           epp = "performance";
           epb = "balance_performance";
-          platform_profile = "performance";
         };
 
         battery = {
@@ -45,7 +44,6 @@
           };
           epp = "performance";
           epb = "balance_performance";
-          platform_profile = "performance";
         };
 
         daemon = {
