@@ -54,7 +54,15 @@
         }
         {
           run = "cd ${userDirs.extraConfig.PROJECTS_HOME}";
+          on = ["g" "P"];
+        }
+        {
+          run = "cd ${userDirs.extraConfig.PROJECTS_HOME}/personal";
           on = ["g" "p"];
+        }
+        {
+          run = "cd ${userDirs.extraConfig.PROJECTS_HOME}/open-ict";
+          on = ["g" "o"];
         }
         {
           run = "cd ${userDirs.extraConfig.FINANCE_HOME}";
