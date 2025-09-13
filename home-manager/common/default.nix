@@ -66,7 +66,15 @@
   };
 
   programs = {
-    ssh.enable = true;
+    ssh = {
+      enable = true;
+      matchBlocks."*" = {
+        forwardAgent = false; # Reuse your local authentication agent on matching hosts you ssh into.
+        addKeysToAgent = "no"; # Adds keys to agent as they're used
+        controlMaster = "no"; # Can multiplex several open sessions over one connection, skips initial handshake when starting connections
+        controlPersist = "no"; # Don't keep controlMaster alive after closing its session
+      };
+    };
 
     nh = {
       enable = true;
