@@ -77,8 +77,6 @@
     };
   };
 
-  services.gpg-agent.pinentry.package = pkgs.pinentry-qt;
-
   programs = let
     contact_info = import "${inputs.secrets}/contact_info.nix";
   in {

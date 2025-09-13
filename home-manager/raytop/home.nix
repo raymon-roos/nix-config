@@ -56,7 +56,6 @@
     ];
   };
 
-  services.gpg-agent.pinentryPackage = pkgs.pinentry-qt;
   services.mako.settings.border-size = 1;
 
   programs = let
