@@ -48,7 +48,7 @@ $config.scale = echo '1' | bemenu -p 'scale' | default 1
 
 # `hyprctl keyword` allows changing a specific config at runtime.
 # hyprland monitor config: <name, resolution, position, scale> [, mirror <name>, ...]
-$config | values | filter {is-not-empty} | str join ', ' | tee { print} | ^hyprctl keyword 'monitor' $in
+$config | values | where {is-not-empty} | str join ', ' | tee { print} | ^hyprctl keyword 'monitor' $in
 
 # split workspaces hyprland plugin function: try to rescue windows from oter monitors
 hyprctl dispatch 'split:grabroguewindows'
