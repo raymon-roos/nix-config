@@ -55,58 +55,45 @@ in {
           };
 
           groups.${accountName} = mkIf (flavor == "outlook.office365.com" || flavor == "gmail.com") {
-            channels =
-              if flavor == "outlook.office365.com"
-              then {
-                # Catch-all for top-level folders that aren't part of another group
-                inbox = {
-                  farPattern = "";
-                  nearPattern = "";
-                  patterns = ["*" ''"!Sync Issues*"'' "!Snoozed" "!Notes" "!Archive" "!Outbox" "!Drafts" "!Sent" "!Deleted" "!Junk" "!drafts" "!sent" "!bin" "!junk"];
-                };
-                # Map folders on the remote to local folders adhering to the naming scheme
-                drafts = {
-                  farPattern = "Drafts";
-                  nearPattern = "drafts";
-                };
-                sent = {
-                  farPattern = "Sent";
-                  nearPattern = "sent";
-                };
-                bin = {
-                  farPattern = "Deleted";
-                  nearPattern = "bin";
-                };
-                junk = {
-                  farPattern = "Junk";
-                  nearPattern = "junk";
-                };
-              }
-              else {
-                # Catch-all for top-level folders that aren't part of another group
-                inbox = {
-                  farPattern = "";
-                  nearPattern = "";
-                  patterns = ["*" "![Gmail]*" "!drafts" "!sent" "!bin" "!junk"];
-                };
-                # Map some common folders from weird gmail naming to standard names on the local maildir side
-                drafts = {
-                  farPattern = "[Gmail]/Drafts";
-                  nearPattern = "drafts";
-                };
-                sent = {
-                  farPattern = "[Gmail]/Sent Mail";
-                  nearPattern = "sent";
-                };
-                bin = {
-                  farPattern = "[Gmail]/Bin";
-                  nearPattern = "bin";
-                };
-                junk = {
-                  farPattern = "[Gmail]/Spam";
-                  nearPattern = "junk";
-                };
+            channels = let
+              mkPatttern = near: far: {
+                farPattern = far;
+                nearPattern = near;
               };
+            in
+              if flavor == "outlook.office365.com"
+              then
+                {
+                  # Catch-all for top-level folders that aren't part of another group
+                  inbox = {
+                    farPattern = "";
+                    nearPattern = "";
+                    patterns = ["*" ''"!Sync Issues*"'' "!Snoozed" "!Notes" "!Archive" "!Outbox" "!Drafts" "!Sent" "!Deleted" "!Junk" "!drafts" "!sent" "!bin" "!junk"];
+                  };
+                }
+                # Map folders on the remote to local folders adhering to the naming scheme
+                // builtins.mapAttrs mkPatttern {
+                  drafts = "Drafts";
+                  sent = "Sent";
+                  bin = "Deleted";
+                  junk = "Junk";
+                }
+              else
+                {
+                  # Catch-all for top-level folders that aren't part of another group
+                  inbox = {
+                    farPattern = "";
+                    nearPattern = "";
+                    patterns = ["*" "![Gmail]*" "!drafts" "!sent" "!bin" "!junk"];
+                  };
+                }
+                # Map some common folders from weird gmail naming to standard names on the local maildir side
+                // builtins.mapAttrs mkPatttern {
+                  drafts = "[Gmail]/Drafts";
+                  sent = "[Gmail]/Sent Mail";
+                  bin = "[Gmail]/Bin";
+                  junk = "[Gmail]/Spam";
+                };
           };
         };
 
