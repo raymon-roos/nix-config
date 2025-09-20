@@ -52,6 +52,7 @@
         colorize = "${config.programs.aerc.package}/libexec/aerc/filters/colorize";
         calendar = "${config.programs.aerc.package}/libexec/aerc/filters/calendar";
         html = "${config.programs.aerc.package}/libexec/aerc/filters/html";
+        nuCfg = config.programs.nushell;
         nu = c: ''nu --no-config-file --no-std-lib --no-history --stdin -c "${c}"'';
       in
         {
@@ -61,12 +62,12 @@
           "image/*" = "kitten icat";
           "message/delivery-status" = "colorize";
         }
-        // lib.optionalAttrs config.programs.nushell.enable {
+        // lib.optionalAttrs nuCfg.enable {
           ".filename,~.*.csv" = nu "from csv --flexible | table -e -w 9999";
           ".filename,~.*.ssv" = nu "from csv --flexible --separator ';' | table -e -w 9999";
           ".filename,~.*.tsv" = nu "from csv --flexible --separator (char tab) | table -e -w 9999";
         }
-        // lib.optionalAttrs (lib.any (p: p == pkgs.nushellPlugins.formats) config.programs.nushell.plugins && config.programs.nushell.enable) {
+        // lib.optionalAttrs (lib.any (p: p == pkgs.nushellPlugins.formats) nuCfg.plugins && nuCfg.enable) {
           "application/ics" = nu "${pkgs.writeScriptBin "filter_ics" ''
             #!/usr/bin/env -S nu --stdin
             def main [] {
