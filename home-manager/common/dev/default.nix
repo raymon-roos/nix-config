@@ -10,6 +10,7 @@
 
   home.packages = with pkgs; [
     gcc # For automatically compiling treesitter parsers
+    gnumake # for building telescope-fzf-native nvim plugin
     lua51Packages.lua
     lua51Packages.luarocks-nix # For installing nvim plugins
     universal-ctags # For my custom zettelkasten setup
