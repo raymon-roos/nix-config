@@ -141,6 +141,7 @@ in {
           inherit (config.programs.aerc) enable;
           extraAccounts = {
             source = "maildir://${mailHome}/${accountName}";
+            copy-to = "";
             check-mail = 0;
             check-mail-cmd = "mbsync --config ${configHome}/isync/isyncrc ${accountName}";
             check-mail-timeout = "40s";
