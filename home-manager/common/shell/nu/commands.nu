@@ -32,6 +32,13 @@ def --env vimrc [] {
     nvim init.lua
 }
 
+def --env calrc [] {
+    if ($env.PWD != $"($env.FILES_HOME)/org/calendar") {
+        cd $"($env.FILES_HOME)/org/calendar"
+    }
+    nvim calendar.org
+}
+
 def --env zettel [] {
     if ($env.PWD != $env.NOTES_HOME) {
         cd $env.NOTES_HOME

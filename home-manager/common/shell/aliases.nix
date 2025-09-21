@@ -5,7 +5,7 @@
   ...
 }: let
   inherit (config.xdg) configHome stateHome;
-  notesHome = config.xdg.userDirs.extraConfig.NOTES_HOME;
+  inherit (config.xdg.userDirs.extraConfig) FILES_HOME NOTES_HOME;
 
   shellAliases =
     {
@@ -15,9 +15,10 @@
 
       nixrc = ''[ "$PWD" = ${configHome}/nix ] || pushd ${configHome}/nix && nvim flake.nix'';
       vimrc = ''[ "$PWD" = ${configHome}/nvim ] || pushd ${configHome}/nvim && vim init.lua'';
+      calrc = ''[ "$PWD" = ${FILES_HOME}/org/calendar ] || pushd ${FILES_HOME}/org/calendar && vim calendar.org'';
     }
     // lib.optionalAttrs pkgs.stdenv.isLinux {
-      zettel = ''[ "$PWD" = ${notesHome} ] || pushd ${notesHome} && nvim index-202202270044.md'';
+      zettel = ''[ "$PWD" = ${NOTES_HOME} ] || pushd ${NOTES_HOME} && nvim index-202202270044.md'';
     };
 in {
   home.shellAliases =
