@@ -40,7 +40,7 @@
 
     hyprland.enable = hmConfig.hyprland.enable;
 
-    river = {
+    river-classic = {
       enable = hmConfig.river.enable; # Enabled here for desktop-portal integration
       package = null; # Let home-manager install package
       extraPackages = [];
