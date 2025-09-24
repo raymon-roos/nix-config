@@ -43,23 +43,44 @@ with lib; {
 
         tag_keybind = mod: action: tag: "${mod},${tag},${action},${tag}";
       in
-        {
+        key_value {
           # monitorrule = [
           #   "DVI-I-1"
           #   "DP-1"
           # ];
+          env = [
+            "QT_QPA_PLATFORM,wayland;xcb"
+            "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
+          ];
 
-          ov_tab_mode = 1;
+          exec-once = [
+            "mako &"
+            "wbg ${config.stylix.image} &"
+          ];
+
           new_is_master = 0;
+          default_mfact = 0.5;
+
+          drag_tile_to_tile = 1;
+          ov_tab_mode = 1;
           focus_on_activate = 0;
           smartgaps = 1;
-          default_mfact = 0.5;
+
           focus_cross_monitor = 1;
+          exchange_cross_monitor = 1;
+          # scratchpad_cross_monitor = 1;
 
           repeat_rate = 50;
           repeat_delay = 130;
           accel_profile = 0;
           trackpad_natural_scrolling = 1;
+
+          border_radius = 6;
+          no_radius_when_single = 1;
+          blur = 1;
+          shadows = 1;
+          shadows_size = 7;
+          shadow_only_floating = 0;
 
           gappih = 2;
           gappiv = 2;
@@ -81,10 +102,10 @@ with lib; {
           unfocused_opacity = 0.97;
 
           animations = 1;
-          animation_type_open = "zoom";
-          animation_type_close = "slide";
+          # animation_type_open = "zoom";
+          # animation_type_close = "slide";
           animation_fade_in = 1;
-          zoom_initial_ratio = 0.5;
+          # zoom_initial_ratio = 0.5;
           fadein_begin_opacity = 0.5;
           fadeout_begin_opacity = 0.7;
           animation_duration_move = 200;
@@ -107,13 +128,41 @@ with lib; {
           bind =
             [
               "SUPER+CTRL+SHIFT,Q,quit"
+              "SUPER,v,togglefloating"
+              "SUPER+CTLR,v,togglefloating"
+              "SUPER,H,togglemaxmizescreen"
+              "none,F11,togglefullscreen"
               "SUPER,r,reload_config"
 
-              "SUPER+SHIFT,D,killclient,"
+              "SUPER,minus,toggle_scratchpad"
+              "SUPER+SHIFT,minus,minimized"
+              "SUPER+SHIFT,minus,restore_minimized"
+
+              # application specific
+              "SUPER+CONTROL,C,spawn_shell,cmus-remote -u || kitty --class cmus cmus"
+              "SUPER+CONTROL,B,spawn,cmus-remote -n"
+              "SUPER+CONTROL,Z,spawn,cmus-remote -r"
+              "SUPER+CONTROL,M,spawn,cmus-remote -C 'toggle aaa_mode'"
+
+              "SUPER,L,spawn,makoctl dismiss"
+              "SUPER,U,spawn,makoctl menu -- bemenu --accept-single"
+              "SUPER,Y,spawn,makoctl restore"
+
+              "SUPER,return,spawn,kitty"
+              "SUPER,Z,spawn,$browser"
+
+              "SUPER, K, spawn, kitty --hold aerc"
+
               "SUPER,semicolon,spawn,bemenu-run"
-              "SUPER+SHIFT,colon,spawn,passmenu_custom"
+              "SUPER+SHIFT,semicolon,spawn,passmenu_custom"
+
+              "SUPER+SHIFT,B,spawn,kitty --hold btm --default_widget_type=processes --expanded"
+              "SUPER,P,spawn,directories_bemenu.sh"
+
+              "SUPER+SHIFT,D,killclient,"
               "SUPER,Return,spawn,kitty"
 
+              # control windows
               "SUPER,Tab,toggleoverview"
               "SUPER,n,focusdir,left"
               "SUPER,e,focusdir,down"
@@ -126,12 +175,18 @@ with lib; {
               "SUPER+CTRL,o,exchange_client,right"
 
               "SUPER,t,switch_layout"
+              "SUPER+SHIFT,n,setmfact,-0.10"
+              "SUPER+SHIFT,e,setsmfact,+0.10"
+              "SUPER+SHIFT,i,setsmfact,-0.10"
+              "SUPER+SHIFT,o,setmfact,+0.10"
 
+              # control monitors
               "SUPER,comma,focusmon,left"
               "SUPER,period,focusmon,right"
               "SUPER+SHIFT,less,tagmon,left"
               "SUPER+SHIFT,greater,tagmon,right"
             ]
+            # control tags
             ++ (concatMap (tag: [
                 (tag_keybind "SUPER" "view" tag)
                 (tag_keybind "SUPER+CTRL" "toggleview" tag)
@@ -149,25 +204,24 @@ with lib; {
             );
 
           mousebind = [
-            "SUPER,btn_left,moveresize,curmove"
-            "SUPER,btn_right,moveresize,curresize"
-            "NONE,btn_left,toggleoverview,-1"
+            # Mousebinds with a modifier work everywhere, without a modifier only in overview mode
+            "mousebind=SUPER,btn_left,moveresize,curmove"
+            "mousebind=SUPER,btn_right,moveresize,curresize"
+            "mousebind=SUPER+SHIFT,btn_right,killclient"
+            "mousebind=NONE,btn_left,toggleoverview,-1"
+            "mousebind=NONE,btn_right,killclient,0"
           ];
-        }
-        |> key_value;
+        };
 
-      xdg.configFile."maomao/autostart_sh" = {
+      xdg.configFile."mango/autostart_sh" = {
         text = ''
           #!/usr/bin/env sh
           dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=wlroots
           xdg-desktop-portal-wlr &
 
           wlr-randr \
-              --output DP-1 --preferred --left-of HDMI-A-1 --transform 90 \
-              --output DVI-I-1 --preferred --right-of HDMI-A-1 --transform 270 &
-
-          pkill wbg; wbg ${config.stylix.image} &
-          pkill mako; mako &
+            --output DP-1 --preferred --left-of HDMI-A-1 --transform 90 \
+            --output DVI-I-1 --preferred --right-of HDMI-A-1 --transform 270 &
         '';
         executable = true;
       };
