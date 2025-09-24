@@ -118,7 +118,6 @@
         ];
         windowrulev2 = [
           "monitor 2,class:^(cmus)$"
-          "monitor 0,initialTitle:^(Mozilla Thunderbird)$"
           "monitor 0,initialClass:^(vesktop)$"
         ];
       };
@@ -135,7 +134,6 @@
         rule-add = {
           "-app-id" = {
             "cmus" = "output DP-1";
-            "thunderbird" = "output DVI-I-1";
             "vesktop" = "output DVI-I-1";
           };
         };

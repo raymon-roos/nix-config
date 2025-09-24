@@ -13,7 +13,6 @@
         ".git/"
         ".xdg/cache"
         ".librewolf/"
-        ".thunderbird/"
         ".mozilla/"
         ".nix-defexpr/"
       ];

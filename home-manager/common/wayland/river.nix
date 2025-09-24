@@ -78,7 +78,7 @@ with lib; {
                 "Super+Shift Semicolon" = "spawn passmenu_custom";
                 "Super Return" = "spawn kitty";
                 "Super Z" = "spawn librewolf";
-                "Super K" = "spawn thunderbird";
+                "Super K" = "spawn 'kitty --hold aerc'";
                 "Super+Shift B" = "spawn 'kitty --hold btm --default_widget_type=processes --expanded'";
                 "Super P" = "spawn directories_bemenu.sh";
 
