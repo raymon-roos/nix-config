@@ -10,7 +10,7 @@ with lib; {
     ./launch_compositor.nix
     ./hyprland.nix
     ./river.nix
-    ./maomaowm.nix
+    ./mango.nix
     ./mako.nix
     ./hypridle.nix
     ./bemenu.nix

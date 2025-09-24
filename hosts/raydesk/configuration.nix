@@ -45,7 +45,8 @@
       package = null; # Let home-manager install package
       extraPackages = [];
     };
-    maomaowm.enable = hmConfig.maomaowm.enable;
+
+    mango.enable = hmConfig.mango.enable;
   };
 
   environment = {

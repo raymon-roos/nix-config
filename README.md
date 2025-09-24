@@ -4,7 +4,7 @@ I previously managed my dotfiles through [yadm][1]. When I heard about
 Nix(Os) - and while I was assigned a MacBook Air for work - I made the switch. The module
 system and the language make it possible to handle discrepancies between machines in a way
 that a plain git repo of dotfiles doesn't. And Nix really succeeds in managing
-_everything_ on the system, not just user space. 
+_everything_ on the system, not just user space.
 
 [1]: https://yadm.io/
 
@@ -17,7 +17,7 @@ a `enable = true;` away.
 
 This flake features configuration for my personal desktop and laptop (Thinkpad T560).
 Previously it also had a Mac system managed by nix-darwin. You can look through the commit
-history to find it if you're interested. 
+history to find it if you're interested.
 
 I strongly favor a keyboard-driven workflow, and terminal (CLI and TUI) applications.
 [Colemak_dh][2] is my keyboard layout of choice, and on top of that I strongly rely on
@@ -36,17 +36,17 @@ customizability of the integrated keyboard through software. On MacOS I've used
 ## Some features
 
 - Wayland desktop with the [Hyprland][8] compositor, until I find something else that has
-both the tiling and workspace mechanics I want. There are modules for [maomaowm][9] and
-[river][10] that I'm experimenting with.
+  both the tiling and workspace mechanics I want. There are modules for [mango][9] and
+  [river][10] that I'm experimenting with.
 - [Kitty terminal][11].
 - [Nushell][12] which is a joy to use.
 - Git configuration with three-way neovim mergetool, [delta][13] and [difftastic][14] for
-prettier or more semantic diff highlighting, [gitui][15] TUI git client, and many aliases.
+  prettier or more semantic diff highlighting, [gitui][15] TUI git client, and many aliases.
 - Offline synchronized, Oauth compatible, terminal-based, keyboard driven email setup.
-Through [mbsync][16] and [earc][17], among other tools.
+  Through [mbsync][16] and [earc][17], among other tools.
 - Plain-text accounting with [hledger][18].
 - [Neovim][19].
-- Advanced keyboard customization on all platforms. 
+- Advanced keyboard customization on all platforms.
 - [Btrfs][24] for transparent compression, and encryption-at-rest, through [disko][20].
 - [fd][20], [ripgrep][21], [sd][22], [bat][30], [fzf][23] modern high-power CLI tools.
 - [cmus][25] and [lyrical-rs][26] for music in the terminal.
@@ -56,7 +56,7 @@ Through [mbsync][16] and [earc][17], among other tools.
 - [XDG base directory][31] paths for all the programs that can be coaxed to use them.
 
 [8]: https://github.com/hyprwm/Hyprland
-[9]: https://github.com/DreamMaoMao/maomaowm
+[9]: https://github.com/DreamMaoMao/mangowc
 [10]: https://codeberg.org/river/river
 [11]: https://github.com/kovidgoyal/kitty
 [12]: https://www.nushell.sh/

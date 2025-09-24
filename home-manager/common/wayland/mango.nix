@@ -8,19 +8,19 @@
 with builtins;
 with lib; {
   imports = [
-    inputs.maomaowm.hmModules.maomaowm
+    inputs.mango.hmModules.mango
   ];
 
-  options.common.maomaowm.enable = mkEnableOption "MaomaoWM & co";
+  options.common.mango.enable = mkEnableOption "DreamMaoMao's dwl-based eye-candy window manager";
 
   config =
     mkIf (
       config.common.wayland.enable
-      && config.common.maomaowm.enable
+      && config.common.mango.enable
     ) {
       home = {
         sessionVariables = {
-          MAOMAOCONFIG = "${config.xdg.configHome}/maomao";
+          MANGOCONFIG = "${config.xdg.configHome}/mango";
         };
 
         packages = with pkgs; [
@@ -30,11 +30,9 @@ with lib; {
         ];
       };
 
-      programs.foot.enable = true;
+      wayland.windowManager.mango.enable = true;
 
-      wayland.windowManager.maomaowm.enable = true;
-
-      xdg.configFile."maomao/config.conf".text = let
+      xdg.configFile."mango/config.conf".text = let
         inherit (config.lib.stylix) colors;
 
         key_value = generators.toKeyValue {listsAsDuplicateKeys = true;};
@@ -54,6 +52,9 @@ with lib; {
           ov_tab_mode = 1;
           new_is_master = 0;
           focus_on_activate = 0;
+          smartgaps = 1;
+          default_mfact = 0.5;
+          focus_cross_monitor = 1;
 
           repeat_rate = 50;
           repeat_delay = 130;
@@ -75,7 +76,9 @@ with lib; {
 
           cursor_theme = config.stylix.cursor.name;
           cursor_size = config.stylix.cursor.size;
-          smart_gaps = 1;
+          cursor_hide_timeout = 1;
+
+          unfocused_opacity = 0.97;
 
           animations = 1;
           animation_type_open = "zoom";
@@ -93,11 +96,14 @@ with lib; {
           animation_curve_tag = "0.46,1.0,0.29,1";
           animation_curve_close = "0.08,0.92,0,1";
 
+          # windowrule = [
+          #   "isopensilent:1,title:vesktop"
+          # ];
+
           axisbind = [
             "SUPER,UP,viewtoleft_have_client"
             "SUPER,Down,viewtoright_have_client"
           ];
-          # keybindings
           bind =
             [
               "SUPER+CTRL+SHIFT,Q,quit"
@@ -106,7 +112,7 @@ with lib; {
               "SUPER+SHIFT,D,killclient,"
               "SUPER,semicolon,spawn,bemenu-run"
               "SUPER+SHIFT,colon,spawn,passmenu_custom"
-              "SUPER,Return,spawn,foot"
+              "SUPER,Return,spawn,kitty"
 
               "SUPER,Tab,toggleoverview"
               "SUPER,n,focusdir,left"

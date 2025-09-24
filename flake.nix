@@ -19,8 +19,8 @@
     watt.url = "github:NotAShelf/watt";
     watt.inputs.nixpkgs.follows = "nixpkgs";
 
-    maomaowm.url = "github:DreamMaoMao/maomaowm/refs/tags/0.7.0";
-    maomaowm.inputs.nixpkgs.follows = "nixpkgs";
+    mango.url = "github:DreamMaoMao/mangowc/refs/tags/0.8.9";
+    mango.inputs.nixpkgs.follows = "nixpkgs";
 
     disko.url = "github:nix-community/disko/latest";
     disko.inputs.nixpkgs.follows = "nixpkgs";
@@ -47,7 +47,7 @@
           ./hosts/raydesk/configuration.nix
           stylix.nixosModules.stylix
           home-manager.nixosModules.home-manager
-          maomaowm.nixosModules.maomaowm
+          mango.nixosModules.mango
         ];
       };
 

@@ -250,7 +250,7 @@
         "type": "github"
       }
     },
-    "maomaowm": {
+    "mango": {
       "inputs": {
         "flake-parts": "flake-parts",
         "mmsg": "mmsg",
@@ -260,17 +260,17 @@
         "scenefx": "scenefx"
       },
       "locked": {
-        "lastModified": 1751181778,
-        "narHash": "sha256-XTRGgE2T5yA42lPNUiO6jACjSNIvKiRYnKmmOXN0dd0=",
+        "lastModified": 1758702421,
+        "narHash": "sha256-lpvUIyEPn2uXLpPEGkFsQvdEhht6rE+0RqhS8s7ZOd8=",
         "owner": "DreamMaoMao",
-        "repo": "maomaowm",
-        "rev": "293458ebffac37929011aae37383d160ebd92710",
+        "repo": "mangowc",
+        "rev": "eb0395a48d959326638eb64b098742c998efac09",
         "type": "github"
       },
       "original": {
         "owner": "DreamMaoMao",
-        "ref": "refs/tags/0.7.0",
-        "repo": "maomaowm",
+        "ref": "refs/tags/0.8.9",
+        "repo": "mangowc",
         "type": "github"
       }
     },
@@ -278,16 +278,16 @@
       "inputs": {
         "flake-parts": "flake-parts_2",
         "nixpkgs": [
-          "maomaowm",
+          "mango",
           "nixpkgs"
         ]
       },
       "locked": {
-        "lastModified": 1750505787,
-        "narHash": "sha256-D57Vl2x9RJP+8pjYGYUf1L/q+G6bsmoVaqJX3m5PtlQ=",
+        "lastModified": 1753859411,
+        "narHash": "sha256-xiQGpk987dCmeF29mClveaGJNIvljmJJ9FRHVPp92HU=",
         "owner": "DreamMaoMao",
         "repo": "mmsg",
-        "rev": "4dc703aa06ae40d2cf5d3c0122b4d7f7d78fe8bf",
+        "rev": "6066d37d810bb16575c0b60e25852d1f6d50de60",
         "type": "github"
       },
       "original": {
@@ -497,7 +497,7 @@
         "flake-registry": "flake-registry",
         "home-manager": "home-manager",
         "lyrical": "lyrical",
-        "maomaowm": "maomaowm",
+        "mango": "mango",
         "nixpkgs": "nixpkgs",
         "plover-flake": "plover-flake",
         "secrets": "secrets",
@@ -524,7 +524,7 @@
     "scenefx": {
       "inputs": {
         "nixpkgs": [
-          "maomaowm",
+          "mango",
           "nixpkgs"
         ]
       },
