@@ -82,6 +82,7 @@
         gaps_in = 1;
         gaps_out = 2;
       };
+      xwayland.force_zero_scaling = true;
       decoration = {
         blur.enabled = false;
         shadow.enabled = false;
