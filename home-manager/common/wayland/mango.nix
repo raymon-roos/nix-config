@@ -25,7 +25,7 @@ with lib; {
 
         packages = with pkgs; [
           xdg-desktop-portal-wlr
-          wlr-randr
+          # wlr-randr
           wbg
         ];
       };
@@ -44,10 +44,15 @@ with lib; {
         tag_keybind = mod: action: tag: "${mod},${tag},${action},${tag}";
       in
         key_value {
-          # monitorrule = [
-          #   "DVI-I-1"
-          #   "DP-1"
-          # ];
+          monitorrule =
+            [
+              # "name,mfact,nmaster,layout,transform,scale,x,y,width,height,refreshrate"
+              ["DP-1" "0.50" "1" "vertical_dwindle" "1" "1" "0" "0" "1920" "1080" "60"]
+              ["HDMI-A-1" "0.50" "1" "tile" "0" "1" "1080" "0" "1920" "1080" "60"]
+              ["DVI-I-1" "0.50" "1" "vertical_dwindle" "3" "1" "3000" "0" "1920" "1080" "60"]
+            ]
+            |> map (builtins.concatStringsSep ",");
+
           env = [
             "QT_QPA_PLATFORM,wayland;xcb"
             "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
@@ -55,7 +60,7 @@ with lib; {
 
           exec-once = [
             "mako &"
-            "wbg ${config.stylix.image} &"
+            "wbg -s ${config.stylix.image} &"
           ];
 
           new_is_master = 0;
@@ -66,6 +71,7 @@ with lib; {
           focus_on_activate = 0;
           smartgaps = 1;
 
+          view_current_to_back = 0;
           focus_cross_monitor = 1;
           exchange_cross_monitor = 1;
           # scratchpad_cross_monitor = 1;
@@ -105,17 +111,12 @@ with lib; {
           # animation_type_open = "zoom";
           # animation_type_close = "slide";
           animation_fade_in = 1;
-          # zoom_initial_ratio = 0.5;
           fadein_begin_opacity = 0.5;
           fadeout_begin_opacity = 0.7;
           animation_duration_move = 200;
           animation_duration_open = 300;
           animation_duration_tag = 250;
-          animation_duration_close = 400;
-          animation_curve_open = "0.46,1.0,0.29,1";
-          animation_curve_move = "0.46,1.0,0.29,1";
-          animation_curve_tag = "0.46,1.0,0.29,1";
-          animation_curve_close = "0.08,0.92,0,1";
+          animation_duration_close = 350;
 
           # windowrule = [
           #   "isopensilent:1,title:vesktop"
@@ -129,7 +130,7 @@ with lib; {
             [
               "SUPER+CTRL+SHIFT,Q,quit"
               "SUPER,v,togglefloating"
-              "SUPER+CTLR,v,togglefloating"
+              "SUPER+CTLR,v,toggleoverlay"
               "SUPER,H,togglemaxmizescreen"
               "none,F11,togglefullscreen"
               "SUPER,r,reload_config"
@@ -183,8 +184,8 @@ with lib; {
               # control monitors
               "SUPER,comma,focusmon,left"
               "SUPER,period,focusmon,right"
-              "SUPER+SHIFT,less,tagmon,left"
-              "SUPER+SHIFT,greater,tagmon,right"
+              "SUPER+CTRL,comma,tagmon,left"
+              "SUPER+CTRL,period,tagmon,right"
             ]
             # control tags
             ++ (concatMap (tag: [
@@ -215,14 +216,14 @@ with lib; {
 
       xdg.configFile."mango/autostart_sh" = {
         text = ''
-          #!/usr/bin/env sh
+          #!/usr/bin/env bash
           dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=wlroots
           xdg-desktop-portal-wlr &
 
-          wlr-randr \
-            --output DP-1 --preferred --left-of HDMI-A-1 --transform 90 \
-            --output DVI-I-1 --preferred --right-of HDMI-A-1 --transform 270 &
         '';
+        # wlr-randr \
+        #   --output DP-1 --preferred --left-of HDMI-A-1 --transform 90 \
+        #   --output DVI-I-1 --preferred --right-of HDMI-A-1 --transform 270 &
         executable = true;
       };
     };
