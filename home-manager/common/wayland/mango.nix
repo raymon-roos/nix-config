@@ -25,7 +25,6 @@ with lib; {
 
         packages = with pkgs; [
           xdg-desktop-portal-wlr
-          # wlr-randr
           wbg
         ];
       };
@@ -42,13 +41,18 @@ with lib; {
         gen_tags = range 1 9 |> map toString;
 
         tag_keybind = mod: action: tag: "${mod},${tag},${action},${tag}";
+
+        browser = "librewolf";
+        terminal = "kitty";
+        menu = "bemenu";
+        mod = "SUPER";
       in
         key_value {
           monitorrule =
             [
               # "name,mfact,nmaster,layout,transform,scale,x,y,width,height,refreshrate"
               ["DP-1" "0.50" "1" "vertical_dwindle" "1" "1" "0" "0" "1920" "1080" "60"]
-              ["HDMI-A-1" "0.50" "1" "tile" "0" "1" "1080" "0" "1920" "1080" "60"]
+              ["HDMI-A-1" "0.50" "1" "dwindle" "0" "1" "1080" "0" "1920" "1080" "60"]
               ["DVI-I-1" "0.50" "1" "vertical_dwindle" "3" "1" "3000" "0" "1920" "1080" "60"]
             ]
             |> map (builtins.concatStringsSep ",");
@@ -68,6 +72,7 @@ with lib; {
 
           drag_tile_to_tile = 1;
           ov_tab_mode = 1;
+          enable_hotarea = 0;
           focus_on_activate = 0;
           smartgaps = 1;
 
@@ -78,13 +83,16 @@ with lib; {
 
           repeat_rate = 50;
           repeat_delay = 130;
+          # xkb_rules_layout = "us,us";
+          # xkb_rules_variant = "colemak_dh,intl";
+          # xkb_rules_options = "grp:shift_caps_toggle";
           accel_profile = 0;
           trackpad_natural_scrolling = 1;
 
-          border_radius = 6;
+          border_radius = 0;
           no_radius_when_single = 1;
-          blur = 1;
-          shadows = 1;
+          blur = 0;
+          shadows = 0; # Some error in the logs about shadows + corner radius?
           shadows_size = 7;
           shadow_only_floating = 0;
 
@@ -113,104 +121,106 @@ with lib; {
           animation_fade_in = 1;
           fadein_begin_opacity = 0.5;
           fadeout_begin_opacity = 0.7;
-          animation_duration_move = 200;
+          animation_duration_move = 180;
           animation_duration_open = 300;
-          animation_duration_tag = 250;
-          animation_duration_close = 350;
-
-          # windowrule = [
-          #   "isopensilent:1,title:vesktop"
-          # ];
+          animation_duration_tag = 280;
+          animation_duration_close = 300;
 
           axisbind = [
             "SUPER,UP,viewtoleft_have_client"
             "SUPER,Down,viewtoright_have_client"
           ];
+
           bind =
             [
-              "SUPER+CTRL+SHIFT,Q,quit"
-              "SUPER,v,togglefloating"
-              "SUPER+CTLR,v,toggleoverlay"
-              "SUPER,H,togglemaxmizescreen"
-              "none,F11,togglefullscreen"
-              "SUPER,r,reload_config"
+              "${mod}+CTRL+SHIFT,Q,quit"
+              "${mod},v,togglefloating"
+              "${mod}+CTLR,v,toggleoverlay"
+              "${mod},H,togglemaxmizescreen"
+              "NONE,F11,togglefullscreen"
+              "${mod},r,reload_config"
 
-              "SUPER,minus,toggle_scratchpad"
-              "SUPER+SHIFT,minus,minimized"
-              "SUPER+SHIFT,minus,restore_minimized"
+              "${mod},minus,toggle_scratchpad"
+              "${mod}+SHIFT,underscore,minimized"
+              "${mod}+CTRL,minus,restore_minimized"
 
               # application specific
-              "SUPER+CONTROL,C,spawn_shell,cmus-remote -u || kitty --class cmus cmus"
-              "SUPER+CONTROL,B,spawn,cmus-remote -n"
-              "SUPER+CONTROL,Z,spawn,cmus-remote -r"
-              "SUPER+CONTROL,M,spawn,cmus-remote -C 'toggle aaa_mode'"
+              "${mod}+CTRL,C,spawn_shell,cmus-remote -u || ${terminal} --class cmus cmus"
+              "${mod}+CTRL,B,spawn,cmus-remote -n"
+              "${mod}+CTRL,Z,spawn,cmus-remote -r"
+              "${mod}+CTRL,M,spawn_shell,cmus-remote -C 'toggle aaa_mode'"
 
-              "SUPER,L,spawn,makoctl dismiss"
-              "SUPER,U,spawn,makoctl menu -- bemenu --accept-single"
-              "SUPER,Y,spawn,makoctl restore"
+              "${mod},L,spawn,makoctl dismiss"
+              "${mod},U,spawn,makoctl menu -- ${menu} --accept-single"
+              "${mod},Y,spawn,makoctl restore"
 
-              "SUPER,return,spawn,kitty"
-              "SUPER,Z,spawn,$browser"
+              "${mod},return,spawn,${terminal}"
+              "${mod},Z,spawn,${browser}"
 
-              "SUPER, K, spawn, kitty --hold aerc"
+              "${mod}, K, spawn, ${terminal} --hold aerc"
 
-              "SUPER,semicolon,spawn,bemenu-run"
-              "SUPER+SHIFT,semicolon,spawn,passmenu_custom"
+              "${mod},semicolon,spawn,bemenu-run"
+              "${mod}+SHIFT,colon,spawn,passmenu_custom"
 
-              "SUPER+SHIFT,B,spawn,kitty --hold btm --default_widget_type=processes --expanded"
-              "SUPER,P,spawn,directories_bemenu.sh"
+              "${mod}+SHIFT,B,spawn,${terminal} --hold btm --default_widget_type=processes --expanded"
+              "${mod},P,spawn,directories_bemenu.sh"
 
-              "SUPER+SHIFT,D,killclient,"
-              "SUPER,Return,spawn,kitty"
+              "${mod}+SHIFT,D,killclient,"
+              "${mod},Return,spawn,${terminal}"
 
               # control windows
-              "SUPER,Tab,toggleoverview"
-              "SUPER,n,focusdir,left"
-              "SUPER,e,focusdir,down"
-              "SUPER,i,focusdir,up"
-              "SUPER,o,focusdir,right"
+              "${mod},Tab,toggleoverview"
+              "${mod},n,focusdir,left"
+              "${mod},e,focusdir,down"
+              "${mod},i,focusdir,up"
+              "${mod},o,focusdir,right"
 
-              "SUPER+CTRL,n,exchange_client,left"
-              "SUPER+CTRL,e,exchange_client,down"
-              "SUPER+CTRL,i,exchange_client,up"
-              "SUPER+CTRL,o,exchange_client,right"
+              "${mod}+CTRL,n,exchange_client,left"
+              "${mod}+CTRL,e,exchange_client,down"
+              "${mod}+CTRL,i,exchange_client,up"
+              "${mod}+CTRL,o,exchange_client,right"
 
-              "SUPER,t,switch_layout"
-              "SUPER+SHIFT,n,setmfact,-0.10"
-              "SUPER+SHIFT,e,setsmfact,+0.10"
-              "SUPER+SHIFT,i,setsmfact,-0.10"
-              "SUPER+SHIFT,o,setmfact,+0.10"
+              "${mod},t,switch_layout"
+              "${mod}+SHIFT,n,setmfact,-0.03"
+              "${mod}+SHIFT,e,setsmfact,+0.03"
+              "${mod}+SHIFT,i,setsmfact,-0.03"
+              "${mod}+SHIFT,o,setmfact,+0.03"
 
               # control monitors
-              "SUPER,comma,focusmon,left"
-              "SUPER,period,focusmon,right"
-              "SUPER+CTRL,comma,tagmon,left"
-              "SUPER+CTRL,period,tagmon,right"
+              "${mod},comma,focusmon,left"
+              "${mod},period,focusmon,right"
+              "${mod}+CTRL,comma,tagmon,left"
+              "${mod}+CTRL,period,tagmon,right"
             ]
             # control tags
             ++ (concatMap (tag: [
-                (tag_keybind "SUPER" "view" tag)
-                (tag_keybind "SUPER+CTRL" "toggleview" tag)
+                (tag_keybind "${mod}" "view" tag)
+                (tag_keybind "${mod}+CTRL" "toggleview" tag)
               ])
               gen_tags)
-            ++ (
-              zipLists gen_tags shift_nums
+            ++ (zipLists gen_tags shift_nums
               |> concatMap ({
                 fst,
                 snd,
               }: [
-                "SUPER+SHIFT,${snd},tag,${fst}"
-                "SUPER+CTRL+SHIFT,${snd},toggletag,${fst}"
-              ])
-            );
+                "${mod}+SHIFT,${snd},tag,${fst}"
+                "${mod}+CTRL+SHIFT,${snd},toggletag,${fst}"
+              ]));
 
           mousebind = [
             # Mousebinds with a modifier work everywhere, without a modifier only in overview mode
-            "mousebind=SUPER,btn_left,moveresize,curmove"
-            "mousebind=SUPER,btn_right,moveresize,curresize"
-            "mousebind=SUPER+SHIFT,btn_right,killclient"
-            "mousebind=NONE,btn_left,toggleoverview,-1"
-            "mousebind=NONE,btn_right,killclient,0"
+            "${mod},btn_left,moveresize,curmove"
+            "${mod},btn_right,moveresize,curresize"
+            "${mod}+SHIFT,btn_right,killclient"
+            "NONE,btn_left,toggleoverview,-1"
+            "NONE,btn_right,killclient,0"
+          ];
+
+          windowrule = [
+            "isopensilent:1,monitor:DP-1,appid:cmus"
+            "isopensilent:1,monitor:DVI-I-1,appid:vesktop"
+            "animation_type_open:fade,appid:pinentry"
+            "animation_type_close:none,appid:pinentry"
           ];
         };
 
