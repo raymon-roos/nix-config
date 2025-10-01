@@ -12,7 +12,7 @@
 
   common = {
     librewolf.enable = true;
-    librewolf-advanced.enable = false;
+    librewolf-advanced.enable = true;
     wayland.enable = true;
     hyprland.enable = true;
     lockscreen.enable = true;
