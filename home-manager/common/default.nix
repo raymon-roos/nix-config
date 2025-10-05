@@ -30,6 +30,7 @@
         zip
         unzip
         neovim
+        remind
       ]
       ++ lib.optionals pkgs.stdenv.isLinux [
         keychain

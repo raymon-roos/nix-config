@@ -33,10 +33,19 @@ def --env vimrc [] {
 }
 
 def --env calrc [] {
-    if ($env.PWD != $"($env.FILES_HOME)/org/calendar") {
-        cd $"($env.FILES_HOME)/org/calendar"
+    if ($env.PWD != $"($env.FILES_HOME)/calendar") {
+        cd $"($env.FILES_HOME)/calendar"
     }
-    nvim calendar.org
+    nvim calendar.rem
+}
+
+def --env rem [] {
+    ^cal -m3
+    remind -qgaad $"($env.FILES_HOME)/calendar"
+}
+
+def --env remc [] {
+    remind -cu12b1@2,2,1wtt $"($env.FILES_HOME)/calendar" | less --raw
 }
 
 def --env zettel [] {
