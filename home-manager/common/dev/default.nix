@@ -6,6 +6,7 @@
     ./nix.nix
     ./python.nix
     ./go.nix
+    ./container.nix
   ];
 
   home.packages = with pkgs; [

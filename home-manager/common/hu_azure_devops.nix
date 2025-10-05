@@ -5,14 +5,14 @@
   ...
 }:
 with lib; {
-  options.HUazureDevops.enable =
+  options.common.HUazureDevops.enable =
     mkEnableOption
     ''
       Workaround to automatically associate secondary SSH key with certain
       remote hosts I use at my study.
     '';
 
-  config = mkIf config.HUazureDevops.enable {
+  config = mkIf config.common.HUazureDevops.enable {
     programs = {
       git.extraConfig = {
         url."git@hu.ssh.dev.azure.com".insteadOf = ["git@ssh.dev.azure.com"];

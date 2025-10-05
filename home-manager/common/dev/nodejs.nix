@@ -5,9 +5,9 @@
   ...
 }:
 with lib; {
-  options.dev.nodejs.enable = mkEnableOption "NodeJS dev tools";
+  options.common.dev.nodejs.enable = mkEnableOption "NodeJS dev tools";
 
-  config = mkIf config.dev.nodejs.enable {
+  config = mkIf config.common.dev.nodejs.enable {
     home.sessionVariables = {
       npm_config_userconfig = "${config.xdg.configHome}/npm/npmrc";
       npm_config_cache = "${config.xdg.cacheHome}/npm/";

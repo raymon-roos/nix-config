@@ -3,7 +3,9 @@
   pkgs,
   lib,
   ...
-}: {
+}: let
+  hmModules = config.home-manager.users.ray.common;
+in {
   imports = [
     ../common.nix
     ./hardware
@@ -33,20 +35,18 @@
     auto-optimise-store = true;
   };
 
-  programs = let
-    hmConfig = config.home-manager.users.ray.common;
-  in {
+  programs = {
     nix-ld.enable = true; # hack to fix dynamically linked binaries for traditional distros
 
-    hyprland.enable = hmConfig.hyprland.enable;
+    hyprland.enable = hmModules.hyprland.enable;
 
     river-classic = {
-      enable = hmConfig.river.enable; # Enabled here for desktop-portal integration
+      enable = hmModules.river.enable; # Enabled here for desktop-portal integration
       package = null; # Let home-manager install package
       extraPackages = [];
     };
 
-    mango.enable = hmConfig.mango.enable;
+    mango.enable = hmModules.mango.enable;
   };
 
   environment = {

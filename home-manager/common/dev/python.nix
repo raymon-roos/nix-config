@@ -3,10 +3,11 @@
   config,
   lib,
   ...
-}: with lib; {
-  options.dev.python.enable = mkEnableOption "Python dev tools";
+}:
+with lib; {
+  options.common.dev.python.enable = mkEnableOption "Python dev tools";
 
-  config = mkIf config.dev.python.enable {
+  config = mkIf config.common.dev.python.enable {
     home.sessionVariables = {
       PYTHON_HISTORY = "${config.xdg.stateHome}/python/history";
       PYTHONPYCACHEPREFIX = "${config.xdg.cacheHome}/python";

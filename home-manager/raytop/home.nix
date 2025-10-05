@@ -38,14 +38,14 @@
         }
       ];
     };
+    dev = {
+      nix.enable = true;
+      nodejs.enable = true;
+      php.enable = true;
+      rust.enable = true;
+    };
+    HUazureDevops.enable = true;
   };
-  dev = {
-    nix.enable = true;
-    nodejs.enable = true;
-    php.enable = true;
-    rust.enable = true;
-  };
-  HUazureDevops.enable = true;
 
   home = {
     stateVersion = "23.11"; # don't change

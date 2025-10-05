@@ -3,10 +3,11 @@
   config,
   lib,
   ...
-}: with lib; {
-  options.dev.rust.enable = mkEnableOption "Rust dev tools";
+}:
+with lib; {
+  options.common.dev.rust.enable = mkEnableOption "Rust dev tools";
 
-  config = mkIf config.dev.rust.enable {
+  config = mkIf config.common.dev.rust.enable {
     home.sessionVariables = {
       CARGO_HOME = "${config.xdg.dataHome}/cargo";
       RUSTUP_HOME = "${config.xdg.dataHome}/rustup";

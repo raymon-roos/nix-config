@@ -71,6 +71,13 @@
     extraSpecialArgs = with inputs; {inherit nixpkgs inputs;};
   };
 
+  virtualisation.podman = lib.mkIf config.home-manager.users.ray.common.dev.podman.enable {
+    enable = true;
+    defaultNetwork.settings.dns_enabled = true; # Default bridge network
+    autoPrune.enable = true;
+    autoPrune.dates = "monthly";
+  };
+
   programs.zsh = {
     enable = true;
     shellInit = ''

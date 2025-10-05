@@ -5,9 +5,9 @@
   ...
 }:
 with lib; {
-  options.dev.nix.enable = mkEnableOption "Nix dev tools";
+  options.common.dev.nix.enable = mkEnableOption "Nix dev tools";
 
-  config = mkIf config.dev.nix.enable {
+  config = mkIf config.common.dev.nix.enable {
     # home.sessionVariables = { };
 
     home.packages = with pkgs; [
