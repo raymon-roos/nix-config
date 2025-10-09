@@ -17,7 +17,7 @@
       vimrc = ''[ "$PWD" = ${configHome}/nvim ] || pushd ${configHome}/nvim && vim init.lua'';
       calrc = ''[ "$PWD" = ${FILES_HOME}/calendar ] || pushd ${FILES_HOME}/calendar && vim calendar.rem'';
       rem = ''cal -m3 && remind -qgaad ${FILES_HOME}/calendar'';
-      remc = "remind -cu12b1@2,2,1wtt ${FILES_HOME}/calendar | less --raw";
+      remc = "remind -mcu12b1@2,2,1wtt ${FILES_HOME}/calendar | less --raw";
     }
     // lib.optionalAttrs pkgs.stdenv.isLinux {
       zettel = ''[ "$PWD" = ${NOTES_HOME} ] || pushd ${NOTES_HOME} && nvim index-202202270044.md'';

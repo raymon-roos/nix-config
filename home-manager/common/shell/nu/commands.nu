@@ -45,7 +45,7 @@ def --env rem [] {
 }
 
 def --env remc [] {
-    remind -cu12b1@2,2,1wtt $"($env.FILES_HOME)/calendar" | less --raw
+    remind -mcu12b1@2,2,1wtt $"($env.FILES_HOME)/calendar" | less --raw
 }
 
 def --env zettel [] {
