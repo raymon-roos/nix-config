@@ -15,7 +15,7 @@
 
       nixrc = ''[ "$PWD" = ${configHome}/nix ] || pushd ${configHome}/nix && nvim flake.nix'';
       vimrc = ''[ "$PWD" = ${configHome}/nvim ] || pushd ${configHome}/nvim && vim init.lua'';
-      calrc = ''[ "$PWD" = ${FILES_HOME}/calendar ] || pushd ${FILES_HOME}/calendar && vim calendar.rem'';
+      calrc = ''[ "$PWD" = ${FILES_HOME}/calendar ] || pushd ${FILES_HOME}/calendar && vim -o school.rem personal.rem'';
       rem = ''cal -m3 && remind -qgaad ${FILES_HOME}/calendar'';
       remc = "remind -mcu12b1@2,2,1wtt ${FILES_HOME}/calendar | less --raw";
     }

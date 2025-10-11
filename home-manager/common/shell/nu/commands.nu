@@ -36,7 +36,7 @@ def --env calrc [] {
     if ($env.PWD != $"($env.FILES_HOME)/calendar") {
         cd $"($env.FILES_HOME)/calendar"
     }
-    nvim calendar.rem
+    nvim -o school.rem personal.rem
 }
 
 def --env rem [] {
