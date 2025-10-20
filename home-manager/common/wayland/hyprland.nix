@@ -66,7 +66,6 @@ with lib; {
 
           animations = {
             enabled = true;
-            first_launch_animation = false;
             bezier = "myBezier, 0.05, 0.9, 0.1, 1.05";
             animation = [
               "windows, 1, 2, myBezier"
@@ -75,6 +74,7 @@ with lib; {
               "borderangle, 1, 2, default"
               "fade, 1, 2, default"
               "workspaces, 1, 2, default"
+              "monitorAdded, 1, 3, default"
             ];
           };
 
