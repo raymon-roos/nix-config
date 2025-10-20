@@ -27,13 +27,14 @@
     # dockerfile-language-server-nodejs
     # haskell-language-server
     # arduino-language-server
-
+    tinymist
     # Formatters
     stylelint # The stylelint CSS linter with automatic formatting/fix-on-save
     shfmt
     shellharden
     nodePackages.prettier # Opiniated everything-formatter
     # blade-formatter # not making a lot of frontend pages at the moment
+    typstyle
 
     # Linters
     stylelint # Css

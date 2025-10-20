@@ -31,6 +31,8 @@
         unzip
         neovim
         remind
+        pandoc
+        typst
       ]
       ++ lib.optionals pkgs.stdenv.isLinux [
         keychain
