@@ -14,7 +14,7 @@ with lib; {
 
   config = mkIf config.common.HUazureDevops.enable {
     programs = {
-      git.extraConfig = {
+      git.settings = {
         url."git@hu.ssh.dev.azure.com".insteadOf = ["git@ssh.dev.azure.com"];
       };
 

@@ -58,11 +58,7 @@
 
   services.mako.settings.border-size = 1;
 
-  programs = let
-    contact_info = import "${inputs.secrets}/contact_info.nix";
-  in {
-    git.userEmail = contact_info.personal.address;
-
+  programs = {
     librewolf.settings = lib.mkForce {
       "layout.css.devPixelsPerPx" = "1.0"; # shrink ui
     };

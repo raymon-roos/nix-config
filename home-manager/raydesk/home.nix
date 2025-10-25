@@ -78,11 +78,7 @@
     };
   };
 
-  programs = let
-    contact_info = import "${inputs.secrets}/contact_info.nix";
-  in {
-    git.userEmail = contact_info.personal.address;
-
+  programs = {
     mpv = {
       enable = true;
       config = {
