@@ -34,7 +34,6 @@
     dbus.implementation = "broker";
     thermald.enable = true;
     smartd.enable = true;
-    udev.packages = [pkgs.android-udev-rules];
 
     xserver = {
       autoRepeatDelay = 130;
