@@ -81,7 +81,7 @@ with lib; {
 
     environment = {
       systemPackages = with pkgs; [
-        wineWayland
+        wine-wayland
         gamescope
       ];
 
