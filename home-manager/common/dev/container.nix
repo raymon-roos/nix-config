@@ -8,7 +8,16 @@ with lib; {
   options.common.dev.docker.enable = mkEnableOption "docker & tools";
   options.common.dev.podman.enable = mkEnableOption "podman & tools - a daemonless/rootless docker alternative";
 
-  config.home =
+  config.home = let
+    aliases = cmd:
+      builtins.mapAttrs (alias: value: cmd + " " + value) {
+        dcu = "up -d";
+        dcd = "down";
+        dcp = "ps";
+        dct = "stats";
+        dcl = "logs";
+      };
+  in
     {}
     // mkIf config.common.dev.docker.enable {
       sessionVariables = {
@@ -20,17 +29,11 @@ with lib; {
         docker-compose
       ];
 
-      shellAliases = {
-        dcu = "docker-compose up -d";
-        dcd = "docker-compose down";
-      };
+      shellAliases = aliases "docker-compose";
     }
     // mkIf config.common.dev.podman.enable {
       packages = [pkgs.podman-compose];
 
-      shellAliases = {
-        dcu = "podman-compose up -d";
-        dcd = "podman-compose down";
-      };
+      shellAliases = aliases "podman-compose";
     };
 }
