@@ -12,6 +12,7 @@ with lib; {
       enable = true;
       goBin = ".xdg/local/bin";
       goPath = ".xdg/local/share/go";
+      telemetry.mode = "off";
     };
 
     home.packages = with pkgs; [
