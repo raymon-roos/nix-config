@@ -60,7 +60,10 @@
   users.users.ray = {
     shell = pkgs.nushell;
     isNormalUser = true;
-    extraGroups = ["wheel" "ray" "video"];
+    extraGroups =
+      ["wheel" "ray" "video"]
+      ++ lib.optionals config.home-manager.users.ray.common.dev.podman.enable ["podman"]
+      ++ lib.optionals config.home-manager.users.ray.common.dev.docker.enable ["docker"];
   };
 
   home-manager = {
@@ -73,6 +76,13 @@
   virtualisation.podman = lib.mkIf config.home-manager.users.ray.common.dev.podman.enable {
     enable = true;
     defaultNetwork.settings.dns_enabled = true; # Default bridge network
+    autoPrune.enable = true;
+    autoPrune.dates = "monthly";
+    # dockerSocket.enable = true;
+  };
+
+  virtualisation.docker = lib.mkIf config.home-manager.users.ray.common.dev.docker.enable {
+    enable = true;
     autoPrune.enable = true;
     autoPrune.dates = "monthly";
   };
