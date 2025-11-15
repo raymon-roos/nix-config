@@ -75,6 +75,7 @@ with lib; {
               "fade, 1, 2, default"
               "workspaces, 1, 2, default"
               "monitorAdded, 1, 3, default"
+              "specialWorkspace, 1, 2, default, slidefadevert"
             ];
           };
 
