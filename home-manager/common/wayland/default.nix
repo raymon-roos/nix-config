@@ -15,5 +15,6 @@ with lib; {
     ./hypridle.nix
     ./bemenu.nix
     ./hyprlock.nix
+    ./screenshots.nix
   ];
 }

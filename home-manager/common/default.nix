@@ -38,8 +38,6 @@
         keychain
         vesktop
         wl-clipboard-rs
-        slurp
-        grim
         simple-mtpfs
         inotify-tools
       ];
