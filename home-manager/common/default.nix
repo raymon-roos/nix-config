@@ -41,6 +41,7 @@
         slurp
         grim
         simple-mtpfs
+        inotify-tools
       ];
 
     file = lib.optionalAttrs pkgs.stdenv.isLinux {
