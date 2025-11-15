@@ -45,6 +45,7 @@ in {
           XDG_HOME = xdgHome;
           BIN_HOME = binHome;
           SRC_HOME = srcHome;
+          SCRATCH_HOME = "${home}/scratch";
           FILES_HOME = filesHome;
           PROJECTS_HOME = "${home}/projects";
           USB_HOME = "${filesHome}/usb";
