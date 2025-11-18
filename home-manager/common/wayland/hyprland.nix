@@ -149,6 +149,7 @@ with lib; {
 
               "$mainMod, return, exec, $terminal"
               "$mainMod, Z, exec, $browser"
+              "$mainMod SHIFT, Z, exec, $browser --private-window"
 
               "$mainMod, K, exec, $terminal --hold aerc"
 
