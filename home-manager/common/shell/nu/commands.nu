@@ -1,10 +1,8 @@
 # Register ssh key with a singleton instance of ssh-agent, using `keychain`
 def --env sshagent [keyfile: string = id_ed25519] {
   keychain --dir $"($env.XDG_STATE_HOME)/keychain" --eval $keyfile
-    | lines 
-    | where not ($it | is-empty)
-    | parse '{var}={val}; export {_};' 
-    | select var val 
+    | parse '{var}={val};{_}' 
+    | each {str trim --char '"'}
     | transpose -rd
     | load-env
 }
