@@ -6,7 +6,10 @@
 }:
 with lib; {
   config = mkIf config.common.wayland.enable {
-    home.packages = [pkgs.grimblast];
+    home = {
+      packages = [pkgs.grimblast];
+      sessionVariables.GRIMBLAST_EDITOR = "satty";
+    };
 
     programs.satty = {
       enable = true;
