@@ -15,6 +15,7 @@
     lua51Packages.lua
     lua51Packages.luarocks-nix # For installing nvim plugins
     universal-ctags # For my custom zettelkasten setup
+
     # LSPs
     ltex-ls-plus # Maintained fork of ltex-ls
     harper # Newer, faster Ltex-ls alternative. English only.
@@ -28,6 +29,8 @@
     # haskell-language-server
     # arduino-language-server
     tinymist
+    biome # lsp+linter+formatter for JS/TS & more
+
     # Formatters
     stylelint # The stylelint CSS linter with automatic formatting/fix-on-save
     shfmt
@@ -40,7 +43,7 @@
     stylelint # Css
     shellcheck-minimal
     selene # Latest Lua linter
-    # hadolint # Dockerfile
+    hadolint # Dockerfile
   ];
 
   programs.direnv = {
