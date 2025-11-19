@@ -46,7 +46,7 @@
       nodejs.enable = true;
       php.enable = true;
       rust.enable = true;
-      go.enable = false;
+      go.enable = true;
       python.enable = false;
       podman.enable = true;
     };
