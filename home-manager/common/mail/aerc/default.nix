@@ -54,12 +54,14 @@
         html = "${config.programs.aerc.package}/libexec/aerc/filters/html";
         nuCfg = config.programs.nushell;
         nu = c: ''nu --no-config-file --no-std-lib --no-history --stdin -c "${c}"'';
+        pdftotext = "${pkgs.poppler-utils}/bin/pdftotext";
       in
         {
           "text/plain" = "${wrap} -w 90 | ${colorize}";
           "text/html" = "${html} | ${colorize}";
           "text/calendar" = calendar;
           "message/delivery-status" = "colorize";
+          "application/pdf" = "${pdftotext} -nopgbrk -layout - -";
         }
         // lib.optionalAttrs nuCfg.enable {
           ".filename,~.*.csv" = nu "from csv --flexible | table -e -w 9999";
