@@ -59,7 +59,6 @@
           "text/plain" = "${wrap} -w 90 | ${colorize}";
           "text/html" = "${html} | ${colorize}";
           "text/calendar" = calendar;
-          "image/*" = "kitten icat";
           "message/delivery-status" = "colorize";
         }
         // lib.optionalAttrs nuCfg.enable {
