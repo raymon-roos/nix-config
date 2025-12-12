@@ -16,7 +16,7 @@
     cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
     graphics.enable = true;
-    graphics.extraPackages = [pkgs.vaapiIntel pkgs.intel-media-driver];
+    graphics.extraPackages = [pkgs.intel-vaapi-driver pkgs.intel-media-driver];
     enableRedistributableFirmware = true;
   };
 }
