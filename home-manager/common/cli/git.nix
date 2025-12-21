@@ -11,6 +11,7 @@ in {
       settings = {
         user.name = contact_info.full_name;
         user.email = contact_info.personal.address;
+        rerere.enabled = true;
         init = {
           defaultBranch = "main";
         };
