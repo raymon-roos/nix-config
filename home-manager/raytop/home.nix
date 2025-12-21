@@ -43,6 +43,8 @@
       nodejs.enable = true;
       php.enable = true;
       rust.enable = true;
+      go.enable = true;
+      podman.enable = true;
     };
     HUazureDevops.enable = true;
   };
