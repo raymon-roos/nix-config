@@ -21,7 +21,7 @@ with lib; {
     users.users.ray.extraGroups = ["input"];
 
     environment.systemPackages = [
-      (inputs.plover-flake.packages.${pkgs.system}.plover.with-plugins (
+      (inputs.plover-flake.packages.${stdenv.hostPlatform.system}.plover.with-plugins (
         ps:
           with ps; [
             # plover-console-ui

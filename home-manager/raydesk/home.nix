@@ -67,7 +67,7 @@
       hledger
       hledger-ui
       id3v2
-      inputs.lyrical.packages.${pkgs.system}.default
+      inputs.lyrical.packages.${stdenv.hostPlatform.system}.default
       puddletag
       vorbis-tools
       ytfzf
