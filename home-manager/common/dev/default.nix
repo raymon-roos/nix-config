@@ -24,8 +24,6 @@
     # tailwindcss-language-server
     emmet-language-server # HTML real time snippet "language"
     lua-language-server
-    # docker-compose-language-service
-    # dockerfile-language-server-nodejs
     # haskell-language-server
     # arduino-language-server
     tinymist
@@ -43,7 +41,6 @@
     stylelint # Css
     shellcheck-minimal
     selene # Latest Lua linter
-    hadolint # Dockerfile
   ];
 
   programs.direnv = {

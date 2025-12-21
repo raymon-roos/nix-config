@@ -10,13 +10,20 @@ with lib; {
 
   config.home = let
     aliases = cmd:
-      builtins.mapAttrs (alias: value: cmd + " " + value) {
+      builtins.mapAttrs (alias: value: "${cmd} ${value}") {
         dcu = "up -d";
         dcd = "down";
         dcp = "ps";
         dct = "stats";
         dcl = "logs";
       };
+
+    utils = with pkgs; [
+      dive
+      docker-language-server
+      dockerfile-language-server
+      hadolint
+    ];
   in
     {}
     // mkIf config.common.dev.docker.enable {
@@ -24,15 +31,12 @@ with lib; {
         DOCKER_CONFIG = "${config.xdg.configHome}/docker";
       };
 
-      packages = with pkgs; [
-        docker
-        docker-compose
-      ];
+      packages = utils ++ [pkgs.docker-compose];
 
       shellAliases = aliases "docker-compose";
     }
     // mkIf config.common.dev.podman.enable {
-      packages = [pkgs.podman-compose];
+      packages = utils ++ [pkgs.podman-compose];
 
       shellAliases = aliases "podman-compose";
     };
