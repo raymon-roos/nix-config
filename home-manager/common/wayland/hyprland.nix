@@ -155,9 +155,10 @@ with lib; {
 
               "$mainMod, semicolon, exec, bemenu-run"
               "$mainMod SHIFT, semicolon, exec, passmenu_custom"
+              "$mainMod CONTROL, M, exec, pwmenu --launcher custom --launcher-command bemenu -s 2"
+              "$mainMod, P, exec, directories_bemenu.sh"
 
               "$mainMod SHIFT, B, exec, $terminal --hold btm --default_widget_type=processes --expanded"
-              "$mainMod, P, exec, directories_bemenu.sh"
 
               # control monitors
               "$mainMod, G, split:grabroguewindows"

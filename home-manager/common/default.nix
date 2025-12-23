@@ -40,6 +40,7 @@
         wl-clipboard-rs
         simple-mtpfs
         inotify-tools
+        pwmenu
       ];
 
     file = lib.optionalAttrs pkgs.stdenv.isLinux {
