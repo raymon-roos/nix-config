@@ -91,6 +91,9 @@
         kb_options = "grp:shift_caps_toggle";
         sensitivity = lib.mkForce 0.8;
       };
+      bind = [
+        "$mainMod CONTROL, M, exec, pwmenu --launcher custom --launcher-command bemenu -s 2"
+      ];
       binde = [
         ", XF86MonBrightnessDown, exec, brightnessctl set '10%-' --min-value 10"
         ", XF86MonBrightnessUp, exec, brightnessctl set '10%+'"
