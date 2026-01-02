@@ -31,7 +31,6 @@
         unzip
         neovim
         remind
-        pandoc
         typst
       ]
       ++ lib.optionals pkgs.stdenv.isLinux [
@@ -148,6 +147,13 @@
       options = {
         recolor = true;
         selection-clipboard = "clipboard";
+      };
+    };
+
+    pandoc = {
+      enable = true;
+      defaults = {
+        pdf-engine = "typst";
       };
     };
   };
