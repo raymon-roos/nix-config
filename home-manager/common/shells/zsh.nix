@@ -38,11 +38,7 @@ in
       };
 
       home.file = {
-        ".zprofile" = lib.mkIf pkgs.stdenv.isLinux {
-          target = "${config.xdg.configHome}/zsh/.zprofile";
-          text = ''
-          '';
-        };
+        # ".zprofile".target = "${config.xdg.configHome}/zsh/.zprofile";
         "${config.programs.zsh.dotDir}/.zshrc".target = "${configHome}/zsh/.zshrc";
         "${config.programs.zsh.dotDir}/.zshenv".target = "${configHome}/zsh/.zshenv";
       };
