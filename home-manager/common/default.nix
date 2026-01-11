@@ -9,7 +9,7 @@
     ./dev
     ./directories.nix
     ./environment_variables.nix
-    ./shell
+    ./shells
     ./scripts
     ./wayland
     ./librewolf

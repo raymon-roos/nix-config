@@ -16,6 +16,7 @@
     wayland.enable = true;
     hyprland.enable = true;
     lockscreen.enable = true;
+    shell.nu.enable = true;
     email = {
       enable = true;
       accounts = [

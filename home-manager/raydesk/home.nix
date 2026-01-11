@@ -19,6 +19,7 @@
     river.enable = false;
     mango.enable = false;
     lockscreen.enable = false;
+    shell.nu.enable = true;
     email = {
       enable = true;
       accounts = [
