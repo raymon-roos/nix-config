@@ -16,7 +16,7 @@ in {
   ];
 
   plover.enable = false;
-  gaming.enable = false;
+  gaming.enable = true;
 
   nixpkgs = {
     hostPlatform = lib.mkDefault "x86_64-linux";
