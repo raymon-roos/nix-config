@@ -56,6 +56,7 @@
     packages = with pkgs; [
       acpi
       brightnessctl
+      bzmenu
     ];
   };
 
@@ -94,6 +95,7 @@
       };
       bind = [
         "$mainMod CONTROL, M, exec, pwmenu --launcher custom --launcher-command bemenu -s 2"
+        "$mainMod CONTROL, B, exec, bzmenu --launcher custom --launcher-command bemenu -s 2"
       ];
       binde = [
         ", XF86MonBrightnessDown, exec, brightnessctl set '10%-' --min-value 10"

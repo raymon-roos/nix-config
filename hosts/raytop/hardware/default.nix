@@ -15,6 +15,11 @@
   hardware = {
     cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
+    bluetooth = {
+      enable = true;
+      powerOnBoot = false;
+    };
+
     graphics.enable = true;
     graphics.extraPackages = [pkgs.intel-vaapi-driver pkgs.intel-media-driver];
     enableRedistributableFirmware = true;
