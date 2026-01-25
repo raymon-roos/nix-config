@@ -91,5 +91,18 @@
         style = "header,grid";
       };
     };
+
+    zk = {
+      enable = true;
+      settings = {
+        notebook.dir = config.xdg.userDirs.extraConfig.NOTES_HOME;
+        tools.shell = "bash";
+        "format.markdown" = {
+          link-format = "wiki";
+          hastags = false;
+          colon-tags = true;
+        };
+      };
+    };
   };
 }
