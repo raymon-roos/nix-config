@@ -38,6 +38,7 @@ in {
     delta = {
       enable = true;
       enableGitIntegration = true;
+      enableJujutsuIntegration = true;
       options = {
         features = "decorations";
         navigate = true;
@@ -57,6 +58,14 @@ in {
           file_find: Some(( code: Char('/'), modifiers: "")),
         )
       '';
+    };
+
+    jujutsu = {
+      enable = true;
+      settings = {
+        user.name = contact_info.full_name;
+        user.email = contact_info.personal.address;
+      };
     };
   };
 
