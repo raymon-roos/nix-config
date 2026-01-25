@@ -13,7 +13,7 @@ with lib; {
       telemetry.mode = "off";
       env = {
         GOPATH = ["${config.xdg.dataHome}/go"];
-        GOBIN = ".xdg/local/bin";
+        GOBIN = "${config.xdg.userDirs.extraConfig.BIN_HOME}";
       };
     };
 
