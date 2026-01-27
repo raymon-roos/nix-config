@@ -8,7 +8,10 @@
   inherit (lib.lists) optionals;
 in {
   home.packages =
-    optionals (
+    optionals config.programs.bemenu.enable [
+      (writeBashBin "directories_bemenu.sh" ./directories_bemenu.sh)
+    ]
+    ++ optionals (
       config.programs.password-store.enable && config.programs.bemenu.enable
     ) [
       (writeBashBin "passmenu_custom" ./passmenu_custom.sh)
