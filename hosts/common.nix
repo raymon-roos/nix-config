@@ -87,11 +87,21 @@
     autoPrune.dates = "monthly";
   };
 
-  programs.zsh = {
-    enable = true;
-    shellInit = ''
-      export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
-    '';
+  programs = let
+    shellModules = config.home-manager.users.ray.common.shell;
+  in {
+    bash = lib.mkIf shellModules.bash.enable {
+      enable = true;
+      interactiveShellInit = ''
+        [ -f "$XDG_CONFIG_HOME/bash/profile" ] && . "$XDG_CONFIG_HOME/bash/profile"
+      '';
+    };
+    zsh = lib.mkIf shellModules.zsh.enable {
+      enable = true;
+      shellInit = ''
+        export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
+      '';
+    };
   };
 
   fonts = {
