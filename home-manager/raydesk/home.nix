@@ -114,9 +114,9 @@
           "DP-1,preferred,auto-left,auto,transform, 1"
           "Unknown-1,disable"
         ];
-        windowrulev2 = [
-          "monitor 2,class:^(cmus)$"
-          "monitor 0,initialClass:^(vesktop)$"
+        windowrule = [
+          "match:class ^(cmus)$, monitor 2"
+          "match:class ^(vesktop)$, monitor 0"
         ];
       };
     };

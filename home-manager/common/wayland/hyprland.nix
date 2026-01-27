@@ -215,11 +215,11 @@ with lib; {
             "w[tv1],gapsout:0,rounding:0"
           ];
 
-          windowrulev2 = [
-            "prop opaque 1 noblur 1, class:(librewolf), title:(Picture-in-Picture)"
-            "prop opaque 1 noblur 1, class:(librewolf), title:(.*)(- YouTube)"
-            "prop opaque 1 noblur 1, class:(mpv)"
-            "suppressevent maximize, class:.*" # From example config, probably important
+          windowrule = [
+            "match:title (Picture-in-Picture), opaque on no_blur on"
+            "match:title (.*)(- YouTube), opaque on no_blur on, "
+            "match:class (mpv), opaque on no_blur on"
+            "match:class (pinentry-)(.*), stay_focused on"
           ];
         };
       };
