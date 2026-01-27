@@ -25,7 +25,6 @@
 in {
   home.shellAliases =
     {
-      "rm -rf /" = ''echo "ha lol no lets not"'';
       ls = lib.mkIf config.programs.eza.enable "eza";
       nrs = "nh os switch";
       vimdiff = "nvim -d";
