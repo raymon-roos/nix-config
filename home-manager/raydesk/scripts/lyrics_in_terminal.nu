@@ -38,6 +38,8 @@ print $"\n($name)\n\n"
 
 let file = $"($env.XDG_MUSIC_DIR)/lyrics/($name).txt"
 
+clear -k
+
 match ($file | path type) {
     'file' => (^cat $file),
     null => {
