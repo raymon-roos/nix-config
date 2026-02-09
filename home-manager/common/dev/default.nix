@@ -20,7 +20,6 @@
     ltex-ls-plus # Maintained fork of ltex-ls
     harper # Newer, faster Ltex-ls alternative. English only.
     vscode-langservers-extracted # CSS/HTML/ESlint/JSON/MarkDown
-    superhtml # Stricter HTML LSP
     # tailwindcss-language-server
     emmet-language-server # HTML real time snippet "language"
     lua-language-server
