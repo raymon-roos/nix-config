@@ -1,4 +1,5 @@
 {
+  config,
   pkgs,
   inputs,
   ...
@@ -65,6 +66,17 @@ in {
       settings = {
         user.name = contact_info.full_name;
         user.email = contact_info.personal.address;
+        ui.default-command = ["log"];
+      };
+    };
+
+    jjui = {
+      enable = true;
+      settings = {
+        keys.details = {
+          mode = ["right" "l"];
+          close = ["left" "h"];
+        };
       };
     };
   };

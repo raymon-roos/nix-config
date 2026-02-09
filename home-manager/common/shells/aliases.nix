@@ -60,6 +60,7 @@ in {
       gst = "git stash";
       gsl = "git stash list";
       gsp = "git stash pop";
+      uu = "jjui";
     }
     // lib.optionalAttrs pkgs.stdenv.isLinux {
       drag = "ripdrag -nxa";
