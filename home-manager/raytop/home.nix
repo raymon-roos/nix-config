@@ -64,7 +64,7 @@
 
   programs = {
     librewolf.settings = lib.mkForce {
-      "layout.css.devPixelsPerPx" = "1.0"; # shrink ui
+      "layout.css.devPixelsPerPx" = "0.75"; # shrink ui
     };
 
     bemenu = lib.mkIf config.common.wayland.enable {
