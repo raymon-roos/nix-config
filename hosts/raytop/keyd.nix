@@ -66,16 +66,16 @@
             # "--help "
             "m+k+r" = "macro(--mkur space)";
             "space+t+y" = "macro(``` S-enter ``` up)";
-            w = "lettermod(nav_edit, w, 35, 105)";
-            a = "lettermod(meta, a, 35, 140)";
-            s = "lettermod(alt, s, 35, 140)";
-            d = "lettermod(shift, d, 35, 105)";
-            f = "lettermod(control, f, 35, 130)";
-            j = "lettermod(control, j, 35, 130)";
-            k = "lettermod(shift, k, 35, 105)";
-            l = "lettermod(alt, l, 35, 140)";
-            ";" = "lettermod(meta, ;, 35, 140)";
-            space = "lettermod(symbol_number, space, 35, 120)";
+            w = "overloadi(w, overloadt(nav_edit, w, 105), 35)";
+            a = "overloadi(a, overloadt(meta, a, 160), 45)";
+            s = "overloadi(s, overloadt(alt, s, 180), 45)";
+            d = "overloadi(d, overloadt(shift, d, 105), 45)";
+            f = "overloadi(f, overloadt(control, f, 110), 45)";
+            j = "overloadi(j, overloadt(control, j, 110), 45)";
+            k = "overloadi(k, overloadt(shift, k, 105), 45)";
+            l = "overloadi(l, overloadt(alt, l, 180), 45)";
+            ";" = "overloadi(;, overloadt(meta, ;, 160), 35)";
+            space = "overloadi(space, overloadt(symbol_number, space, 110), 35)";
             "leftshift+rightshift" = "toggle(smart_caps)";
             "d+k+space" = "toggle(smart_num)";
           };
