@@ -96,6 +96,7 @@
     yt-dlp = {
       enable = true;
       settings = {
+        format-sort = "res:720";
         embed-thumbnail = true;
         embed-subs = true;
         embed-metadata = true;
