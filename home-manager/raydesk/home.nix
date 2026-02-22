@@ -72,6 +72,7 @@
       puddletag
       vorbis-tools
       ytfzf
+      newsraft
     ];
 
     shellAliases = {
