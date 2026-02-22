@@ -35,7 +35,6 @@
       ]
       ++ lib.optionals pkgs.stdenv.isLinux [
         keychain
-        vesktop
         wl-clipboard-rs
         simple-mtpfs
         inotify-tools
@@ -55,7 +54,7 @@
       lib.optionalAttrs config.programs.zathura.enable {
         "application/pdf" = ["org.pwmt.zathura.desktop"];
       }
-      // lib.optionalAttrs (lib.any (p: p == pkgs.vesktop) config.home.packages) {
+      // lib.optionalAttrs config.programs.vesktop.enable {
         "x-scheme-handler/discord" = ["vesktop.desktop"];
       };
   };
@@ -147,6 +146,46 @@
       options = {
         recolor = true;
         selection-clipboard = "clipboard";
+      };
+    };
+
+    vesktop = {
+      enable = true;
+      settings = {
+        discordBranch = "stable";
+        appBadge = false;
+        arRPC = false;
+        checkUpdates = false;
+        autoUpdate = false;
+        autoUpdateNotification = false;
+        customTitleBar = false;
+        disableMinSize = true;
+        tray = false;
+        minimizeToTray = false;
+        openLinksWithElectron = false;
+        enableSplashScreen = false;
+        staticTitle = true;
+        hardwareAcceleration = true;
+        spellCheckLanguages = ["en" "en-GB" "nl"];
+      };
+      vencord.useSystem = true;
+      vencord.settings = {
+        autoUpdate = false;
+        autoUpdateNotification = false;
+        notifyAboutUpdates = false;
+        useQuickCss = true;
+        disableMinSize = true;
+        plugins = {
+          Settings.enabled = true;
+          NoTrack.enabled = true;
+          WebContextMenus.enabled = true;
+          DisableDeepLinks.enabled = true;
+          WebScreenShareFixes.enabled = true;
+          CrashHandler.enabled = true;
+          WebKeybinds.enabled = true;
+          NoTypingAnimation.enabled = true;
+          VolumeBooster.enabled = true;
+        };
       };
     };
 
