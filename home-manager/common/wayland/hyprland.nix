@@ -220,6 +220,7 @@ with lib; {
             "match:title (.*)(- YouTube), opaque on no_blur on, "
             "match:class (mpv), opaque on no_blur on"
             "match:class (pinentry-)(.*), stay_focused on"
+            "match:class .*, suppress_event maximize"
           ];
         };
       };
