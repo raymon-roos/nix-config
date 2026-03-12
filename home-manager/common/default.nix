@@ -124,6 +124,11 @@
       keybindings = {
         "kitty_mod+t" = "new_tab_with_cwd";
         "kitty_mod+enter" = "launch --type=os-window --cwd=current";
+        "kitty_mod+y>f" = "kitten hints --type=path --program @";
+        "kitty_mod+y>e" = "kitten hints --type=hyperlink --program @";
+        "kitty_mod+y>u" = "kitten hints --type=url --program @";
+        "kitty_mod+y>w" = "kitten hints --type=word --program @";
+        "kitty_mod+y>l" = "kitten hints --type=line --program @";
       };
     };
 
