@@ -34,6 +34,7 @@ in {
         "mergetool \"vimdiff\"".cmd = "nvim -d $LOCAL $BASE $REMOTE $MERGED -c 'wincmd 3l | wincmd J'";
       };
       ignores = [".DS_Store"];
+      signing.format = null; # Post 26.05 default
     };
 
     delta = {

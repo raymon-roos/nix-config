@@ -211,9 +211,10 @@
   };
 
   xresources.path = lib.mkIf pkgs.stdenv.isLinux "${config.xdg.configHome}/X11/Xresources";
-  gtk.gtk2.configLocation = lib.mkIf pkgs.stdenv.isLinux "${config.xdg.configHome}/gtk-2.0/gtkrc";
 
   gtk = {
+    gtk2.configLocation = lib.mkIf pkgs.stdenv.isLinux "${config.xdg.configHome}/gtk-2.0/gtkrc";
     gtk3.bookmarks = map (x: "file://${config.home.homeDirectory}/${x}") ["scratch" "projects" "files"];
+    gtk4.theme = null; # Post 26.05 default
   };
 }
