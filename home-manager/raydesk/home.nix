@@ -83,12 +83,16 @@
     mpv = {
       enable = true;
       config = {
-        "hwdec" = "auto-safe";
-        "vo" = "gpu";
-        "profile" = "gpu-hq";
-        "gpu-context" = "wayland";
-        "alang" = "jpn,eng";
-        "slang" = "eng";
+        hwdec = "auto-safe";
+        vo = "gpu";
+        profile = "gpu-hq";
+        gpu-context = "wayland";
+        alang = "jpn,eng";
+        slang = "eng";
+        script-opts = [
+          "ytdl_hook-try_ytdl_first=yes"
+          "ytdl_hook-exclude='%.mkv$|%.mp[34]$'"
+        ];
       };
     };
 
