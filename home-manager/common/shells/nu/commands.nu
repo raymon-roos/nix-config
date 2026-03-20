@@ -47,8 +47,8 @@ def --env remc [] {
 }
 
 def --env zettel [] {
-    if ($env.PWD != $env.NOTES_HOME) {
-        cd $env.NOTES_HOME
+    if ($env.PWD != $env.XDG_NOTES_HOME_DIR) {
+        cd $env.XDG_NOTES_HOME_DIR
     }
     nvim index-202202270044.md
 }

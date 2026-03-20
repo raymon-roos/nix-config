@@ -33,6 +33,7 @@ in {
       userDirs = {
         enable = true;
         createDirectories = true;
+        setSessionVariables = true;
         music = "${filesHome}/music";
         videos = "${filesHome}/videos";
         desktop = "${filesHome}/desktop";
