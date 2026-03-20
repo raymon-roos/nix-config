@@ -6,7 +6,6 @@
   ...
 }:
 with lib; let
-  # Requires only a single `windowManager` to be enabled, as their ordering is non-deterministic
   loginShellPkg = osConfig.users.users.ray.shell;
 
   profileExtra = ''
