@@ -2,6 +2,7 @@
   config,
   pkgs,
   lib,
+  inputs,
   ...
 }:
 with lib; {
@@ -12,11 +13,13 @@ with lib; {
     ) {
       wayland.windowManager.hyprland = {
         enable = true;
+        package = null;
+        portalPackage = null;
         xwayland.enable = true;
         systemd.variables = ["--all"];
 
         plugins = [
-          pkgs.hyprlandPlugins.hyprsplit
+          inputs.hyprsplit.packages.${pkgs.stdenv.hostPlatform.system}.hyprsplit
         ];
 
         settings = with builtins; {

@@ -89,7 +89,7 @@
     '';
 
     portal = lib.mkIf config.programs.yazi.enable {
-      enable = true;
+      enable = lib.mkForce true;
       extraPortals = [pkgs.xdg-desktop-portal-termfilechooser];
       config = {
         common = {
