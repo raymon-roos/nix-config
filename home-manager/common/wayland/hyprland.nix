@@ -128,10 +128,11 @@ with lib; {
           bind =
             [
               # general/tiling
-              "$mainMod CONTROL SHIFT, Q, exit,"
+              "$mainMod CONTROL SHIFT, Q, exit"
               "$mainMod, V, togglefloating,"
-              "$mainMod SHIFT, P, pseudo,"
-              "$mainMod, T, togglesplit,"
+              "$mainMod SHIFT, P, pseudo"
+              "$mainMod, T, layoutmsg, togglesplit"
+              "$mainMod, SPACE, layoutmsg, movetoroot active unstable"
               "$mainMod, H, fullscreen, 1"
               ", F11, fullscreen, 0"
 
