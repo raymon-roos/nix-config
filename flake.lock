@@ -291,11 +291,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1771683283,
-        "narHash": "sha256-WxAEkAbo8dP7qiyPM6VN4ZGAxfuBVlNBNPkrqkrXVEc=",
+        "lastModified": 1774007980,
+        "narHash": "sha256-FOnZjElEI8pqqCvB6K/1JRHTE8o4rer8driivTpq2uo=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "c6ed3eab64d23520bcbb858aa53fe2b533725d4a",
+        "rev": "9670de2921812bc4e0452f6e3efd8c859696c183",
         "type": "github"
       },
       "original": {
@@ -759,11 +759,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1771369470,
-        "narHash": "sha256-0NBlEBKkN3lufyvFegY4TYv5mCNHbi5OmBDrzihbBMQ=",
+        "lastModified": 1773821835,
+        "narHash": "sha256-TJ3lSQtW0E2JrznGVm8hOQGVpXjJyXY2guAxku2O9A4=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "0182a361324364ae3f436a63005877674cf45efb",
+        "rev": "b40629efe5d6ec48dd1efba650c797ddbd39ace0",
         "type": "github"
       },
       "original": {
@@ -801,11 +801,11 @@
     "plover": {
       "flake": false,
       "locked": {
-        "lastModified": 1770872141,
-        "narHash": "sha256-i9c4BI+C3N0/En75jPwYL+rcezHWjAVhjL5lIEDVdjI=",
+        "lastModified": 1773903173,
+        "narHash": "sha256-jw24MtSf7eViPWRZlLjuVerwfvySWQT+LJklJUjpK+w=",
         "owner": "openstenoproject",
         "repo": "plover",
-        "rev": "a2664f2f8ee7623b3241c0762801b4133ee540c3",
+        "rev": "2e2b8eab5e4991048dedbc995200e81d36bfea0d",
         "type": "github"
       },
       "original": {
@@ -826,11 +826,11 @@
         "rtf-tokenize": "rtf-tokenize"
       },
       "locked": {
-        "lastModified": 1771477711,
-        "narHash": "sha256-AibC8RHTb16ir1oyGwYY1XGSwjzU5IinCaPWZRn76ow=",
+        "lastModified": 1773982840,
+        "narHash": "sha256-giK/EIPK4M9KcXdFcRy9SSNDbniZSdwb83SXao3El4E=",
         "owner": "dnaq",
         "repo": "plover-flake",
-        "rev": "7d229c75bc9b8278152e53a0fa806a43668b4051",
+        "rev": "8732ef5c7e40ffbb902b16c93882bfd667f8df4e",
         "type": "github"
       },
       "original": {
@@ -858,11 +858,11 @@
     "plover2cat": {
       "flake": false,
       "locked": {
-        "lastModified": 1771107964,
-        "narHash": "sha256-85dp1muWY3HEbZovwu+MmVjWCGfeodhwfno/WVj5gnM=",
+        "lastModified": 1771716484,
+        "narHash": "sha256-38gmfJbjC1n+lrHI2FZmhRvSyOZ2j72VicpteU1H4Hw=",
         "owner": "greenwyrt",
         "repo": "plover2CAT",
-        "rev": "e4c589a5c339ce0f6e2793053dcffa3f20efaccb",
+        "rev": "795eee5750e0841f77054f54487a3cdfe74c92d9",
         "type": "github"
       },
       "original": {
@@ -874,11 +874,11 @@
     "plover_plugins_registry": {
       "flake": false,
       "locked": {
-        "lastModified": 1770827307,
-        "narHash": "sha256-DAW9pKxDHJUbgYAVzYu+aeeC0CdX6GaX7RMo6xweBI0=",
+        "lastModified": 1773557032,
+        "narHash": "sha256-NN3TIIhHATwQZfZGn7iAuHa+Z/qPpuS0WFjOfMY5ox8=",
         "owner": "openstenoproject",
         "repo": "plover_plugins_registry",
-        "rev": "626c91a685497a7f51719015caa438b98b0cd5ea",
+        "rev": "c3341656c3baea191dd386cd2aa46478b2b4477b",
         "type": "github"
       },
       "original": {
@@ -1000,11 +1000,11 @@
         "tinted-zed": "tinted-zed"
       },
       "locked": {
-        "lastModified": 1771626923,
-        "narHash": "sha256-Mn6oeKrY+Sw6kH0jK+hp5QQH4MTcqwBRQL/ScZDNcz8=",
+        "lastModified": 1773792048,
+        "narHash": "sha256-Oy9PCLG3vtflFBWcJd8c/EB3h5RU7ABAIDWn6JrGf6o=",
         "owner": "danth",
         "repo": "stylix",
-        "rev": "b09847414b50c65788936199918272377f70fb91",
+        "rev": "3f2f9d307fe58c6abe2a16eb9b62c42d53ef5ee1",
         "type": "github"
       },
       "original": {
@@ -1131,11 +1131,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1771230567,
-        "narHash": "sha256-KkjlOIxCzxoxi28louRYstaRlppHwM+t4tVPYzzhKOs=",
+        "lastModified": 1773431278,
+        "narHash": "sha256-a/XTJdlfRvQD+X4vWL4A6k2el3+WpVY6EZQVbmaGKqM=",
         "owner": "NotAShelf",
         "repo": "watt",
-        "rev": "95749b5d508583562da74f83fb51a1506c9f96fe",
+        "rev": "3e6786e855104c33e6b74176549d80f43416f682",
         "type": "github"
       },
       "original": {
