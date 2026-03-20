@@ -10,8 +10,8 @@
     secrets.url = "git+ssh://git@github.com/raymon-roos/nix-secrets";
     secrets.flake = false;
 
-    hyprland.url = "github:hyprwm/Hyprland/v0.54.1";
-    hyprsplit.url = "github:shezdy/hyprsplit/v0.54.1";
+    hyprland.url = "github:hyprwm/Hyprland/v0.54.3";
+    hyprsplit.url = "github:shezdy/hyprsplit/v0.54.3";
     hyprsplit.inputs.hyprland.follows = "hyprland";
 
     stylix.url = "github:danth/stylix";
