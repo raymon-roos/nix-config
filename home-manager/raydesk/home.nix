@@ -71,7 +71,6 @@
       inputs.lyrical.packages.${stdenv.hostPlatform.system}.default
       puddletag
       vorbis-tools
-      ytfzf
       newsraft
     ];
 
@@ -140,20 +139,4 @@
       };
     };
   };
-
-  xdg.configFile."ytfzf/conf.sh".text = let
-    key_value = lib.generators.toKeyValue {listsAsDuplicateKeys = true;};
-    cli_shell = lib.cli.toGNUCommandLineShell {optionValueSeparator = "=";};
-  in
-    key_value {
-      ytdl_opts = ''"${cli_shell (
-          {format-sort = "res:720,codec,br,ext";}
-          // config.programs.yt-dlp.settings
-        )}"'';
-
-      url_handler_opts = ''"${cli_shell {
-          speed = 1.70;
-          slang = "en";
-        }}"'';
-    };
 }
