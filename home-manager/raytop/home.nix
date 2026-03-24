@@ -105,6 +105,10 @@
         ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_SINK@ toggle"
         ", XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_SOURCE@ toggle"
       ];
+      gesture = [
+        "3, horizontal, workspace"
+        "3, up, fullscreen, maximize"
+      ];
     };
   };
 }
