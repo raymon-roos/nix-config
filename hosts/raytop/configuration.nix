@@ -22,9 +22,9 @@
       ];
   };
 
-  systemd.sleep.extraConfig = ''
-    SuspendState=s2idle
-  '';
+  systemd.sleep.settings.Sleep = {
+    SuspendState = "s2idle";
+  };
 
   i18n.defaultLocale = "en_US.UTF-8";
   console = {
