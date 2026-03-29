@@ -5,5 +5,6 @@
     ./starship.nix
     ./yazi.nix
     ./rtorrent
+    ./newsraft
   ];
 }

@@ -1,0 +1,73 @@
+@software releases
+https://www.nushell.sh/rss.xml < item-rule title NOT LIKE 'This week in Nushell%'
+https://github.com/hyprwm/Hyprland/releases.atom "Hyprland"
+https://github.com/neovim/neovim/releases.atom "Neovim"
+
+@blogs
+https://drewdevault.com/blog/index.xml
+https://ln.ht/_/feed/~ddevault "Drew Devault's linkhut"
+https://castel.dev/rss.xml
+https://erikarow.land/combined.xml "Erika Rowland"
+https://hypr.land/rss.xml
+https://shen.hong.io/rss/
+https://matthewbauer.us/blog/feed.xml
+https://torrentfreak.com/feed/
+
+@podcasts < item-limit 10
+https://decoding-the-gurus.captivate.fm/rssfeed
+https://rss.libsyn.com/shows/604590/destinations/5288840.xml "Sean Carroll's Mindscape" < item-rule title NOT LIKE 'AMA%'
+
+@github < item-limit 25
+https://github.com/NotAShelf.atom "NotAShelf" < item-rule title LIKE 'NotAShelf contributed%' OR title LIKE 'NotAShelf starred%'
+https://github.com/soywod.atom "Clément DOUIN | Pimalaya" < item-rule title NOT LIKE '%labeled an issue%'
+
+@youtube < item-limit 25
+# https://blog.amen6.com/blog/2025/01/no-shorts-please-hidden-youtube-rss-feed-urls/
+https://www.youtube.com/feeds/videos.xml?playlist_id=UULFJhay24LTpO1s4bIZxuIqKw "ACCU Conference"
+https://www.youtube.com/feeds/videos.xml?playlist_id=UULF2ME6cK8jWnRSWyUdV0yWJw "Alexander Avila"
+https://www.youtube.com/feeds/videos.xml?playlist_id=UULFshObcm-nLhbu8MY50EZ5Ng "Benn Jordan"
+https://www.youtube.com/feeds/videos.xml?playlist_id=UULFdp4_l1vPmpN-gDbUwhaRUQ "Branch Education"
+https://www.youtube.com/feeds/videos.xml?playlist_id=UULFld68syR8Wi-GY_n4CaoJGA "Brodie Robertson"
+https://www.youtube.com/feeds/videos.xml?playlist_id=UULF8wKWWarusivFpIcUx9ilOw "By Default"
+https://www.youtube.com/feeds/videos.xml?playlist_id=UULFuVLG9pThvBABcYCm7pkNkA "Climate Town"
+https://www.youtube.com/feeds/videos.xml?playlist_id=UULFNvsIonJdJ5E4EXMa65VYpA "ContraPoints"
+https://www.youtube.com/feeds/videos.xml?playlist_id=UULFv6G61MipNKwpi7707l42EQ "DJ Peach Cobbler"
+https://www.youtube.com/feeds/videos.xml?playlist_id=UULFJ2SN2gN1dmrFBEo6TWIzOw "Debunk the Funk with Dr. Wilson"
+https://www.youtube.com/feeds/videos.xml?playlist_id=UULFTgFfqo5o8yIdvMbwOFZyYA "Decoding the Gurus"
+https://www.youtube.com/feeds/videos.xml?playlist_id=UULFyNtlmLB73-7gtlBz00XOQQ "Folding Ideas"
+https://www.youtube.com/feeds/videos.xml?playlist_id=UULFs_tLP3AiwYKwdUHpltJPuA "GOTO Conferences"
+https://www.youtube.com/feeds/videos.xml?playlist_id=UULFhIs72whgZI9w6d6FhwGGHA "Gamer's Nexus"
+https://www.youtube.com/feeds/videos.xml?playlist_id=UULF9ZNrGdT2aAdrNbX78lbNlQ "GopherCon UK"
+https://www.youtube.com/feeds/videos.xml?playlist_id=UULFI8iQa1hv7oV_Z8D35vVuSg "Hardware Unboxed"
+https://www.youtube.com/feeds/videos.xml?playlist_id=UULFIvp_SM7UrKuFgR3W77fWcg "HorrorBabble"
+https://www.youtube.com/feeds/videos.xml?playlist_id=UULFZFipeZtQM5CKUjx6grh54g "Isaac Arthur"
+https://www.youtube.com/feeds/videos.xml?playlist_id=UULFYGmktKAAJWnqGGaH9DcTqw "Laracon AU"
+https://www.youtube.com/feeds/videos.xml?playlist_id=UULF8381r3eNzmJnd6dNO7z3vA "Laracon Online"
+https://www.youtube.com/feeds/videos.xml?playlist_id=UULFpa-Zb0ZcQjTCPP1Dx_1M8Q "LegalEagle"
+https://www.youtube.com/feeds/videos.xml?playlist_id=UULFSHZKyawb77ixDdsGog4iWA "Lex Fridman"
+https://www.youtube.com/feeds/videos.xml?playlist_id=UULF6biysICWOJ-C3P4Tyeggzg "Low Level"
+https://www.youtube.com/feeds/videos.xml?playlist_id=UULFgRBRE1DUP2w7HTH9j_L4OQ "Medlife Crisis"
+https://www.youtube.com/feeds/videos.xml?playlist_id=UULFFaYLR_1aryjfB7hLrKGRaQ "Michael Sugrue"
+https://www.youtube.com/feeds/videos.xml?playlist_id=UULFaTznQhurW5AaiYPbhEA-KA "Molly Rocket"
+https://www.youtube.com/feeds/videos.xml?playlist_id=UULFTdw38Cw6jcm0atBPA39a0Q "NDC Conferences"
+https://www.youtube.com/feeds/videos.xml?playlist_id=UULFPK_UHtbfcWABCi0F0GPG6w "NeovimConf"
+https://www.youtube.com/feeds/videos.xml?playlist_id=UULFjqkNrQ8F3OhKSCfCgagWLg "NixCon"
+https://www.youtube.com/feeds/videos.xml?playlist_id=UULFUMwY9iS8oMyWDYIe6_RmoA "No Boilerplate"
+https://www.youtube.com/feeds/videos.xml?playlist_id=UULF0intLFzLaudFG-xAvUEO-A "Not Just Bikes"
+https://www.youtube.com/feeds/videos.xml?playlist_id=UULFvWWf-LYjaujE50iYai8WgQ "Paul's Hardware"
+https://www.youtube.com/feeds/videos.xml?playlist_id=UULF2PA-AKmVpU6NKCGtZq_rKQ "Philosophy Tube"
+https://www.youtube.com/feeds/videos.xml?playlist_id=UULF0jzvznwtnsdXYIp415oC9g "Rust Foundation"
+https://www.youtube.com/feeds/videos.xml?playlist_id=UULFBdn2g49kLEyjlssavwbxdQ "RustLab Conference"
+https://www.youtube.com/feeds/videos.xml?playlist_id=UULF9sLTozvg2SJme_W1in5s9Q "RustNL"
+https://www.youtube.com/feeds/videos.xml?playlist_id=UULFJ6o36XL0CpYb6U5dNBiXHQ "Shaun"
+https://www.youtube.com/feeds/videos.xml?playlist_id=UULFvlj0IzjSnNoduQF0l3VGng "Some More News"
+https://www.youtube.com/feeds/videos.xml?playlist_id=UULF_QIfHvN9auy2CoOdSfMWDw "Strange Loop Conference"
+https://www.youtube.com/feeds/videos.xml?playlist_id=UULFd3dNckv1Za2coSaHGHl5aA "TJ DeVries"
+https://www.youtube.com/feeds/videos.xml?playlist_id=UULFy0tKL1T7wFoYcxCe0xjN6Q "Technology Connections"
+https://www.youtube.com/feeds/videos.xml?playlist_id=UULF-mTIBh__DzAqW495JHXy5A "The Coding Gopher"
+https://www.youtube.com/feeds/videos.xml?playlist_id=UULFYyWrpcVU2PZlLohFaYOZUw "The Exploring Series"
+https://www.youtube.com/feeds/videos.xml?playlist_id=UULFYeF244yNGuFefuFKqxIAXw "The Royal Institution"
+https://www.youtube.com/feeds/videos.xml?playlist_id=UULF_zBdZ0_H_jn41FDRG7q4Tw "Vimjoyer"
+https://www.youtube.com/feeds/videos.xml?playlist_id=UULFSQgY0_nX6OOf2WYLcJ3OBQ "WINDMILLS"
+https://www.youtube.com/feeds/videos.xml?playlist_id=UULFMN0a7GHQnC6H74SmCGSmdw "You Suck at Programming"
+https://www.youtube.com/feeds/videos.xml?playlist_id=UULFlt01z1wHHT7c5lKcU8pxRQ "hbomberguy"

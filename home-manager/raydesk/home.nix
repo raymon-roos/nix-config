@@ -14,6 +14,7 @@
     librewolf.enable = true;
     librewolf-advanced.enable = true;
     rtorrent.enable = true;
+    newsraft.enable = true;
     wayland.enable = true;
     hyprland.enable = true;
     river.enable = false;
@@ -71,7 +72,6 @@
       inputs.lyrical.packages.${stdenv.hostPlatform.system}.default
       puddletag
       vorbis-tools
-      newsraft
     ];
 
     shellAliases = {
