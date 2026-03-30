@@ -31,19 +31,19 @@ def --env vimrc [] {
 }
 
 def --env calrc [] {
-    if ($env.PWD != $"($env.FILES_HOME)/calendar") {
-        cd $"($env.FILES_HOME)/calendar"
+    if ($env.PWD != $"($env.XDG_FILES_HOME_DIR)/calendar") {
+        cd $"($env.XDG_FILES_HOME_DIR)/calendar"
     }
     nvim -o school.rem personal.rem
 }
 
 def --env rem [] {
     ^cal -m3
-    remind -qgaad $"($env.FILES_HOME)/calendar"
+    remind -qgaad $"($env.XDG_FILES_HOME_DIR)/calendar"
 }
 
 def --env remc [] {
-    remind -mcu12b1@2,2,1wtt $"($env.FILES_HOME)/calendar" | less --raw
+    remind -mcu12b1@2,2,1wtt $"($env.XDG_FILES_HOME_DIR)/calendar" | less --raw
 }
 
 def --env zettel [] {
