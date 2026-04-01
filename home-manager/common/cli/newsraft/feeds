@@ -1,17 +1,58 @@
 @software releases
-https://www.nushell.sh/rss.xml < item-rule title NOT LIKE 'This week in Nushell%'
 https://github.com/hyprwm/Hyprland/releases.atom "Hyprland"
 https://github.com/neovim/neovim/releases.atom "Neovim"
+https://www.nushell.sh/rss.xml < item-rule title NOT LIKE 'This week in Nushell%'
 
 @blogs
-https://drewdevault.com/blog/index.xml
-https://ln.ht/_/feed/~ddevault "Drew Devault's linkhut"
+https://andrewkelley.me/rss.xml
+https://blog.flaport.net/index.xml
+https://blog.increasinglyadequate.com/atom.xml
+https://blog.rahix.de/atom.xml                                                
+https://blog.sergeantbiggs.net/posts/index.xml                                
+https://brianmckenna.org/blog/feed
 https://castel.dev/rss.xml
+https://chris-martin.org/rss.xml
+https://drewdevault.com/blog/index.xml
+https://elijahpotter.dev/rss.xml
 https://erikarow.land/combined.xml "Erika Rowland"
+https://fasterthanli.me/index.xml
+https://gamersnexus.net/rss.xml
+https://gideonwolfe.com/index.xml
+https://graydon2.dreamwidth.org/data/rss
 https://hypr.land/rss.xml
-https://shen.hong.io/rss/
+https://issendai.livejournal.com/data/rss
+https://jacobwsmith.xyz/feed.xml
+https://jcs.org/rss
+https://jmtd.net/log/index.rss
+https://justine.smithies.me.uk/atom.xml
+https://karl-Voit.at/feeds/lazyblorg-all.atom_1.0.links-and-content.xml             
+https://lambdaland.org/index.xml                                              
+https://ln.ht/_/feed/~ddevault "Drew Devault's linkhut"
+https://lyz-code.github.io/blue-book/daily.xml
 https://matthewbauer.us/blog/feed.xml
+https://mattwidmann.net/index.xml
+https://notashelf.dev/rss.xml                                                 
+https://peterries.net/blog/index.xml
+https://ploum.net/atom_en.xml
+https://ratfactor.com/atom.xml
+https://sachachua.com/blog/feed/
+https://shen.hong.io/rss/
+https://simondobson.org/rss.xml
+https://solar.lowtechmagazine.com/index.xml
+https://spacepanda.se/rss.xml
+https://tavianator.com/feed.atom
 https://torrentfreak.com/feed/
+https://tweakers.net/feeds/nieuws.xml
+https://twitchard.github.io/atom.xml
+https://vhs.codeberg.page/index.xml
+https://www.bencode.net/index.xml
+https://www.edwinwenink.xyz/index.xml
+https://www.jvt.me/kind/articles/feed.xml
+https://www.paritybit.ca/feed.xml
+https://www.preposterousuniverse.com/feed/                                    
+https://www.rousette.org.uk/index.xml
+https://www.tedinski.com/feed.xml
+https://www.terminally-incoherent.com/blog/feed/index.html
 
 @podcasts < item-limit 10
 https://decoding-the-gurus.captivate.fm/rssfeed
