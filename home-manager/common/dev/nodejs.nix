@@ -16,7 +16,6 @@ with lib; {
 
     home.packages = with pkgs; [
       nodejs_22
-      # nodePackages.npm
       typescript-language-server
     ];
 

@@ -32,7 +32,7 @@
     stylelint # The stylelint CSS linter with automatic formatting/fix-on-save
     shfmt
     shellharden
-    nodePackages.prettier # Opiniated everything-formatter
+    prettier # Opiniated everything-formatter
     # blade-formatter # not making a lot of frontend pages at the moment
     typstyle
 
