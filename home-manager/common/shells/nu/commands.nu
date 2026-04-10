@@ -15,12 +15,15 @@ def --env nixrc [] {
 }
 
 def nhs [query: string] {
-    nh search $query -j 
-        | from json 
-        | get results
-        | sk --format {$in.package_attr_name} --preview {table -e}
-        | default []
-        | get -o package_attr_name
+   nh search $query -j
+      | from json
+      | get results
+      | rename --block {|c| str replace 'package_' '' }
+      | (sk --preview-window 'right:60%' -0
+        -f { $in.attr_name }
+        -p { select attr_name pversion homepage programs description | table -e})
+      | default []
+      | select -o attr_name pversion homepage
 }
 
 def --env vimrc [] {
