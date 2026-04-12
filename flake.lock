@@ -650,11 +650,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1760129009,
-        "narHash": "sha256-U1G3/ZvFZCkrMmo2W5EQMtYNjcWwZFT+MENVWOqbRAA=",
+        "lastModified": 1776448417,
+        "narHash": "sha256-oxPsvNOsb9KSyympDYN1FA7XdA3iDCMN/dDCEMykbTg=",
         "owner": "raymon-roos",
         "repo": "lyrical-rs",
-        "rev": "41846b3efa547cf75b86bbbe0880f4010aa6e67a",
+        "rev": "9b388ed2296bf0029db740e0e3e85a8e8a84db8f",
         "type": "github"
       },
       "original": {

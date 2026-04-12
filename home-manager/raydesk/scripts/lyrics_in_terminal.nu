@@ -41,11 +41,11 @@ let file = $"($env.XDG_MUSIC_DIR)/lyrics/($name).txt"
 clear -k
 
 match ($file | path type) {
-    'file' => (^cat $file),
+    'file' => (open $file | pretty_print),
     null => {
         print "No local lyric file found - downloading from genius.com\n"
 
-        fetch_lyrics $artist --title $tags.title | tee { save $file } | print
+        fetch_lyrics $artist --title $tags.title | tee { save $file } | pretty_print
     }
     _ => {
         print -e 'ERROR: Lyric file path already occupied. Stopping'
@@ -85,4 +85,8 @@ def --wrapped fetch_lyrics [artist?: string ...rest] {
         return (^lyrical-rs --artist $artist ...$rest)
     }
     ^lyrical-rs ...$rest
+}
+
+def pretty_print [] {
+  lines | fill -w (term size | get columns) -a 'c' -c ' ' | to text | print
 }
