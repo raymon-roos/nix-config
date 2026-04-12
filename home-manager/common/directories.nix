@@ -35,6 +35,7 @@ in {
         createDirectories = true;
         setSessionVariables = true;
         music = "${filesHome}/music";
+        projects = "${home}/projects";
         videos = "${filesHome}/videos";
         desktop = "${filesHome}/desktop";
         pictures = "${filesHome}/pictures";
@@ -48,7 +49,6 @@ in {
           SRC_HOME = srcHome;
           SCRATCH_HOME = "${home}/scratch";
           FILES_HOME = filesHome;
-          PROJECTS_HOME = "${home}/projects";
           USB_HOME = "${filesHome}/usb";
           PHONE_HOME = "${filesHome}/phone";
           NOTES_HOME = "${filesHome}/zettelkasten";

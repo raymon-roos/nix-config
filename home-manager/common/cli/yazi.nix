@@ -53,15 +53,15 @@
           on = ["g" "f"];
         }
         {
-          run = "cd ${userDirs.extraConfig.PROJECTS_HOME}";
+          run = "cd ${userDirs.projects}";
           on = ["g" "P"];
         }
         {
-          run = "cd ${userDirs.extraConfig.PROJECTS_HOME}/personal";
+          run = "cd ${userDirs.projects}/personal";
           on = ["g" "p"];
         }
         {
-          run = "cd ${userDirs.extraConfig.PROJECTS_HOME}/open-ict";
+          run = "cd ${userDirs.projects}/open-ict";
           on = ["g" "o"];
         }
         {
