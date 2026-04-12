@@ -15,6 +15,7 @@
     lua51Packages.lua
     lua51Packages.luarocks-nix # For installing nvim plugins
     universal-ctags # For my custom zettelkasten setup
+    tree-sitter
 
     # LSPs
     ltex-ls-plus # Maintained fork of ltex-ls
