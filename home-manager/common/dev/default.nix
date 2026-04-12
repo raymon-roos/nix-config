@@ -41,6 +41,7 @@
     stylelint # Css
     shellcheck-minimal
     selene # Latest Lua linter
+    nu-lint
   ];
 
   programs.direnv = {
