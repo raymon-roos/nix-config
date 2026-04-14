@@ -13,7 +13,14 @@ with lib; {
       nushell = {
         enable = true;
 
-        plugins = with pkgs.nushellPlugins; [formats gstat polars query skim];
+        plugins = with pkgs.nushellPlugins; [
+          formats
+          gstat
+          polars
+          query
+          skim
+          (pkgs.callPackage ./nu_plugin_audio.nix {})
+        ];
 
         settings = {
           show_banner = false;
