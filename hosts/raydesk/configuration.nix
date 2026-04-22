@@ -5,7 +5,7 @@
   inputs,
   ...
 }: let
-  hmModules = config.home-manager.users.ray.common;
+  hmConfig = config.home-manager.users.ray;
 in {
   imports = [
     ../common.nix
@@ -40,18 +40,18 @@ in {
     nix-ld.enable = true; # hack to fix dynamically linked binaries for traditional distros
 
     hyprland = {
-      enable = hmModules.hyprland.enable;
-      package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-      portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+      enable = hmConfig.common.hyprland.enable;
+      package = hmConfig.wayland.windowManager.hyprland.package;
+      portalPackage = hmConfig.wayland.windowManager.hyprland.portalPackage;
     };
 
     river-classic = {
-      enable = hmModules.river.enable; # Enabled here for desktop-portal integration
+      enable = hmConfig.common.river.enable; # Enabled here for desktop-portal integration
       package = null; # Let home-manager install package
       extraPackages = [];
     };
 
-    mango.enable = hmModules.mango.enable;
+    mango.enable = hmConfig.common.mango.enable;
   };
 
   environment = {
