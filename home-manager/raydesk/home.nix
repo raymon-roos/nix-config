@@ -103,6 +103,8 @@
         embed-thumbnail = true;
         embed-subs = true;
         embed-metadata = true;
+        write-subs = true;
+        write-auto-subs = true;
         sub-langs = "en.*";
         sponsorblock-remove = "sponsor,selfpromo,interaction,intro,outro,preview,music_offtopic";
       };
