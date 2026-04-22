@@ -2,6 +2,7 @@
 https://github.com/hyprwm/Hyprland/releases.atom "Hyprland"
 https://github.com/neovim/neovim/releases.atom "Neovim"
 https://www.nushell.sh/rss.xml < item-rule title NOT LIKE 'This week in Nushell%'
+https://fosstodon.org/@pimalaya.rss "pimalaya feed"
 
 @blogs
 https://andrewkelley.me/rss.xml
@@ -53,6 +54,7 @@ https://www.preposterousuniverse.com/feed/
 https://www.rousette.org.uk/index.xml
 https://www.tedinski.com/feed.xml
 https://www.terminally-incoherent.com/blog/feed/index.html
+https://www.lttlabs.com/articles/rss.xml
 
 @podcasts < item-limit 10
 https://decoding-the-gurus.captivate.fm/rssfeed
