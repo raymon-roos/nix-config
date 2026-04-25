@@ -81,8 +81,8 @@ with lib; {
           circle_layout = "tile,vertical_tile,scroller,dwindle";
 
           scroller_structs = 0;
-          scroller_default_proportion = 0.95;
-          scroller_focus_center = 1;
+          scroller_default_proportion = 0.5;
+          scroller_proportion_preset = "0.5,0.97";
 
           new_is_master = 0;
           default_mfact = 0.5;
@@ -94,7 +94,7 @@ with lib; {
           smartgaps = 1;
 
           view_current_to_back = 0;
-          focus_cross_monitor = 1;
+          focus_cross_monitor = 0;
           exchange_cross_monitor = 1;
           # scratchpad_cross_monitor = 1;
 
@@ -110,7 +110,6 @@ with lib; {
           no_radius_when_single = 1;
           blur = 1;
           blur_optimized = 1;
-          # shadows = 1; # Some error in the logs about shadows + corner radius?
           shadows_size = 7;
           shadow_only_floating = 0;
 
@@ -171,6 +170,17 @@ with lib; {
                     int => (mmsg dispatch focusid $"client,($in.id)")
                   }
               '';
+
+            # Two separate layout cycles with one keybind, one for landscape mode, one for portrait mode
+            cycle_layouts = pkgs.writers.writeNu "cycle_layouts" ''
+              let monitor = mmsg get all-monitors | from json | get monitors | where active == true | first | select layout_symbol width height
+              {T: scroller S: fair F: tile , VT: vertical_scroller VS: vertical_fair VF: vertical_tile}
+                | get -o $monitor.layout_symbol
+                | default (if ($monitor.width > $monitor.height) { 'tile' } else { 'vertical_tile' })
+                | let new_layout
+                | mmsg dispatch $'setlayout,($in)'
+                | tee {notify-send --app-name mangowm $new_layout}
+            '';
           in
             [
               "${mod}+CTRL+SHIFT,Q,quit"
@@ -230,7 +240,13 @@ with lib; {
               "${mod}+CTRL,i,exchange_client,up"
               "${mod}+CTRL,o,exchange_client,right"
 
-              "${mod},t,switch_layout"
+              "${mod}+CTRL+SHIFT,n,scroller_stack,left"
+              "${mod}+CTRL+SHIFT,e,scroller_stack,down"
+              "${mod}+CTRL+SHIFT,i,scroller_stack,up"
+              "${mod}+CTRL+SHIFT,o,scroller_stack,right"
+
+              "${mod}+CTRL,t,switch_proportion_preset"
+              "${mod},t,spawn,${cycle_layouts}"
               "${mod}+SHIFT,n,setmfact,-0.03"
               "${mod}+SHIFT,o,setmfact,+0.03"
 
