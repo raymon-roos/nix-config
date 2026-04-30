@@ -15,7 +15,7 @@ def --env nixrc [] {
 }
 
 def nhs [query: string] {
-   nh search $query -j
+   nh search $query -j -l 999
       | from json
       | get results
       | rename --block {|c| str replace 'package_' '' }
