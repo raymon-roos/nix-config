@@ -25,10 +25,19 @@ with lib; {
         settings = {
           show_banner = false;
           use_kitty_protocol = config.programs.kitty.enable;
-          history.file_format = "sqlite";
-          history.max_size = 500000;
+
+          history = {
+            file_format = "sqlite";
+            max_size = 1000000;
+            path = "${config.xdg.stateHome}/nushell/history.sqlite3";
+          };
+
           table.mode = "compact";
           table.index_mode = "auto";
+
+          # datetime_format.normal = "%F %T";
+          # datetime_format.table = "%F %T";
+
           keybindings = lib.mkIf config.programs.fzf.enable [
             # Adapted from https://github.com/junegunn/fzf/issues/4122
             {
@@ -69,7 +78,7 @@ with lib; {
               event = {
                 send = "executehostcommand";
                 cmd = ''
-                  let result = open ~/.xdg/config/nushell/history.sqlite3
+                  let result = open $nu.history-path
                     | query db "select command_line from history group by command_line order by start_timestamp desc;"
                     | get command_line
                     | str join (char -i 0)
