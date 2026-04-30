@@ -29,33 +29,54 @@ with lib; {
         ];
       };
 
-      wayland.windowManager.mango.enable = true;
+      xdg = {
+        configFile."xdg-desktop-portal-wlr/config".text = ''
+          [screencast]
+          chooser_cmd=bemenu
+          chooser_type=dmenu
+        '';
 
-      xdg.configFile."mango/config.conf".text = let
-        inherit (config.lib.stylix) colors;
+        portal = {
+          extraPortals = with pkgs; [xdg-desktop-portal-wlr xdg-desktop-portal-termfilechooser];
+          config = {
+            mango = {
+              default = ["wlr"];
+              "org.freedesktop.impl.portal.FileChooser" = "termfilechooser";
+            };
+          };
+        };
+      };
 
-        key_value = generators.toKeyValue {listsAsDuplicateKeys = true;};
+      wayland.windowManager.mango = {
+        enable = true;
+        systemd = {
+          enable = true;
+          variables = ["--all"];
+        };
+        settings = let
+          inherit (config.lib.stylix) colors;
 
-        # shift as a modifier effects the bound key
-        shift_nums = ["exclam" "at" "numbersign" "dollar" "percent" "asciicircum" "ampersand" "asterisk" "parenleft"];
-        gen_tags = range 1 9 |> map toString;
+          # shift as a modifier effects the bound key
+          shift_nums = ["parenright" "exclam" "at" "numbersign" "code:13" "percent" "asciicircum" "ampersand" "asterisk" "code:18"];
+          gen_tags = range 0 9 |> map toString;
 
-        tag_keybind = mod: action: tag: "${mod},${tag},${action},${tag}";
+          tag_keybind = mod: action: tag: "${mod},${tag},${action},${tag}";
 
-        browser = "librewolf";
-        terminal = "kitty";
-        menu = "bemenu";
-        mod = "SUPER";
-      in
-        key_value {
+          browser = "librewolf";
+          terminal = "kitty";
+          menu = "bemenu";
+          mod = "SUPER";
+        in {
           monitorrule =
             [
-              # "name,mfact,nmaster,layout,transform,scale,x,y,width,height,refreshrate"
-              ["DP-1" "0.50" "1" "vertical_dwindle" "1" "1" "0" "0" "1920" "1080" "60"]
-              ["HDMI-A-1" "0.50" "1" "dwindle" "0" "1" "1080" "0" "1920" "1080" "60"]
-              ["DVI-I-1" "0.50" "1" "vertical_dwindle" "3" "1" "3000" "0" "1920" "1080" "60"]
+              ["DP-1" "1" "1" "0" "0" "1920" "1080" "60"]
+              ["HDMI-A-1" "0" "1" "1080" "0" "1920" "1080" "60"]
+              ["DVI-I-1" "3" "1" "3000" "0" "1920" "1080" "60"]
             ]
-            |> map (builtins.concatStringsSep ",");
+            |> map (monitor:
+              zipLists ["name" "rr" "scale" "x" "y" "width" "height" "refresh"] monitor
+              |> map (m: "${m.fst}:${m.snd}")
+              |> builtins.concatStringsSep ",");
 
           env = [
             "QT_QPA_PLATFORM,wayland;xcb"
@@ -66,6 +87,12 @@ with lib; {
             "mako &"
             "wbg -s ${config.stylix.image} &"
           ];
+
+          circle_layout = "tile,vertical_tile,scroller,dwindle";
+
+          scroller_structs = 0;
+          scroller_default_proportion = 0.95;
+          scroller_focus_center = 1;
 
           new_is_master = 0;
           default_mfact = 0.5;
@@ -86,15 +113,18 @@ with lib; {
           # xkb_rules_layout = "us,us";
           # xkb_rules_variant = "colemak_dh,intl";
           # xkb_rules_options = "grp:shift_caps_toggle";
-          accel_profile = 0;
+          mouse_accel_profile = 0;
           trackpad_natural_scrolling = 1;
 
-          border_radius = 0;
+          border_radius = 7;
           no_radius_when_single = 1;
-          blur = 0;
-          shadows = 0; # Some error in the logs about shadows + corner radius?
+          blur = 1;
+          blur_optimized = 1;
+          # shadows = 1; # Some error in the logs about shadows + corner radius?
           shadows_size = 7;
           shadow_only_floating = 0;
+
+          allow_tearing = 2;
 
           gappih = 2;
           gappiv = 2;
@@ -104,7 +134,7 @@ with lib; {
           rootcolor = "0x${colors.base03}ff";
           bordercolor = "0x${colors.base03}ff";
           focuscolor = "0x${colors.base0D}ff";
-          maxmizescreencolor = "0x89aa61ff";
+          maximizescreencolor = "0x89aa61ff";
           urgentcolor = "0xad401fff";
           scratchpadcolor = "0x516c93ff";
           globalcolor = "0xb153a7ff";
@@ -112,6 +142,7 @@ with lib; {
           cursor_theme = config.stylix.cursor.name;
           cursor_size = config.stylix.cursor.size;
           cursor_hide_timeout = 1;
+          warpcursor = 1;
 
           unfocused_opacity = 0.97;
 
@@ -121,22 +152,21 @@ with lib; {
           animation_fade_in = 1;
           fadein_begin_opacity = 0.5;
           fadeout_begin_opacity = 0.7;
-          animation_duration_move = 180;
-          animation_duration_open = 300;
-          animation_duration_tag = 280;
-          animation_duration_close = 300;
+          animation_duration_move = 220;
+          animation_duration_open = 290;
+          animation_duration_tag = 300;
+          animation_duration_close = 290;
 
           axisbind = [
-            "SUPER,UP,viewtoleft_have_client"
-            "SUPER,Down,viewtoright_have_client"
+            "${mod},UP,viewtoleft_have_client"
+            "${mod},Down,viewtoright_have_client"
           ];
 
           bind =
             [
               "${mod}+CTRL+SHIFT,Q,quit"
               "${mod},v,togglefloating"
-              "${mod}+CTLR,v,toggleoverlay"
-              "${mod},H,togglemaxmizescreen"
+              "${mod},H,togglemaximizescreen"
               "NONE,F11,togglefullscreen"
               "${mod},r,reload_config"
 
@@ -156,17 +186,17 @@ with lib; {
 
               "${mod},return,spawn,${terminal}"
               "${mod},Z,spawn,${browser}"
+              "${mod}+SHIFT,Z,spawn,${browser} --private-window"
 
               "${mod}, K, spawn, ${terminal} --hold aerc"
 
               "${mod},semicolon,spawn,bemenu-run"
               "${mod}+SHIFT,colon,spawn,passmenu_custom"
-
-              "${mod}+SHIFT,B,spawn,${terminal} --hold btm --default_widget_type=processes --expanded"
               "${mod},P,spawn,directories_bemenu.sh"
 
+              "${mod}+SHIFT,B,spawn,${terminal} --hold btm --default_widget_type=processes --expanded"
+
               "${mod}+SHIFT,D,killclient,"
-              "${mod},Return,spawn,${terminal}"
 
               # control windows
               "${mod},Tab,toggleoverview"
@@ -182,8 +212,6 @@ with lib; {
 
               "${mod},t,switch_layout"
               "${mod}+SHIFT,n,setmfact,-0.03"
-              "${mod}+SHIFT,e,setsmfact,+0.03"
-              "${mod}+SHIFT,i,setsmfact,-0.03"
               "${mod}+SHIFT,o,setmfact,+0.03"
 
               # control monitors
@@ -192,6 +220,10 @@ with lib; {
               "${mod}+CTRL,comma,tagmon,left"
               "${mod}+CTRL,period,tagmon,right"
             ]
+            ++ (
+              lib.lists.optional config.common.lockscreen.enable
+              "$mainMod CONTROL, Q, exec, pidof hyprlock || hyprlock"
+            )
             # control tags
             ++ (concatMap (tag: [
                 (tag_keybind "${mod}" "view" tag)
@@ -199,12 +231,9 @@ with lib; {
               ])
               gen_tags)
             ++ (zipLists gen_tags shift_nums
-              |> concatMap ({
-                fst,
-                snd,
-              }: [
-                "${mod}+SHIFT,${snd},tag,${fst}"
-                "${mod}+CTRL+SHIFT,${snd},toggletag,${fst}"
+              |> concatMap (x: [
+                "${mod}+SHIFT,${x.snd},tagsilent,${x.fst}"
+                "${mod}+CTRL+SHIFT,${x.snd},toggletag,${x.fst}"
               ]));
 
           mousebind = [
@@ -212,28 +241,35 @@ with lib; {
             "${mod},btn_left,moveresize,curmove"
             "${mod},btn_right,moveresize,curresize"
             "${mod}+SHIFT,btn_right,killclient"
-            "NONE,btn_left,toggleoverview,-1"
-            "NONE,btn_right,killclient,0"
           ];
+
+          tagrule =
+            concatMap (tag: [
+              "id:${tag},monitor_name:DP-1,layout_name:vertical_tile"
+              "id:${tag},monitor_name:DVI-I-1,layout_name:vertical_tile"
+            ])
+            gen_tags;
 
           windowrule = [
             "isopensilent:1,monitor:DP-1,appid:cmus"
             "isopensilent:1,monitor:DVI-I-1,appid:vesktop"
-            "animation_type_open:fade,appid:pinentry"
-            "animation_type_close:none,appid:pinentry"
+            "animation_type_open:zoom,appid:org.gnupg.pinentry-qt"
+            "animation_type_close:zoom,appid:org.gnupg.pinentry-qt"
+            "noblur:1,appid:slurp"
+            "isfloating:1,title:satty"
+          ];
+
+          layerrule = [
+            "animation_type_open:slide,animation_type_close:slide,layer_name:menu"
           ];
         };
+      };
 
       xdg.configFile."mango/autostart_sh" = {
         text = ''
           #!/usr/bin/env bash
-          dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=wlroots
-          xdg-desktop-portal-wlr &
-
+          dbus-update-activation-environment --systemd --all
         '';
-        # wlr-randr \
-        #   --output DP-1 --preferred --left-of HDMI-A-1 --transform 90 \
-        #   --output DVI-I-1 --preferred --right-of HDMI-A-1 --transform 270 &
         executable = true;
       };
     };

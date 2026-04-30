@@ -15,14 +15,16 @@ with lib; let
     fi
   '';
 in {
-  programs = mkIf config.common.wayland.enable {
-    bash.profileExtra = mkIf (loginShellPkg == pkgs.bash) profileExtra;
-    zsh.profileExtra = mkIf (loginShellPkg == pkgs.zsh) profileExtra;
-    nushell.extraLogin = mkIf (loginShellPkg == pkgs.nushell) ''
-      # autostart compositor of choice when logging in on tty1
-      if ($env.WAYLAND_DISPLAY? | is-empty) and (tty) == "/dev/tty1" and (pgrep -i hyprland | is-empty) {
-          systemd-cat -t compositor start-hyprland
-      }
-    '';
-  };
+  ### TODO: Decide on which WM to daily drive and UWSM / display manager / login manager. Untill then, just launch compositor manually
+  #
+  # programs = mkIf config.common.wayland.enable {
+  #   bash.profileExtra = mkIf (loginShellPkg == pkgs.bash) profileExtra;
+  #   zsh.profileExtra = mkIf (loginShellPkg == pkgs.zsh) profileExtra;
+  #   nushell.extraLogin = mkIf (loginShellPkg == pkgs.nushell) ''
+  #     # autostart compositor of choice when logging in on tty1
+  #     if ($env.WAYLAND_DISPLAY? | is-empty) and (tty) == "/dev/tty1" and (pgrep -i hyprland | is-empty) {
+  #         systemd-cat -t compositor start-hyprland
+  #     }
+  #   '';
+  # };
 }

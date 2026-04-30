@@ -18,7 +18,7 @@
     wayland.enable = true;
     hyprland.enable = true;
     river.enable = false;
-    mango.enable = false;
+    mango.enable = true;
     lockscreen.enable = false;
     shell.nu.enable = true;
     email = {
