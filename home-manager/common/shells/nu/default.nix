@@ -38,57 +38,72 @@ with lib; {
           # datetime_format.normal = "%F %T";
           # datetime_format.table = "%F %T";
 
-          keybindings = lib.mkIf config.programs.fzf.enable [
-            # Adapted from https://github.com/junegunn/fzf/issues/4122
-            {
-              name = "fzf_cd";
-              modifier = "alt";
-              keycode = "char_c";
-              mode = ["emacs" "vi_insert" "vi_normal"];
-              event = {
-                send = "executehostcommand";
-                cmd = ''
-                  let result = nu --no-config-file --no-std-lib  -c $env.FZF_ALT_C_COMMAND | fzf
-                  cd $result
-                '';
-              };
-            }
-            {
-              name = "fzf_complete";
-              modifier = "control";
-              keycode = "char_t";
-              mode = ["emacs" "vi_insert"];
-              event = {
-                send = "executehostcommand";
-                cmd = ''
-                  let result = nu --no-config-file --no-std-lib -c $env.FZF_CTRL_T_COMMAND
+          keybindings =
+            [
+              {
+                name = "copy_commandline";
+                modifier = "alt_shift";
+                keycode = "char_c";
+                mode = ["emacs" "vi_insert" "vi_normal"];
+                event = {
+                  send = "executehostcommand";
+                  cmd = ''
+                    commandline | wl-clip -selection clipboard
+                  '';
+                };
+              }
+            ]
+            ++ (lib.optionals config.programs.fzf.enable [
+              # Adapted from https://github.com/junegunn/fzf/issues/4122
+              {
+                name = "fzf_cd";
+                modifier = "alt";
+                keycode = "char_c";
+                mode = ["emacs" "vi_insert" "vi_normal"];
+                event = {
+                  send = "executehostcommand";
+                  cmd = ''
+                    let result = nu --no-config-file --no-std-lib  -c $env.FZF_ALT_C_COMMAND | fzf
+                    cd $result
+                  '';
+                };
+              }
+              {
+                name = "fzf_complete";
+                modifier = "control";
+                keycode = "char_t";
+                mode = ["emacs" "vi_insert"];
+                event = {
+                  send = "executehostcommand";
+                  cmd = ''
+                    let result = nu --no-config-file --no-std-lib -c $env.FZF_CTRL_T_COMMAND
                     | fzf --scheme=path --multi
                     | lines
                     | str join ' '
-                  commandline edit --append $result
-                  commandline set-cursor --end
-                '';
-              };
-            }
-            {
-              name = "fzf_history";
-              modifier = "control";
-              keycode = "char_r";
-              mode = ["emacs" "vi_insert" "vi_normal"];
-              event = {
-                send = "executehostcommand";
-                cmd = ''
-                  let result = open $nu.history-path
+                    commandline edit --append $result
+                    commandline set-cursor --end
+                  '';
+                };
+              }
+              {
+                name = "fzf_history";
+                modifier = "control";
+                keycode = "char_r";
+                mode = ["emacs" "vi_insert" "vi_normal"];
+                event = {
+                  send = "executehostcommand";
+                  cmd = ''
+                    let result = open $nu.history-path
                     | query db "select command_line from history group by command_line order by start_timestamp desc;"
                     | get command_line
                     | str join (char -i 0)
                     | fzf --read0 --query=(commandline) --scheme=history --bind="ctrl-r:toggle-sort" --preview-window="up:4:wrap" --preview='"{r}" | nu-highlight'
-                  commandline edit --replace $result
-                  commandline set-cursor --end
-                '';
-              };
-            }
-          ];
+                    commandline edit --replace $result
+                    commandline set-cursor --end
+                  '';
+                };
+              }
+            ]);
         };
 
         shellAliases = {
