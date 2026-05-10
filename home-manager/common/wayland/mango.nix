@@ -35,16 +35,6 @@ with lib; {
           chooser_cmd=bemenu
           chooser_type=dmenu
         '';
-
-        portal = {
-          extraPortals = with pkgs; [xdg-desktop-portal-wlr xdg-desktop-portal-termfilechooser];
-          config = {
-            mango = {
-              default = ["wlr"];
-              "org.freedesktop.impl.portal.FileChooser" = "termfilechooser";
-            };
-          };
-        };
       };
 
       wayland.windowManager.mango = {
