@@ -32,8 +32,11 @@ with lib; {
             path = "${config.xdg.stateHome}/nushell/history.sqlite3";
           };
 
-          table.mode = "compact";
-          table.index_mode = "auto";
+          table = {
+            mode = "compact";
+            index_mode = "auto";
+            header_on_separator = true;
+          };
 
           # datetime_format.normal = "%F %T";
           # datetime_format.table = "%F %T";
