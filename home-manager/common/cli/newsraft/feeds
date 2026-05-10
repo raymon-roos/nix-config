@@ -1,8 +1,17 @@
 @software releases
+https://github.com/mangowm/mango/releases.atom "mangowm"
 https://github.com/hyprwm/Hyprland/releases.atom "Hyprland"
 https://github.com/neovim/neovim/releases.atom "Neovim"
-https://www.nushell.sh/rss.xml < item-rule title NOT LIKE 'This week in Nushell%'
 https://fosstodon.org/@pimalaya.rss "pimalaya feed"
+https://github.com/jj-vcs/jj/releases.atom "Jujutsu VCS"
+https://nixos.org/blog/announcements-rss.xml
+
+@programming languages
+https://www.nushell.sh/rss.xml < item-rule title NOT LIKE 'This week in Nushell%'
+http://www.php.net/feed.atom < item-rule title NOT LIKE '%available for testing%'
+https://blog.rust-lang.org/feed.xml
+https://gleam.run/feed.xml
+https://go.dev/blog/feed.atom
 
 @blogs
 https://andrewkelley.me/rss.xml
@@ -26,7 +35,9 @@ https://jacobwsmith.xyz/feed.xml
 https://jcs.org/rss
 https://jmtd.net/log/index.rss
 https://justine.smithies.me.uk/atom.xml
+https://jvns.ca/atom.xml
 https://karl-Voit.at/feeds/lazyblorg-all.atom_1.0.links-and-content.xml             
+https://kokada.dev/rss/
 https://lambdaland.org/index.xml                                              
 https://ln.ht/_/feed/~ddevault "Drew Devault's linkhut"
 https://lyz-code.github.io/blue-book/daily.xml
