@@ -2,6 +2,7 @@
   config,
   pkgs,
   lib,
+  inputs,
   ...
 }: {
   imports = [
@@ -33,6 +34,7 @@
         neovim
         remind
         typst
+        inputs.concord.packages.${pkgs.stdenv.hostPlatform.system}.concord
       ]
       ++ lib.optionals pkgs.stdenv.isLinux [
         keychain
@@ -49,15 +51,32 @@
     };
   };
 
-  xdg.mimeApps = {
-    enable = true;
-    defaultApplications =
-      lib.optionalAttrs config.programs.zathura.enable {
-        "application/pdf" = ["org.pwmt.zathura.desktop"];
-      }
-      // lib.optionalAttrs config.programs.vesktop.enable {
-        "x-scheme-handler/discord" = ["vesktop.desktop"];
+  xdg = {
+    configFile."concord/config.toml".source = (pkgs.formats.toml {}).generate "config.toml" {
+      display = {
+        disable_image_preview = true;
+        show_avatars = false;
+        show_images = false;
+        image_preview_quality = "balanced";
+        show_custom_emoji = true;
       };
+      notifications.desktop_notifications = true;
+      voice = {
+        self_mute = false;
+        self_deaf = false;
+        allow_microphone_transmit = true;
+        microphone_sensitivity = -30;
+        microphone_volume = 100;
+        voice_output_volume = 120;
+      };
+    };
+
+    mimeApps = {
+      enable = true;
+      defaultApplications = lib.optionalAttrs config.programs.zathura.enable {
+        "application/pdf" = ["org.pwmt.zathura.desktop"];
+      };
+    };
   };
 
   services = {
@@ -159,7 +178,7 @@
     };
 
     vesktop = {
-      enable = true;
+      enable = false;
       settings = {
         discordBranch = "stable";
         appBadge = false;

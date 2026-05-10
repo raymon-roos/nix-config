@@ -189,6 +189,7 @@ with lib; {
               "${mod}+SHIFT,Z,spawn,${browser} --private-window"
 
               "${mod}, K, spawn, ${terminal} --hold aerc"
+              "${mod}+SHIFT,K,spawn,${terminal} --app-id discord_client concord"
 
               "${mod},semicolon,spawn,bemenu-run"
               "${mod}+SHIFT,colon,spawn,passmenu_custom"
@@ -252,7 +253,7 @@ with lib; {
 
           windowrule = [
             "isopensilent:1,monitor:DP-1,appid:cmus"
-            "isopensilent:1,monitor:DVI-I-1,appid:vesktop"
+            "monitor:DVI-I-1,appid:discord_client"
             "animation_type_open:zoom,appid:org.gnupg.pinentry-qt"
             "animation_type_close:zoom,appid:org.gnupg.pinentry-qt"
             "noblur:1,appid:slurp"
