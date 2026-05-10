@@ -223,7 +223,7 @@ with lib; {
             ]
             ++ (
               lib.lists.optional config.common.lockscreen.enable
-              "$mainMod CONTROL, Q, exec, pidof hyprlock || hyprlock"
+              "${mod}+CTRL,Q,spawn_shell,pidof hyprlock || hyprlock"
             )
             # control tags
             ++ (concatMap (tag: [
