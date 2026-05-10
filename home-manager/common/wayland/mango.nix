@@ -152,7 +152,26 @@ with lib; {
             "${mod},Down,viewtoright_have_client"
           ];
 
-          bind =
+          bind = let
+            # Creates separate derivations for each invocation, which is not ideal.
+            # But there is no easy way in nushell to eval a string, and
+            # closures can only be passed within modules, not scripts
+            spawn_or_focus = {
+              appID,
+              cmd,
+            }:
+              pkgs.writers.writeNu "spawn_or_focus" ''
+                mmsg get all-clients
+                  | from json
+                  | get clients
+                  | where appid == "${appID}"
+                  | first
+                  | match ($in | get id? | describe) {
+                    nothing => (exec ${cmd})
+                    int => (mmsg dispatch focusid $"client,($in.id)")
+                  }
+              '';
+          in
             [
               "${mod}+CTRL+SHIFT,Q,quit"
               "${mod},v,togglefloating"
@@ -165,27 +184,37 @@ with lib; {
               "${mod}+CTRL,minus,restore_minimized"
 
               # application specific
-              "${mod}+CTRL,C,spawn_shell,cmus-remote -u || ${terminal} --class cmus cmus"
+              "${mod},return,spawn,${terminal}"
+              "${mod},Z,spawn,${browser}"
+              "${mod}+SHIFT,Z,spawn,${browser} --private-window"
+
+              "${mod}+CTRL,C,spawn_shell,cmus-remote -u || ${terminal} --app-id cmus cmus"
               "${mod}+CTRL,B,spawn,cmus-remote -n"
               "${mod}+CTRL,Z,spawn,cmus-remote -r"
-              "${mod}+CTRL,M,spawn_shell,cmus-remote -C 'toggle aaa_mode'"
+              "${mod}+CTRL,M,spawn,cmus-remote -C 'toggle aaa_mode'"
+
+              "${mod},K,spawn,${spawn_or_focus {
+                appID = "email_client";
+                cmd = "${terminal} --app-id email_client --hold aerc";
+              }}"
+
+              "${mod}+SHIFT,K,spawn,${spawn_or_focus {
+                appID = "discord_client";
+                cmd = "${terminal} --app-id discord_client concord";
+              }}"
+
+              "${mod}+SHIFT,B,spawn,${spawn_or_focus {
+                appID = "process_manager_client";
+                cmd = "${terminal} --app-id process_manager_client --hold btm --default_widget_type=processes --expanded";
+              }}"
 
               "${mod},L,spawn,makoctl dismiss"
               "${mod},U,spawn,makoctl menu -- ${menu} --accept-single"
               "${mod},Y,spawn,makoctl restore"
 
-              "${mod},return,spawn,${terminal}"
-              "${mod},Z,spawn,${browser}"
-              "${mod}+SHIFT,Z,spawn,${browser} --private-window"
-
-              "${mod}, K, spawn, ${terminal} --hold aerc"
-              "${mod}+SHIFT,K,spawn,${terminal} --app-id discord_client concord"
-
               "${mod},semicolon,spawn,bemenu-run"
               "${mod}+SHIFT,colon,spawn,passmenu_custom"
               "${mod},P,spawn,directories_bemenu.sh"
-
-              "${mod}+SHIFT,B,spawn,${terminal} --hold btm --default_widget_type=processes --expanded"
 
               "${mod}+SHIFT,D,killclient,"
 
