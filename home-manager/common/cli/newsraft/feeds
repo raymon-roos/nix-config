@@ -42,7 +42,7 @@ https://jvns.ca/atom.xml
 https://jyn.dev/atom.xml
 https://karl-Voit.at/feeds/lazyblorg-all.atom_1.0.links-and-content.xml             
 https://kokada.dev/rss/
-https://lambdaland.org/index.xml                                              
+https://lambdaland.org/rss.xml
 https://ln.ht/_/feed/~ddevault "Drew Devault's linkhut"
 https://lyz-code.github.io/blue-book/daily.xml
 https://matthewbauer.us/blog/feed.xml
@@ -77,7 +77,6 @@ https://rss.libsyn.com/shows/604590/destinations/5288840.xml "Sean Carroll's Min
 
 @github < item-limit 25
 https://github.com/NotAShelf.atom "NotAShelf" < item-rule title LIKE 'NotAShelf contributed%' OR title LIKE 'NotAShelf starred%'
-https://github.com/soywod.atom "Clément DOUIN | Pimalaya" < item-rule title NOT LIKE '%labeled an issue%'
 
 @youtube < item-limit 25
 # https://blog.amen6.com/blog/2025/01/no-shorts-please-hidden-youtube-rss-feed-urls/
