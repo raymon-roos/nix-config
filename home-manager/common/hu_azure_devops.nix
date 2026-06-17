@@ -18,9 +18,9 @@ with lib; {
         url."git@hu.ssh.dev.azure.com".insteadOf = ["git@ssh.dev.azure.com"];
       };
 
-      ssh.matchBlocks."hu.ssh.dev.azure.com" = {
-        hostname = "ssh.dev.azure.com";
-        identityFile = "~/.ssh/id_rsa_hu_azure_devops";
+      ssh.settings."hu.ssh.dev.azure.com" = {
+        HostName = "ssh.dev.azure.com";
+        IdentityFile = "~/.ssh/id_rsa_hu_azure_devops";
       };
     };
   };

@@ -106,6 +106,7 @@ with lib; {
       };
     in {
       enable = true;
+      package = pkgs.librewolf-bin;
       languagePacks = ["en-GB" "nl"];
       profiles = mkIf config.common.librewolf-advanced.enable {
         default = {

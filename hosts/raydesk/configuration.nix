@@ -22,6 +22,10 @@ in {
   nixpkgs = {
     hostPlatform = lib.mkDefault "x86_64-linux";
     config.allowUnfree = true;
+    config.permittedInsecurePackages = [
+      "librewolf-bin-151.0.1-2" # Temporary measure until librewolf gets maintainers with merge privileges in nixpkgs
+      "librewolf-bin-unwrapped-151.0.1-2"
+    ];
   };
 
   i18n.defaultLocale = "en_US.UTF-8";

@@ -14,11 +14,11 @@ rustPlatform.buildRustPackage (finalAttrs: {
   src = fetchFromGitHub {
     owner = "SuaveIV";
     repo = "nu_plugin_audio";
-    tag = "v0.2.7";
-    hash = "sha256-3JVvPzL+jSqB3HJpLkdnQI+bsZQZhWAK/iBWbLquUoQ=";
+    rev = "dependabot/cargo/nushell-c29c2c90a6";
+    hash = "sha256-9xu1VXmonTXm6BmhehIsuy9bGGj20wrc10i/6RbxkzM=";
   };
 
-  cargoHash = "sha256-wKwaLE5mRuJ4PkuSv80+ATMi2bJh2FARzU+5o1KRM4k=";
+  cargoHash = "sha256-rmg6MHtIUsC54CfqLCBsArypug8wOztlBIsgs3NtLow=";
 
   nativeBuildInputs = [pkg-config] ++ lib.optionals stdenv.cc.isClang [rustPlatform.bindgenHook];
   buildInputs = [alsa-lib];
