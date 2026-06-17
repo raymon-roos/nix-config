@@ -12,6 +12,7 @@ http://www.php.net/feed.atom < item-rule title NOT LIKE '%available for testing%
 https://blog.rust-lang.org/feed.xml
 https://gleam.run/feed.xml
 https://go.dev/blog/feed.atom
+https://planet.factorcode.org/feed.xml
 
 @blogs
 https://andrewkelley.me/rss.xml
