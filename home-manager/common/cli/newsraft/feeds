@@ -5,6 +5,7 @@ https://github.com/neovim/neovim/releases.atom "Neovim"
 https://fosstodon.org/@pimalaya.rss "pimalaya feed"
 https://github.com/jj-vcs/jj/releases.atom "Jujutsu VCS"
 https://nixos.org/blog/announcements-rss.xml
+https://codeberg.org/librewolf/bsys6/releases.rss "Librewolf codeberg releases"
 
 @programming languages
 https://www.nushell.sh/rss.xml < item-rule title NOT LIKE 'This week in Nushell%'
