@@ -131,6 +131,7 @@ with lib; {
           cursor_theme = config.stylix.cursor.name;
           cursor_size = config.stylix.cursor.size;
           cursor_hide_timeout = 1;
+          cursor_hide_on_keypress = 1;
           warpcursor = 1;
 
           unfocused_opacity = 0.97;
