@@ -2,6 +2,7 @@
   config,
   pkgs,
   lib,
+  osConfig,
   ...
 }: {
   services.mako = lib.mkIf config.common.wayland.enable {
@@ -22,6 +23,12 @@
         format = ''<b>%s</b>\n%b''; # Default, but without group count
         border-size = 0;
         width = 100;
+      };
+
+      "app-name=mangowm category=tags_overlay" = {
+        font = "${osConfig.stylix.fonts.emoji.name} 12";
+        width = 200;
+        default-timeout = "700";
       };
     };
   };

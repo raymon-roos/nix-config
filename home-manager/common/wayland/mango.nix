@@ -50,12 +50,77 @@ with lib; {
           shift_nums = ["parenright" "exclam" "at" "numbersign" "code:13" "percent" "asciicircum" "ampersand" "asterisk" "code:18"];
           gen_tags = range 0 9 |> map toString;
 
-          tag_keybind = mod: action: tag: "${mod},${tag},${action},${tag}";
+          tag_keybind = bind: action: tag: "${bind},spawn,${tags_with_overlay} --action ${action} --tag ${tag}";
 
           browser = "librewolf";
           terminal = "kitty";
           menu = "bemenu";
           mod = "SUPER";
+
+          # Creates separate derivations for each invocation, which is not ideal.
+          # But there is no easy way in nushell to eval a string, and
+          # closures can only be passed within modules, not scripts
+          spawn_or_focus = {
+            appID,
+            cmd,
+          }:
+            pkgs.writers.writeNu "spawn_or_focus" ''
+              mmsg get all-clients
+                | from json
+                | get clients
+                | where appid == "${appID}"
+                | first
+                | match ($in | get id? | describe) {
+                  nothing => (exec ${cmd})
+                  int => (mmsg dispatch focusid $"client,($in.id)")
+                }
+            '';
+
+          # Two separate layout cycles with one keybind, one for landscape mode, one for portrait mode
+          cycle_layouts = pkgs.writers.writeNu "cycle_layouts" ''
+            let monitor = mmsg get all-monitors | from json | get monitors | where active == true | first | select layout_symbol width height
+            {T: scroller S: fair F: tile , VT: vertical_scroller VS: vertical_fair VF: vertical_tile}
+              | get -o $monitor.layout_symbol
+              | default (if ($monitor.width > $monitor.height) { 'tile' } else { 'vertical_tile' })
+              | let new_layout
+              | mmsg dispatch $'setlayout,($in)'
+              | tee {notify-send --app-name mangowm $new_layout}
+          '';
+
+          # Switch/toggle tags with transient overlay showing state of tags
+          tags_with_overlay = pkgs.writers.writeNu "tags_with_overlay" ''
+            const symbols = {
+              active: {
+                none: {1: '󰎤 ' 2: '󰎧 ' 3: '󰎪 ' 4: '󰎭 ' 5: '󰎱 ' 6: '󰎳 ' 7: '󰎶 ' 8: '󰎹 ' 9: '󰎼 '}
+                some: {1: '󰼏 ' 2: '󰼐 ' 3: '󰼑 ' 4: '󰼒 ' 5: '󰼓 ' 6: '󰼔 ' 7: '󰼕 ' 8: '󰼖 ' 9: '󰼗 '}
+              }
+              inactive: {
+                none: {1: '󰎦 ' 2: '󰎩 ' 3: '󰎬 ' 4: '󰎮 ' 5: '󰎰 ' 6: '󰎵 ' 7: '󰎸 ' 8: '󰎻 ' 9: '󰎾 '}
+                some: {1: '󰎥 ' 2: '󰎨 ' 3: '󰎫 ' 4: '󰎲 ' 5: '󰎯 ' 6: '󰎴 ' 7: '󰎷 ' 8: '󰎺 ' 9: '󰎽 '}
+              }
+            }
+
+            def main [--action: string, --tag: int] {
+              if $action not-in ["view" "toggleview" "tagsilent" "toggletag"] or ($tag < 0 or $tag > 9) {
+                return
+              }
+
+              mmsg dispatch $"($action),($tag)"
+
+              mmsg get all-monitors
+                | from json
+                | get monitors
+                | where active == true
+                | get 0.tags
+                | each {|t|
+                  if $t.is_active { $symbols.active } else { $symbols.inactive }
+                    | if $t.client_count > 0 { get some } else { get none }
+                    | get $"($t.index)"
+                }
+                | str join
+                | notify-send --app-name mangowm --category tags_overlay $in
+            }
+          '';
         in {
           monitorrule =
             [
@@ -152,37 +217,7 @@ with lib; {
             "${mod},Down,viewtoright_have_client"
           ];
 
-          bind = let
-            # Creates separate derivations for each invocation, which is not ideal.
-            # But there is no easy way in nushell to eval a string, and
-            # closures can only be passed within modules, not scripts
-            spawn_or_focus = {
-              appID,
-              cmd,
-            }:
-              pkgs.writers.writeNu "spawn_or_focus" ''
-                mmsg get all-clients
-                  | from json
-                  | get clients
-                  | where appid == "${appID}"
-                  | first
-                  | match ($in | get id? | describe) {
-                    nothing => (exec ${cmd})
-                    int => (mmsg dispatch focusid $"client,($in.id)")
-                  }
-              '';
-
-            # Two separate layout cycles with one keybind, one for landscape mode, one for portrait mode
-            cycle_layouts = pkgs.writers.writeNu "cycle_layouts" ''
-              let monitor = mmsg get all-monitors | from json | get monitors | where active == true | first | select layout_symbol width height
-              {T: scroller S: fair F: tile , VT: vertical_scroller VS: vertical_fair VF: vertical_tile}
-                | get -o $monitor.layout_symbol
-                | default (if ($monitor.width > $monitor.height) { 'tile' } else { 'vertical_tile' })
-                | let new_layout
-                | mmsg dispatch $'setlayout,($in)'
-                | tee {notify-send --app-name mangowm $new_layout}
-            '';
-          in
+          bind =
             [
               "${mod}+CTRL+SHIFT,Q,quit"
               "${mod},v,togglefloating"
@@ -263,14 +298,14 @@ with lib; {
             )
             # control tags
             ++ (concatMap (tag: [
-                (tag_keybind "${mod}" "view" tag)
-                (tag_keybind "${mod}+CTRL" "toggleview" tag)
+                (tag_keybind "${mod},${tag}" "view" tag)
+                (tag_keybind "${mod}+CTRL,${tag}" "toggleview" tag)
               ])
               gen_tags)
             ++ (zipLists gen_tags shift_nums
               |> concatMap (x: [
-                "${mod}+SHIFT,${x.snd},tagsilent,${x.fst}"
-                "${mod}+CTRL+SHIFT,${x.snd},toggletag,${x.fst}"
+                (tag_keybind "${mod}+SHIFT,${x.snd}" "tagsilent" x.fst)
+                (tag_keybind "${mod}+CTRL+SHIFT,${x.snd}" "toggletag" x.fst)
               ]));
 
           mousebind = [
