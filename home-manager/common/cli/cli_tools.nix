@@ -12,9 +12,6 @@
       ignores = [
         ".git/"
         ".xdg/cache"
-        ".librewolf/"
-        ".mozilla/"
-        ".nix-defexpr/"
       ];
     };
 
@@ -56,6 +53,7 @@
 
     fzf = {
       enable = true;
+      enableNushellIntegration = false;
       defaultOptions = [
         "--layout=reverse"
         "--info=inline"
