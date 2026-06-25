@@ -77,17 +77,9 @@ with lib; {
 
     users.users.ray.extraGroups = ["gamemode"];
 
-    environment = {
-      systemPackages = with pkgs; [
-        wine-wayland
-        gamescope
-      ];
-
-      etc = {
-        "pulse/client.conf".text = ''
-          cookie-file = ~/.xdg/local/share/pulse/cookie
-        '';
-      };
-    };
+    environment.systemPackages = with pkgs; [
+      wine-wayland
+      gamescope
+    ];
   };
 }
