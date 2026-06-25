@@ -24,17 +24,21 @@ with lib; {
         };
 
         packages = with pkgs; [
-          xdg-desktop-portal-wlr
           wbg
         ];
       };
 
       xdg = {
-        configFile."xdg-desktop-portal-wlr/config".text = ''
-          [screencast]
-          chooser_cmd=bemenu
-          chooser_type=dmenu
-        '';
+        portal = {
+          enable = lib.mkForce true;
+          extraPortals = [pkgs.xdg-desktop-portal-wlr];
+          config = {
+            common = {
+              "org.freedesktop.impl.portal.ScreenCast" = ["wlr"];
+              "org.freedesktop.impl.portal.ScreenShot" = ["wlr"];
+            };
+          };
+        };
       };
 
       wayland.windowManager.mango = {
