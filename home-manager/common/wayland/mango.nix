@@ -86,9 +86,8 @@ with lib; {
             {T: scroller S: fair F: tile , VT: vertical_scroller VS: vertical_fair VF: vertical_tile}
               | get -o $monitor.layout_symbol
               | default (if ($monitor.width > $monitor.height) { 'tile' } else { 'vertical_tile' })
-              | let new_layout
+              | tee {notify-send --app-name mangowm $in}
               | mmsg dispatch $'setlayout,($in)'
-              | tee {notify-send --app-name mangowm $new_layout}
           '';
 
           # Switch/toggle tags with transient overlay showing state of tags
@@ -269,6 +268,7 @@ with lib; {
               "${mod}+SHIFT,D,killclient,"
 
               # control windows
+              "${mod}+CTRL,Tab,view,-1"
               "${mod},Tab,toggleoverview"
               "${mod},n,focusdir,left"
               "${mod},e,focusdir,down"
@@ -339,14 +339,6 @@ with lib; {
             "animation_type_open:slide,animation_type_close:slide,layer_name:menu"
           ];
         };
-      };
-
-      xdg.configFile."mango/autostart_sh" = {
-        text = ''
-          #!/usr/bin/env bash
-          dbus-update-activation-environment --systemd --all
-        '';
-        executable = true;
       };
     };
 }

@@ -27,8 +27,9 @@
 
       "app-name=mangowm category=tags_overlay" = {
         font = "${osConfig.stylix.fonts.emoji.name} 12";
-        width = 200;
+        width = 170;
         default-timeout = "700";
+        background-color = "${"#" + config.lib.stylix.colors.base01}";
       };
     };
   };
