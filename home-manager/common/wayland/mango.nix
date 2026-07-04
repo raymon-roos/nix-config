@@ -144,6 +144,7 @@ with lib; {
           exec-once = [
             "mako &"
             "wbg -s ${config.stylix.image} &"
+            "mmsg dispatch focusmon,HDMI-A-1" # Focus main monitor on startup
           ];
 
           circle_layout = "tile,vertical_tile,scroller,dwindle";
