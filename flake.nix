@@ -68,5 +68,15 @@
           watt.nixosModules.watt
         ];
       };
+
+      nixosConfigurations.iso = nixpkgs.lib.nixosSystem {
+        inherit specialArgs;
+        modules = [
+          disko.nixosModules.disko
+          ./hosts/iso.nix
+        ];
+      };
+
+      packages.x86_64-linux.isoImage = self.nixosConfigurations.iso.config.system.build.isoImage;
     };
 }
