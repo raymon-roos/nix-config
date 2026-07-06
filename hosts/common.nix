@@ -31,6 +31,10 @@
     };
   };
 
+  boot = lib.mkIf pkgs.stdenv.isLinux {
+    zswap.enable = true;
+  };
+
   environment.systemPackages = with pkgs;
     [
     ]
