@@ -43,7 +43,7 @@
         thread-prefix-dummy = "┬";
         thread-prefix-lone = " ";
         thread-prefix-last-sibling = "╰";
-        styleset-name = "custom";
+        styleset-name = "stylix";
       };
       viewer = {
         pager = ''bat --color=always --style=plain --wrap=never --file-name="$AERC_FILENAME"'';
@@ -89,18 +89,19 @@
         format-flowed = true; # Plain text with benefits
       };
     };
-    stylesets.custom.global = let
+    stylesets.stylix.global = let
       colors = config.lib.stylix.colors;
-    in {
-      "msglist_*.selected.fg" = "#${colors.base01}";
-      "msglist_marked.fg" = "#${colors.base01}";
-      "msglist_marked.bg" = "#${colors.base04}";
-      "msglist_marked.selected.reverse" = "toggle";
-      "dirlist_*.selected.fg" = "#${colors.base01}";
-      "tab.selected.fg" = "#${colors.base01}";
-      "completion_*.selected.fg" = "#${colors.base01}";
-      "part_*.selected.fg" = "#${colors.base01}";
-    };
+    in
+      lib.mkForce {
+        "msglist_*.selected.fg" = "#${colors.base01}";
+        "msglist_marked.fg" = "#${colors.base01}";
+        "msglist_marked.bg" = "#${colors.base04}";
+        "msglist_marked.selected.reverse" = "toggle";
+        "dirlist_*.selected.fg" = "#${colors.base01}";
+        "tab.selected.fg" = "#${colors.base01}";
+        "completion_*.selected.fg" = "#${colors.base01}";
+        "part_*.selected.fg" = "#${colors.base01}";
+      };
     extraBinds = builtins.readFile ./binds.conf;
   };
 }
