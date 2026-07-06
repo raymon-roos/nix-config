@@ -3,12 +3,12 @@
     disk = {
       main = {
         type = "disk";
-        device = "/dev/sda";
+        device = "/dev/nvme0n1";
         content = {
           type = "gpt";
           partitions = {
             ESP = {
-              size = "512M";
+              size = "1024M";
               type = "EF00";
               content = {
                 type = "filesystem";
@@ -34,28 +34,28 @@
                   subvolumes = {
                     "/rootfs" = {
                       mountpoint = "/";
-                      mountOptions = ["defaults" "ssd" "noatime" "compress-force=zstd:4"];
+                      mountOptions = ["defaults" "ssd" "noatime" "compress-force=zstd:5"];
                       # "compress-force=zstd", because supposedly zstd itself can better decide whether to compress than btrfs can
                     };
                     "/home" = {
                       mountpoint = "/home";
-                      mountOptions = ["defaults" "ssd" "noatime" "compress-force=zstd:4"];
+                      mountOptions = ["defaults" "ssd" "noatime" "compress-force=zstd:5"];
                     };
                     "/nix" = {
                       mountpoint = "/nix";
-                      mountOptions = ["defaults" "ssd" "noatime" "compress-force=zstd:4"];
+                      mountOptions = ["defaults" "ssd" "noatime" "compress-force=zstd:5"];
                     };
                     "/var" = {
                       mountpoint = "/var";
-                      mountOptions = ["defaults" "ssd" "noatime" "compress-force=zstd:4"];
+                      mountOptions = ["defaults" "ssd" "noatime" "compress-force=zstd:5"];
                     };
                     "/snapshots" = {
                       mountpoint = "/snapshots";
-                      mountOptions = ["defaults" "ssd" "noatime" "compress-force=zstd:4"];
+                      mountOptions = ["defaults" "ssd" "noatime" "compress-force=zstd:5"];
                     };
                     "/swap" = {
                       mountpoint = "/.swap";
-                      swap.swapfile.size = "9G";
+                      swap.swapfile.size = "22G";
                     };
                   };
                 };

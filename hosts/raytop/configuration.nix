@@ -53,6 +53,8 @@
       package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
       portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
     };
+
+    mango.enable = hmConfig.mango.enable;
   };
 
   environment = {
@@ -71,6 +73,8 @@
       XDG_DATA_HOME = "$HOME/.xdg/local/share";
       XDG_STATE_HOME = "$HOME/.xdg/local/state";
     };
+
+    pathsToLink = ["/share/applications" "/share/xdg-desktop-portal"];
   };
 
   fonts.enableDefaultPackages = true;

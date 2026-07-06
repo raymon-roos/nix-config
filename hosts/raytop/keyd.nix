@@ -10,7 +10,7 @@
     enable = true;
     keyboards = {
       default = {
-        ids = ["*" "0002:000a # Thinkpad mouse buttons"];
+        ids = ["*"];
         settings = {
           global = {
             oneshot_timeout = 200;

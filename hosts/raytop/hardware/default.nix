@@ -13,7 +13,7 @@
   powerManagement.enable = true;
 
   hardware = {
-    cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+    cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
     bluetooth = {
       enable = true;
@@ -21,7 +21,7 @@
     };
 
     graphics.enable = true;
-    graphics.extraPackages = [pkgs.intel-vaapi-driver pkgs.intel-media-driver];
+    # graphics.extraPackages = [pkgs.intel-vaapi-driver pkgs.intel-media-driver];
     enableRedistributableFirmware = true;
   };
 }
