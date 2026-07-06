@@ -3,6 +3,7 @@
 # genius.com to stdout
 
 let data = cmus-remote -Q
+    | lines
     | parse '{k} {v}'
     | transpose -rad
 
