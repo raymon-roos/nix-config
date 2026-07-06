@@ -19,7 +19,6 @@ with lib; {
           polars
           query
           skim
-          (pkgs.callPackage ./nu_plugin_audio.nix {})
         ];
 
         settings = {

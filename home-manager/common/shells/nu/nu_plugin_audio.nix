@@ -9,16 +9,16 @@
 }:
 rustPlatform.buildRustPackage (finalAttrs: {
   pname = "nu_plugin_audio";
-  version = "v0.2.7";
+  version = "v0.2.8";
 
   src = fetchFromGitHub {
     owner = "SuaveIV";
     repo = "nu_plugin_audio";
-    rev = "dependabot/cargo/nushell-c29c2c90a6";
-    hash = "sha256-9xu1VXmonTXm6BmhehIsuy9bGGj20wrc10i/6RbxkzM=";
+    tag = "v0.2.8";
+    hash = "sha256-6uVrlaQTNuCW+okv75dWav1pduhYnz3BtxkP1kCAM7Y=";
   };
 
-  cargoHash = "sha256-rmg6MHtIUsC54CfqLCBsArypug8wOztlBIsgs3NtLow=";
+  cargoHash = "sha256-+z4FMm9ZuxdmKwngfF/ICzU+NfAB7ObZjF4umT66pTY=";
 
   nativeBuildInputs = [pkg-config] ++ lib.optionals stdenv.cc.isClang [rustPlatform.bindgenHook];
   buildInputs = [alsa-lib];

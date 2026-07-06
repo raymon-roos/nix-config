@@ -80,6 +80,10 @@
   };
 
   programs = {
+    nushell.plugins = [
+      (pkgs.callPackage ../common/shells/nu/nu_plugin_audio.nix {})
+    ];
+
     mpv = {
       enable = true;
       config = {
