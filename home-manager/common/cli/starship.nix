@@ -240,7 +240,7 @@ in {
         disabled = false;
         format = "[$symbol$shlvl]($style) ";
         symbol = "";
-        threshold = 3;
+        threshold = 2;
       };
       solidity = {format = "[$symbol($version)]($style) ";};
       spack = {format = "[$symbol$environment]($style) ";};
