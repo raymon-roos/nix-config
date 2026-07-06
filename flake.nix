@@ -26,7 +26,7 @@
     mango.url = "github:mangowm/mango/refs/tags/0.14.4";
     mango.inputs.nixpkgs.follows = "nixpkgs";
 
-    concord.url = "github:chojs23/concord/v2.2.9";
+    concord.url = "github:chojs23/concord/v2.3.1";
     concord.inputs.nixpkgs.follows = "nixpkgs";
 
     disko.url = "github:nix-community/disko/latest";
