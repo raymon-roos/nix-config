@@ -65,6 +65,8 @@
         PasswordAuthentication = false;
       };
     };
+
+    speechd.enable = false;
   };
 
   time.timeZone = "Europe/Amsterdam";
