@@ -14,7 +14,8 @@
     librewolf.enable = true;
     librewolf-advanced.enable = true;
     wayland.enable = true;
-    hyprland.enable = true;
+    hyprland.enable = false;
+    mango.enable = true;
     lockscreen.enable = true;
     shell.nu.enable = true;
     email = {
@@ -76,39 +77,81 @@
     targets.bemenu.fontSize = 6;
   };
 
-  wayland.windowManager.hyprland = lib.mkIf config.common.hyprland.enable {
-    settings = {
-      general = {
-        gaps_in = 1;
-        gaps_out = 2;
+  wayland.windowManager = {
+    hyprland = lib.mkIf config.common.hyprland.enable {
+      settings = {
+        general = {
+          gaps_in = 1;
+          gaps_out = 2;
+        };
+        xwayland.force_zero_scaling = true;
+        decoration = {
+          blur.enabled = false;
+          shadow.enabled = false;
+        };
+        input = {
+          kb_layout = "us,us";
+          kb_variant = "colemak_dh,intl";
+          kb_options = "grp:shift_caps_toggle";
+          sensitivity = lib.mkForce 0.8;
+        };
+        bind = [
+          "$mainMod CONTROL, M, exec, pwmenu --launcher custom --launcher-command bemenu -s 2"
+          "$mainMod CONTROL, B, exec, bzmenu --launcher custom --launcher-command bemenu -s 2"
+        ];
+        binde = [
+          ", XF86MonBrightnessDown, exec, brightnessctl set '10%-' --min-value 10"
+          ", XF86MonBrightnessUp, exec, brightnessctl set '10%+'"
+          ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_SINK@ '5%-'"
+          ", XF86AudioRaiseVolume, exec, wpctl set-volume -l 1.0 @DEFAULT_SINK@ '5%+'"
+          ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_SINK@ toggle"
+          ", XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_SOURCE@ toggle"
+        ];
+        gesture = [
+          "3, horizontal, workspace"
+          "3, up, fullscreen, maximize"
+        ];
       };
-      xwayland.force_zero_scaling = true;
-      decoration = {
-        blur.enabled = false;
-        shadow.enabled = false;
+    };
+    mango = lib.mkIf config.common.mango.enable {
+      settings = {
+        xkb_rules_layout = "us,us";
+        xkb_rules_variant = "colemak_dh,intl";
+        xkb_rules_options = "grp:shift_caps_toggle";
+        trackpad_natural_scrolling = 1;
+        trackpad_accel_profile = 1;
+        trackpad_accel_speed = 1.25;
+
+        gappih = 1;
+        gappiv = 1;
+        gappoh = 2;
+        gappov = 2;
+        blur = 0;
+        shadows = 0;
+        unfocused_opacity = 0.98;
+
+        border_radius = 4;
+
+        binds = [
+          "SUPER+CTRL,M,spawn,pwmenu --launcher custom --launcher-command bemenu -s 2"
+          "SUPER+CTRL,B,spawn,bzmenu --launcher custom --launcher-command bemenu -s 2"
+        ];
+
+        bind = [
+          "NONE,XF86MonBrightnessDown,spawn,brightnessctl set '10%-' --min-value 10"
+          "NONE,XF86MonBrightnessUp,spawn,brightnessctl set '10%+'"
+          "NONE,XF86AudioLowerVolume,spawn,wpctl set-volume @DEFAULT_SINK@ '5%-'"
+          "NONE,XF86AudioRaiseVolume,spawn,wpctl set-volume -l 1.0 @DEFAULT_SINK@ '5%+'"
+          "NONE,XF86AudioMute,spawn,wpctl set-mute @DEFAULT_SINK@ toggle"
+          "NONE,XF86AudioMicMute,spawn,wpctl set-mute @DEFAULT_SOURCE@ toggle"
+        ];
+
+        gesturebind = [
+          "NONE,right,3,viewtoleft_have_client"
+          "NONE,left,3,viewtoright_have_client"
+          "NONE,up,3,toggleoverview,up"
+        ];
       };
-      input = {
-        kb_layout = "us,us";
-        kb_variant = "colemak_dh,intl";
-        kb_options = "grp:shift_caps_toggle";
-        sensitivity = lib.mkForce 0.8;
-      };
-      bind = [
-        "$mainMod CONTROL, M, exec, pwmenu --launcher custom --launcher-command bemenu -s 2"
-        "$mainMod CONTROL, B, exec, bzmenu --launcher custom --launcher-command bemenu -s 2"
-      ];
-      binde = [
-        ", XF86MonBrightnessDown, exec, brightnessctl set '10%-' --min-value 10"
-        ", XF86MonBrightnessUp, exec, brightnessctl set '10%+'"
-        ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_SINK@ '5%-'"
-        ", XF86AudioRaiseVolume, exec, wpctl set-volume -l 1.0 @DEFAULT_SINK@ '5%+'"
-        ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_SINK@ toggle"
-        ", XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_SOURCE@ toggle"
-      ];
-      gesture = [
-        "3, horizontal, workspace"
-        "3, up, fullscreen, maximize"
-      ];
     };
   };
 }

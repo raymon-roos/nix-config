@@ -127,6 +127,38 @@
         ];
       };
     };
+    mango = let
+      inherit (lib) zipLists;
+    in
+      lib.mkIf config.common.mango.enable {
+        settings = {
+          monitorrule =
+            [
+              ["DP-1" "1" "1" "0" "0" "1920" "1080" "60"]
+              ["HDMI-A-1" "0" "1" "1080" "0" "1920" "1080" "60"]
+              ["DVI-I-1" "3" "1" "3000" "0" "1920" "1080" "60"]
+            ]
+            |> map (monitor:
+              zipLists ["name" "rr" "scale" "x" "y" "width" "height" "refresh"] monitor
+              |> map (m: "${m.fst}:${m.snd}")
+              |> builtins.concatStringsSep ",");
+
+          tagrule =
+            lib.range 0 9
+            |> map toString
+            |> lib.concatMap (tag: [
+              "id:${tag},monitor_name:DP-1,layout_name:vertical_tile"
+              "id:${tag},monitor_name:DVI-I-1,layout_name:vertical_tile"
+            ]);
+
+          windowrule = [
+            "isopensilent:1,monitor:DP-1,appid:cmus"
+            "monitor:DVI-I-1,appid:discord_client"
+          ];
+
+          exec-once = ["mmsg dispatch focusmon,HDMI-A-1"];
+        };
+      };
     river = lib.mkIf config.common.river.enable {
       settings = {
         spawn = [

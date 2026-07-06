@@ -125,17 +125,6 @@ with lib; {
             }
           '';
         in {
-          monitorrule =
-            [
-              ["DP-1" "1" "1" "0" "0" "1920" "1080" "60"]
-              ["HDMI-A-1" "0" "1" "1080" "0" "1920" "1080" "60"]
-              ["DVI-I-1" "3" "1" "3000" "0" "1920" "1080" "60"]
-            ]
-            |> map (monitor:
-              zipLists ["name" "rr" "scale" "x" "y" "width" "height" "refresh"] monitor
-              |> map (m: "${m.fst}:${m.snd}")
-              |> builtins.concatStringsSep ",");
-
           env = [
             "QT_QPA_PLATFORM,wayland;xcb"
             "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
@@ -144,7 +133,6 @@ with lib; {
           exec-once = [
             "mako &"
             "wbg -s ${config.stylix.image} &"
-            "mmsg dispatch focusmon,HDMI-A-1" # Focus main monitor on startup
           ];
 
           circle_layout = "tile,vertical_tile,scroller,dwindle";
@@ -169,25 +157,21 @@ with lib; {
 
           repeat_rate = 50;
           repeat_delay = 130;
-          # xkb_rules_layout = "us,us";
-          # xkb_rules_variant = "colemak_dh,intl";
-          # xkb_rules_options = "grp:shift_caps_toggle";
           mouse_accel_profile = 0;
-          trackpad_natural_scrolling = 1;
 
-          border_radius = 7;
+          border_radius = lib.mkDefault 7;
           no_radius_when_single = 1;
-          blur = 1;
+          blur = lib.mkDefault 1;
           blur_optimized = 1;
           shadows_size = 7;
           shadow_only_floating = 0;
 
           allow_tearing = 2;
 
-          gappih = 2;
-          gappiv = 2;
-          gappoh = 3;
-          gappov = 3;
+          gappih = lib.mkDefault 2;
+          gappiv = lib.mkDefault 2;
+          gappoh = lib.mkDefault 3;
+          gappov = lib.mkDefault 3;
           borderpx = 1;
           rootcolor = "0x${colors.base03}ff";
           bordercolor = "0x${colors.base03}ff";
@@ -203,7 +187,7 @@ with lib; {
           cursor_hide_on_keypress = 1;
           warpcursor = 1;
 
-          unfocused_opacity = 0.97;
+          unfocused_opacity = lib.mkDefault 0.97;
 
           animations = 1;
           # animation_type_open = "zoom";
@@ -221,7 +205,7 @@ with lib; {
             "${mod},Down,viewtoright_have_client"
           ];
 
-          bind =
+          binds =
             [
               "${mod}+CTRL+SHIFT,Q,quit"
               "${mod},v,togglefloating"
@@ -320,16 +304,7 @@ with lib; {
             "${mod}+SHIFT,btn_right,killclient"
           ];
 
-          tagrule =
-            concatMap (tag: [
-              "id:${tag},monitor_name:DP-1,layout_name:vertical_tile"
-              "id:${tag},monitor_name:DVI-I-1,layout_name:vertical_tile"
-            ])
-            gen_tags;
-
           windowrule = [
-            "isopensilent:1,monitor:DP-1,appid:cmus"
-            "monitor:DVI-I-1,appid:discord_client"
             "animation_type_open:zoom,appid:org.gnupg.pinentry-qt"
             "animation_type_close:zoom,appid:org.gnupg.pinentry-qt"
             "noblur:1,appid:slurp"
