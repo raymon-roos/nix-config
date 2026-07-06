@@ -62,7 +62,7 @@ https://solar.lowtechmagazine.com/index.xml
 https://spacepanda.se/rss.xml
 https://tavianator.com/feed.atom
 https://torrentfreak.com/feed/
-https://tweakers.net/feeds/nieuws.xml
+https://tweakers.net/feeds/nieuws.xml < item-limit 25
 https://twitchard.github.io/atom.xml
 https://vhs.codeberg.page/post/index.xml
 https://waitbutwhy.com/feed
@@ -76,7 +76,7 @@ https://www.tedinski.com/feed.xml
 https://www.terminally-incoherent.com/blog/feed/index.html
 https://www.lttlabs.com/articles/rss.xml
 
-@podcasts < item-limit 10
+@podcasts < item-limit 25
 https://decoding-the-gurus.captivate.fm/rssfeed
 https://rss.libsyn.com/shows/604590/destinations/5288840.xml "Sean Carroll's Mindscape" < item-rule title NOT LIKE 'AMA%'
 
