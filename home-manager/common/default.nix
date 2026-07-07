@@ -57,9 +57,11 @@
         disable_image_preview = true;
         show_avatars = false;
         show_images = false;
+        media_playback = false;
         image_preview_quality = "balanced";
         show_custom_emoji = true;
       };
+      presence.share_rich_presence = false;
       notifications.desktop_notifications = true;
       voice = {
         self_mute = false;
