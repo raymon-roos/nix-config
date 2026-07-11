@@ -31,6 +31,10 @@
         default-timeout = "700";
         background-color = "${"#" + config.lib.stylix.colors.base01}";
       };
+
+      "app-name=mangowm category=brightness_osd" = {
+        width = 120;
+      };
     };
   };
 

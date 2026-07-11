@@ -77,7 +77,30 @@
     targets.bemenu.fontSize = 6;
   };
 
-  wayland.windowManager = {
+  wayland.windowManager = let
+    brightness = pkgs.writers.writeNu "brightness.nu" ''
+      def main [--set: string] {
+        brightnessctl set $'($set)' --min-value 10
+
+        brightnessctl info
+          | parse -r '(?<percent>\d+)%'
+          | get percent.0
+          | into int
+          | match $in {
+            0 =>   '',
+            100 => '',
+            $x => {
+              let y = $x // 10 - 1
+              ("" +
+                ("" | fill -a l -c "" -w $y) +
+                ("" | fill -a l -c "" -w (8 - $y))
+                + "")
+            }
+          }
+          | tee { notify-send --app-name mangowm --category brightness_osd $"🔆 ($in)" }
+      }
+    '';
+  in {
     hyprland = lib.mkIf config.common.hyprland.enable {
       settings = {
         general = {
@@ -100,8 +123,8 @@
           "$mainMod CONTROL, B, exec, bzmenu --launcher custom --launcher-command bemenu -s 2"
         ];
         binde = [
-          ", XF86MonBrightnessDown, exec, brightnessctl set '10%-' --min-value 10"
-          ", XF86MonBrightnessUp, exec, brightnessctl set '10%+'"
+          ", XF86MonBrightnessDown, exec, ${brightness} --set '10%-'"
+          ", XF86MonBrightnessUp, exec, ${brightness} --set '10%+'"
           ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_SINK@ '5%-'"
           ", XF86AudioRaiseVolume, exec, wpctl set-volume -l 1.0 @DEFAULT_SINK@ '5%+'"
           ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_SINK@ toggle"
@@ -138,8 +161,8 @@
         ];
 
         bind = [
-          "NONE,XF86MonBrightnessDown,spawn,brightnessctl set '10%-' --min-value 10"
-          "NONE,XF86MonBrightnessUp,spawn,brightnessctl set '10%+'"
+          "NONE,XF86MonBrightnessDown,spawn,${brightness} --set '10%-'"
+          "NONE,XF86MonBrightnessUp,spawn,${brightness} --set '10%+'"
           "NONE,XF86AudioLowerVolume,spawn,wpctl set-volume @DEFAULT_SINK@ '5%-'"
           "NONE,XF86AudioRaiseVolume,spawn,wpctl set-volume -l 1.0 @DEFAULT_SINK@ '5%+'"
           "NONE,XF86AudioMute,spawn,wpctl set-mute @DEFAULT_SINK@ toggle"
