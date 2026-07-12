@@ -73,10 +73,6 @@
     };
   };
 
-  stylix = {
-    targets.bemenu.fontSize = 6;
-  };
-
   wayland.windowManager = let
     brightness = pkgs.writers.writeNu "brightness.nu" ''
       def main [--set: string] {
