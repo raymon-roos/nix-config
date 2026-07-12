@@ -24,7 +24,6 @@
     packages = with pkgs;
       [
         calc
-        drawy
         entr
         ripdrag
         sd
