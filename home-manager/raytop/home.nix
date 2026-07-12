@@ -74,28 +74,9 @@
   };
 
   wayland.windowManager = let
-    brightness = pkgs.writers.writeNu "brightness.nu" ''
-      def main [--set: string] {
-        brightnessctl set $'($set)' --min-value 10
-
-        brightnessctl info
-          | parse -r '(?<percent>\d+)%'
-          | get percent.0
-          | into int
-          | match $in {
-            0 =>   '',
-            100 => '',
-            $x => {
-              let y = $x // 10 - 1
-              ("" +
-                ("" | fill -a l -c "" -w $y) +
-                ("" | fill -a l -c "" -w (8 - $y))
-                + "")
-            }
-          }
-          | tee { notify-send --app-name mangowm --category brightness_osd $"🔆 ($in)" }
-      }
-    '';
+    osd =
+      pkgs.writers.writeNu "osd.nu"
+      (builtins.readFile ./scripts/osd.nu);
   in {
     hyprland = lib.mkIf config.common.hyprland.enable {
       settings = {
@@ -119,12 +100,12 @@
           "$mainMod CONTROL, B, exec, bzmenu --launcher custom --launcher-command bemenu -s 2"
         ];
         binde = [
-          ", XF86MonBrightnessDown, exec, ${brightness} --set '10%-'"
-          ", XF86MonBrightnessUp, exec, ${brightness} --set '10%+'"
-          ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_SINK@ '5%-'"
-          ", XF86AudioRaiseVolume, exec, wpctl set-volume -l 1.0 @DEFAULT_SINK@ '5%+'"
-          ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_SINK@ toggle"
-          ", XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_SOURCE@ toggle"
+          ", XF86MonBrightnessDown, exec, ${osd} brightness --set '10%-'"
+          ", XF86MonBrightnessUp, exec, ${osd} brightness --set '10%+'"
+          ", XF86AudioLowerVolume, exec, ${osd} sound set '10%-'"
+          ", XF86AudioRaiseVolume, exec, ${osd} sound set '10%+'"
+          ", XF86AudioMute, exec, ${osd} sound mute"
+          ", XF86AudioMicMute, exec,  ${osd} sound mute --mic=true"
         ];
         gesture = [
           "3, horizontal, workspace"
@@ -157,12 +138,12 @@
         ];
 
         bind = [
-          "NONE,XF86MonBrightnessDown,spawn,${brightness} --set '10%-'"
-          "NONE,XF86MonBrightnessUp,spawn,${brightness} --set '10%+'"
-          "NONE,XF86AudioLowerVolume,spawn,wpctl set-volume @DEFAULT_SINK@ '5%-'"
-          "NONE,XF86AudioRaiseVolume,spawn,wpctl set-volume -l 1.0 @DEFAULT_SINK@ '5%+'"
-          "NONE,XF86AudioMute,spawn,wpctl set-mute @DEFAULT_SINK@ toggle"
-          "NONE,XF86AudioMicMute,spawn,wpctl set-mute @DEFAULT_SOURCE@ toggle"
+          "NONE,XF86MonBrightnessDown,spawn,${osd} brightness --set '10%-'"
+          "NONE,XF86MonBrightnessUp,spawn,${osd} brightness --set '10%+'"
+          "NONE,XF86AudioLowerVolume,spawn,${osd} sound set '10%-'"
+          "NONE,XF86AudioRaiseVolume,spawn,${osd} sound set '10%+'"
+          "NONE,XF86AudioMute,spawn,${osd} sound mute"
+          "NONE,XF86AudioMicMute,spawn,${osd} sound mute --mic=true"
         ];
 
         gesturebind = [

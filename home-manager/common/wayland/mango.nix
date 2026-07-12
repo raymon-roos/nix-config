@@ -86,7 +86,7 @@ with lib; {
             {T: scroller S: fair F: tile , VT: vertical_scroller VS: vertical_fair VF: vertical_tile}
               | get -o $monitor.layout_symbol
               | default (if ($monitor.width > $monitor.height) { 'tile' } else { 'vertical_tile' })
-              | tee {notify-send --app-name mangowm $in}
+              | tee {notify-send --app-name window_manager $in}
               | mmsg dispatch $'setlayout,($in)'
           '';
 
@@ -121,7 +121,7 @@ with lib; {
                     | get $"($t.index)"
                 }
                 | str join
-                | notify-send --app-name mangowm --category tags_overlay $in
+                | notify-send --app-name window_manager --category tags_overlay $in
             }
           '';
         in {

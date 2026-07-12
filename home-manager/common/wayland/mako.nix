@@ -14,7 +14,7 @@
       width = 250;
 
       # Transient and minimal notifications, like for changing WM layout (because I don't use a status bar)
-      "app-name=mangowm" = lib.mkIf config.common.mango.enable {
+      "app-name=window_manager" = lib.mkIf config.common.mango.enable {
         anchor = "top-center";
         default-timeout = "1000";
         group-by = "app-name";
@@ -25,14 +25,14 @@
         width = 100;
       };
 
-      "app-name=mangowm category=tags_overlay" = {
+      "app-name=window_manager category=tags_overlay" = {
         font = "${osConfig.stylix.fonts.emoji.name} 12";
         width = 170;
         default-timeout = "700";
         background-color = "${"#" + config.lib.stylix.colors.base01}";
       };
 
-      "app-name=mangowm category=brightness_osd" = {
+      "app-name=window_manager category=osd" = {
         width = 120;
       };
     };
