@@ -37,8 +37,8 @@ with lib; {
             header_on_separator = true;
           };
 
-          # datetime_format.normal = "%F %T";
-          # datetime_format.table = "%F %T";
+          datetime_format.normal = "%F %T";
+          datetime_format.table = "%F %T";
 
           keybindings =
             [
