@@ -76,7 +76,7 @@ with lib; {
                 | first
                 | match ($in | get id? | describe) {
                   nothing => (exec ${cmd})
-                  int => (mmsg dispatch focusid $"client,($in.id)")
+                  int => (mmsg dispatch focusid $"client,($in.id)" | ignore)
                 }
             '';
 
@@ -88,6 +88,7 @@ with lib; {
               | default (if ($monitor.width > $monitor.height) { 'tile' } else { 'vertical_tile' })
               | tee {notify-send --app-name window_manager $in}
               | mmsg dispatch $'setlayout,($in)'
+              | ignore
           '';
 
           # Switch/toggle tags with transient overlay showing state of tags
@@ -108,7 +109,7 @@ with lib; {
                 return
               }
 
-              mmsg dispatch $"($action),($tag)"
+              mmsg dispatch $"($action),($tag)" | ignore
 
               mmsg get all-monitors
                 | from json
