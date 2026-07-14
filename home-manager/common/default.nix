@@ -161,10 +161,10 @@
       settings = {
         flags = {
           dot_marker = true;
-          regex = true;
-          enable_cache_memory = true;
           disable_gpu = false;
         };
+        processes.regex = true;
+        memory.cache_memory = true;
       };
     };
 
