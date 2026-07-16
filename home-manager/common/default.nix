@@ -2,7 +2,6 @@
   config,
   pkgs,
   lib,
-  inputs,
   ...
 }: {
   imports = [
@@ -33,7 +32,7 @@
         neovim
         remind
         typst
-        inputs.concord.packages.${pkgs.stdenv.hostPlatform.system}.concord
+        concord-tui
       ]
       ++ lib.optionals pkgs.stdenv.isLinux [
         keychain
