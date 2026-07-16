@@ -8,7 +8,7 @@
   hmConfig = config.home-manager.users.ray;
 in {
   imports = [
-    ../common.nix
+    ../common
     ./hardware
     ./networking.nix
     ./services.nix

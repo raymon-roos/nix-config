@@ -63,7 +63,6 @@
           stylix.nixosModules.stylix
           home-manager.nixosModules.home-manager
           mango.nixosModules.mango
-          watt.nixosModules.watt
         ];
       };
 

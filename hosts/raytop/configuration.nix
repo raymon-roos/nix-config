@@ -6,7 +6,7 @@
   ...
 }: {
   imports = [
-    ../common.nix
+    ../common
     ./hardware
     ./boot.nix
     ./networking.nix

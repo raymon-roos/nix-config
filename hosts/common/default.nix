@@ -5,6 +5,10 @@
   inputs,
   ...
 }: {
+  imports = [
+    ./watt.nix
+  ];
+
   nix = {
     channel.enable = false;
     nixPath = ["nixpkgs=${inputs.nixpkgs}"]; # used by the nixd LSP
@@ -44,7 +48,7 @@
 
   services = lib.mkIf pkgs.stdenv.isLinux {
     dbus.implementation = "broker";
-    thermald.enable = true;
+
     smartd.enable = true;
 
     xserver = {
@@ -83,7 +87,7 @@
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
-    users.ray = import ../home-manager/${config.networking.hostName}/home.nix;
+    users.ray = import ../../home-manager/${config.networking.hostName}/home.nix;
     extraSpecialArgs = with inputs; {inherit nixpkgs inputs;};
   };
 
