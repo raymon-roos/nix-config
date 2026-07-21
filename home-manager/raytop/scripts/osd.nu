@@ -8,7 +8,7 @@ def "main brightness" [--set: string] {
     | get percent.0
     | into int
     | progress-bar 
-    | tee { notify $'🔆 ($in)' }
+    | notify $'🔆 ($in)'
 }
 
 def "main sound set" [val: string --mic=false] {
@@ -19,7 +19,7 @@ def "main sound set" [val: string --mic=false] {
   let state = parse-wpctl --mic=$mic
   $state.vol
     | progress-bar
-    | tee { notify $"($state.symbol) ($in)" }
+    | notify $"($state.symbol) ($in)"
 }
 
 def "main sound mute" [--mic=false] {
@@ -30,14 +30,13 @@ def "main sound mute" [--mic=false] {
   let state = parse-wpctl --mic=$mic
   $state.vol
     | progress-bar
-    | tee { notify $"($state.symbol) ($in)" }
+    | notify $"($state.symbol) ($in)"
 }
 
 def parse-wpctl [--mic=false]: nothing -> record {
   let target = if $mic { '@DEFAULT_SOURCE@' } else '@DEFAULT_SINK@'
 
   wpctl get-volume $target
-    | tee {print}
     | parse -r 'Volume: (?<vol>\<[\d\.]+\>) ?(?:\[(?<muted>\w+)\])?'
     | first
     | update vol { ($in | into float) * 100 | math round }
