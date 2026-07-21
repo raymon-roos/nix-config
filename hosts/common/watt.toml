@@ -125,13 +125,14 @@ cpu.energy-performance-preference = { if.is-energy-performance-preference-availa
 cpu.governor                      = { if.is-governor-available = "powersave", then = "powersave" }
 cpu.turbo                         = { if = "?turbo-available", then = false }
 
-[[rule]]
-if = { is-chassis-type = "laptop" }
-name = "charge-threshold"
-priority = 10
-
-power.charge-threshold-start = 40
-power.charge-threshold-end = 80
+# Lenovo IdeaPad doesn't allow setting a charge threshold, only a battery preservation mode
+# [[rule]]
+# if = { is-chassis-type = "laptop" }
+# name = "charge-threshold"
+# priority = 10
+# 
+# power.charge-threshold-start = 40
+# power.charge-threshold-end = 80
 
 [[rule]]
 cpu.energy-perf-bias              = { if.is-energy-perf-bias-available = "balance-performance", then = "balance-performance" }

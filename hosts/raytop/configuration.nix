@@ -22,8 +22,21 @@
       ];
   };
 
-  systemd.sleep.settings.Sleep = {
-    SuspendState = "s2idle";
+  systemd = {
+    sleep.settings.Sleep = {
+      SuspendState = "s2idle";
+    };
+
+    tmpfiles.settings = {
+      # Some Lenovo IdeaPads don't allow setting a specific charge threshold, only toggling a "conservation mode"
+      "ideapad-set-conservation-mode" = {
+        "/sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode" = {
+          "w" = {
+            argument = "1";
+          };
+        };
+      };
+    };
   };
 
   i18n.defaultLocale = "en_US.UTF-8";
