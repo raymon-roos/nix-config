@@ -159,6 +159,16 @@
             "monitor:DVI-I-1,appid:discord_client"
           ];
 
+          bind = let
+            info_overlay = pkgs.writers.writeNu "info_overlay" ''
+              ( notify-send --app-name window_manager --category info_overlay
+                (date now | format date " %a %h %d\n %T")
+              )
+            '';
+          in [
+            "SUPER,F,spawn,${info_overlay}"
+          ];
+
           exec-once = ["mmsg dispatch focusmon,HDMI-A-1"];
         };
       };

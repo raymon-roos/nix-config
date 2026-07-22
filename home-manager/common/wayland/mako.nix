@@ -35,6 +35,13 @@
       "app-name=window_manager category=osd" = {
         width = 120;
       };
+
+      "app-name=window_manager category=info_overlay" = {
+        font = "${osConfig.stylix.fonts.monospace.name} 11";
+        width = 170;
+        default-timeout = "1400";
+        border-size = 1;
+      };
     };
   };
 
