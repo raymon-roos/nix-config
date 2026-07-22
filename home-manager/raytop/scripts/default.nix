@@ -14,5 +14,13 @@ in {
       && config.common.hyprland.enable
     ) [
       (writeNuBin "monitor_select.nu" ./monitor_select.nu)
+    ]
+    ++ optionals (
+      config.programs.bemenu.enable
+      && config.programs.nushell.enable
+      && config.common.mango.enable
+    ) [
+      (writeNuBin "monitor_select.nu" ./mango_monitor.nu)
+      pkgs.wlr-randr
     ];
 }
