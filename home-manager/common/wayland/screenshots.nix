@@ -42,26 +42,26 @@ with lib; {
         "$mainMod CONTROL, P, exec, ${lib.getExe hyprscreenshot}"
       ]);
 
-    wayland.windowManager.mango.settings.bind =
+    wayland.windowManager.mango.settings.binds =
       mkIf config.common.mango.enable
       (let
         inherit (pkgs) grim slurp;
         mangoscreenshot =
           pkgs.writeShellScriptBin "mangoscreenshot"
           ''
-            mmsg -d setoption,blur,0
-            mmsg -d setoption,unfocused_opacity,1
+            mmsg dispatch 'setoption,blur,0' > /dev/null
+            mmsg dispatch 'setoption,unfocused_opacity,1' > /dev/null
 
-            ${lib.getExe grim} -g "$(${lib.getExe slurp})" - | satty -f - --resize
+            ${lib.getExe grim} -g "$(${lib.getExe slurp})" - | satty -f - --resize > /dev/null 2>&1
 
-            mmsg -d "setoption,blur,${toString config.wayland.windowManager.mango.settings.blur}"
-            mmsg -d "setoption,unfocused_opacity,${toString config.wayland.windowManager.mango.settings.unfocused_opacity}"
+            mmsg dispatch 'setoption,blur,${toString config.wayland.windowManager.mango.settings.blur}' > /dev/null
+            mmsg dispatch 'setoption,unfocused_opacity,${toString config.wayland.windowManager.mango.settings.unfocused_opacity}' > /dev/null
 
             [ "$(fd --max-depth 1 -tf 'screenshot_' /tmp)" ] \
-              && ripdrag --basename --icon-size 128 --content-width 400 --content-height 280 /tmp/screenshot_*
+              && ripdrag --basename --icon-size 128 --content-width 400 --content-height 280 /tmp/screenshot_* > /dev/null 2>&1
           '';
       in [
-        "SUPER+CTRL,P,spawn_shell,${lib.getExe mangoscreenshot}"
+        "SUPER+CTRL,P,spawn,${lib.getExe mangoscreenshot}"
       ]);
   };
 }
