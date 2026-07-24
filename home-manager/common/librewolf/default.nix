@@ -32,6 +32,12 @@ with lib; {
         # ".librewolf/native-messaging-hosts/.keep".target = "${configHome}/librewolf/native-messaging-hosts/.keep";
       };
 
+      # These directories are empty, stop creating them!!
+      systemd.user.tmpfiles.rules = [
+        "R ${config.home.homeDirectory}/.librewolf"
+        "R ${config.home.homeDirectory}/.mozilla"
+      ];
+
       programs.librewolf = let
         inherit (config.programs.librewolf) settings;
         containers = {
