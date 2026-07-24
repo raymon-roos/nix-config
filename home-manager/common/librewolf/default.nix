@@ -35,6 +35,10 @@ with lib; {
       programs.librewolf = let
         inherit (config.programs.librewolf) settings;
         containers = {
+          work = {
+            id = 1;
+            color = "yellow";
+          };
           bitacademy = {
             id = 2;
             color = "green";
