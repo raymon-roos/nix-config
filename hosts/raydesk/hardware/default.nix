@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   modulesPath,
   ...
 }: {
@@ -15,7 +16,11 @@
 
     cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
-    graphics.enable = true;
+    graphics = {
+      enable = true;
+      enable32Bit = true;
+      extraPackages = [pkgs.libva-vdpau-driver pkgs.nvidia-vaapi-driver];
+    };
     nvidia = {
       modesetting.enable = true;
       powerManagement.enable = false;
