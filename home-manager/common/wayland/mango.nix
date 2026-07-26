@@ -43,6 +43,7 @@ with lib; {
 
       wayland.windowManager.mango = {
         enable = true;
+        package = inputs.mango.packages.${pkgs.stdenv.hostPlatform.system}.mango;
         systemd = {
           enable = true;
           variables = ["--all"];
