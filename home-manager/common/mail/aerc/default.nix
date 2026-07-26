@@ -10,7 +10,6 @@
       general = {
         unsafe-accounts-conf = true;
         default-menu-cmd = "fzf";
-        enable-osc8 = true; # hyprlinks
       };
       ui = {
         completion-delay = "100ms";
