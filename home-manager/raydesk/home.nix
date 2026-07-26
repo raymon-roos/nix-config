@@ -16,7 +16,7 @@
     rtorrent.enable = true;
     newsraft.enable = true;
     wayland.enable = true;
-    hyprland.enable = true;
+    hyprland.enable = false;
     river.enable = false;
     mango.enable = true;
     lockscreen.enable = false;
