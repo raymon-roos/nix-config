@@ -191,6 +191,7 @@ with lib; {
           unfocused_opacity = lib.mkDefault 0.97;
 
           animations = 1;
+          layer_animations = 1;
           # animation_type_open = "zoom";
           # animation_type_close = "slide";
           animation_fade_in = 1;
@@ -313,7 +314,7 @@ with lib; {
           ];
 
           layerrule = [
-            "animation_type_open:slide,animation_type_close:slide,layer_name:menu"
+            "animation_type_open:zoom,animation_type_close:zoom,layer_name:menu"
           ];
         };
       };
