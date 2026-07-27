@@ -140,7 +140,7 @@ with lib; {
 
           scroller_structs = 10;
           scroller_default_proportion = 0.5;
-          scroller_proportion_preset = "0.5,0.1";
+          scroller_proportion_preset = "0.5,1";
 
           new_is_master = 0;
           default_mfact = 0.5;
