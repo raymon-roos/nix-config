@@ -76,7 +76,6 @@
   time.timeZone = "Europe/Amsterdam";
 
   users.users.ray = {
-    shell = pkgs.nushell;
     isNormalUser = true;
     extraGroups =
       ["wheel" "ray" "video"]
@@ -108,11 +107,17 @@
   programs = let
     shellModules = config.home-manager.users.ray.common.shell;
   in {
-    bash = lib.mkIf shellModules.bash.enable {
+    bash = {
       enable = true;
-      interactiveShellInit = ''
-        [ -f "$XDG_CONFIG_HOME/bash/profile" ] && . "$XDG_CONFIG_HOME/bash/profile"
-      '';
+      interactiveShellInit =
+        ''[ -f "$XDG_CONFIG_HOME/bash/profile" ] && . "$XDG_CONFIG_HOME/bash/profile" ''
+        + lib.optionalString shellModules.nu.enable ''
+          # Enter Nushell by default without making it the login shell, because Nu is not posix.
+          # Includes an extensive test to see whether entering nu automatically is safe
+          if grep -qv 'nu\|nix-shell' /proc/$PPID/comm && [[ $SHLVL == [12] ]] && [ -z "$BASH_EXECUTION_STRING" ] && ! [ "$TERM" = "dumb" ]; then
+              exec nu
+          fi
+        '';
     };
     zsh = lib.mkIf shellModules.zsh.enable {
       enable = true;
@@ -120,6 +125,8 @@
         export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
       '';
     };
+
+    nushell.enable = shellModules.nu.enable;
   };
 
   fonts = {
