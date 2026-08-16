@@ -225,11 +225,6 @@ with lib; {
               "${mod},Z,spawn,${browser}"
               "${mod}+SHIFT,Z,spawn,${browser} --private-window"
 
-              "${mod}+CTRL,C,spawn_shell,cmus-remote -u || ${terminal} --app-id cmus cmus"
-              "${mod}+CTRL,B,spawn,cmus-remote -n"
-              "${mod}+CTRL,Z,spawn,cmus-remote -r"
-              "${mod}+CTRL,M,spawn,cmus-remote -C 'toggle aaa_mode'"
-
               "${mod},K,spawn,${spawn_or_focus {
                 appID = "email_client";
                 cmd = "${terminal} --app-id email_client --hold aerc";
