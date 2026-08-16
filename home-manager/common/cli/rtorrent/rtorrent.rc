@@ -26,8 +26,8 @@ execute.throw = sh, -c, (cat,\
 
 
 ## Listening port for incoming peer traffic (fixed; you can also randomize it)
-network.port_range.set = 49164-49164
-network.port_random.set = no
+network.listen.port.range.set = 49164-49164
+network.listen.port.random.set = no
 
 
 ## Tracker-less torrent and UDP tracker support
@@ -35,13 +35,10 @@ network.port_random.set = no
 dht.mode.set = auto
 protocol.pex.set= 1
 
-trackers.use_udp.set = 1
-
 # Adding public DHT servers for easy bootstrapping
-schedule2 = dht_node_1, 5, 0, "dht.add_node=router.utorrent.com:6881"
-schedule2 = dht_node_2, 5, 0, "dht.add_node=dht.transmissionbt.com:6881"
-schedule2 = dht_node_3, 5, 0, "dht.add_node=router.bitcomet.com:6881"
-schedule2 = dht_node_4, 5, 0, "dht.add_node=dht.aelitis.com:6881"
+schedule = dht_node_1, 5, 0, "dht.add_node=router.utorrent.com:6881"
+schedule = dht_node_2, 5, 0, "dht.add_node=dht.transmissionbt.com:6881"
+schedule = dht_node_4, 5, 0, "dht.add_node=dht.aelitis.com:6881"
 
 
 ## Peer settings
@@ -54,16 +51,22 @@ throttle.min_peers.seed.set = 30
 throttle.max_peers.seed.set = 80
 trackers.numwant.set = 80
 
-protocol.encryption.set = allow_incoming,try_outgoing,enable_retry
+# Select encryption for handshake and connection:
+#
+# protocol.encryption.set = {deny,allow,prefer,require}
+# protocol.encryption.set = handshake_{deny,allow,prefer,require}, stream_{deny,allow,prefer,require}
+#
+#protocol.encryption.set = deny
+#protocol.encryption.set = require
+#protocol.encryption.set = handshake_prefer, stream_deny
+protocol.encryption.set = handshake_prefer, stream_prefer
 
 
 ## Limits for file handle resources, this is optimized for
 ## an `ulimit` of 1024 (a common default). You MUST leave
 ## a ceiling of handles reserved for rTorrent's internal needs!
-network.http.max_open.set = 50
-network.max_open_files.set = 600
-network.max_open_sockets.set = 512
 
+# Deprecated, see: https://github.com/rakshasa/rtorrent/wiki/Socket-Manager-and-Resource-Allocation
 
 ## Memory resource usage (increase if you have a large number of items loaded,
 ## and/or the available resources to spend)
@@ -81,18 +84,18 @@ execute.nothrow = sh, -c, (cat, "echo >",\
 
 
 ## Other operational settings (check & adapt)
-encoding.add = utf8
 system.umask.set = 0027
 system.cwd.set = (directory.default)
 network.http.dns_cache_timeout.set = 25
-schedule2 = monitor_diskspace, 15, 60, ((close_low_diskspace, 1000M))
+schedule = monitor_diskspace, 15, 60, ((close_low_diskspace, 1000M))
 #pieces.hash.on_completion.set = no
 #view.sort_current = seeding, greater=d.ratio=
 #keys.layout.set = qwerty
 #network.http.capath.set = "/etc/ssl/certs"
 #network.http.ssl_verify_peer.set = 0
 #network.http.ssl_verify_host.set = 0
-
+#network.rpc.use_xmlrpc.set = true
+#network.rpc.use_jsonrpc.set = true
 
 ## Some additional values and commands
 method.insert = system.startup_time, value|const, (system.time)
@@ -105,9 +108,9 @@ method.insert = d.session_file, simple, "cat=(session.path), (d.hash), .torrent"
 
 ## Watch directories (add more as you like, but use unique schedule names)
 ## Add torrent
-schedule2 = watch_load, 11, 10, ((load.verbose, (cat, (cfg.watch), "load/*.torrent")))
+schedule = watch_load, 11, 10, ((load.verbose, (cat, (cfg.watch), "load/*.torrent")))
 ## Add & download straight away
-schedule2 = watch_start, 10, 10, ((load.start_verbose, (cat, (cfg.watch), "start/*.torrent")))
+schedule = watch_start, 10, 10, ((load.start_verbose, (cat, (cfg.watch), "start/*.torrent")))
 
 
 ## Run the rTorrent process as a daemon in the background
