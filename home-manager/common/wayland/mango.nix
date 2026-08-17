@@ -57,10 +57,12 @@ with lib; {
 
           tag_keybind = bind: action: tag: "${bind},spawn,${tags_with_overlay} --action ${action} --tag ${tag}";
 
-          browser = "librewolf";
-          terminal = "kitty";
+          browser = "${runapp} librewolf";
+          terminal = "${runapp} kitty";
           menu = "bemenu";
           mod = "SUPER";
+
+          runapp = lib.getExe pkgs.runapp;
 
           # Creates separate derivations for each invocation, which is not ideal.
           # But there is no easy way in nushell to eval a string, and
@@ -133,8 +135,9 @@ with lib; {
           ];
 
           exec-once = [
-            "mako &"
-            "wbg -s ${config.stylix.image} &"
+            # "systemctl --user start mango-session.target"
+            "${runapp} -i background-graphical.slice mako &"
+            "${runapp} -i background-graphical.slice wbg -s ${config.stylix.image} &"
           ];
 
           circle_layout = "tile,vertical_tile,scroller,dwindle";
@@ -210,7 +213,7 @@ with lib; {
 
           binds =
             [
-              "${mod}+CTRL+SHIFT,Q,quit"
+              "${mod}+CTRL+SHIFT,Q,spawn,uwsm stop"
               "${mod},v,togglefloating"
               "${mod},H,togglemaximizescreen"
               "NONE,F11,togglefullscreen"
@@ -241,10 +244,10 @@ with lib; {
               }}"
 
               "${mod},L,spawn,makoctl dismiss"
-              "${mod},U,spawn,makoctl menu -- ${menu} --accept-single"
+              "${mod},U,spawn,makoctl menu -- ${runapp} ${menu} --accept-single"
               "${mod},Y,spawn,makoctl restore"
 
-              "${mod},semicolon,spawn,bemenu-run"
+              ''${mod},semicolon,spawn_shell,prg="$(bemenu-run --no-exec)"; [[ -n "$prg" ]] && ${runapp} "$prg"''
               "${mod}+SHIFT,colon,spawn,passmenu_custom"
               "${mod},P,spawn,directories_bemenu.sh"
 
@@ -281,7 +284,7 @@ with lib; {
             ]
             ++ (
               lib.lists.optional config.common.lockscreen.enable
-              "${mod}+CTRL,Q,spawn_shell,pidof hyprlock || hyprlock"
+              "${mod}+CTRL,Q,spawn_shell,pidof hyprlock || ${runapp} hyprlock"
             )
             # control tags
             ++ (concatMap (tag: [

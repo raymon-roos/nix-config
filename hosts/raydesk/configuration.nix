@@ -54,6 +54,16 @@ in {
     };
 
     mango.enable = hmConfig.common.mango.enable;
+
+    uwsm = {
+      enable = true;
+      waylandCompositors.mango = {
+        prettyName = "mango";
+        comment = "mango compositor managed by UWSM";
+        binPath = "/run/current-system/sw/bin/mango";
+        extraArgs = ["-c" "$XDG_CONFIG_HOME/mango/config.conf"];
+      };
+    };
   };
 
   environment = {

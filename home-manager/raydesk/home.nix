@@ -168,7 +168,7 @@
             mod = "SUPER";
           in [
             "${mod},F,spawn,${info_overlay}"
-            "${mod}+CTRL,C,spawn_shell,cmus-remote -u || $TERMINAL --app-id cmus cmus"
+            "${mod}+CTRL,C,spawn_shell,cmus-remote -u || ${lib.getExe pkgs.runapp} $TERMINAL --app-id cmus cmus"
             "${mod}+CTRL,B,spawn,cmus-remote -n"
             "${mod}+CTRL,Z,spawn,cmus-remote -r"
             "${mod}+CTRL,M,spawn,cmus-remote -C 'toggle aaa_mode'"
