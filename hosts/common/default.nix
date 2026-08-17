@@ -115,7 +115,7 @@
           # Enter Nushell by default without making it the login shell, because Nu is not posix.
           # Includes an extensive test to see whether entering nu automatically is safe
           if grep -qv 'nu\|nix-shell' /proc/$PPID/comm && [[ $SHLVL == [12] ]] && [ -z "$BASH_EXECUTION_STRING" ] && ! [ "$TERM" = "dumb" ]; then
-              exec nu
+              SHELL=/run/current-system/sw/bin/nu exec nu
           fi
         '';
     };
