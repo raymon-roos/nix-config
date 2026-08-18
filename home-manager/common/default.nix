@@ -33,6 +33,7 @@
         remind
         typst
         concord-tui
+        xdg-utils
       ]
       ++ lib.optionals pkgs.stdenv.isLinux [
         keychain
