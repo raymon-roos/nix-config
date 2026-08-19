@@ -35,7 +35,7 @@
         concord-tui
         xdg-utils
       ]
-      ++ lib.optionals pkgs.stdenv.isLinux [
+      ++ lib.optionals pkgs.stdenv.hostPlatform.isLinux [
         keychain
         wl-clipboard-rs
         simple-mtpfs
@@ -43,7 +43,7 @@
         pwmenu
       ];
 
-    file = lib.optionalAttrs pkgs.stdenv.isLinux {
+    file = lib.optionalAttrs pkgs.stdenv.hostPlatform.isLinux {
       # Don't clutter my $HOME with backwards-compatibility
       ".icons/default/index.theme".enable = false;
       ".icons/${config.stylix.cursor.name}".enable = false;
@@ -234,10 +234,10 @@
     kde.enable = false; # not compatible with nushell + nvim (?)
   };
 
-  xresources.path = lib.mkIf pkgs.stdenv.isLinux "${config.xdg.configHome}/X11/Xresources";
+  xresources.path = lib.mkIf pkgs.stdenv.hostPlatform.isLinux "${config.xdg.configHome}/X11/Xresources";
 
   gtk = {
-    gtk2.configLocation = lib.mkIf pkgs.stdenv.isLinux "${config.xdg.configHome}/gtk-2.0/gtkrc";
+    gtk2.configLocation = lib.mkIf pkgs.stdenv.hostPlatform.isLinux "${config.xdg.configHome}/gtk-2.0/gtkrc";
     gtk3.bookmarks = map (x: "file://${config.home.homeDirectory}/${x}") ["scratch" "projects" "files"];
   };
 }

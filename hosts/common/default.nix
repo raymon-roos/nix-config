@@ -35,18 +35,18 @@
     };
   };
 
-  boot = lib.mkIf pkgs.stdenv.isLinux {
+  boot = lib.mkIf pkgs.stdenv.hostPlatform.isLinux {
     zswap.enable = true;
   };
 
   environment.systemPackages = with pkgs;
     [
     ]
-    ++ lib.optionals pkgs.stdenv.isLinux [
+    ++ lib.optionals pkgs.stdenv.hostPlatform.isLinux [
       smartmontools # The smartd service does not install smartctl?
     ];
 
-  services = lib.mkIf pkgs.stdenv.isLinux {
+  services = lib.mkIf pkgs.stdenv.hostPlatform.isLinux {
     dbus.implementation = "broker";
 
     smartd.enable = true;

@@ -5,7 +5,7 @@
   inputs,
   ...
 }: {
-  services = lib.mkIf pkgs.stdenv.isLinux {
+  services = lib.mkIf pkgs.stdenv.hostPlatform.isLinux {
     watt = {
       enable = true;
       package = inputs.watt.packages.${pkgs.stdenv.hostPlatform.system}.watt;

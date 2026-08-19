@@ -19,7 +19,7 @@
       rem = ''cal -m3 && remind -qgaad ${FILES_HOME}/calendar'';
       remc = "remind -mcu12b1@2,2,1wtt ${FILES_HOME}/calendar | less --raw";
     }
-    // lib.optionalAttrs pkgs.stdenv.isLinux {
+    // lib.optionalAttrs pkgs.stdenv.hostPlatform.isLinux {
       zettel = ''[ "$PWD" = ${NOTES_HOME} ] || pushd ${NOTES_HOME} && nvim index-202202270044.md'';
     };
 in {
@@ -61,7 +61,7 @@ in {
       gsp = "git stash pop";
       uu = "jjui";
     }
-    // lib.optionalAttrs pkgs.stdenv.isLinux {
+    // lib.optionalAttrs pkgs.stdenv.hostPlatform.isLinux {
       drag = "ripdrag -nxa";
       keychain = "keychain --dir ${stateHome}/keychain";
     };

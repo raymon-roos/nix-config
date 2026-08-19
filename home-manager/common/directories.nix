@@ -29,7 +29,7 @@ in {
       enable = true;
       inherit dataHome cacheHome stateHome configHome;
     }
-    // lib.optionalAttrs pkgs.stdenv.isLinux {
+    // lib.optionalAttrs pkgs.stdenv.hostPlatform.isLinux {
       userDirs = {
         enable = true;
         createDirectories = true;
