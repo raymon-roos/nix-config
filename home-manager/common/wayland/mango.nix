@@ -128,37 +128,32 @@ with lib; {
           '';
 
           quit_menu = pkgs.writers.writeNu "quit_menu" ''
-            mmsg get all-clients
+            def may-exit [] {
+              mmsg get all-clients
               | from json
               | get clients
               | if ($in | is-not-empty) {
                 notify-send "There are still open clients!"
                 exit
               }
+            }
+
+            def quit [] {
+              may-exit
+              mmsg dispatch quit | ignore
+              systemctl --user stop mango-session.target
+            }
 
             [ ' poweroff' ' hibernate' '󰈆 quit' '󰍃 logout' '󰜉 reboot' ]
               | to text
               | bemenu --width-factor 0.06
               | match ($in | split words -l 4 | first) {
-                'quit' => {
-                  mmsg dispatch quit | ignore
-                  systemctl --user stop mango-session.target
-                }
-                'poweroff' => {
-                  mmsg dispatch quit | ignore
-                  poweroff
-                }
-                'logout' => {
-                  mmsg dispatch quit | ignore
-                  systemctl --user stop mango-session.target
-                  loginctl terminate-user $env.USER
-                }
+                'quit' => { quit }
+                'poweroff' => { quit; poweroff }
+                'logout' => { quit; loginctl terminate-user $env.USER }
                 'hibernate' => { systemctl hibernate }
-                'reboot' => {
-                  mmsg dispatch quit | ignore
-                  reboot
-                }
-                _ => ""
+                'reboot' => { quit; reboot }
+                _ => ()
               }
           '';
         in {
