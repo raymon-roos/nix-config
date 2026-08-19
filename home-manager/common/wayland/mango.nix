@@ -126,6 +126,41 @@ with lib; {
                 | notify-send --app-name window_manager --category tags_overlay $in
             }
           '';
+
+          quit_menu = pkgs.writers.writeNu "quit_menu" ''
+            mmsg get all-clients
+              | from json
+              | get clients
+              | if ($in | is-not-empty) {
+                notify-send "There are still open clients!"
+                exit
+              }
+
+            [ ' poweroff' ' hibernate' '󰈆 quit' '󰍃 logout' '󰜉 reboot' ]
+              | to text
+              | bemenu --width-factor 0.06
+              | match ($in | split words -l 4 | first) {
+                'quit' => {
+                  mmsg dispatch quit | ignore
+                  systemctl --user stop mango-session.target
+                }
+                'poweroff' => {
+                  mmsg dispatch quit | ignore
+                  poweroff
+                }
+                'logout' => {
+                  mmsg dispatch quit | ignore
+                  systemctl --user stop mango-session.target
+                  loginctl terminate-user $env.USER
+                }
+                'hibernate' => { systemctl hibernate }
+                'reboot' => {
+                  mmsg dispatch quit | ignore
+                  reboot
+                }
+                _ => ""
+              }
+          '';
         in {
           env = [
             "QT_QPA_PLATFORM,wayland;xcb"
@@ -211,7 +246,7 @@ with lib; {
 
           binds =
             [
-              "${mod}+CTRL+SHIFT,Q,spawn_shell,mmsg dispatch quit; systemctl --user stop mango-session.target"
+              "${mod}+CTRL+SHIFT,Q,spawn,${quit_menu}"
               "${mod},v,togglefloating"
               "${mod},H,togglemaximizescreen"
               "NONE,F11,togglefullscreen"
