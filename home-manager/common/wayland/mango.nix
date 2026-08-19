@@ -133,6 +133,7 @@ with lib; {
           ];
 
           exec-once = [
+            "systemctl --user start mango-session.target"
             "mako &"
             "wbg -s ${config.stylix.image} &"
           ];
@@ -210,7 +211,7 @@ with lib; {
 
           binds =
             [
-              "${mod}+CTRL+SHIFT,Q,quit"
+              "${mod}+CTRL+SHIFT,Q,spawn_shell,mmsg dispatch quit; systemctl --user stop mango-session.target"
               "${mod},v,togglefloating"
               "${mod},H,togglemaximizescreen"
               "NONE,F11,togglefullscreen"
