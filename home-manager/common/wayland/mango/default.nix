@@ -51,7 +51,7 @@ with lib; {
         settings = let
           inherit (config.lib.stylix) colors;
 
-          # shift as a modifier effects the bound key
+          # shift as a modifier affects the bound key
           shift_nums = ["parenright" "exclam" "at" "numbersign" "code:13" "percent" "asciicircum" "ampersand" "asterisk" "code:18"];
           gen_tags = range 0 9 |> map toString;
 
@@ -62,100 +62,12 @@ with lib; {
           menu = "bemenu";
           mod = "SUPER";
 
-          # Creates separate derivations for each invocation, which is not ideal.
-          # But there is no easy way in nushell to eval a string, and
-          # closures can only be passed within modules, not scripts
-          spawn_or_focus = {
-            appID,
-            cmd,
-          }:
-            pkgs.writers.writeNu "spawn_or_focus" ''
-              mmsg get all-clients
-                | from json
-                | get clients
-                | where appid == "${appID}"
-                | first
-                | match ($in | get id? | describe) {
-                  nothing => (exec ${cmd})
-                  int => (mmsg dispatch focusid $"client,($in.id)" | ignore)
-                }
-            '';
+          writeNuBin = name: pkgs.writers.writeNuBin name ./${name}.nu |> lib.getExe;
 
-          # Two separate layout cycles with one keybind, one for landscape mode, one for portrait mode
-          cycle_layouts = pkgs.writers.writeNu "cycle_layouts" ''
-            let monitor = mmsg get all-monitors | from json | get monitors | where active == true | first | select layout_symbol width height
-            {T: scroller S: fair F: tile , VT: vertical_scroller VS: vertical_fair VF: vertical_tile}
-              | get -o $monitor.layout_symbol
-              | default (if ($monitor.width > $monitor.height) { 'tile' } else { 'vertical_tile' })
-              | tee {notify-send --app-name window_manager $in}
-              | mmsg dispatch $'setlayout,($in)'
-              | ignore
-          '';
-
-          # Switch/toggle tags with transient overlay showing state of tags
-          tags_with_overlay = pkgs.writers.writeNu "tags_with_overlay" ''
-            const symbols = {
-              active: {
-                none: {1: '󰎤 ' 2: '󰎧 ' 3: '󰎪 ' 4: '󰎭 ' 5: '󰎱 ' 6: '󰎳 ' 7: '󰎶 ' 8: '󰎹 ' 9: '󰎼 '}
-                some: {1: '󰼏 ' 2: '󰼐 ' 3: '󰼑 ' 4: '󰼒 ' 5: '󰼓 ' 6: '󰼔 ' 7: '󰼕 ' 8: '󰼖 ' 9: '󰼗 '}
-              }
-              inactive: {
-                none: {1: '󰎦 ' 2: '󰎩 ' 3: '󰎬 ' 4: '󰎮 ' 5: '󰎰 ' 6: '󰎵 ' 7: '󰎸 ' 8: '󰎻 ' 9: '󰎾 '}
-                some: {1: '󰎥 ' 2: '󰎨 ' 3: '󰎫 ' 4: '󰎲 ' 5: '󰎯 ' 6: '󰎴 ' 7: '󰎷 ' 8: '󰎺 ' 9: '󰎽 '}
-              }
-            }
-
-            def main [--action: string, --tag: int] {
-              if $action not-in ["view" "toggleview" "tagsilent" "toggletag"] or ($tag < 0 or $tag > 9) {
-                return
-              }
-
-              mmsg dispatch $"($action),($tag)" | ignore
-
-              mmsg get all-monitors
-                | from json
-                | get monitors
-                | where active == true
-                | get 0.tags
-                | each {|t|
-                  if $t.is_active { $symbols.active } else { $symbols.inactive }
-                    | if $t.client_count > 0 { get some } else { get none }
-                    | get $"($t.index)"
-                }
-                | str join
-                | notify-send --app-name window_manager --category tags_overlay $in
-            }
-          '';
-
-          quit_menu = pkgs.writers.writeNu "quit_menu" ''
-            def may-exit [] {
-              mmsg get all-clients
-              | from json
-              | get clients
-              | if ($in | is-not-empty) {
-                notify-send "There are still open clients!"
-                exit
-              }
-            }
-
-            def quit [] {
-              may-exit
-              mmsg dispatch quit | ignore
-              systemctl --user stop mango-session.target
-            }
-
-            [ ' poweroff' ' hibernate' '󰈆 quit' '󰍃 logout' '󰜉 reboot' ]
-              | to text
-              | bemenu --width-factor 0.06
-              | match ($in | split words -l 4 | first) {
-                'quit' => { quit }
-                'poweroff' => { quit; poweroff }
-                'logout' => { quit; loginctl terminate-user $env.USER }
-                'hibernate' => { systemctl hibernate }
-                'reboot' => { quit; reboot }
-                _ => ()
-              }
-          '';
+          spawn_or_focus = writeNuBin "spawn_or_focus";
+          cycle_layouts = writeNuBin "cycle_layouts";
+          tags_with_overlay = writeNuBin "tags_with_overlay";
+          quit_menu = writeNuBin "quit_menu";
         in {
           env = [
             "QT_QPA_PLATFORM,wayland;xcb"
@@ -256,20 +168,11 @@ with lib; {
               "${mod},Z,spawn,${browser}"
               "${mod}+SHIFT,Z,spawn,${browser} --private-window"
 
-              "${mod},K,spawn,${spawn_or_focus {
-                appID = "email_client";
-                cmd = "${terminal} --app-id email_client --hold aerc";
-              }}"
+              "${mod},K,spawn,${spawn_or_focus} --appID 'email_client' --cmd '${terminal} --app-id email_client --hold aerc'"
 
-              "${mod}+SHIFT,K,spawn,${spawn_or_focus {
-                appID = "discord_client";
-                cmd = "${terminal} --app-id discord_client concord";
-              }}"
+              "${mod}+SHIFT,K,spawn,${spawn_or_focus} --appID 'discord_client' --cmd '${terminal} --app-id discord_client concord'"
 
-              "${mod}+SHIFT,B,spawn,${spawn_or_focus {
-                appID = "process_manager_client";
-                cmd = "${terminal} --app-id process_manager_client --hold btm --default_widget_type=processes --expanded";
-              }}"
+              "${mod}+SHIFT,B,spawn,${spawn_or_focus} --appID 'process_manager' --cmd '${terminal} --app-id process_manager --hold btm'"
 
               "${mod},L,spawn,makoctl dismiss"
               "${mod},U,spawn,makoctl menu -- ${menu} --accept-single"

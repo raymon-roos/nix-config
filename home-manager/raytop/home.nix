@@ -74,9 +74,7 @@
   };
 
   wayland.windowManager = let
-    osd =
-      pkgs.writers.writeNu "osd.nu"
-      (builtins.readFile ./scripts/osd.nu);
+    osd = pkgs.writers.writeNuBin "osd.nu" ./scripts/osd.nu |> lib.getExe;
   in {
     hyprland = lib.mkIf config.common.hyprland.enable {
       settings = {
@@ -134,31 +132,7 @@
 
         binds = let
           # show clock & battery
-          info_overlay = pkgs.writers.writeNu "info_overlay" ''
-            def battery [] {
-              let icons = {
-                charging:    [ '󰢟 ' '󰢜 ' '󰂆 ' '󰂇 ' '󰂈 ' '󰢝 ' '󰂉 ' '󰢞 ' '󰂊 ' '󰂋 ' '󰂅 ']
-                discharging: [ '󱃍 ' '󰁺'  '󰁻'  '󰁼'  '󰁽'  '󰁾 ' '󰁿'  '󰂀'  '󰂁'  '󰂂'  '󰁹' ]
-              }
-              let bat = acpi -b
-                | parse -r '\w+ \d?: (?<charging>(?:Dis|Not )?[Cc]harging), (?<percent>\d+)%(?:, (?<hr>\d\d):(?<min>\d\d):(?<sec>\d\d) (?:remaining|until charged))?'
-                | first
-
-              $icons
-                | if $bat.charging == 'Discharging' {
-                  get discharging
-                } else {
-                  get charging
-                }
-                | get (($bat.percent | into int) // 10)
-                | $"($in)($bat.percent)%(if $bat.charging != 'Not charging' { $bat | format pattern '({hr}:{min})' })"
-            }
-
-            ( notify-send --app-name window_manager --category info_overlay
-              (date now | format date " %a %h %d\n %T")
-              (battery)
-            )
-          '';
+          info_overlay = pkgs.writers.writeNuBin "info_overlay" ./scripts/info_overlay.nu |> lib.getExe;
         in [
           "SUPER+CTRL,M,spawn,pwmenu --launcher custom --launcher-command bemenu -s 2"
           "SUPER+CTRL,B,spawn,bzmenu --launcher custom --launcher-command bemenu -s 2"
