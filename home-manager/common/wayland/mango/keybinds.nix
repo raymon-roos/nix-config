@@ -87,14 +87,17 @@
 
           "${mod}+CTRL,t,switch_proportion_preset"
           "${mod},t,spawn,${cycle_layouts}"
-          "${mod}+SHIFT,n,setmfact,-0.03"
-          "${mod}+SHIFT,o,setmfact,+0.03"
 
           # control monitors
           "${mod},comma,focusmon,left"
           "${mod},period,focusmon,right"
           "${mod}+CTRL,comma,tagmon,left"
           "${mod}+CTRL,period,tagmon,right"
+
+          "${mod}+SHIFT,n,resizewin,-16,+0"
+          "${mod}+SHIFT,e,resizewin,+0,+16"
+          "${mod}+SHIFT,i,resizewin,+0,-16"
+          "${mod}+SHIFT,o,resizewin,+16,+0"
         ]
         ++ (
           lib.lists.optional config.common.lockscreen.enable
