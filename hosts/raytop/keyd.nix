@@ -77,7 +77,8 @@
             ";" = "overloadi(;, overloadt(meta, ;, 160), 35)";
             space = "overloadi(space, overloadt(symbol_number, space, 110), 35)";
             "leftshift+rightshift" = "toggle(smart_caps)";
-            "d+k+space" = "toggle(smart_num)";
+            capslock = "toggle(smart_num)";
+            shift = "oneshot(shift)";
           };
 
           shift = {
@@ -145,22 +146,31 @@
           };
 
           smart_num = {
-            c = "-";
-            e = "/";
+            q = "!";
+            w = "overloadi(@, overloadt(nav_edit, @, 105), 35)";
+            e = "#";
+            r = "$";
+            t = "%";
+            y = "^";
+            u = "&";
+            i = "*";
+            o = "(";
+            p = ")";
             a = "1";
             s = "2";
             d = "3";
-            f = "lettermod(control, 4, 35, 130)";
+            f = "4";
             g = "5";
             h = "6";
-            j = "lettermod(control, 7, 35, 130)";
+            j = "7";
             k = "8";
             l = "9";
             ";" = "0";
-            m = "+";
-            i = "*";
-            # w = "lettermod(nav_edit, noop, 35, 105)";
-            space = "togglem(smart_num, macro(space))";
+            "," = "+";
+            m = "*";
+            c = "-";
+            x = "/";
+            space = "overloadt(symbol_number, togglem(smart_num, macro(space)), 110)";
             escape = "togglem(smart_num, macro(escape))";
             tab = "togglem(smart_num, macro(tab))";
             enter = "togglem(smart_num, macro(enter))";
