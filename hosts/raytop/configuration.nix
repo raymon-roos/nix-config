@@ -93,6 +93,11 @@
   fonts.enableDefaultPackages = true;
 
   stylix = {
+    fonts.sizes = {
+      terminal = 9;
+      applications = 10;
+      popups = 9;
+    };
     cursor = {
       package = pkgs.bibata-cursors;
       name = "Bibata-Modern-Classic";

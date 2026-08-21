@@ -8,7 +8,7 @@
     settings = {
       list = 8;
       center = true;
-      width-factor = 0.2;
+      width-factor = 0.11;
       line-height = 16;
       border = 2;
       border-radius = 6;

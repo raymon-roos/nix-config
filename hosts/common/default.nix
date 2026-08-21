@@ -136,7 +136,7 @@
     ];
   };
 
-  stylix = with lib; {
+  stylix = {
     enable = true;
 
     image = lib.mkDefault (pkgs.fetchurl {
@@ -148,9 +148,6 @@
     base16Scheme = "${pkgs.base16-schemes}/share/themes/ayu-mirage.yaml";
 
     fonts = {
-      sizes.terminal = mkDefault 9;
-      sizes.applications = mkDefault 10;
-
       monospace = {
         package = pkgs.fira-code;
         name = "Fira Code";
