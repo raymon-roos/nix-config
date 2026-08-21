@@ -27,7 +27,7 @@
 
       "app-name=window_manager category=tags_overlay" = {
         font = "${osConfig.stylix.fonts.emoji.name} 12";
-        width = 170;
+        width = 190;
         default-timeout = "700";
         background-color = "${"#" + config.lib.stylix.colors.base01}";
       };
@@ -38,7 +38,7 @@
 
       "app-name=window_manager category=info_overlay" = {
         font = "${osConfig.stylix.fonts.monospace.name} 11";
-        width = 170;
+        width = 190;
         default-timeout = "1400";
         border-size = 1;
       };

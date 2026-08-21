@@ -160,11 +160,8 @@
           ];
 
           bind = let
-            info_overlay = pkgs.writers.writeNu "info_overlay" ''
-              ( notify-send --app-name window_manager --category info_overlay
-                (date now | format date " %a %h %d\n %T")
-              )
-            '';
+            # show clock & temps
+            info_overlay = pkgs.writers.writeNuBin "info_overlay" ./scripts/info_overlay.nu |> lib.getExe;
             mod = "SUPER";
           in [
             "${mod},F,spawn,${info_overlay}"

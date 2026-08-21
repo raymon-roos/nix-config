@@ -131,7 +131,7 @@
         border_radius = 4;
 
         binds = let
-          # show clock & battery
+          # show clock, battery & temps
           info_overlay = pkgs.writers.writeNuBin "info_overlay" ./scripts/info_overlay.nu |> lib.getExe;
         in [
           "SUPER+CTRL,M,spawn,pwmenu --launcher custom --launcher-command bemenu -s 2"
