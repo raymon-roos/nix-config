@@ -1,16 +1,5 @@
 def temps [] {
-  sys temp
-    | get temp
-    | math round -p 1
-    | wrap temp
-    | enumerate 
-    | join --right (['' '' '󰋊']
-    | wrap name
-    | enumerate) index
-    | flatten
-    | reject index
-    | format pattern '{name}{temp}'
-    | str join ' '
+  sys temp | get temp | sort -r | first | $"  ($in) ℃ "
 }
 
 ( notify-send --app-name window_manager --category info_overlay
