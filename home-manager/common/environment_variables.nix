@@ -1,4 +1,8 @@
-{config, ...}: let
+{
+  config,
+  lib,
+  ...
+}: let
   inherit (config.xdg) cacheHome configHome dataHome stateHome;
 in {
   home.sessionVariables = {
@@ -20,5 +24,7 @@ in {
     TEXMFVAR = "${cacheHome}/texlive/texmf-var";
     WGETRC = "${configHome}/wget/wgetrc";
     _JAVA_OPTIONS = "-Djava.util.prefs.userRoot=${configHome}/java";
+
+    ZK_NOTEBOOK_DIR = lib.mkIf config.programs.zk.enable config.xdg.userDirs.extraConfig.NOTES_HOME;
   };
 }
