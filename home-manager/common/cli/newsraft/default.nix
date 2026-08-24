@@ -16,7 +16,7 @@ with lib; {
         list-entry-date-format %F %T
         menu-item-sorting time-publication-desc
 
-        bind m exec mpv "%l"
+        bind m exec-quiet mpv --terminal=no "%l" &
       '';
     };
   };
