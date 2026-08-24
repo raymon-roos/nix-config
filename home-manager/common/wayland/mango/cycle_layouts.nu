@@ -9,7 +9,12 @@ let monitor = mmsg get all-monitors
 {T: scroller S: fair F: tile , VT: vertical_scroller VS: vertical_fair VF: vertical_tile}
   | get -o $monitor.layout_symbol
   | default (if ($monitor.width > $monitor.height) { 'tile' } else { 'vertical_tile' })
-  | tee {notify-send --app-name window_manager $in}
+  | tee { ( notify-send
+    --transient
+    --app-name window_manager
+    --replace-id (makoctl list -j | from json | get 0?.id | default "0")
+    -- $in
+  ) }
   | mmsg dispatch $'setlayout,($in)'
   | ignore
 

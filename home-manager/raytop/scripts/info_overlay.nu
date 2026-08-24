@@ -32,7 +32,10 @@ def temps [] {
     | str join ' '
 }
 
-( notify-send --app-name window_manager --category info_overlay
-  (date now | format date " %a %h %d\n %T")
-  $"(battery)\n(temps)"
+( notify-send
+  --transient
+  --app-name window_manager
+  --category info_overlay
+  --replace-id (makoctl list -j | from json | get 0?.id | default "0")
+  -- (date now | format date " %a %h %d\n %T") $"(battery)\n(temps)"
 )

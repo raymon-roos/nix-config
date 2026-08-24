@@ -28,6 +28,12 @@ def main [--action: string, --tag: int] {
         | get $"($t.index)"
     }
     | str join
-    | notify-send --app-name window_manager --category tags_overlay $in
+    | ( notify-send
+        --transient
+        --app-name window_manager
+        --category tags_overlay 
+        --replace-id (makoctl list -j | from json | get 0?.id | default "0")
+        -- $in
+      )
 }
 
