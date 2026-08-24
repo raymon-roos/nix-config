@@ -53,11 +53,11 @@
   xdg = {
     configFile."concord/config.toml".source = (pkgs.formats.toml {}).generate "config.toml" {
       display = {
-        disable_image_preview = true;
+        disable_image_preview = false;
         show_avatars = false;
         show_images = false;
-        media_playback = false;
-        image_preview_quality = "balanced";
+        media_playback = true;
+        attachment_preview_quality = "original";
         show_custom_emoji = true;
       };
       presence.share_rich_presence = false;
