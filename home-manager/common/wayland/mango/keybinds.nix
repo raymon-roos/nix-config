@@ -70,7 +70,7 @@
 
           # control windows
           "${mod}+CTRL,Tab,view,-1"
-          "${mod},Tab,toggleoverview"
+          "${mod},Tab,togglejump"
           "${mod},n,focusdir,left"
           "${mod},e,focusdir,down"
           "${mod},i,focusdir,up"

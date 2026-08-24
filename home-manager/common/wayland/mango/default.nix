@@ -73,8 +73,13 @@ with lib; {
           default_mfact = 0.5;
 
           drag_tile_to_tile = 1;
-          ov_tab_mode = 1;
+          ov_tab_mode = 0;
           enable_hotarea = 0;
+          jump_labels = "NEIOARSTMGQWFPLUY;XCDV/.,H";
+          jump_label_decorate_font_desc = "monospace Bold 10";
+          jump_label_decorate_border_width = 2;
+          jump_label_decorate_padding_x = 8;
+          jump_label_decorate_padding_y = 6;
           focus_on_activate = 0;
           smartgaps = 1;
 
