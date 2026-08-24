@@ -64,6 +64,7 @@
           "${mod},semicolon,spawn,bemenu-run"
           "${mod}+SHIFT,colon,spawn,passmenu_custom"
           "${mod},P,spawn,directories_bemenu.sh"
+          "${mod}+SHIFT,F,spawn,agenda_overview.nu"
 
           "${mod}+SHIFT,D,killclient,"
 

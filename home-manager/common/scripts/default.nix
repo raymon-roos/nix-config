@@ -18,5 +18,8 @@ in {
     ]
     ++ optionals (config.programs.nushell.enable && config.common.email.enable) [
       (writeNuBin "newmail" ./newmail.nu)
+    ]
+    ++ optionals config.programs.nushell.enable [
+      (writeNuBin "agenda_overview.nu" ./agenda_overview.nu)
     ];
 }
