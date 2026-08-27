@@ -139,6 +139,7 @@ with lib; {
             "animation_type_close:zoom,appid:org.gnupg.pinentry-qt"
             "noblur:1,appid:slurp"
             "isfloating:1,title:satty"
+            "isnamedscratchpad:1,noblur:1,focused_opacity:0.9,unfocused_opacity:0.8,appid:scratch-term"
           ];
 
           layerrule = [

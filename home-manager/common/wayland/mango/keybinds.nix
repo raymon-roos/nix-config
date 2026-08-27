@@ -45,6 +45,7 @@
           "${mod},minus,toggle_scratchpad"
           "${mod}+SHIFT,underscore,minimized"
           "${mod}+CTRL,minus,restore_minimized"
+          "${mod},code:21,toggle_named_scratchpad,scratch-term,none,${terminal} --app-id scratch-term"
 
           # application specific
           "${mod},return,spawn,${terminal}"
