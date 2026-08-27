@@ -1,7 +1,7 @@
 def main [] { }
 
 def "main brightness" [--set: string] {
-  brightnessctl set $'($set)' --min-value 10
+  brightnessctl set $'($set)' --min-value 10 | ignore
 
   brightnessctl info
     | parse -r '(?<percent>\d+)%'
