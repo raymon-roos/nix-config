@@ -6,7 +6,8 @@ let monitor = mmsg get all-monitors
   | first
   | select layout_symbol width height
 
-{T: scroller S: fair F: tile , VT: vertical_scroller VS: vertical_fair VF: vertical_tile}
+# dwindle (DW) has no vertical counterpart, so it doesn't link to anything to make it fall back to the default expression below
+{T: scroller S: dwindle, VT: vertical_scroller VS: dwindle}
   | get -o $monitor.layout_symbol
   | default (if ($monitor.width > $monitor.height) { 'tile' } else { 'vertical_tile' })
   | tee { ( notify-send

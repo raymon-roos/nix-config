@@ -63,7 +63,7 @@ with lib; {
             "wbg -s ${config.stylix.image} &"
           ];
 
-          circle_layout = "tile,vertical_tile,scroller,dwindle";
+          circle_layout = "tile,scroller,dwindle";
 
           scroller_structs = 10;
           scroller_default_proportion = 0.5;
@@ -73,7 +73,6 @@ with lib; {
           default_mfact = 0.5;
 
           drag_tile_to_tile = 1;
-          ov_tab_mode = 0;
           enable_hotarea = 0;
           jump_labels = "NEIOARSTMGQWFPLUY;XCDV/.,H";
           jump_label_decorate_font_desc = "monospace Bold 10";
@@ -86,7 +85,7 @@ with lib; {
           view_current_to_back = 0;
           focus_cross_monitor = 0;
           exchange_cross_monitor = 1;
-          # scratchpad_cross_monitor = 1;
+          scratchpad_cross_monitor = 1;
 
           repeat_rate = 50;
           repeat_delay = 130;

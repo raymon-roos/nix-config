@@ -77,17 +77,21 @@
           "${mod},i,focusdir,up"
           "${mod},o,focusdir,right"
 
-          "${mod}+CTRL,n,exchange_client,left"
-          "${mod}+CTRL,e,exchange_client,down"
-          "${mod}+CTRL,i,exchange_client,up"
-          "${mod}+CTRL,o,exchange_client,right"
+          "${mod}+CTRL,n,move_client,left"
+          "${mod}+CTRL,e,move_client,down"
+          "${mod}+CTRL,i,move_client,up"
+          "${mod}+CTRL,o,move_client,right"
 
-          "${mod}+CTRL+SHIFT,n,scroller_stack,left"
-          "${mod}+CTRL+SHIFT,e,scroller_stack,down"
-          "${mod}+CTRL+SHIFT,i,scroller_stack,up"
-          "${mod}+CTRL+SHIFT,o,scroller_stack,right"
+          "${mod}+CTRL+SHIFT,n,exchange_client,left"
+          "${mod}+CTRL+SHIFT,e,exchange_client,down"
+          "${mod}+CTRL+SHIFT,i,exchange_client,up"
+          "${mod}+CTRL+SHIFT,o,exchange_client,right"
 
-          "${mod}+CTRL,t,switch_proportion_preset"
+          "${mod}+ALT,n,scroller_stack,left"
+          "${mod}+ALT,e,scroller_stack,down"
+          "${mod}+ALT,i,scroller_stack,up"
+          "${mod}+ALT,o,scroller_stack,right"
+
           "${mod},t,spawn,${cycle_layouts}"
 
           # control monitors
@@ -116,6 +120,11 @@
             (tag_keybind "${mod}+SHIFT,${x.snd}" "tagsilent" x.fst)
             (tag_keybind "${mod}+CTRL+SHIFT,${x.snd}" "toggletag" x.fst)
           ]));
+
+      bindc = [
+        "${mod}+CTRL,t,dwindle_toggle_current_split"
+        "${mod}+CTRL,t,switch_proportion_preset"
+      ];
 
       mousebind = [
         # Mousebinds with a modifier work everywhere, without a modifier only in overview mode
