@@ -17,6 +17,8 @@ https://planet.factorcode.org/feed.xml
 
 @blogs
 https://andrewkelley.me/rss.xml
+https://b-rodrigues.github.io/blog/index.xml
+https://blog.codeberg.org/feeds/all.atom.xml
 https://blog.flaport.net/index.xml
 https://blog.increasinglyadequate.com/atom.xml
 https://blog.mozilla.org/en/feed/
@@ -24,8 +26,8 @@ https://blog.pimalaya.org/feed.xml
 https://blog.rahix.de/atom.xml                                                
 https://blog.sergeantbiggs.net/posts/index.xml                                
 https://blog.thechases.com/rss.xml
+https://brennan.day/feed.xml
 https://brianmckenna.org/blog/feed
-https://b-rodrigues.github.io/blog/index.xml
 https://castel.dev/rss.xml
 https://chris-martin.org/rss.xml
 https://drewdevault.com/blog/index.xml
@@ -38,10 +40,11 @@ https://gideonwolfe.com/index.xml
 https://gills.pages.dev/index.xml
 https://graydon2.dreamwidth.org/data/rss
 https://hypr.land/rss.xml
-https://iagoleal.com/posts/
+https://iagoleal.com/rss.xml
 https://ianthehenry.com/feed.xml
 https://issendai.livejournal.com/data/rss
 https://jacobwsmith.xyz/feed.xml
+https://jakelazaroff.com/rss.xml
 https://jcs.org/rss
 https://jmtd.net/log/index.rss
 https://justine.smithies.me.uk/atom.xml
@@ -74,13 +77,14 @@ https://waitbutwhy.com/feed
 https://www.agwa.name/blog/feed
 https://www.bencode.net/index.xml
 https://www.edwinwenink.xyz/index.xml
+https://www.jonashietala.se/feed.xml
 https://www.jvt.me/kind/articles/feed.xml
+https://www.lttlabs.com/articles/rss.xml
 https://www.paritybit.ca/feed.xml
 https://www.preposterousuniverse.com/feed/                                    
 https://www.rousette.org.uk/index.xml
 https://www.tedinski.com/feed.xml
 https://www.terminally-incoherent.com/blog/feed/index.html
-https://www.lttlabs.com/articles/rss.xml
 https://xeiaso.net/blog.rss
 
 @podcasts < item-limit 25
