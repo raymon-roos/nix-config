@@ -10,7 +10,7 @@ in {
     settings = {
       general =
         {
-          lock_cmd = "pidof hyprlock || hyprlock";
+          lock_cmd = "pidof hyprlock || hyprlock --grace 5 --quiet";
           before_sleep_cmd = "loginctl lock-session";
           ignore_dbus_inhibit = false;
           ignore_systemd_inhibit = false;

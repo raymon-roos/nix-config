@@ -11,10 +11,7 @@
       enable = true;
       settings = {
         general = {
-          disable_loading_bar = true;
-          grace = 5;
           hide_cursor = false;
-          no_fade_in = true;
         };
         background = lib.mkForce [
           {
