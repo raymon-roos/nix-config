@@ -40,6 +40,8 @@ with lib; {
           datetime_format.normal = "%F %T";
           datetime_format.table = "%F %T";
 
+          max_last_result_size = lib.hm.nushell.mkNushellInline "2Mb";
+
           keybindings =
             [
               {
