@@ -38,7 +38,7 @@
       ++ lib.optionals pkgs.stdenv.hostPlatform.isLinux [
         keychain
         wl-clipboard-rs
-        simple-mtpfs
+        go-mtpfs
         inotify-tools
         pwmenu
       ];
