@@ -23,7 +23,7 @@
     watt.url = "github:NotAShelf/watt";
     watt.inputs.nixpkgs.follows = "nixpkgs";
 
-    mango.url = "github:mangowm/mango/refs/tags/0.17.0";
+    mango.url = "github:mangowm/mango/refs/tags/0.17.2";
     mango.inputs.nixpkgs.follows = "nixpkgs";
 
     disko.url = "github:nix-community/disko/latest";
