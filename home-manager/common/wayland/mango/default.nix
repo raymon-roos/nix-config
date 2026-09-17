@@ -65,9 +65,11 @@ with lib; {
 
           circle_layout = "tile,scroller,dwindle";
 
-          scroller_structs = 10;
-          scroller_default_proportion = 0.5;
-          scroller_proportion_preset = "0.5,1";
+          scroller = {
+            structs = 10;
+            default_proportion = 0.5;
+            proportion_preset = "0.5,1";
+          };
 
           new_is_master = 0;
           default_mfact = 0.5;
@@ -75,10 +77,12 @@ with lib; {
           drag_tile_to_tile = 1;
           enable_hotarea = 0;
           jump_labels = "NEIOARSTMGQWFPLUY;XCDV/.,H";
-          jump_label_decorate_font_desc = "monospace Bold 10";
-          jump_label_decorate_border_width = 2;
-          jump_label_decorate_padding_x = 8;
-          jump_label_decorate_padding_y = 6;
+          jump_label_decorate = {
+            font_desc = "monospace Bold 10";
+            border_width = 2;
+            padding_x = 8;
+            padding_y = 6;
+          };
           focus_on_activate = 0;
           smartgaps = 1;
 
@@ -113,10 +117,12 @@ with lib; {
           scratchpadcolor = "0x516c93ff";
           globalcolor = "0xb153a7ff";
 
-          cursor_theme = config.stylix.cursor.name;
-          cursor_size = config.stylix.cursor.size;
-          cursor_hide_timeout = 1;
-          cursor_hide_on_keypress = 1;
+          cursor = {
+            theme = config.stylix.cursor.name;
+            size = config.stylix.cursor.size;
+            hide_timeout = 1;
+            hide_on_keypress = 1;
+          };
           warpcursor = 1;
 
           unfocused_opacity = lib.mkDefault 0.97;
@@ -125,13 +131,15 @@ with lib; {
           layer_animations = 1;
           # animation_type_open = "zoom";
           # animation_type_close = "slide";
-          animation_fade_in = 1;
           fadein_begin_opacity = 0.5;
           fadeout_begin_opacity = 0.7;
-          animation_duration_move = 220;
-          animation_duration_open = 290;
-          animation_duration_tag = 300;
-          animation_duration_close = 290;
+          animation = {
+            fade_in = 1;
+            duration_move = 220;
+            duration_open = 290;
+            duration_tag = 300;
+            duration_close = 290;
+          };
 
           windowrule = [
             "animation_type_open:zoom,appid:org.gnupg.pinentry-qt"
