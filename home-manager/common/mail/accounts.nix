@@ -22,7 +22,7 @@ in {
 
   config.accounts.email.accounts = mkIf (cfg.enable && length cfg.accounts > 0) (
     cfg.accounts
-    |> builtins.map ({
+    |> map ({
       accountName,
       flavor,
       primary ? false,
@@ -34,6 +34,12 @@ in {
         userName = contact_info.${accountName}.address;
         # Manually run `oama -c <config> authorize <email>` first. Microsoft additionally requires the `--device` flag
         passwordCommand = "oama -c ${configHome}/oama/config.yaml access ${contact_info.${accountName}.address}";
+
+        imap.authentication = "xoauth2";
+        smtp.authentication =
+          if flavor == "outlook.office365.com"
+          then "xoauth2"
+          else "oauthbearer";
 
         maildir.path = accountName;
 
@@ -110,17 +116,8 @@ in {
         himalaya = {
           inherit (config.programs.himalaya) enable;
           settings = {
-            backend = {
-              type = "maildir";
-              root-dir = "${mailHome}/${accountName}";
-            };
-            message = {
-              delete.style = "folder";
-              send.backend = {
-                type = "sendmail";
-                cmd = "msmtp --read-envelope-from --read-recipients";
-              };
-            };
+            maildir.root = "${mailHome}/${accountName}";
+            message.delete.style = "folder";
           };
         };
 
