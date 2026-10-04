@@ -231,6 +231,7 @@
     bemenu.fontSize = lib.mkDefault 8;
     librewolf.profileNames = ["default"];
     neovim.enable = false;
+    blender.enable = false; # Deploys a bunch of configs, even though I don't have blender installed
     kde.enable = false; # not compatible with nushell + nvim (?)
   };
 
