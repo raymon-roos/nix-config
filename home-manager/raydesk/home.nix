@@ -45,8 +45,8 @@
     };
     dev = {
       nix.enable = true;
-      nodejs.enable = true;
-      php.enable = true;
+      nodejs.enable = false;
+      php.enable = false;
       rust.enable = true;
       go.enable = true;
       python.enable = false;
