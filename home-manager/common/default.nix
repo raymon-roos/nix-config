@@ -34,6 +34,7 @@
         typst
         concord-tui
         xdg-utils
+        leaf-markdown-viewer
       ]
       ++ lib.optionals pkgs.stdenv.hostPlatform.isLinux [
         keychain
@@ -70,6 +71,11 @@
         microphone_volume = 200;
         voice_output_volume = 180;
       };
+    };
+
+    configFile."leaf/config.toml".source = (pkgs.formats.toml {}).generate "config.toml" {
+      width = 120;
+      history = 10;
     };
 
     mimeApps = {
