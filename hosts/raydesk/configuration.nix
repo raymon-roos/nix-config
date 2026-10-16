@@ -2,7 +2,6 @@
   config,
   pkgs,
   lib,
-  inputs,
   ...
 }: let
   hmConfig = config.home-manager.users.ray;
@@ -34,8 +33,6 @@ in {
 
   nix.settings = {
     auto-optimise-store = true;
-    substituters = ["https://attic.xuyh0120.win/lantian"]; # Binary cache for nix-cachyos-kernel
-    trusted-public-keys = ["lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="];
   };
 
   programs = {
