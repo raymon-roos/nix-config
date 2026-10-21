@@ -7,7 +7,7 @@
 with lib; {
   config = mkIf config.common.wayland.enable {
     home = {
-      packages = [pkgs.grimblast];
+      packages = lib.optional config.common.hyprland.enable pkgs.grimblast;
       sessionVariables.GRIMBLAST_EDITOR = mkIf config.common.hyprland.enable "satty";
     };
 
