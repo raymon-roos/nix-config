@@ -40,9 +40,7 @@
   };
 
   environment.systemPackages = with pkgs;
-    [
-    ]
-    ++ lib.optionals pkgs.stdenv.hostPlatform.isLinux [
+    lib.optionals pkgs.stdenv.hostPlatform.isLinux [
       smartmontools # The smartd service does not install smartctl?
     ];
 
