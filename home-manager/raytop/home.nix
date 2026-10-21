@@ -119,10 +119,10 @@
         trackpad_accel_profile = 1;
         trackpad_accel_speed = 1.25;
 
-        gappih = 1;
-        gappiv = 1;
-        gappoh = 2;
-        gappov = 2;
+        gap_inner_horizontal = 1;
+        gap_inner_vertical = 1;
+        gap_outer_horizontal = 2;
+        gap_outer_vertical = 2;
         blur = 0;
         shadows = 0;
         unfocused_opacity = 0.98;

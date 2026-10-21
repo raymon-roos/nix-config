@@ -135,7 +135,7 @@
     in
       lib.mkIf config.common.mango.enable {
         settings = {
-          monitorrule =
+          monitor_rule =
             [
               ["DP-1" "1" "1" "0" "0" "1920" "1080" "60"]
               ["HDMI-A-1" "0" "1" "1080" "0" "1920" "1080" "60"]
@@ -146,7 +146,7 @@
               |> map (m: "${m.fst}:${m.snd}")
               |> builtins.concatStringsSep ",");
 
-          tagrule =
+          tag_rule =
             lib.range 0 9
             |> map toString
             |> lib.concatMap (tag: [
@@ -154,9 +154,9 @@
               "id:${tag},monitor_name:DVI-I-1,layout_name:vertical_tile"
             ]);
 
-          windowrule = [
-            "isopensilent:1,monitor:DP-1,appid:cmus"
-            "monitor:DVI-I-1,appid:discord_client"
+          window_rule = [
+            "is_open_silent:1,monitor:DP-1,app_id:cmus"
+            "monitor:DVI-I-1,app_id:discord_client"
           ];
 
           bind = let
@@ -171,7 +171,7 @@
             "${mod}+CTRL,M,spawn,cmus-remote -C 'toggle aaa_mode'"
           ];
 
-          exec-once = ["mmsg dispatch focusmon,HDMI-A-1"];
+          exec_once = ["mmsg dispatch focusmon,HDMI-A-1"];
         };
       };
     river = lib.mkIf config.common.river.enable {
