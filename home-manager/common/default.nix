@@ -67,8 +67,8 @@
         self_mute = false;
         self_deaf = false;
         allow_microphone_transmit = true;
-        microphone_sensitivity = -55;
-        microphone_volume = 200;
+        microphone_sensitivity = -30;
+        microphone_volume = 180;
         voice_output_volume = 180;
       };
     };
