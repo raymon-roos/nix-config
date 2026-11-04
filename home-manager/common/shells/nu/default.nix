@@ -117,15 +117,17 @@ with lib; {
           jobs = "job list";
         };
 
-        environmentVariables =
-          config.home.sessionVariables
-          // {
-            EDITOR = "nvim";
-          };
+        loadSessionVariables = true; # Disabled by default below 26.11
 
-        extraEnv = ''
-          $env.PATH = ($env.Path | prepend "${config.xdg.userDirs.extraConfig.BIN_HOME}")
-        '';
+        # environmentVariables =
+        #   config.home.sessionVariables
+        #   // {
+        #     EDITOR = "nvim";
+        #   };
+
+        # extraEnv = ''
+        #   $env.PATH = ($env.Path | prepend "${config.xdg.userDirs.extraConfig.BIN_HOME}")
+        # '';
 
         extraConfig = builtins.readFile ./commands.nu;
       };
