@@ -11,7 +11,7 @@
     shift_nums = ["parenright" "exclam" "at" "numbersign" "code:13" "percent" "asciicircum" "ampersand" "asterisk" "code:18"];
     gen_tags = range 0 9 |> map toString;
 
-    tag_keybind = bind: action: tag: "${bind},spawn,${tags_with_overlay} --action ${action} --tag ${tag}";
+    tag_keybind = bind: action: tag: "${bind},${action},${tag}";
 
     browser = "librewolf";
     terminal = "kitty";
@@ -22,7 +22,6 @@
 
     spawn_or_focus = writeNuBin "spawn_or_focus";
     cycle_layouts = writeNuBin "cycle_layouts";
-    tags_with_overlay = writeNuBin "tags_with_overlay";
     quit_menu = writeNuBin "quit_menu";
   in
     lib.mkIf (

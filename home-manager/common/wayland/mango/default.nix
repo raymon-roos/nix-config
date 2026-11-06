@@ -154,5 +154,18 @@ with lib; {
           ];
         };
       };
+
+      systemd.user.services.mango-osd-service = {
+        Unit = {
+          Description = "Mango state change OSD background script";
+          After = ["mango-session.target"];
+          BindsTo = ["mango-session.target"];
+          X-SwitchMethod = "restart";
+          X-Restart-Triggers = ["${./mango_listener.nu}"];
+        };
+        Service = {
+          ExecStart = pkgs.writers.writeNuBin "osd.nu" ./mango_listener.nu |> lib.getExe;
+        };
+      };
     };
 }
