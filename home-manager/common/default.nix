@@ -230,6 +230,20 @@
         pdf-engine = "typst";
       };
     };
+
+    tealdeer = {
+      enable = true;
+      enableAutoUpdates = false;
+      settings = {
+        search.platforms = ["current" "linux" "common"];
+        display = {
+          show_title = true;
+          placeholder_format = "both";
+          indent.base = 4;
+          indent.command = 8;
+        };
+      };
+    };
   };
 
   stylix.targets = {
