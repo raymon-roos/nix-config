@@ -295,11 +295,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1793757180,
-        "narHash": "sha256-gyV7AtCwLnOImcrfSETP4J3Ie96bz19DY47B7m7Y3HM=",
+        "lastModified": 1794963576,
+        "narHash": "sha256-+CPrP74GDJ63f7bgEFC9Av4hbxc7K9WUNv1ZVRifRe8=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "b787c48e2ec57a9d098f5c2721882a3bc1e16f97",
+        "rev": "2b13c9cb3aa20653e6f8ee0b7f8331a53ea9b0a9",
         "type": "github"
       },
       "original": {
@@ -725,11 +725,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1793726008,
-        "narHash": "sha256-jQp1wKvbwWdLBASTXkSi/VYmDJ5AbBi1WvcMt9HWJC8=",
+        "lastModified": 1794890597,
+        "narHash": "sha256-lME2lHoDHAaSHP3/okgiVoJ0icVEvsQH8LeU3We7tcc=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "1d060086d60cb76a40cf37109f979d88a5bd6396",
+        "rev": "04906337b6d53e8bb0eaf0470ae9f070a4d4eb55",
         "type": "github"
       },
       "original": {
@@ -783,11 +783,11 @@
     "plover": {
       "flake": false,
       "locked": {
-        "lastModified": 1792476795,
-        "narHash": "sha256-X670qSjmbVPyZIoAvmpRh/xHOyIWdsJ2LSutuNxV9iw=",
+        "lastModified": 1794674999,
+        "narHash": "sha256-IeJF3XCp+Qjmy4Hr46Fc23jsWYfzPFbntls2iEkj37Y=",
         "owner": "openstenoproject",
         "repo": "plover",
-        "rev": "3c7c67a4f5d9f6a4d43e24762096fdca5b05ef6d",
+        "rev": "b3da5b037ecc9ea7abe9b8ef46a6bd2281180165",
         "type": "github"
       },
       "original": {
@@ -809,11 +809,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1793877457,
-        "narHash": "sha256-Wq/WX5jzG/UHJ79LWv9OzSiWoPCYmcfKbUIv0+qMoRU=",
+        "lastModified": 1795089442,
+        "narHash": "sha256-s2KJFHRMRcISLPbVnEpzdnDCptwCnSoRLsACRk2gkcw=",
         "owner": "dnaq",
         "repo": "plover-flake",
-        "rev": "398a089e75443d176276d6fe64fe19ed552a439e",
+        "rev": "73e1d43252df027ba3400d06e704a2fe4341d899",
         "type": "github"
       },
       "original": {
@@ -857,11 +857,11 @@
     "plover_plugins_registry": {
       "flake": false,
       "locked": {
-        "lastModified": 1793475758,
-        "narHash": "sha256-zUHz5AJTnVdUQvjUlpxVejz19+2bPGPYZuuo+oVfXdQ=",
+        "lastModified": 1794160818,
+        "narHash": "sha256-8wfVmqWxIhzbdOzW9BpiVen60Ywz6B0uZ0zAbJW6AUk=",
         "owner": "openstenoproject",
         "repo": "plover_plugins_registry",
-        "rev": "7e90626bc09b3ea1df5bc14da595dc47856c6ea2",
+        "rev": "63768c7d79cb20b8e8e74e904774be6693733fd4",
         "type": "github"
       },
       "original": {
@@ -984,11 +984,11 @@
         "tinted-zed": "tinted-zed"
       },
       "locked": {
-        "lastModified": 1792920263,
-        "narHash": "sha256-2pkE97wOXAYIn2/Nhs9y+iR0qVT+g/3UtukXdkywxXc=",
+        "lastModified": 1795038909,
+        "narHash": "sha256-u9VYWK6f9T8ZuMliRvX4LUuvJ/k5+6M5y35cZgsyJ8A=",
         "owner": "danth",
         "repo": "stylix",
-        "rev": "3e27b6c499e507df6e3bb8eca3614f5c95e28140",
+        "rev": "44aafe27b8b3427201dd53c6a464c196b6a956dd",
         "type": "github"
       },
       "original": {
@@ -1112,11 +1112,11 @@
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1791885023,
-        "narHash": "sha256-C3alQ2MEt0zVrUSho5NUDo3jmhbff72++bfwoqT9Omo=",
+        "lastModified": 1795017206,
+        "narHash": "sha256-WSBJcYjPRxGetDNxVzKnRPs1TQasQQlAC25W/S4W6YE=",
         "owner": "numtide",
         "repo": "treefmt-nix",
-        "rev": "0d6d739a833ba9a9c93034862e4a7b061a062a1c",
+        "rev": "0ba5d67225c3f5c88eb134e1a665a379bfd3bea9",
         "type": "github"
       },
       "original": {
