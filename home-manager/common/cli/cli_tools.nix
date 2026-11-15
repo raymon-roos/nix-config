@@ -12,6 +12,7 @@
       ignores = [
         ".git/"
         ".xdg/cache"
+        ".jj/"
       ];
     };
 
