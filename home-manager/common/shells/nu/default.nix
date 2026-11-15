@@ -42,7 +42,10 @@ with lib; {
 
           max_last_result_size = lib.hm.nushell.mkNushellInline "2Mb";
 
-          keybindings =
+          keybindings = let
+            inherit (config.programs) fzf;
+            inherit (builtins) concatStringsSep;
+          in
             [
               {
                 name = "copy_commandline";
@@ -57,7 +60,7 @@ with lib; {
                 };
               }
             ]
-            ++ (lib.optionals config.programs.fzf.enable [
+            ++ (lib.optionals fzf.enable [
               # Adapted from https://github.com/junegunn/fzf/issues/4122
               {
                 name = "fzf_cd";
@@ -67,8 +70,9 @@ with lib; {
                 event = {
                   send = "executehostcommand";
                   cmd = ''
-                    let result = nu --no-config-file --no-std-lib  -c $env.FZF_ALT_C_COMMAND | fzf
-                    cd $result
+                    ${fzf.changeDirWidget.command}
+                    | fzf ${fzf.changeDirWidget.options |> concatStringsSep " "}
+                    | if ($in | is-not-empty) { cd $'($in)' }
                   '';
                 };
               }
@@ -80,12 +84,13 @@ with lib; {
                 event = {
                   send = "executehostcommand";
                   cmd = ''
-                    let result = nu --no-config-file --no-std-lib -c $env.FZF_CTRL_T_COMMAND
-                    | fzf --scheme=path --multi
-                    | lines
+                    ${fzf.fileWidget.command}
+                    | fzf ${fzf.fileWidget.options |> concatStringsSep " "} --multi --print0
+                    | split row (char nul)
+                    | where ($it | is-not-empty)
+                    | each { to nuon }
                     | str join ' '
-                    commandline edit --append $result
-                    commandline set-cursor --end
+                    | commandline edit --insert $in
                   '';
                 };
               }
@@ -97,12 +102,17 @@ with lib; {
                 event = {
                   send = "executehostcommand";
                   cmd = ''
-                    let result = open $nu.history-path
+                    open $nu.history-path
                     | query db "select command_line from history group by command_line order by id desc;"
                     | get command_line
-                    | str join (char -i 0)
-                    | fzf --read0 --query=(commandline) --scheme=history --bind="ctrl-r:toggle-sort" --preview-window="up:4:wrap" --preview="r#'{r}'# | nu-highlight"
-                    commandline edit --replace $result
+                    | str join (char nul)
+                    | ( fzf --read0
+                      --query=(commandline)
+                      --scheme=history
+                      --bind="ctrl-r:toggle-sort"
+                      --preview-window="up:4:wrap"
+                      --preview="r#'{r}'# | nu-highlight" )
+                    | commandline edit --replace $in
                     commandline set-cursor --end
                   '';
                 };

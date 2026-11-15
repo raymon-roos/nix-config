@@ -68,6 +68,7 @@
       defaultCommand = "fd --hidden ${lib.strings.concatMapStrings (i: "-E '${i}' ") config.programs.fd.ignores}";
       fileWidget.command = config.programs.fzf.defaultCommand;
       fileWidget.options = [
+        "--scheme=path"
         "--preview-window=right:50%"
         "--preview='pistol {}'"
         "--bind 'ctrl-/:change-preview-window(down|hidden|)'"
@@ -75,8 +76,8 @@
         "--bind 'ctrl-f:preview-half-page-down'"
         "--bind 'ctrl-b:preview-half-page-up'"
       ];
-      changeDirWidget.command = "${config.programs.fzf.defaultCommand} --type d";
-      changeDirWidget.options = config.programs.fzf.fileWidget.options;
+      changeDirWidget.command = "${config.programs.fzf.defaultCommand} --type=dir";
+      changeDirWidget.options = config.programs.fzf.fileWidget.options ++ ["--multi=1"];
       historyWidget.options = [
         "--preview 'echo {}'"
         "--preview-window up:3:wrap"
